@@ -158,7 +158,8 @@ reward:
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
 
-# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+# Pangu Support
+# For more information: https://github.com/vinta/pangu.js
 pangu: false
 
 # Algolia Search
