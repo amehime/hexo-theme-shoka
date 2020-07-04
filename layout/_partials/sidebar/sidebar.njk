@@ -27,8 +27,8 @@
 
   <ul class="quick">
     <li class="prev pjax">
-      {%- if page and page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="prev" title="{{__('post.prev')}}">
+      {%- if page and page.prev %}
+      <a href="{{ url_for(page.prev_link) }}" rel="prev" title="{{__('post.prev')}}">
         <i class="ic i-chevron-left"></i>
       </a>
       {%- endif %}
@@ -36,8 +36,8 @@
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-      {%- if page and page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="next" title="{{__('post.next')}}">
+      {%- if page and page.next %}
+      <a href="{{ url_for(page.next_link) }}" rel="next" title="{{__('post.next')}}">
         <i class="ic i-chevron-right"></i>
       </a>
       {%- endif %}
