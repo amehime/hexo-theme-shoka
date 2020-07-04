@@ -1,0 +1,19 @@
+{%- set ccIcon = '<i class="ic i-creative-commons"></i>' %}
+{%- set ccText = theme.creative_commons.license | upper %}
+
+<div id="copyright" class="copyright">
+<ul>
+  <li class="author">
+    <strong>{{ __('post.copyright.author') + __('symbol.colon') }} </strong>
+    {{- page.author or author }} @ {{- title}}
+  </li>
+  <li class="link">
+    <strong>{{ __('post.copyright.link') + __('symbol.colon') }}</strong>
+    {{ _url(page.permalink, page.permalink, {title: page.title}) }}
+  </li>
+  <li class="license">
+    <strong>{{ __('post.copyright.license_title') + __('symbol.colon') }} </strong>
+    {{- __('post.copyright.license_content', _url(ccURL, ccIcon + ccText)) }}
+  </li>
+</ul>
+</div>

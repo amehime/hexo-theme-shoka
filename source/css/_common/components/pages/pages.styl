@@ -1,0 +1,40 @@
+// Page specific styles
+
+@import 'home';
+@import 'collapse';
+@import 'tag-cloud';
+
+.page {
+  .notfound {
+    width: 300px;
+    height: 330px;
+    background: url("../images/404.png") no-repeat center bottom;
+    text-align: center;
+    margin:100px auto;
+  }
+
+  .anchor::before {
+    font-family-icons();
+    color: var(--grey-4);
+    position: absolute;
+    left: -30px;
+    visibility: visible;
+    the-transition(, ease-out);
+  }
+
+  .body h1 .anchor::before {
+    @extend .i-sakura:before;
+    font-size: $font-size-small;
+    animation: rotate 5s linear infinite;
+    margin-top: .15em;
+    color: pink;
+  }
+
+  h2 .anchor::before {
+    content: "\f017";
+    font-size: $font-size-smaller;
+    animation: beat 1.33s ease-in-out infinite;
+    margin-top: .25em;
+    left: -25px;
+  }
+}

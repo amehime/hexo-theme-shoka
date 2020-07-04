@@ -1,0 +1,75 @@
+<nav>
+  <div class="inner">
+    <div class="toggle menu">
+      <div class="lines" aria-label="{{ __('accessibility.nav_toggle') }}">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="list menu">
+      {%- for name, path in theme.menu %}
+      {%- set itemURL = path.split('||')[0] | trim %}
+      {%- if not itemURL.startsWith('http') %}
+      {%- set itemURL = itemURL | replace('//', '/') %}
+      {%- endif %}
+      {%- set menuIcon = '<i class="ic i-' + path.split('||')[1] | trim + '"></i>' %}
+      {%- set menuText = __('menu.' + name) | replace('menu.', '') %}
+      <li class="item">
+        {{ _url(itemURL, menuIcon + menuText, {rel: 'section'}) }}
+      </li>
+      {%- endfor %}
+    </ul>
+    <div class="right menu">
+      <div class="search-btn">
+        <i class="ic i-search ic-lg"></i>
+      </div>
+      <div class="back-to-top">
+        <i class="ic i-arrow-up"></i>
+        <span>0%</span>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="brand">
+  <div class="meta">
+    <a href="{{ config.root }}" class="logo" rel="start">
+      <span class="artboard"></span>
+      <h1 class="title">{{ title }}</h1>
+    </a>
+    {%- if subtitle %}
+    <p class="subtitle" itemprop="description">= {{ subtitle }} =</p>
+    {%- endif %}
+  </div>
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" />
+      <use xlink:href="#gentle-wave" x="48" y="3" />
+      <use xlink:href="#gentle-wave" x="48" y="5" />
+      <use xlink:href="#gentle-wave" x="48" y="7" />
+    </g>
+  </svg>
+</div>
+<div class="search">
+  <div class="inner">
+    <div class="header">
+      <span class="icon">
+        <i class="ic i-search"></i>
+      </span>
+      <div class="search-input-container"></div>
+      <span class="close-btn">
+        <i class="ic i-times-circle"></i>
+      </span>
+    </div>
+    <div class="results">
+      <div class="inner">
+        <div id="search-stats"></div>
+        <div id="search-hits"></div>
+        <div id="search-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>

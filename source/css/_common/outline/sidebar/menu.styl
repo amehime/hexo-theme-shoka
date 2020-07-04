@@ -1,0 +1,39 @@
+.overview .menu {
+  padding: 20px;
+  margin: 0;
+
+  background-color: transparent;
+
+  .item {
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--grey-5);
+    the-transition();
+
+    a {
+      color: inherit;
+      display: block;
+      line-height: 3;
+    }
+
+    &:hover {
+      background-color: rgba(0,0,0,.1);
+      color: inherit;
+    }
+
+    i {
+      margin-right: 10px;
+    }
+
+    &.active {
+      color: #FFF;
+      background-image: linear-gradient(to right,var(--color-pink) 0,var(--color-orange) 100%);
+      box-shadow: 0 0 12px var(--color-pink-a3);
+      &:hover {
+        box-shadow: 0 0 12px var(--color-pink);
+      }
+    }
+
+  }
+}

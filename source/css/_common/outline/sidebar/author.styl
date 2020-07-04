@@ -1,0 +1,60 @@
+.overview .author {
+  margin-top: 30px;
+
+  &:hover .image {
+    animation: 0.8s ease-out 0s 1 normal both running shake;
+  }
+
+  .image {
+    border: 1px solid var(--body-bg-shadow);
+    display: block;
+    margin: 0 auto;
+    max-width: 160px;
+    padding: 2px;
+    box-shadow: 0 0rem 1rem 10px var(--body-bg-shadow);
+    border-radius: 50%;
+  }
+
+
+  .name {
+    color: var(--grey-7);
+    font-weight: normal;
+    margin: 5px 0 0;
+    text-align: center;
+  }
+
+  .description {
+    color: var(--grey-5);
+    font-size: $font-size-medium;
+    margin-top: 5px;
+    text-align: center;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(1);
+  }
+
+  10%,
+  20% {
+    transform: scale(0.9) rotate(3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

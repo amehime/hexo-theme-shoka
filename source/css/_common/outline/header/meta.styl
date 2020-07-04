@@ -1,0 +1,111 @@
+.brand {
+  display: block;
+  position: relative;
+  //z-index: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 250px;
+
+  .meta {
+    position: fixed;
+    width: 556px;
+    top: 0;
+    left: calc(50% - 278px);
+    padding-top: 50px;
+    text-align: $site-meta-text-align;
+
+    +mobile() {
+      text-align: center;
+    }
+
+    &.affix {
+      z-index: $zindex-0;
+    }
+
+    .logo {
+      border-bottom: none;
+      color: white;
+      display: inline-block;
+      line-height: $font-size-title;
+      padding: 0 40px;
+      position: relative;
+    }
+
+    .title {
+      font-weight: bold;
+      font-family: $font-family-logo;
+      font-size: $font-size-title;
+      margin: 0;
+    }
+
+    .subtitle {
+      color: white;
+      font-size: $font-size-subtitle;
+      margin: 10px 0;
+    }
+
+    .artboard {
+      width: 435px;
+      height: 100px;
+      margin: 20px;
+      display: block;
+      background-image: url('../images/logo.svg');
+      background-repeat: no-repeat;
+      filter: drop-shadow(0px 0px 8px alpha(#000, .5));
+
+      +mobile() {
+        width: 217px;
+        height: 69px;
+        margin: 5px;
+      }
+    }
+  }
+
+
+  .waves {
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -13px;
+    min-height: 100px;
+    max-height: 150px;
+  }
+}
+
+/* Animation */
+.parallax>use {
+  animation: wave 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+  fill: var(--grey-1-a7);
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+  fill: var(--grey-1-a5);
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+  fill: var(--grey-1-a3);
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+  fill: var(--grey-1);
+}
+
+@keyframes wave {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}

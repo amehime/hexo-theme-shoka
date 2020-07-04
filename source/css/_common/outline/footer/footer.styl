@@ -1,0 +1,60 @@
+// Footer Section
+// --------------------------------------------------
+.container > footer {
+  position: fixed;
+  color: var(--grey-5);
+  font-size: $font-size-small;
+  bottom:0;
+  width:100%;
+
+  .inner {
+    margin: 0 auto;
+    text-align: center;
+    width: $content-desktop;
+    padding-left: 260px;
+
+    +desktop-large() {
+      width: $content-desktop-large;
+    }
+
+    +desktop-largest() {
+      width: $content-desktop-largest;
+    }
+
+    +tablet-mobile() {
+      padding-left: 0;
+      padding-right: 0;
+      width: auto;
+    }
+  }
+}
+
+.languages {
+  display: inline-block;
+  font-size: $font-size-large;
+  position: relative;
+
+  .lang-select-label span {
+    margin: 0 .5em;
+  }
+
+  .lang-select {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.with-love {
+  color: unquote(hexo-config('footer.icon.color'));
+  display: inline-block;
+  margin: 0 5px 0 2px;
+}
+
+.powered-by, .theme-info {
+  display: inline-block;
+  margin-bottom: 10px;
+}

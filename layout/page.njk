@@ -1,0 +1,30 @@
+{% extends '_partials/layout.njk' %}
+
+{% block title %}{{ page.title }} | {% endblock %}
+
+{% block content %}
+  <div class="page wrap">
+    <div class="post block">
+      <header><h1 class="title">{{- page.title }}</h1></header>
+      <div class="body{%- if page.direction and page.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}">
+        {{ page.content }}
+      </div>
+      <footer>
+        {%- if theme.reward.enable %}
+          {{ partial('_partials/post/reward.njk') }}
+        {%- endif %}
+        {%- if theme.creative_commons.license %}
+          {{ partial('_partials/post/copyright.njk') }}
+        {%- endif %}
+      </footer>
+    </div>
+  </div>
+
+  {%- if page.comment !== false %}
+  <div class="comments wrap" id="comments" data-id="{{ _md5(page.path) }}"></div>
+  {%- endif %}
+{% endblock %}
+
+{% block sidebar %}
+{{ partial('_partials/sidebar/sidebar.njk', {display_toc: true}) }}
+{% endblock %}

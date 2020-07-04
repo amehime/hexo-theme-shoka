@@ -1,0 +1,52 @@
+<div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="{{ author }}"
+      data-src="{{ url_for(theme.statics + theme.images +'/avatar.jpg') }}">
+  <p class="name" itemprop="name">{{ author }}</p>
+  <div class="description" itemprop="description">{{ description }}</div>
+</div>
+
+<nav class="state">
+  {%- if config.archive_dir != '/' and site.posts.length > 0 %}
+    <div class="item posts">
+      <span class="count">{{ site.posts.length }}</span>
+      <span class="name">{{ __('state.posts') }}</span>
+    </div>
+  {%- endif %}
+
+  {%- if site.categories.length > 0 %}
+    <div class="item categories">
+      <span class="count">{{ site.categories.length }}</span>
+      <span class="name">{{ __('state.categories') }}</span>
+    </div>
+  {%- endif %}
+
+  {%- if site.tags.length > 0 %}
+    <div class="item tags">
+      <span class="count">{{ site.tags.length }}</span>
+      <span class="name">{{ __('state.tags') }}</span>
+    </div>
+  {%- endif %}
+</nav>
+
+<div class="social">
+  {%- for name, link in theme.social %}
+    {%- set sidebarURL = link.split('||')[0] | trim %}
+    {%- set sidebarIcon = '<i class="ic i-' + link.split('||')[1] | trim + '"></i>' %}
+      {{ _url(sidebarURL, sidebarIcon, {title: sidebarURL, class: 'item ' + name}) }}
+  {%- endfor %}
+</div>
+
+
+<ul class="menu">
+  {%- for name, path in theme.menu %}
+    {%- set itemURL = path.split('||')[0] | trim %}
+    {%- if not itemURL.startsWith('http') %}
+      {%- set itemURL = itemURL | replace('//', '/') %}
+    {%- endif %}
+    {%- set menuIcon = '<i class="ic i-' + path.split('||')[1] | trim + '"></i>' %}
+    {%- set menuText = __('menu.' + name) | replace('menu.', '') %}
+    <li class="item">
+      {{ _url(itemURL, menuIcon + menuText, {rel: 'section'}) }}
+    </li>
+    {%- endfor %}
+</ul>

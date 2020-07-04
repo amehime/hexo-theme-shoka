@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="{{ config.language }}">
+<head>
+  {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
+  {{ partial('_partials/head/head_unique.njk') }}
+  <title>{% block title %}{% endblock %}{{ logo + " = " if logo }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="body"></div>
+      <div class="tail"></div>
+      <div class="head"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <header itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        {% block header %}{{ partial('_partials/header.njk', {}, {cache: true}) }}{% endblock %}
+      </div>
+      <ul class="lozad">
+      {%- for image in theme.header_bg %}
+        <li data-background-image="{{ url_for(theme.statics + theme.images +'/banner/'+ image) }}"></li>
+      {%- endfor %}
+      </ul>
+    </header>
+    <main>
+      <div class="inner">
+        <div class="content pjax">
+          {% block content %}{% endblock %}
+        </div>
+        <div class="sidebar">
+          {% block sidebar %}{{ partial('_partials/sidebar/sidebar.njk') }}{% endblock %}
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="inner">
+        {{ partial('_partials/footer.njk', {}, {cache: true}) }}
+      </div>
+    </footer>
+  </div>
+
+<script data-config type="text/javascript">
+  var CONFIG = {
+    hostname  : "{{ hostname }}",
+    root: "{{ config.root }}",
+    statics: "{{ theme.statics }}",
+    favicon: {
+      normal: "{{ theme.images }}/favicon.ico",
+      hidden: "{{ theme.images }}/failure.ico",
+      show: "{{ __('favicon.show') }}",
+      hide: "{{ __('favicon.hide') }}"
+    },
+    {%- if (is_post() or is_page()) and page.comment !== false  %}
+    valine: "{{ theme.vendors.js.valine }}",
+    comments    : {
+      appId      : "{{theme.valine.appid}}",
+      appKey     : "{{theme.valine.appkey}}",
+      placeholder: "{{theme.valine.placeholder}}",
+      avatar     : "{{theme.valine.avatar}}",
+      pageSize   : {{theme.valine.pageSize|default(10)}},
+      visitor    : {{theme.valine.visitor}},
+      lang       : "{{theme.valine.language|default('zh-cn')}}",
+      recordIP   : {{theme.valine.recordIP}},
+      serverURLs : "{{theme.valine.serverURLs}}"
+    },{%- endif %}
+    {%- if page.chart %}chart: "{{theme.vendors.js.chart}}",{%- endif %}
+    {%- if page.math %}copy_tex: "{{theme.vendors.js.copy_tex}}",
+    katex: "{{theme.vendors.css.katex}}",{%- endif %}
+    {%- if page.mermaid %}mermaid: "{{ theme.css }}/mermaid.css",{% endif %}
+    mediumzoom: "{{theme.vendors.js.mediumzoom}}",
+    search : {
+      appID    : "{{config.algolia.appId}}",
+      apiKey   : "{{config.algolia.apiKey}}",
+      indexName: "{{config.algolia.indexName}}",
+      hits     : {{theme.search.hits|safedump}},
+      labels   : {{theme.search.labels|safedump}}
+    },
+    quicklink: {
+      timeout : {{ theme.quicklink.timeout }},
+      priority: {{ theme.quicklink.priority }},
+      ignores : [
+        function(uri) {
+          return uri.includes('#');
+        },
+        function(uri) {
+          return uri === '{{ url | replace('index.html', '') }}';
+        }{%- if theme.quicklink.ignores %},
+        {{ theme.quicklink.ignores|safedump }}
+        {% endif %}
+      ]
+    }
+  };
+</script>
+
+{{ _vendor_js() }}
+
+{{ _js('app.js')}}
+
+{{ partial('_partials/third-party/baidu-analytics.njk', {}, {cache: true}) }}
+
+</body>
+</html>

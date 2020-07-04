@@ -1,0 +1,32 @@
+.right.menu {
+  display: inline-flex;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+
+  .back-to-top {
+    display: none;
+
+    span {
+      font-size: $font-size-smallest;
+      margin: 10px;
+      width: 30px;
+    }
+  }
+
+  .search-btn {
+    padding: 10px;
+    font-size: $font-size-smallest;
+  }
+
+  div + div {
+    margin-left:10px;
+  }
+}
+.container>header nav.show {
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

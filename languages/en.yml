@@ -1,0 +1,119 @@
+name: English
+
+favicon:
+  show: （●´3｀●）
+  hide: (´Д｀)
+
+title:
+  archive: Archive
+  category: Category
+  tag: Tag
+  schedule: Schedule
+
+menu:
+  home: Home
+  archives: Archives
+  categories: Categories
+  tags: Tags
+  about: About
+  search: Search
+  friends: Friends
+  links: Links
+  travellings: Travellings
+
+sidebar:
+  overview: Overview
+  toc: Contents
+  related: Related
+
+post:
+  posted: Posted on
+  edited: Edited on
+  created: Created
+  modified: Modified
+  edit: Edit this post
+  in: In
+  read_more: Read more
+  untitled: Untitled
+  sticky: Sticky
+  views: Views
+  related_posts: Related Posts
+  next: Next Post
+  prev: Previous Post
+  copyright:
+    author: Post author
+    link: Post link
+    license_title: Copyright Notice
+    license_content: "All articles in this blog are licensed under %s unless stating additionally."
+
+footer:
+  powered: "Powered by %s"
+  total_views: Total Views
+  total_visitors: Total Visitors
+
+counter:
+  index:
+    post: "%d posts in total"
+    category:  "%d subcategories in total"
+  tag_cloud:
+    zero: No tags
+    one: 1 tag in total
+    other: "%d tags in total"
+  categories:
+    zero: No categories
+    one: 1 category in total
+    other: "%d categories in total"
+  archive_posts:
+    zero: No posts.
+    one: 1 post.
+    other: "%d posts in total."
+
+state:
+  posts: posts
+  tags: tags
+  categories: categories
+
+search:
+  placeholder: Searching...
+
+cheers:
+  um: Um..
+  ok: OK
+  nice: Nice
+  good: Good
+  great: Great
+  excellent: Excellent
+
+keep_on: Keep on posting.
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  year: "Y"
+  month: "M"
+
+reward:
+  donate: Donate
+  text: give me a cup of coffee
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+
+follow_me:
+  welcome: Welcome to my other publishing channels
+
+accessibility:
+  nav_toggle: Toggle navigation bar
+  prev_page: Previous page
+  next_page: Next page
+
+symbols_count_time:
+  count: Symbols count in article
+  count_total: Symbols count total
+  time: Reading time
+  time_total: Reading time total
+  time_minutes: mins.
+  word: words
+  view: times

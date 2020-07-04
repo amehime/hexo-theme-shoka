@@ -1,0 +1,29 @@
+{% extends '_partials/layout.njk' %}
+
+{% block title %}
+{%- set page_title = page.title %}
+{%- if page.categories and page.categories.length %}
+  {%- set cat_list = '' %}
+  {%- set comma = '' %}
+  {%- for cat in page.categories.toArray() %}
+    {%- set cat_list = cat.name + comma + cat_list%}
+    {%- set comma = ' - ' %}
+  {%- endfor %}
+  {%- set page_title = page_title + ' - ' + cat_list %}
+{%- endif %}
+{{ page_title }} |
+{% endblock %}
+
+{% block content %}
+  <div class="article wrap">
+    {{ partial('_partials/post/post.njk', {post: page}) }}
+  </div>
+  {{ partial('_partials/post/nav.njk', {post: page}) }}
+  {%- if page.comment !== false %}
+  <div class="comments wrap" id="comments" data-id="{{ _md5(page.path) }}"></div>
+  {%- endif %}
+{% endblock %}
+
+{% block sidebar %}
+{{ partial('_partials/sidebar/sidebar.njk', {display_toc: true}) }}
+{% endblock %}

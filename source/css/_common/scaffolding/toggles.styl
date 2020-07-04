@@ -1,0 +1,59 @@
+.toggle {
+  line-height: 0;
+
+  .line {
+    background: white;
+    display: inline-block;
+    height: 2px;
+    left: 0;
+    position: relative;
+    border-radius: 1px;
+    top: 0;
+    transition: all .4s;
+    vertical-align: top;
+    width: 100%;
+    box-shadow: 0px 0px 8px alpha(#000, .5);
+
+    &:not(:first-child) {
+      margin-top: 3px;
+    }
+  }
+}
+
+
+  .toggle.toggle-arrow {
+    .toggle-line-first {
+      left: 50%;
+      top: 2px;
+      transform: rotate(45deg);
+      width: 50%;
+    }
+
+    .toggle-line-middle {
+      left: 2px;
+      width: 90%;
+    }
+
+    .toggle-line-last {
+      left: 50%;
+      top: -2px;
+      transform: rotate(-45deg);
+      width: 50%;
+    }
+  }
+
+  .toggle.close {
+    .line:nth-child(1) {
+      transform: rotate(-45deg);
+      top: 5px;
+    }
+
+    .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .line:nth-child(3) {
+      transform: rotate(45deg);
+      top: -5px;
+    }
+  }

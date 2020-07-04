@@ -1,0 +1,18 @@
+<div class="nav">
+  <div class="inner">
+    <div class="item">
+      {%- if post.next %}
+      <a href="{{ url_for(post.next.path) }}" rel="prev">
+        <i class="ic i-chevron-left"></i> {{__('post.prev')}}
+      </a>
+      {%- endif %}
+    </div>
+    <div class="item">
+      {%- if post.prev %}
+      <a href="{{ url_for(post.prev.path) }}" rel="next">
+        {{__('post.next')}} <i class="ic i-chevron-right"></i>
+      </a>
+      {%- endif %}
+    </div>
+  </div>
+</div>

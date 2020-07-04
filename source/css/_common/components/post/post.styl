@@ -1,0 +1,46 @@
+.post.block {
+  border-radius: $border-radius-inner;
+  padding: 1rem 2rem;
+}
+
+.post .body {
+  font-family: $font-family-posts;
+  word-wrap();
+
+  +desktop-large() {
+    font-size: $font-size-large;
+  }
+
+  .exturl i {
+    font-size: $font-size-small;
+    margin-left: 4px;
+  }
+
+  .image-caption,
+  .figure .caption {
+    color: var(--grey-5);
+    font-size: $font-size-small;
+    font-weight: bold;
+    line-height: 1;
+    margin: -20px auto 15px;
+    text-align: center;
+  }
+
+  .button {
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+
+@import 'breadcrumb';
+@import 'header';
+@import 'nav';
+@import 'gallery';
+@import 'expand';
+@import 'rtl';
+@import 'footer';
+@import 'tags';
+@import 'widgets';
+@import 'reward';
+@import 'copyright';

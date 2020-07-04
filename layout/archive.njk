@@ -1,0 +1,118 @@
+{% extends '_partials/layout.njk' %}
+
+{% block title %}
+{%- if is_month() %}
+{{page.year}} {{__('symbol.year')}} / {{ page.month}} {{__('symbol.month')}} -
+{% elif is_year() %}
+{{page.year}} {{__('symbol.year')}} -
+{%- endif %}
+{{ __('title.archive') }} |
+{% endblock %}
+
+{% block content %}
+  <div class="collapse wrap">
+    <h2 class="item header">
+        {%- if is_month() %}
+          <a href="{{ url_for(config.archive_dir + '/' + page.year )}}">{{page.year}} {{__('symbol.year')}}</a> <small>/</small> {{page.month}} {{__('symbol.month')}}<small>{{ __('title.archive') }}</small>
+        {% elif is_year() %}
+          <a href="{{ url_for(config.archive_dir )}}">{{page.year}} {{__('symbol.year')}}</a> <small>{{ __('title.archive') }}</small>
+        {% else %}
+          <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small>
+          {%- set posts_length = site.posts.length %}
+          {%- if posts_length > 210 %}
+            {%- set cheers = 'excellent' %}
+          {% elif posts_length > 130 %}
+            {%- set cheers = 'great' %}
+          {% elif posts_length > 80 %}
+            {%- set cheers = 'good' %}
+          {% elif posts_length > 50 %}
+            {%- set cheers = 'nice' %}
+          {% elif posts_length > 30 %}
+            {%- set cheers = 'ok' %}
+          {% else %}
+            {%- set cheers = 'um' %}
+          {%- endif %}
+          {{ _p('counter.archive_posts', site.posts.length) }} <small class="cheers">{{ __('cheers.' + cheers) }} {{ __('keep_on') }}</small>
+        {%- endif %}
+    </h2>
+
+    {%- set current_year = '1970' %}
+    {%- set current_month = '01' %}
+    {%- set count_post = 1 %}
+
+    {%- for post in page.posts.toArray() %}
+
+      {%- set year = date(post.date, 'YYYY') %}
+      {%- set month = date(post.date, 'MM') %}
+
+      {%- if not is_year() %}
+
+        {%- if year !== current_year or month !== current_month %}
+
+          {%- if current_year !== '1970' %}
+              <small>( {{ count_post }} )</small>
+            </h3>
+          {%- endif %}
+
+          <h3 class="item section">
+            <a href="{{ url_for(config.archive_dir + '/' + year )}}">{{ year }} {{__('symbol.year')}}</a><small>/</small><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month)}}">{{ month }} {{__('symbol.month')}}</a>
+          {%- set current_year = year %}
+          {%- set current_month = month %}
+          {%- set count_post = 1 %}
+        {%- else %}
+          {%- set count_post = count_post + 1 %}
+        {%- endif %}
+
+      {% else %}
+
+        {%- if year !== current_year and not is_year()%}
+          {%- set current_year = year %}
+          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year )}}">{{ year }} {{__('symbol.year')}}</a></h3>
+        {%- endif %}
+
+        {%- if month !== current_month and is_year() and not is_month()%}
+          {%- set current_month = month %}
+          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month)}}">{{ month }} {{__('symbol.month')}}</a></h3>
+        {%- endif %}
+
+        <article class="item normal" itemscope itemtype="http://schema.org/Article">
+          <div class="meta">
+            <time itemprop="dateCreated"
+                  datetime="{{ moment(post.date).format() }}"
+                  content="{{ date(post.date, config.date_format) }}">
+              {{ date(post.date, 'MM-DD') }}
+            </time>
+            {%- if post.categories and post.categories.length %}
+              {%- set cat_length = post.categories.length %}
+              {%- for cat in post.categories.toArray() %}
+                {%- if loop.index == cat_length and cat.name !== page.category %}
+                <span><a href="{{ url_for(cat.path) }}">{{ cat.name }}</a></span>
+                {%- endif %}
+              {%- endfor %}
+            {%- endif %}
+          </div>
+
+          <div class="title">
+            {%- if post.link %}
+              {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+              {%- set postText = post.title or post.link %}
+              {{ _url(post.link, postText + postTitleIcon, {class: 'external', itemprop: 'url'}) }}
+            {% else %}
+              <a href="{{ url_for(post.path) }}" itemprop="url">
+                <span itemprop="name">{{ post.title or __('post.untitled') }}</span>
+              </a>
+            {%- endif %}
+          </div>
+        </article>
+      {%- endif %}
+
+    {%- endfor %}
+    {%- if not is_year() %}
+        <small>( {{ count_post }} )</small>
+      </h3>
+    {%- endif %}
+  </div>
+
+  {% include '_partials/pagination.njk' %}
+
+{% endblock %}

@@ -1,0 +1,231 @@
+# Assets
+statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
+assets: assets
+css: css
+js: js
+images: images
+vendors:
+  css:
+    katex: npm/katex@0/dist/katex.min.css
+  js:
+    pace: npm/pace-js@1.0.2/pace.min.js
+    pjax: npm/pjax@0.2.8/pjax.min.js
+    velocity: npm/velocity-animate@1.5.2/velocity.min.js
+    velocity_ui: npm/velocity-animate@1.5.2/velocity.ui.min.js
+    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
+    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
+    lazyload: npm/lozad@1/dist/lozad.min.js
+    quicklink: npm/quicklink@2/dist/quicklink.umd.js
+    mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
+    valine: npm/valine@1.4.14/dist/Valine.min.js
+    copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
+    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
+
+# /images/***
+favicon:
+  apple_touch_icon: /apple-touch-icon.png
+  #safari_pinned_tab: /logo.svg
+  #android_manifest: /manifest.json
+  #ms_browserconfig: /browserconfig.xml
+
+open_graph:
+  #twitter_id:
+  #google_plus:
+  #fb_admins:
+  #fb_app_id:
+
+font:
+  enable: true
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside <body>.
+  global:
+    external: true
+    family:
+    size:
+
+  # Font settings for site title (.site-title).
+  title:
+    external: true
+    family: Noto Serif SC
+    size: 2
+
+  # Font settings for headlines (<h1> to <h6>).
+  headings:
+    external: true
+    family: Noto Serif JP
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family:
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family: Fira Code
+
+menu:
+  home: / || home
+  #about: /about/ || user
+  #tags: tags || tags
+  #categories: categories || th
+  #archives: /archives/ || list-alt
+  #friends: /friends/ || heart
+  #links: /links/ || magic
+
+
+header_bg:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+  - 4.jpg
+  - 5.jpg
+  - 6.jpg
+
+# Social Links
+# Usage: `Key: permalink || icon || color`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink,
+# secend value is the name of Font icon.
+social:
+  github: https://github.com/yourname || github || "#191717"
+  #google: https://plus.google.com/yourname || google
+  twitter: https://twitter.com/yourname || twitter || "#00aff0"
+  zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
+  music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
+  weibo: https://weibo.com/yourname || weibo || "#ea716e"
+  about: https://about.me/yourname || address-card || "#3b5998"
+  #email: mailto:yourname@mail.com || envelope || "#55acd5"
+  #facebook: https://www.facebook.com/yourname || facebook
+  #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
+  #youtube: https://youtube.com/yourname || youtube
+  #instagram: https://instagram.com/yourname || instagram
+  #skype: skype:yourname?call|chat || skype
+
+# Display mode of index
+# `post` will only show list of posts
+# `category` will only show list of categories
+# Only categories with defined cover image will be displayed
+# Define cover method:
+# `post` mode: add the front-matter variable `cover: image path`
+# `category` mode: put the cover image in the category corresponding directory, and named it `cover.jpg`
+index:
+  mode: post #or category
+  # default cover for post
+  cover: "linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%)"
+  excerpt_description: true
+
+post:
+  count: false
+
+footer:
+  # Specify the date when the site was setup. If not defined, current year will be used.
+  since: 2010
+  icon:
+    # Icon name in Font Awesome. See: https://fontawesome.com/icons
+    name: ic i-sakura rotate
+    # Change the color of icon, using Hex Code.
+    color: "#ffc0cb"
+  site_count: false
+
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/share-your-work/licensing-types-examples
+# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
+creative_commons:
+  license: by-nc-sa
+  language: deed.zh
+
+
+# Reward (Donate)
+reward:
+  # If true, reward will be displayed in every article by default.
+  enable: true
+  account:
+    wechatpay: /wechatpay.png
+    alipay: /alipay.png
+    paypal: /paypal.png
+
+
+
+# ---------------------------------------------------------------
+# Third Party Plugins & Services Settings
+# ---------------------------------------------------------------
+
+# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+pangu: false
+
+# Algolia Search
+# For more information: https://www.algolia.com
+search:
+  hits:
+    per_page: 10
+  labels:
+    input_placeholder: 文章搜索
+    hits_empty: "关于 ${query} ，什么也没搜到"
+    hits_stats: "${time} ms 内找到 ${hits} 条结果"
+
+# Comments
+# Valine
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
+valine:
+  appid: Your_appId
+  appkey: Your_appkey
+  placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
+  avatar: mm # Gravatar style
+  pageSize: 10 # Pagination size
+  language: zh-cn
+  visitor: true # Article reading statistic
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  recordIP: true # Whether to record the commenter IP
+  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
+  #post_meta_order: 0
+
+# Quicklink Support
+# For more information: https://github.com/GoogleChromeLabs/quicklink
+quicklink:
+  # Custom a time in milliseconds by which the browser must execute prefetching.
+  timeout: 3000
+  # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
+  priority: true
+
+  # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
+  # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
+  ignores:
+
+# ---------------------------------------------------------------
+# analytics & SEO Settings
+# ---------------------------------------------------------------
+baidu_analytics:
+
+
+# Disable Baidu transformation on mobile devices.
+disable_baidu_transformation: true
+
+# Automatically add external URL with Base64 encrypt & decrypt.
+exturl: true
+
+# Google Webmaster tools verification.
+# See: https://www.google.com/webmasters
+google_site_verification:
+
+# Bing Webmaster tools verification.
+# See: https://www.bing.com/webmaster
+bing_site_verification:
+
+# Yandex Webmaster tools verification.
+# See: https://webmaster.yandex.ru
+yandex_site_verification:
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+baidu_site_verification:
+
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
+baidu_push: false

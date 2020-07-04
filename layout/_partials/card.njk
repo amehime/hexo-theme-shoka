@@ -1,0 +1,74 @@
+
+  <div class="card{{ ' ' + item.class if item.class }}">
+
+    {%- if type == "category" %}
+      {%- set cover = theme.statics + item.path + 'cover.jpg' %}
+      {%- set itemname = item.name %}
+    {%- else %}
+      {%- if item.cover %}
+        {%- set cover = theme.statics + item.cover %}
+      {%- elseif item.photos.length > 0 %}
+        {%- set cover = theme.statics + item.photos[0] %}
+      {%- endif %}
+      {%- set itemname = item.title %}
+    {%- endif %}
+
+    <div class="cover lozad"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
+      <p>{{ itemname }}</p>
+    </div>
+    <div class="message">
+      <div class="inner">
+        <h2 class="title">
+          {%- if item.link %}
+          {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+          {%- set postText = itemname or item.link %}
+          {{ _url(item.link, postText + postTitleIcon, {itemprop: 'url', title: postText}) }}
+          {%- else %}
+          {{ _url(item.path, itemname or __('post.untitled'), {itemprop: 'url', title: itemname or __('post.untitled')}) }}
+          {%- endif %}
+        </h2>
+        {%- if type == "category" %}
+          {%- if item.child %}
+            <div class="meta">
+              <i class="ic i-file"></i>{{ _p('counter.index.category', item.child.length) }}
+            </div>
+            <ul class="posts">
+              {%- set subitems = item.child.sort({name: 1}) %}
+              {%- for subitem in subitems.toArray() %}
+                {% if loop.index < 7 %}
+                <li><a title="{{ subitem.name }}" href="{{ url_for(subitem.path) }}">{{ subitem.name }}</a></li>
+                {% endif %}
+              {%- endfor %}
+            </ul>
+          {%- else %}
+            <div class="meta">
+              <i class="ic i-file"></i>{{ _p('counter.index.post', item.length) }}
+            </div>
+            <ul class="posts">
+              {%- set posts = item.posts.sort({title: 1}) %}
+              {%- for post in posts.toArray() %}
+                {% if loop.index < 7 %}
+                <li><a title="{{ post.title }}" href="{{ url_for(post.path) }}">{{ post.title }}</a></li>
+                {% endif %}
+              {%- endfor %}
+            </ul>
+          {%- endif %}
+        {%- else %}
+          <div class="meta">
+            <i class="ic i-calendar"></i><time itemprop="dateCreated datePublished" datetime="{{ moment(item.date).format() }}">{{ date(item.date) }}</time>
+          </div>
+          <div class="posts">
+            {%- if item.description and theme.index.excerpt_description %}
+              {{ item.description }}
+            {% elif item.excerpt %}
+              {{ item.excerpt }}
+            {% else %}
+              {{ item.content }}
+            {%- endif %}
+          </div>
+        {%- endif %}
+        {{ _url(item.path, 'more...', {itemprop: 'url', title: itemname, class: 'btn'}) }}
+      </div>
+    </div>
+  </div>
+

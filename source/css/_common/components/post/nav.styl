@@ -1,0 +1,49 @@
+.nav {
+  z-index: $zindex-1;
+  background: var(--grey-1);
+  border-top: 1px solid var(--grey-3);
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item {
+    flex: 1;
+    padding: 10px;
+
+    a {
+      border-bottom: none;
+      display: block;
+      font-size: $font-size-small;
+      line-height: 1.6;
+      position: relative;
+
+      &:active {
+        top: 2px;
+      }
+    }
+
+    i {
+      font-size: $font-size-smallest;
+    }
+
+    &:first-child {
+      margin-right: 15px;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    &:last-child {
+      margin-left: 15px;
+      text-align: right;
+
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,54 @@
+{% extends '_partials/layout.njk' %}
+
+{% block title %}{{ __('title.tag') }}{{ __('symbol.colon') }}{{ page.tag }} | {% endblock %}
+
+{% block content %}
+  <div class="collapse wrap">
+    <h2 class="item header">
+      <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a>
+      <small>/</small>
+      {{ page.tag }}
+      <small>{{ __('title.tag') }}</small>
+    </h2>
+
+    {%- set posts = page.posts %}
+
+    {%- for post in posts.toArray() %}
+
+        <article class="item normal" itemscope itemtype="http://schema.org/Article">
+          <div class="meta">
+            <time itemprop="dateCreated"
+                  datetime="{{ moment(post.date).format() }}"
+                  content="{{ date(post.date, config.date_format) }}">
+              {{ date(post.date, 'YYYY-MM-DD') }}
+            </time>
+            {%- if post.categories and post.categories.length %}
+              {%- set cat_length = post.categories.length %}
+              {%- for cat in post.categories.toArray() %}
+                {%- if loop.index == cat_length and cat.name !== page.category %}
+                <span><a href="{{ url_for(cat.path) }}">{{ cat.name }}</a></span>
+                {%- endif %}
+              {%- endfor %}
+            {%- endif %}
+          </div>
+
+          <div class="title">
+            {%- if post.link %}
+              {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+              {%- set postText = post.title or post.link %}
+              {{ _url(post.link, postText + postTitleIcon, {class: 'external', itemprop: 'url'}) }}
+            {% else %}
+              <a href="{{ url_for(post.path) }}" itemprop="url">
+                <span itemprop="name">{{ post.title or __('post.untitled') }}</span>
+              </a>
+            {%- endif %}
+          </div>
+        </article>
+
+    {%- endfor %}
+  </div>
+
+  {% include '_partials/pagination.njk' %}
+
+{% endblock %}
+

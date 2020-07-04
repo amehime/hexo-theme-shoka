@@ -1,0 +1,88 @@
+{% extends '_partials/layout.njk' %}
+
+{% block title %}{{ __('title.category') }}{{ __('symbol.colon') }}{{ page.category }} | {% endblock %}
+
+{% block content %}
+  <div class="collapse wrap">
+    {%- set prev = _category_prev(page.category) %}
+    <h2 class="item header">
+      {%- if prev %}
+        {{prev}}
+      {%- else %}
+        <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a>
+      {%- endif %}
+      <small>/</small>
+      {{ page.title }}
+      <small>{{ __('title.category') }}</small>
+    </h2>
+
+    {%- set posts = page.posts %}
+    {%- set current = "c" %}
+    {%- set lastcat = "" %}
+    {%- set lastcatslug = "" %}
+
+    {%- for post in posts.toArray() %}
+
+        {%- if post.categories and post.categories.length %}
+
+          {%- set cat_length = post.categories.length %}
+
+          {%- for cat in post.categories.toArray() %}
+            {%- if cat.name == page.title %}
+              {%- set lastcat = "" %}
+              {%- set lastcatslug = "" %}
+            {%- else %}
+              {%- set lastcat %}
+                {{ lastcat }}
+                <a href="{{ url_for(cat.path) }}">{{ cat.name }}</a>
+
+                <small>
+                {%- if loop.last %}
+                ( {{ cat.length }} )
+                {%- else %}
+                /
+                {%- endif %}
+                </small>
+
+              {%- endset %}
+              {%- set lastcatslug = lastcatslug + cat.slug %}
+            {%- endif %}
+          {%- endfor %}
+
+        {%- endif %}
+
+        {%- if lastcat and lastcatslug and lastcatslug !== current %}
+          <h3 class="item section">
+          {{ lastcat }}
+          </h3>
+          {%- set current = lastcatslug %}
+        {%- endif %}
+        <article class="item normal" itemscope itemtype="http://schema.org/Article">
+          <div class="meta">
+            <time itemprop="dateCreated"
+                  datetime="{{ moment(post.date).format() }}"
+                  content="{{ date(post.date, config.date_format) }}">
+              {{ date(post.date, 'MM-DD') }}
+            </time>
+          </div>
+
+          <div class="title">
+            {%- if post.link %}
+              {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+              {%- set postText = post.title or post.link %}
+              {{ _url(post.link, postText + postTitleIcon, {class: 'external', itemprop: 'url'}) }}
+            {% else %}
+              <a href="{{ url_for(post.path) }}" itemprop="url">
+                <span itemprop="name">{{ post.title or __('post.untitled') }}</span>
+              </a>
+            {%- endif %}
+          </div>
+        </article>
+
+    {%- endfor %}
+
+  </div>
+
+  {% include '_partials/pagination.njk' %}
+
+{% endblock %}

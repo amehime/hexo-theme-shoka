@@ -1,0 +1,25 @@
+{% extends '_partials/layout.njk' %}
+
+{% block content %}
+  <div class="index wrap">
+  {%- if theme.index.mode == 'category' %}
+    {%- set categories = _categories() %}
+    {%- if categories %}
+      {%- for id,cat in categories %}
+        {{ partial('_partials/card.njk', {item: cat, type: theme.index.mode}) }}
+      {%- endfor %}
+    {%- endif %}
+  {%- else %}
+    {%- set posts = page.posts.toArray() %}
+
+      {%- for post in posts %}
+        {{ partial('_partials/card.njk', {item: post, type: theme.index.mode}) }}
+      {%- endfor %}
+
+  {%- endif %}
+  </div>
+
+  {% include '_partials/pagination.njk' %}
+
+{% endblock %}
+

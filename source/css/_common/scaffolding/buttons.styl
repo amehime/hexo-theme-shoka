@@ -1,0 +1,42 @@
+.button {
+  cursor: pointer;
+  display: inline-block;
+
+  min-height: 1em;
+
+  outline: none;
+  border: none;
+  vertical-align: baseline;
+  background: var(--grey-2);
+  color: var(--grey-6);
+
+  padding: .2em 1.5em;
+  text-transform: none;
+  text-shadow: none;
+
+  text-align: center;
+  text-decoration: none;
+  border-radius: .3rem;
+
+  user-select: none;
+  will-change: auto;
+
+  font-size: $font-size-small;
+  line-height: 2;
+
+  the-transition(,,,background-color);
+
+  &:hover {
+    background: var(--grey-4);
+    color: var(--grey-7);
+  }
+
+  +.button {
+    margin: 0 0 8px 8px;
+  }
+
+  i {
+    text-align: left;
+    width: (18em / 14);
+  }
+}
