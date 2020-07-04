@@ -28,18 +28,22 @@
   <ul class="quick">
     <li class="prev pjax">
       {%- if page and page.prev %}
-      <a href="{{ url_for(page.prev_link) }}" rel="prev" title="{{__('post.prev')}}">
-        <i class="ic i-chevron-left"></i>
-      </a>
+        {%- set prevlink = page.prev_link %}
+        {%- if is_page() or is_post() %}
+          {%- set prevlink = page.prev.path %}
+        {%- endif %}
+        {{ _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')}) }}
       {%- endif %}
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
       {%- if page and page.next %}
-      <a href="{{ url_for(page.next_link) }}" rel="next" title="{{__('post.next')}}">
-        <i class="ic i-chevron-right"></i>
-      </a>
+        {%- set nextlink = page.next_link %}
+        {%- if is_page() or is_post() %}
+          {%- set nextlink = page.next.path %}
+        {%- endif %}
+        {{ _url(nextlink, '<i class="ic i-chevron-right"></i>', {rel: 'next', title: __('post.next')}) }}
       {%- endif %}
     </li>
     <li class="percent"></li>
