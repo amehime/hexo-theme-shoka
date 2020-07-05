@@ -30,14 +30,14 @@ $font-family-monospace    = get_font_family('codes'), consolas, Menlo, $font-fam
 
 
 // Font size
-$font-size-base           = 14px;
-$font-size-smallest       = .8em;
-$font-size-smaller        = .85em;
-$font-size-small          = .9em;
-$font-size-medium         = 1em;
+$font-size-base           = 1em;
+$font-size-smallest       = .75em;
+$font-size-smaller        = .8125em;
+$font-size-small          = .875em;
+$font-size-medium         = .95em;
 $font-size-large          = 1.125em;
-$font-size-larger         = 1.5em;
-$font-size-largest        = 1.8em;
+$font-size-larger         = 1.25em;
+$font-size-largest        = 1.5em;
 
 
 // Headings font size
@@ -73,7 +73,7 @@ $content-wrap                 = 'calc(100% - %s)' % unit($sidebar-width + $conte
 
 $content-desktop-padding        = 20px;
 $content-tablet-padding         = 10px;
-$content-mobile-padding         = 0px;
+$content-mobile-padding         = 8px;
 
 $content-desktop              = 'calc(100% - %s)' % unit($content-desktop-padding / 2, 'px');
 $content-desktop-large        = 1160px;
@@ -91,14 +91,13 @@ $font-size-subtitle             = $font-size-small;
 // Posts Collpase
 // --------------------------------------------------
 $posts-collapse-margin          = 35px;
-$posts-collapse-margin-mobile   = 0px;
+$posts-collapse-margin-mobile   = 10px;
 
 
 // Components
 // --------------------------------------------------
 
 //  .post-expand .post-eof
-//  In Muse scheme, margin above and below the post separator
 $post-eof-margin-top          = 80px; //  or 160px for more white space;
 $post-eof-margin-bottom       = 60px; //  or 120px for less white space;
 

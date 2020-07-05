@@ -320,8 +320,8 @@ const postBeauty = function () {
   }
 
   $.each('li ruby', function(element) {
-    var parent = element.parentNode
-    if(element.parentNode.tagName != 'li') {
+    var parent = element.parentNode;
+    if(element.parentNode.tagName != 'LI') {
       parent = element.parentNode.parentNode;
     }
     parent.classList.add('ruby');

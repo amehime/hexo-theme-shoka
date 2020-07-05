@@ -6,22 +6,14 @@
 */
 
 +mobile-small() {
-  // For Pisces & Gemini schemes only wider width (remove main blocks in Gemini).
-  /*.wrap {
+  .post.block {
     padding: initial !important;
-  }*/
-
-  // For all schemes wider width.
-
-  .posts-collapse {
-    margin-left: 0;
-    margin-right: 0;
   }
 
-  .body.post {
+  .post .body {
     // For headers narrow width.
     h1, h2, h3, h4, h5, h6 {
-      margin: 10px 0 8px;
+      padding-left: 20px;
     }
 
     // Rewrite paddings & margins inside tags.

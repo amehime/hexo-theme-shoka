@@ -120,7 +120,7 @@
       height: 8px;
       background: var(--color-red);
       border-radius: 50%;
-      top: .7em;
+      top: .8em;
       left: -1.2em;
     }
 
@@ -161,34 +161,6 @@
     }
     dd {
       padding-left: 15px;
-    }
-  }
-
-  // 代码样式
-  :not(pre)>code {
-    color: var(--color-red);
-    padding: .2em;
-    border-radius: .3em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: var(--grey-0);
-    font-size: 90%;
-  }
-
-  pre.mermaid, pre.graphviz {
-    background: none;
-    padding: 0;
-  }
-
-  pre > svg {
-    display: block;
-    margin: 0 auto;
-  }
-
-  pre.graphviz {
-    white-space: normal;
-    max-width: calc(100% - 50px);
-    svg > g > polygon {
-      fill: var(--grey-1);
     }
   }
 
@@ -304,15 +276,26 @@
     content: "H";
     font-family: $font-family-posts;
     left: -30px;
+    top: 16px;
     width: 20px;
+    height: 25px;
     text-align: right;
     visibility: visible;
+    font-size: 80%;
+
+    +mobile-small() {
+      left: -10px;
+    }
   }
 
   .anchor::after {
-    font-size: 70%;
+    font-size: 50%;
     left: -22px;
-    top: 1.4em;
+    line-height: 3em;
+
+    +mobile-small() {
+      left: -3px;
+    }
   }
 
   for headline in (1 .. 6) {
