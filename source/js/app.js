@@ -65,6 +65,13 @@ const resizeHandle = function (event) {
   } else {
     $('.sidebar .quick').style.display = 'none';
   }
+
+  $.each('pre.code span.marked', function(element) {
+    element.style.width = null
+    setTimeout(function () {
+        element.style.width = element.parentNode.scrollWidth - 1 + "px";
+      }, 300);
+  });
 }
 
 const scrollHandle = function (event) {
