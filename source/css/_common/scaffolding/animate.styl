@@ -2,6 +2,14 @@
   animation: rotate 6s linear infinite;
 }
 
+.beat {
+  animation: beat 1.33s ease-in-out infinite;
+}
+
+.flash {
+  animation: flash 6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0)
@@ -12,10 +20,6 @@
   }
 }
 
-
-.beat {
-  animation: beat 1.33s ease-in-out infinite;
-}
 
 @keyframes beat {
 
@@ -39,6 +43,20 @@
   50%,
   70% {
     transform: scale(1.1);
+  }
+}
+
+@keyframes flash {
+
+  0%,
+  50%,
+  to {
+    opacity: 1
+  }
+
+  25%,
+  75% {
+    opacity: 0
   }
 }
 

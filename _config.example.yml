@@ -127,11 +127,10 @@ footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
   since: 2010
   icon:
-    # Icon name in Font Awesome. See: https://fontawesome.com/icons
-    name: ic i-sakura rotate
+    name: sakura rotate
     # Change the color of icon, using Hex Code.
     color: "#ffc0cb"
-  site_count: false
+  count: false
 
 # Creative Commons 4.0 International License.
 # See: https://creativecommons.org/share-your-work/licensing-types-examples

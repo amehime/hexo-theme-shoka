@@ -3,12 +3,12 @@
   &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
   <span itemprop="copyrightYear">{{ copyright_year }}</span>
   <span class="with-love">
-    <i class="{{ theme.footer.icon.name }}"></i>
+    <i class="ic i-{{ theme.footer.icon.name }}"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">{{ author }} @ {{ logo if logo else title}}</span>
 </div>
 
-{%- if theme.site_count %}
+{%- if theme.footer.count %}
 <div>
   <span class="post-meta-item-icon">
     <i class="ic i-chart-area"></i>
@@ -24,5 +24,5 @@
 {%- endif %}
 
 <div class="powered-by">
-  {{- __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}
+  {{ __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}
 </div>

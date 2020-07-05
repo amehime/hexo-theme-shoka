@@ -1,8 +1,10 @@
-/**
- * link-grid.js | https://theme-next.js.org/docs/tag-plugins/link-grid
- */
-
 /* global hexo */
+
+/*
+{% links [image] [delimiter] [comment] %}
+alternate title for image tooltip (nullable) | main title | url | description | icon image | block color
+{% endlinks %}
+*/
 
 'use strict';
 
@@ -29,7 +31,7 @@ function linkGrid(args, content) {
       return `<div class="item" style="--block-color:${item[5] || '#666'};" title="${item[0] || item[1]}">
 <span class="exturl image" data-url="${item[2]}" data-background-image="${item[4] || image}"></span>
 <div class="info">
-<span class="exturl" data-url="${item[2]}">${item[1]}</span>
+<span class="exturl title" data-url="${item[2]}">${item[1]}</span>
 <p class="desc">${item[3] || item[2]}</p>
 </div></div>`;
     } else  {
