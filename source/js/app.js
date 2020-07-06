@@ -779,8 +779,12 @@ const siteRefresh = function (reload) {
   postBeauty()
   registerExtURL()
 
-  lozad('img').observe()
-  lozad('[data-background-image]').observe()
+
+  lozad($.all('img, [data-background-image]'), {
+      loaded: function(el) {
+          el.classList.add('lozaded');
+      }
+  }).observe()
 
   Loader.hide()
 
