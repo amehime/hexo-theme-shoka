@@ -2,15 +2,12 @@
   width: 8px;
   height: 8px;
   background: transparent;
-  +mobile() {
-    width: 0px;
-    height: 4px;
-  }
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 2px;
+  border-radius: 5px;
   background: transparent;
+
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -18,18 +15,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 2px;
+  border-radius: 20px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
   background-color: var(--color-pink-light);
 
-  &:window-inactive {
-    background-color: var(--color-pink-light-a3);
-  }
 
   &:hover {
-    background-color: var(--color-pink-light-a5);
-  }
-
-  &:active {
-    background-color: var(--color-pink-light-a7);
+    background-color: var(--color-pink-light);
   }
 }

@@ -32,7 +32,9 @@
         {%- if is_page() or is_post() %}
           {%- set prevlink = page.next.path %}
         {%- endif %}
+        {%- if prevlink %}
         {{ _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')}) }}
+        {%- endif %}
       {%- endif %}
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
@@ -43,7 +45,9 @@
         {%- if is_page() or is_post() %}
           {%- set nextlink = page.prev.path %}
         {%- endif %}
+        {%- if nextlink %}
         {{ _url(nextlink, '<i class="ic i-chevron-right"></i>', {rel: 'next', title: __('post.next')}) }}
+        {%- endif %}
       {%- endif %}
     </li>
     <li class="percent"></li>

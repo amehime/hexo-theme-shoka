@@ -81,3 +81,23 @@
     transform: scaleY(1);
   }
 }
+
+@keyframes blur {
+    0% {
+        filter: blur(10px)
+    }
+
+    to {
+        filter: blur(0)
+    }
+}
+
+@keyframes blur-dark {
+    0% {
+        filter: blur(10px) brightness(.6)
+    }
+
+    to {
+        filter: blur(0) brightness(.6)
+    }
+}

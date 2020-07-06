@@ -7,14 +7,11 @@
 
   background: var(--note-bg);
   border: 1px solid var(--note-border);
+  color: var(--note-text);
   font-size: $font-size-small;
   line-height: 1.8;
 
   padding-left: 3em;
-
-  background: var(--note-bg);
-  border-color: var(--note-border);
-  color: var(--note-text);
 
   a,
   span.exturl {
@@ -73,10 +70,10 @@
 
 
   &.default {
-    --note-border: var(--default-border);
-    --note-bg: var(--default-bg);
-    --note-text: var(--default-text);
-    --note-hover: var(--default-hover);
+    --note-border: $default-border;
+    --note-bg: $default-bg;
+    --note-text: $default-text;
+    --note-hover: $default-hover;
 
     &::before {
       @extend .i-arrow-circle-right:before;
@@ -84,10 +81,10 @@
   }
 
   &.primary {
-    --note-border: var(--primary-border);
-    --note-bg: var(--primary-bg);
-    --note-text: var(--primary-text);
-    --note-hover: var(--primary-hover);
+    --note-border: $primary-border;
+    --note-bg: $primary-bg;
+    --note-text: $primary-text;
+    --note-hover: $primary-hover;
 
     &::before {
       @extend .i-plus-circle:before;
@@ -95,10 +92,10 @@
   }
 
   &.info {
-    --note-border: var(--info-border);
-    --note-bg: var(--info-bg);
-    --note-text: var(--info-text);
-    --note-hover: var(--info-hover);
+    --note-border: $info-border;
+    --note-bg: $info-bg;
+    --note-text: $info-text;
+    --note-hover: $info-hover;
 
     &::before {
       @extend .i-info-circle:before;
@@ -106,10 +103,10 @@
   }
 
   &.success {
-    --note-border: var(--success-border);
-    --note-bg: var(--success-bg);
-    --note-text: var(--success-text);
-    --note-hover: var(--success-hover);
+    --note-border: $success-border;
+    --note-bg: $success-bg;
+    --note-text: $success-text;
+    --note-hover: $success-hover;
 
     &::before {
       @extend .i-check-circle:before;
@@ -118,10 +115,10 @@
   }
 
   &.warning {
-    --note-border: var(--warning-border);
-    --note-bg: var(--warning-bg);
-    --note-text: var(--warning-text);
-    --note-hover: var(--warning-hover);
+    --note-border: $warning-border;
+    --note-bg: $warning-bg;
+    --note-text: $warning-text;
+    --note-hover: $warning-hover;
 
     &::before {
       @extend .i-exclamation-circle:before;
@@ -130,10 +127,10 @@
   }
 
   &.danger {
-    --note-border: var(--danger-border);
-    --note-bg: var(--danger-bg);
-    --note-text: var(--danger-text);
-    --note-hover: var(--danger-hover);
+    --note-border: $danger-border;
+    --note-bg: $danger-bg;
+    --note-text: $danger-text;
+    --note-hover: $danger-hover;
 
     &::before {
       @extend .i-minus-circle:before;

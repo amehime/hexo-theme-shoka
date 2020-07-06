@@ -270,6 +270,26 @@
     overflow-x: scroll;
     overflow-y: hidden;
   }
+
+  .spoiler {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background: var(--text-color);
+      z-index: -1;
+      the-transition();
+    }
+
+    &:hover::before {
+      opacity: .15
+    }
+  }
 }
 
 .article .post .body {
