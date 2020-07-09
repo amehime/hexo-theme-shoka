@@ -13,7 +13,7 @@
       {%- set itemname = item.title %}
     {%- endif %}
 
-    <div class="cover lozad"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
+    <div class="cover"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
       <p>{{ itemname }}</p>
     </div>
     <div class="message">

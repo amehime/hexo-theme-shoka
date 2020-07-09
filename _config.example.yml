@@ -4,6 +4,11 @@ assets: assets
 css: css
 js: js
 images: images
+#! ---------------------------------------------------------------
+#! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
+#! UNLESS YOU KNOW WHAT YOU ARE DOING
+#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
+#! ---------------------------------------------------------------
 vendors:
   css:
     katex: npm/katex@0/dist/katex.min.css
@@ -21,7 +26,7 @@ vendors:
     copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
 
-# /images/***
+# themes/shoka/source/images/***
 favicon:
   apple_touch_icon: /apple-touch-icon.png
   #safari_pinned_tab: /logo.svg
@@ -78,7 +83,7 @@ menu:
   #friends: /friends/ || heart
   #links: /links/ || magic
 
-
+# themes/shoka/source/images/banner/***
 header_bg:
   - 1.jpg
   - 2.jpg
@@ -121,6 +126,7 @@ index:
   excerpt_description: true
 
 post:
+  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
 
 footer:
@@ -130,6 +136,7 @@ footer:
     name: sakura rotate
     # Change the color of icon, using Hex Code.
     color: "#ffc0cb"
+  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
 
 # Creative Commons 4.0 International License.
@@ -157,7 +164,7 @@ reward:
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
 
-# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
 pangu: false
 
 # Algolia Search
@@ -201,7 +208,7 @@ quicklink:
 # ---------------------------------------------------------------
 # analytics & SEO Settings
 # ---------------------------------------------------------------
-baidu_analytics:
+baidu_analytics: # <app_id>
 
 
 # Disable Baidu transformation on mobile devices.
