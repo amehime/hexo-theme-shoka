@@ -10,6 +10,10 @@
   animation: flash 6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
 }
 
+.up-down {
+  animation: UpDown 2s infinite;
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0)
@@ -100,4 +104,15 @@
     to {
         filter: blur(0) brightness(.6)
     }
+}
+
+@keyframes UpDown {
+  0%, 100% {
+    opacity: .8;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: .4;
+    transform: translateY(-10px);
+  }
 }

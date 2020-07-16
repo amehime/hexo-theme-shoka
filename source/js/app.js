@@ -336,12 +336,36 @@ const postBeauty = function () {
 
   $.each('figure.highlight', function (element) {
     const caption = element.querySelector('figcaption');
+    var code_container = element.querySelector('.code-container');
+
     if (caption) {
       caption.insertAdjacentHTML('afterBegin', '<div class="carbon"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>');
     }
+
+    if(code_container.height() > 300) {
+      code_container.style.maxHeight = "300px";
+      code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down up-down"></i></div>');
+      var showBtn = code_container.querySelector('.show-btn');
+      var showBtnIcon = showBtn.querySelector('i');
+      showBtn.addEventListener('click', function(event) {
+        if (showBtn.classList.contains('open')) {
+          code_container.style.maxHeight = "300px"
+          showBtn.classList.remove('open')
+          showBtnIcon.classList.add('i-angle-down')
+          showBtnIcon.classList.remove('i-angle-up')
+          Velocity(code_container.parentNode, "scroll");
+        } else {
+          code_container.style.maxHeight = ""
+          showBtn.classList.add('open')
+          showBtnIcon.classList.remove('i-angle-down')
+          showBtnIcon.classList.add('i-angle-up')
+        }
+      });
+    }
+
     element.insertAdjacentHTML('beforeend', '<div class="copy-btn"><i class="ic i-clipboard fa-fw"></i></div>');
-    var button = element.querySelector('.copy-btn');
-    button.addEventListener('click', function (event) {
+    var copyBtn = element.querySelector('.copy-btn');
+    copyBtn.addEventListener('click', function (event) {
       var target = event.currentTarget;
       var code = target.parentNode.querySelector('pre.code').innerText;
       var ta = document.createElement('textarea');
@@ -367,7 +391,7 @@ const postBeauty = function () {
       }
       document.body.removeChild(ta);
     });
-    button.addEventListener('mouseleave', function (event) {
+    copyBtn.addEventListener('mouseleave', function (event) {
       setTimeout(function () {
         event.target.querySelector('i').className = 'ic i-clipboard';
       }, 300);
