@@ -1,0 +1,56 @@
+<div class="inner">
+  {%- if display_toc %}
+    {%- set toc = toc(page.content) %}
+    {%- set display_toc = toc.length > 1 and display_toc %}
+    {%- set related = _category_posts(page) %}
+  {%- endif %}
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="{{ __('sidebar.toc') }}">
+        {%- if display_toc %}
+          {{ toc }}
+        {%- endif %}
+      </div>
+      <div class="related panel pjax" data-title="{{ __('sidebar.related') }}">
+        {%- if related %}
+        <ul>
+          {{ related }}
+        </ul>
+        {%- endif %}
+      </div>
+      <div class="overview panel" data-title="{{ __('sidebar.overview') }}">
+        {{ partial('_partials/sidebar/overview.njk', {}, {cache: true}) }}
+      </div>
+    </div>
+  </div>
+
+  <ul class="quick">
+    <li class="prev pjax">
+      {%- if page and page.prev %}
+        {%- set prevlink = page.prev_link %}
+        {%- if is_page() or is_post() %}
+          {%- set prevlink = page.next.path %}
+        {%- endif %}
+        {%- if prevlink %}
+        {{ _url(prevlink, '<i class="ic i-chevron-left"></i>', {rel: 'prev', title: __('post.prev')}) }}
+        {%- endif %}
+      {%- endif %}
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+      {%- if page and page.next %}
+        {%- set nextlink = page.next_link %}
+        {%- if is_page() or is_post() %}
+          {%- set nextlink = page.prev.path %}
+        {%- endif %}
+        {%- if nextlink %}
+        {{ _url(nextlink, '<i class="ic i-chevron-right"></i>', {rel: 'next', title: __('post.next')}) }}
+        {%- endif %}
+      {%- endif %}
+    </li>
+    <li class="percent"></li>
+  </ul>
+
+</div>
