@@ -114,7 +114,7 @@
    <footer>
 
     {%- if theme.reward.enable %}
-      {{ partial('_partials/post/reward.njk') }}
+      {{ partial('_partials/post/reward.njk', {}, {cache: true}) }}
     {%- endif %}
 
     {%- if theme.creative_commons.license %}

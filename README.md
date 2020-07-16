@@ -18,7 +18,7 @@ git clone https://github.com/amehime/hexo-theme-shoka.git ./themes/shoka
   category_map:
   ```
 
-3. Install plugins
+3. Install the necessary plugins
   - [hexo-renderer-multi-markdown-it](https://www.npmjs.com/package/hexo-renderer-multi-markdown-it)
   - [hexo-autoprefixer](https://www.npmjs.com/package/hexo-autoprefixer)
   - [hexo-algoliasearch](https://www.npmjs.com/package/hexo-algoliasearch)

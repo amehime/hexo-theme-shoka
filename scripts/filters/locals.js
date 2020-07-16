@@ -41,7 +41,9 @@ hexo.extend.filter.register('template_locals', locals => {
   locals.page.lastcat = '';
   if (locals.page.categories) {
     locals.page.categories.map((cat) => {
-      cat.name = locals.page.lastcat = pangu.spacing(cat.name);
+      if(cat.name) {
+        cat.name = locals.page.lastcat = pangu.spacing(cat.name);
+      }
       return cat;
     })
   }

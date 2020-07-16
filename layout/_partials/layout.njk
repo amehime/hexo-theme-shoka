@@ -1,3 +1,4 @@
+{% import '_macro/sidebar.njk' as sidebar with context %}
 <!DOCTYPE html>
 <html lang="{{ config.language }}">
 <head>
@@ -32,7 +33,7 @@
           {% block content %}{% endblock %}
         </div>
         <div class="sidebar">
-          {% block sidebar %}{{ partial('_partials/sidebar/sidebar.njk') }}{% endblock %}
+          {% block sidebar %}{{ sidebar.render() }}{% endblock %}
         </div>
         <div class="dimmer"></div>
       </div>

@@ -1,4 +1,4 @@
-
+{% macro render(item, type) %}
   <div class="card{{ ' ' + item.class if item.class }}">
 
     {%- if type == "category" %}
@@ -71,4 +71,4 @@
       </div>
     </div>
   </div>
-
+{% endmacro %}

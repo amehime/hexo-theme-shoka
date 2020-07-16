@@ -16,7 +16,7 @@ hexo.extend.generator.register('index', function(locals) {
 
   const categories = locals.categories;
 
-  if (theme.index.mode == 'category' || !categories || !categories.length) {
+  if (theme.index.mode == 'category' && categories && categories.length) {
     return {
       path,
       layout: ['index', 'archive'],

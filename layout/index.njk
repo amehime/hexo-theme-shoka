@@ -1,4 +1,5 @@
 {% extends '_partials/layout.njk' %}
+{% import '_macro/card.njk' as card with context %}
 
 {% block content %}
   <div class="index wrap">
@@ -6,14 +7,14 @@
     {%- set categories = _categories() %}
     {%- if categories %}
       {%- for id,cat in categories %}
-        {{ partial('_partials/card.njk', {item: cat, type: theme.index.mode}) }}
+        {{ card.render(cat, theme.index.mode) }}
       {%- endfor %}
     {%- endif %}
   {%- else %}
     {%- set posts = page.posts.toArray() %}
 
       {%- for post in posts %}
-        {{ partial('_partials/card.njk', {item: post, type: theme.index.mode}) }}
+        {{ card.render(post, theme.index.mode) }}
       {%- endfor %}
 
   {%- endif %}

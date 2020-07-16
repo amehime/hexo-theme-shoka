@@ -1,4 +1,5 @@
 {% extends '_partials/layout.njk' %}
+{% import '_macro/sidebar.njk' as sidebar with context %}
 
 {% block title %}
 {%- set page_title = page.title %}
@@ -25,5 +26,5 @@
 {% endblock %}
 
 {% block sidebar %}
-{{ partial('_partials/sidebar/sidebar.njk', {display_toc: true}) }}
+{{ sidebar.render(true) }}
 {% endblock %}
