@@ -136,7 +136,6 @@
     padding: 0px;
   }
   .pagination {
-    border-top: none;
     opacity: 1;
     padding: 0;
   }
@@ -146,31 +145,22 @@
   }
 
   .page-number {
-    border-top: 1px solid transparent;
     the-transition();
-
-    &:hover {
-      border-top: 1px solid var(--color-red);
-    }
   }
 
   .current .page-number {
     @extend .pagination .page-number.current;
     cursor: default;
-
-    &:hover {
-      border-top-color: var(--grey-3);
-    }
   }
 
   .disabled-item {
     color: var(--grey-4);
-    .page-number {
-      border-top: none;
-    }
+    cursor: default;
+
     .page-number:hover {
       color: var(--grey-4);
-      border-top: none;
+      background: none;
+      box-shadow: none;
     }
 
   }
