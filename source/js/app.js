@@ -16,11 +16,19 @@ Object.assign(HTMLElement.prototype, {
     } else {
       return this.getAttribute(type)
     }
+  },
+  insertAfter: function(element) {
+    var parent = this.parentNode;
+    if(parent.lastChild == this){
+        parent.appendChild(element);
+    }else{
+        parent.insertBefore(element, this.nextSibling);
+    }
   }
 });
 
 const $ = function(selector) {
-  if(selector.indexOf('#') > 0) {
+  if(selector.indexOf('#') === 0) {
     return document.getElementById(selector.replace('#', ''))
   }
   return document.querySelector(selector)
@@ -318,6 +326,16 @@ const sidebarTOC = function () {
 
 const postBeauty = function () {
 
+  $.each('.post .body img', function(element) {
+    var info;
+    if(info = element.attr('title')) {
+      var para = document.createElement('span');
+      var txt = document.createTextNode(info);
+      para.appendChild(txt);
+      para.classList.add('image-info');
+      element.insertAfter(para);
+    }
+  });
   if($('.post .body :not(a) > img, .post .body > img')) {
     vendorJs('mediumzoom', function() {
         window.mediumZoom('.post .body :not(a) > img, .post .body > img', {
@@ -325,6 +343,7 @@ const postBeauty = function () {
         });
       }, window.mediumZoom);
   }
+
 
   $.each('li ruby', function(element) {
     var parent = element.parentNode;

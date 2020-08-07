@@ -22,7 +22,7 @@
   </div>
 
   {%- if page.comment !== false %}
-  <div class="comments wrap" id="comments" data-id="{{ _md5(page.path) }}"></div>
+  <div class="comments wrap" id="comments" data-id="{{ page.path }}"></div>
   {%- endif %}
 {% endblock %}
 

@@ -1,18 +1,14 @@
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-  <i class="ic i-home"></i>
-  <span>
-    <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a>
-  </span>
+<i class="ic i-home"></i>
+<span><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a></span>
 {%- if post.categories and post.categories.length %}
 {%- set cat_length = post.categories.length %}
-  <i class="ic i-angle-right"></i>
+<i class="ic i-angle-right"></i>
 {%- for cat in post.categories.toArray() %}
-  <span {% if loop.index == cat_length %} class="current"{% endif %} itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-    <a href="{{ url_for(cat.path) }}" itemprop="item" rel="index" title="{{ __('post.in') }} {{ cat.name }}"><span itemprop="name">{{ cat.name }}</span></a>
-    <meta itemprop="position" content="{{ loop.index }}" />
-  </span>
+<span {% if loop.index == cat_length %} class="current"{% endif %} itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ url_for(cat.path) }}" itemprop="item" rel="index" title="{{ __('post.in') }} {{ cat.name }}"><span itemprop="name">{{ cat.name }}</span></a>
+<meta itemprop="position" content="{{ loop.index }}" /></span>
 {%- if cat_length > 1 and loop.index !== cat_length %}
-  <i class="ic i-angle-right"></i>
+<i class="ic i-angle-right"></i>
 {%- endif %}
 {%- endfor %}
 {%- endif %}
@@ -113,15 +109,15 @@
   {# {%- if not is_index %} #}
    <footer>
 
+    {{ partial('_partials/post/footer.njk') }}
+
     {%- if theme.reward.enable %}
-      {{ partial('_partials/post/reward.njk') }}
+      {{ partial('_partials/post/reward.njk', {}, {cache: true}) }}
     {%- endif %}
 
     {%- if theme.creative_commons.license %}
       {{ partial('_partials/post/copyright.njk') }}
     {%- endif %}
-
-    {{ partial('_partials/post/footer.njk', {}, {cache: true}) }}
   </footer>
 
   {# {% else %}
