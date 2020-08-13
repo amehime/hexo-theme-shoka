@@ -8,18 +8,23 @@ hexo.extend.generator.register('cover', function (locals) {
   let categories = locals.categories;
 
   categories.forEach((cat, i) => {
-    let cover = 'source/_posts/' + cat.path + 'cover.jpg'
+    let cover_path = cat.path
+    if (cat.path.startsWith('/')) {
+      cover_path = cat.path.substr(1)
+    }
 
-    fs.exists(cover, function(exist) {
-      if (exist) {
-        result.push({
-            path: cat.path + 'cover.jpg',
-            data: function () {
-              return fs.createReadStream(cover)
-            }
-          })
-      }
-    })
+    cover_path  = cover_path + 'cover.jpg'
+
+    let cover = 'source/_posts/' + cover_path
+
+    if (fs.existsSync(cover)) {
+      result.push({
+          path: cover_path,
+          data: function () {
+            return fs.createReadStream(cover)
+          }
+        })
+    }
 
   })
 

@@ -3,15 +3,27 @@
 
     {%- if type == "category" %}
       {%- set cover = theme.statics + item.path + 'cover.jpg' %}
+      {%- if item.path.startsWith('/') %}
+        {%- set cover = theme.statics + item.path.substr(1) + 'cover.jpg' %}
+      {%- endif %}
       {%- set itemname = item.name %}
     {%- else %}
       {%- if item.cover %}
+      {%- if item.cover.startsWith('//') or item.cover.startsWith('http') %}
+        {%- set cover = item.cover %}
+      {%- else %}
         {%- set cover = theme.statics + item.cover %}
+      {%- endif %}
       {%- elseif item.photos.length > 0 %}
-        {%- set cover = theme.statics + item.photos[0] %}
+        {%- if item.photos[0].startsWith('//') or item.photos[0].startsWith('http') %}
+          {%- set cover = item.photos[0] %}
+        {%- else %}
+          {%- set cover = theme.statics + item.photos[0] %}
+        {%- endif %}
       {%- endif %}
       {%- set itemname = item.title %}
     {%- endif %}
+
 
     <div class="cover"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
       <p>{{ itemname }}</p>

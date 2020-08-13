@@ -227,9 +227,11 @@ const sidebarTOC = function () {
 
   sections = sections.map(function (element, index) {
     var link = element.querySelector('a.toc-link');
+    var anchor = $(decodeURI(link.attr('href')));
+
     var clickScroll = function (event) {
       event.preventDefault();
-      var target = $(event.currentTarget.attr('href'));
+      var target = $(decodeURI(event.currentTarget.attr('href')));
       activeLock = index;
       pageScroll(window.pageYOffset + target.top() - target.height() - headerHightInner - siteNavHeight,
         function() {
@@ -240,8 +242,8 @@ const sidebarTOC = function () {
 
     // TOC item animation navigate.
     link.addEventListener('click', clickScroll);
-    $(link.attr('href')).querySelector('a.anchor').addEventListener('click', clickScroll);
-    return $(link.attr('href'));
+    anchor.querySelector('a.anchor').addEventListener('click', clickScroll);
+    return anchor;
   });
 
   var tocElement = $('.sidebar .panels .inner');

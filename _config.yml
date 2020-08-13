@@ -52,7 +52,7 @@ font:
     family:
     size:
 
-  # Font settings for site title (.site-title).
+  # Font settings for site title.
   title:
     external: true
     family: Noto Serif SC
@@ -64,7 +64,7 @@ font:
     family: Noto Serif JP
     size:
 
-  # Font settings for posts (.post-body).
+  # Font settings for posts.
   posts:
     external: true
     family:

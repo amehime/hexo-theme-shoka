@@ -1,5 +1,7 @@
 # Hexo Theme Shoka
 
+[中文使用说明](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)
+
 ## Usage
 
 1. Clone this repository
