@@ -1,0 +1,625 @@
+.v {
+  .vsys,
+  .vtime,
+  .status-bar {
+    color: var(--grey-5)
+  }
+
+  .text-right {
+    text-align: right
+  }
+
+  .text-center {
+    text-align: center
+  }
+
+  .pd5 {
+    padding: 5px
+  }
+
+  .pd10 {
+    padding: 10px
+  }
+
+  img {
+    max-width: 100%;
+    border: none
+  }
+
+  hr {
+    margin: .825em 0;
+  }
+
+  &.hide-avatar .vimg {
+    display: none
+  }
+
+  a {
+    position: relative;
+    cursor: pointer;
+    color: var(--color-aqua);
+    text-decoration: none;
+    display: inline-block
+  }
+
+  a:hover {
+    color: var(--primary-color)
+  }
+
+  pre {
+    padding: 10px;
+    overflow: auto;
+    line-height: 1.45
+  }
+
+  pre code {
+    font-size: $font-size-medium;
+  }
+
+  blockquote {
+    padding: 0 0 0 1em;
+    border-left: 4px solid var(--grey-3);
+  }
+
+  .vinput {
+    border: none;
+    resize: none;
+    outline: none;
+    padding: 10px 5px;
+    max-width: 100%;
+    font-size: $font-size-smallest;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px
+  }
+
+  .clear {
+    content: "";
+    display: block;
+    clear: both
+  }
+
+  .vicon {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    fill: var(--grey-6);
+    vertical-align: middle
+  }
+
+  .vicon+.vicon {
+    margin-left: 10px
+  }
+
+  .vicon.actived {
+    fill: var(--color-blue);
+  }
+
+  .vrow {
+    padding: 10px 0;
+
+    .vcol {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: $font-size-small;
+
+      &.vcol-20 {
+        width: 20%
+      }
+
+      &.vcol-30 {
+        width: 30%
+      }
+
+      &.vcol-40 {
+        width: 40%
+      }
+
+      &.vcol-50 {
+        width: 50%
+      }
+
+      &.vcol-60 {
+        width: 60%
+      }
+
+      &.vcol-70 {
+        width: 70%
+      }
+
+      &.vcol-80 {
+        width: 80%
+      }
+
+      &.status-bar {
+        font-size: $font-size-smallest;
+
+        &.warning {
+          color: var(--color-orange);
+        }
+      }
+    }
+  }
+
+  .emoji,
+  .vemoji {
+    max-width: 25px;
+    vertical-align: middle;
+    margin: 0 1px;
+    display: inline-block
+  }
+
+  .vwrap {
+    shadow-box();
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+
+    input {
+      background: transparent
+    }
+
+    .vedit {
+      position: relative;
+      padding-top: 10px
+    }
+
+    .cancel-reply-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer
+    }
+
+    .vemojis {
+      display: none;
+      font-size: 18px;
+      max-height: 145px;
+      overflow: auto;
+      padding-bottom: 10px;
+      box-shadow: 0 0 1px #f0f0f0
+    }
+
+    .vemojis i {
+      font-style: normal;
+      padding-top: 7px;
+      width: 36px;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    .vpreview {
+      padding: 7px 20px;
+      shadow-box();
+    }
+
+    .vheader{
+      .vinput {
+        width: 33.33%;
+        border-bottom: 1px dashed var(--color-grey);
+
+        &:focus {
+          border-bottom-color: var(--primary-color);
+        }
+      }
+
+      &.item2 .vinput {
+        width: 50%
+      }
+
+      &.item1 .vinput {
+        width: 100%
+      }
+    }
+  }
+
+}
+
+
+.vcount {
+  padding: 5px;
+  font-weight: 600;
+  font-size: $font-size-larger;
+}
+
+
+.veditor {
+  width: 100%;
+  min-height: 8.75em;
+  font-size: .875em;
+  background: transparent;
+  resize: vertical;
+  transition: all .25s ease
+}
+
+
+
+.vempty {
+  padding: 1.25em;
+  text-align: center;
+  color: #555;
+  overflow: auto
+}
+
+.vsys {
+  display: inline-block;
+  padding: .2em .5em;
+  font-size: .75em;
+  border-radius: .2em;
+  margin-right: .3em
+}
+
+
+.vcards {
+  width: 100%
+
+  .vcard {
+    padding-top: 1.25em;
+    position: relative;
+    display: block;
+
+    &::after {
+      content: "";
+      clear: both;
+      display: block
+    }
+
+    .vimg {
+      width: 3.125em;
+      height: 3.125em;
+      float: left;
+      border-radius: 50%;
+      margin-right: .7525em;
+      border: 1px solid var(--grey-3);
+      padding: .125em
+    }
+
+    .vhead {
+      line-height: 1.5;
+      margin-top: 0;
+
+      .vnick {
+        position: relative;
+        font-size: $font-size-small;
+        font-weight: 500;
+        margin-right: .875em;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    .vtag {
+      font-size: 12px;
+      display: inline-block;
+      line-height: 20px;
+      border-radius: 2px;
+      color: #fff;
+      padding: 0 5px;
+      position: inherit;
+      &.vmaster {
+          background: var(--color-orange);
+      }
+    }
+
+    .vh {
+      overflow: hidden;
+      padding-bottom: .5em;
+      border-bottom: 1px dashed #f5f5f5
+
+      .vtime {
+        font-size: .75em;
+        margin-right: .875em
+      }
+
+      .vmeta {
+        line-height: 1;
+        position: relative;
+        .vat {
+          font-size: .8125em;
+          color: var(--primary-color);
+          cursor: pointer;
+          float: right;
+          the-transition();
+
+          &:hover {
+            color: var(--color-aqua);
+          }
+        }
+      }
+    }
+
+    &:last-child .vh {
+      border-bottom: none
+    }
+
+    .vcontent {
+      word-wrap: break-word;
+      word-break: break-all;
+      font-size: .875em;
+      line-height: 2;
+      position: relative;
+      margin-bottom: .75em;
+      padding-top: .625em
+
+
+      &.expand {
+        cursor: pointer;
+        max-height: 8em;
+        overflow: hidden
+
+        &::before {
+          display: block;
+          content: "";
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+          bottom: 3.15em;
+          background: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 100%, 0)), to(hsla(0, 0%, 100%, .9)));
+          background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .9));
+          z-index: 999
+        }
+
+        &::after {
+          display: block;
+          content: attr(data-expand);
+          text-align: center;
+          color: #828586;
+          position: absolute;
+          width: 100%;
+          height: 3.15em;
+          line-height: 3.15em;
+          left: 0;
+          bottom: 0;
+          z-index: 999;
+          background: hsla(0, 0%, 100%, .9)
+        }
+      }
+    }
+
+
+    .vquote {
+      padding-left: 1em;
+      border-left: 1px dashed hsla(0, 0%, 93%, .5)
+      .vimg {
+        width: 2.225em;
+        height: 2.225em
+      }
+    }
+
+  }
+}
+
+.vpage .vmore {
+  margin: 1em 0
+}
+
+
+@media screen and (max-width:520px) {
+  .v .vwrap .vheader.item2 .vinput,
+  .v .vwrap .vheader .vinput {
+    width: 100%
+  }
+
+  .v .vsys {
+    display: none
+  }
+}
+
+@media screen and (max-width:720px) {
+  .v .vcards .vcard .vimg {
+    width: 2.5em;
+    height: 2.5em
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn)
+  }
+}
+
+
+@keyframes pulse {
+  50% {
+    background: #dcdcdc
+  }
+}
+
+.v .vspinner {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  border: 6px double #a0a0a0;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  position: relative;
+  vertical-align: middle;
+  margin: 0 5px
+}
+
+.dark .v .status-bar,
+.dark .v .veditor,
+.dark .v .vinput,
+.dark .v p,
+.dark .v pre code,
+.night .v .status-bar,
+.night .v .veditor,
+.night .v .vinput,
+.night .v p,
+.night .v pre code,
+.theme__dark .v .status-bar,
+.theme__dark .v .veditor,
+.theme__dark .v .vinput,
+.theme__dark .v p,
+.theme__dark .v pre code,
+[data-theme=dark] .v .status-bar,
+[data-theme=dark] .v .veditor,
+[data-theme=dark] .v .vinput,
+[data-theme=dark] .v p,
+[data-theme=dark] .v pre code {
+  color: #b2b2b5
+}
+
+.dark .v .vsys,
+.dark .v .vtime,
+.night .v .vsys,
+.night .v .vtime,
+.theme__dark .v .vsys,
+.theme__dark .v .vtime,
+[data-theme=dark] .v .vsys,
+[data-theme=dark] .v .vtime {
+  color: #929298
+}
+
+.dark .v code,
+.dark .v pre,
+.dark .v pre code,
+.night .v code,
+.night .v pre,
+.night .v pre code,
+.theme__dark .v code,
+.theme__dark .v pre,
+.theme__dark .v pre code,
+[data-theme=dark] .v code,
+[data-theme=dark] .v pre,
+[data-theme=dark] .v pre code {
+  color: #929298;
+  background-color: #151414
+}
+
+.dark .v .vwrap,
+.night .v .vwrap,
+.theme__dark .v .vwrap,
+[data-theme=dark] .v .vwrap {
+  border-color: #b2b2b5
+}
+
+.dark .v .vicon,
+.night .v .vicon,
+.theme__dark .v .vicon,
+[data-theme=dark] .v .vicon {
+  fill: #b2b2b5
+}
+
+.dark .v .vicon.actived,
+.night .v .vicon.actived,
+.theme__dark .v .vicon.actived,
+[data-theme=dark] .v .vicon.actived {
+  fill: #66b1ff
+}
+
+.dark .v .vbtn,
+.night .v .vbtn,
+.theme__dark .v .vbtn,
+[data-theme=dark] .v .vbtn {
+  color: #b2b2b5;
+  border-color: #b2b2b5
+}
+
+.dark .v .vbtn:hover,
+.night .v .vbtn:hover,
+.theme__dark .v .vbtn:hover,
+[data-theme=dark] .v .vbtn:hover {
+  color: #66b1ff;
+  border-color: #66b1ff
+}
+
+.dark .v a:hover,
+.night .v a:hover,
+.theme__dark .v a:hover,
+[data-theme=dark] .v a:hover {
+  color: var(--primary-color)
+}
+
+.dark .v .vcards .vcard .vcontent.expand:before,
+.night .v .vcards .vcard .vcontent.expand:before,
+.theme__dark .v .vcards .vcard .vcontent.expand:before,
+[data-theme=dark] .v .vcards .vcard .vcontent.expand:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .3)), to(rgba(0, 0, 0, .7)));
+  background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7))
+}
+
+.dark .v .vcards .vcard .vcontent.expand:after,
+.night .v .vcards .vcard .vcontent.expand:after,
+.theme__dark .v .vcards .vcard .vcontent.expand:after,
+[data-theme=dark] .v .vcards .vcard .vcontent.expand:after {
+  background: rgba(0, 0, 0, .7)
+}
+
+@media (prefers-color-scheme:dark) {
+
+  .v .status-bar,
+  .v .veditor,
+  .v .vinput,
+  .v p,
+  .v pre code {
+    color: #b2b2b5
+  }
+
+  .v .vsys,
+  .v .vtime {
+    color: #929298
+  }
+
+  .v code,
+  .v pre,
+  .v pre code {
+    color: #929298;
+    background-color: #151414
+  }
+
+  .v .vwrap {
+    border-color: #b2b2b5
+  }
+
+  .v .vicon {
+    fill: #b2b2b5
+  }
+
+  .v .vicon.actived {
+    fill: #66b1ff
+  }
+
+  .v .vbtn {
+    color: #b2b2b5;
+    border-color: #b2b2b5
+  }
+
+  .v .vbtn:hover {
+    color: #66b1ff;
+    border-color: #66b1ff
+  }
+
+  .v a:hover {
+    color: var(--primary-color)
+  }
+
+  .v .vcards .vcard .vcontent.expand:before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .3)), to(rgba(0, 0, 0, .7)));
+    background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7))
+  }
+
+  .v .vcards .vcard .vcontent.expand:after {
+    background: rgba(0, 0, 0, .7)
+  }
+}

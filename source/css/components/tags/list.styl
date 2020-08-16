@@ -1,0 +1,140 @@
+.post .body, .comments {
+  li {
+    position: relative;
+
+    &:before {
+      the-transition();
+    }
+
+    p {
+      margin: 0 0 .5rem;
+    }
+  }
+
+  ul, ol {
+    margin-top: .4rem;
+    padding: .1rem .2rem .1rem 1.4rem;
+  }
+
+  ul > li,
+  dl dt {
+    &::before {
+      content: "";
+      position: absolute;
+      width: .4rem;
+      height: .4rem;
+      background: var(--primary-color);
+      border-radius: 50%;
+      top: .85rem;
+      left: -1rem;
+    }
+
+    &.ruby::before {
+      top: 1.25rem;
+    }
+
+    &:hover::before {
+      background: var(--color-pink);
+    }
+  }
+
+  ol {
+
+    &:not([start]) {
+      counter-reset: counter;
+    }
+
+    >li {
+      margin: .2rem 0;
+
+      &::before {
+        counter-increment: counter;
+        content: counter(counter);
+        position: absolute;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        text-align: center;
+        font-size: .8rem;
+        line-height: 1.2rem;
+        top: .5rem;
+        left: -1.6rem;
+        background: var(--primary-color);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      &.ruby::before {
+        top: .3rem;
+      }
+
+      &:hover::before {
+        background: var(--color-pink);
+      }
+    }
+  }
+
+  dl {
+    padding-inline-start: 40px;
+    +tablet-mobile() {
+      padding-inline-start: 20px;
+    }
+    dt {
+      position: relative;
+    }
+    dd {
+      padding-left: 15px;
+    }
+  }
+
+  ul {
+    li.nodot {
+      &::before {
+        li-nodot();
+      }
+    }
+
+    li.task-list-item {
+      &::before {
+        li-nodot();
+      }
+
+      input[type='checkbox'] {
+        display: none;
+      }
+
+      input[type='checkbox']+label::before {
+        @extend .i-times-circle:before;
+        font-family-icons();
+        color: var(--grey-4);
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      input[type='checkbox']:checked+label::before {
+        @extend .i-check-circle:before;
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.comments {
+  ul > li::before {
+    width: .3rem;
+    height: .3rem;
+    top: .7rem;
+    left: -.6rem;
+  }
+
+  ol > li::before {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    text-align: center;
+    font-size: .45rem;
+    line-height: .8rem;
+    top: .4rem;
+    left: -1.2rem;
+  }
+}

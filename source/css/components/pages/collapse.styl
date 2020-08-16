@@ -1,0 +1,132 @@
+.collapse {
+  margin-left: $posts-collapse-margin;
+  position: relative;
+
+  +mobile() {
+    margin-left: $posts-collapse-margin-mobile;
+  }
+
+
+  .item {
+    position: relative;
+    padding: 20px 30px;
+    margin: 0;
+
+
+    small {
+      color: var(--grey-4);
+      margin: auto 5px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: $zindex-1;
+      the-transition();
+      box-sizing: unset;
+      top: 1.4em;
+      left: 0;
+      width: .6rem;
+      height: .6rem;
+      border: .15rem solid var(--primary-color);
+      border-radius: 50%;
+      background: var(--grey-1);
+    }
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 1.8em;
+      bottom: -1.8em;
+      left: .35rem;
+      border-left: .2rem solid var(--color-red-a3);
+    }
+
+    &.header:not(:last-child)::after, &.section:not(:last-child)::after {
+      top: 1.4em;
+      bottom: -1.4em;
+    }
+
+    &:hover::before {
+      border-color: var(--color-blue);
+    }
+  }
+
+
+  .item.header {
+
+    &::after {
+      border-left-style: dashed !important;
+    }
+
+    .cheers {
+      display: block;
+    }
+  }
+
+  .item.section {
+    &::before {
+      width: .4rem;
+      height: .4rem;
+      margin-left: .1rem;
+    }
+  }
+
+  .item.header, .item.section {
+    a {
+      border-bottom: 1px dashed var(--grey-4);
+    }
+    &:hover a {
+      border-bottom-color: var(--color-blue);
+    }
+  }
+
+  .item.normal {
+
+    &::before {
+      width: .2rem;
+      height: .2rem;
+      margin-left: .2rem;
+      background: var(--primary-color);
+    }
+
+    &:hover::before {
+      background: var(--color-blue);
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 30px;
+
+
+    .meta {
+      display: inline;
+      font-size: $font-size-smallest;
+      margin-right: 10px;
+
+      time {
+        color: var(--grey-4);
+      }
+    }
+
+    .title {
+      display: inline;
+
+
+      a,
+      span.exturl {
+        color: var(--primary-color);
+
+        &:hover {
+          color: var(--color-blue);
+        }
+      }
+
+      .i-link-alt {
+        font-size: $font-size-small;
+        margin-left: 5px;
+      }
+    }
+  }
+}

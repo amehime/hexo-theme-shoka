@@ -1,5 +1,5 @@
 # Assets
-statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
+statics: / #//cdn.jsdelivr.net/gh/username/RepositoryName@latest/
 assets: assets
 css: css
 js: js
@@ -12,6 +12,7 @@ images: images
 vendors:
   css:
     katex: npm/katex@0/dist/katex.min.css
+    comment: css/comment.css
   js:
     pace: npm/pace-js@1.0.2/pace.min.js
     pjax: npm/pjax@0.2.8/pjax.min.js
@@ -22,7 +23,7 @@ vendors:
     lazyload: npm/lozad@1/dist/lozad.min.js
     quicklink: npm/quicklink@2/dist/quicklink.umd.js
     mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
-    valine: npm/valine@1.4.14/dist/Valine.min.js
+    valine: js/valine.js
     copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
 
@@ -158,8 +159,6 @@ reward:
     alipay: /alipay.png
     paypal: /paypal.png
 
-
-
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
@@ -172,25 +171,27 @@ pangu: false
 search:
   hits:
     per_page: 10
-  labels:
-    input_placeholder: 文章搜索
-    hits_empty: "关于 ${query} ，什么也没搜到"
-    hits_stats: "${time} ms 内找到 ${hits} 条结果"
 
 # Comments
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  appid: Your_appId
-  appkey: Your_appkey
+  appId: #Your_appId
+  appKey: #Your_appkey
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
-  avatar: mm # Gravatar style
+  avatar: mp # Gravatar style
   pageSize: 10 # Pagination size
-  language: zh-cn
+  lang: en
   visitor: true # Article reading statistic
   recordIP: true # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  #post_meta_order: 0
+  requiredFields:
+    - nick
+    - mail
+  enableQQ: true
+  masters: ['master@email.com']
+  masterTag: 主人
+  tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink

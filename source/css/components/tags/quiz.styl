@@ -1,0 +1,203 @@
+.post .body ol>li.quiz {
+  margin: 10px 0;
+
+  &::before{
+      counter-increment: counter;
+      content: counter(counter) ".";
+      position: absolute;
+      color: var(--primary-color);
+      text-align: right;
+      width: 2rem;
+      left: -2.2rem;
+      height: auto;
+      background: none !important;
+      font-size: $font-size-base;
+  }
+
+  &.ruby::before {
+      top: .5rem;
+  }
+
+  >p {
+    margin: 0;
+    cursor: pointer;
+
+    &:first-child::before {
+      content: "[单选题]";
+      font-size: $font-size-smallest;
+      color: var(--grey-4);
+      margin: auto 5px;
+    }
+  }
+
+  &.multi {
+    >p:first-child::before {
+      content: "[多选题]";
+    }
+  }
+
+  .gap {
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+    padding: 0 10px;
+    text-indent: -9999px;
+
+    &::after {
+      display: block;
+      content: "";
+      background: var(--text-color);
+      width: calc(100% + 20px);
+      height: 1px;
+      margin-bottom: -1px;
+      margin-left: -10px;
+    }
+  }
+
+  &.show.fill .gap{
+    text-indent: 0px;
+  }
+
+  &.true,
+  &.false {
+    >p:first-child::before {
+      content: "[判断题]";
+    }
+  }
+
+  &::before, &::after {
+    the-transition();
+  }
+
+  &.show::before {
+    color: var(--color-blue) !important;
+  }
+
+  &.show>p::after {
+    font-family-icons();
+  }
+
+  &.show.true>p::after {
+    @extend .i-check:before;
+    color: var(--color-green);
+  }
+
+  &.show.false>p::after {
+    @extend .i-times:before;
+    color: var(--color-red);
+  }
+
+
+  &.essay {
+    >p::before {
+      content: "[问答题]";
+    }
+  }
+
+  &.fill {
+    >p::before {
+      content: "[填空题]";
+    }
+  }
+
+  blockquote {
+    display: none;
+
+    .mistake {
+      display: block;
+      border: 3px dashed var(--grey-4);
+      padding: 10px 20px;
+      background: var(--grey-3);
+      margin: 5px;
+
+      &::before {
+        display: block;
+        content: "[错题备注]";
+        font-size: $font-size-smaller;
+        color: var(--grey-4);
+      }
+    }
+  }
+
+  &.show blockquote {
+    display: block;
+    animation: slide .5s;
+  }
+
+  ul.options {
+    padding-inline-start: 10px;
+
+    li {
+
+      &::before {
+        color: var(--color-grey);
+        margin-right: 10px;
+        the-transition();
+        li-nodot();
+      }
+
+      &:nth-child(1)::before {
+        content: "A."
+      }
+
+      &:nth-child(2)::before {
+        content: "B."
+      }
+
+      &:nth-child(3)::before {
+        content: "C."
+      }
+
+      &:nth-child(4)::before {
+        content: "D."
+      }
+
+      &:nth-child(5)::before {
+        content: "E."
+      }
+
+    }
+  }
+
+  >ul.options {
+    li {
+      cursor: pointer;
+
+      &::after {
+        font-family-icons();
+        position: absolute;
+        left: -25px;
+        top: 0px;
+      }
+
+      &.right {
+
+        &::before {
+          color: var(--color-green);
+        }
+
+        &::after {
+          @extend .i-check:before;
+          color: var(--color-green);
+          animation: fadeIn .5s;
+        }
+      }
+
+      &.wrong {
+
+        &::before {
+          color: var(--color-red);
+        }
+
+        &::after {
+          @extend .i-times:before;
+          color: var(--color-red);
+          animation: fadeIn .5s;
+        }
+      }
+    }
+  }
+}
+
+
+

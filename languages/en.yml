@@ -75,6 +75,10 @@ state:
 
 search:
   placeholder: Searching...
+  labels:
+    placeholder: Search for Posts
+    empty: "We didn't find any results for the search: ${query}"
+    stats: "${hits} results found in ${time} ms"
 
 cheers:
   um: Um..

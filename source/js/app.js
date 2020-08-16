@@ -1,3 +1,5 @@
+var CONFIG = /*CONFIG*/;
+
 Object.assign(HTMLElement.prototype, {
   wrap: function (wrapper) {
     this.parentNode.insertBefore(wrapper, this);
@@ -496,30 +498,30 @@ const getScript = function(url, callback, condition) {
   }
 }
 
-const assetUrl = function(type) {
-  return (CONFIG[type].indexOf('npm')>-1? "//cdn.jsdelivr.net/":statics)+CONFIG[type];
+const assetUrl = function(asset, type) {
+  return (CONFIG[asset][type].indexOf('npm')>-1? "//cdn.jsdelivr.net/":statics)+CONFIG[asset][type];
 }
 
 const vendorJs = function(type, callback, condition) {
-  if(CONFIG[type]) {
-    getScript(assetUrl(type), callback || function(){
+  if(LOCAL[type]) {
+    getScript(assetUrl("js", type), callback || function(){
       window[type] = true;
     }, condition || window[type]);
   }
 }
 
 const vendorCss = function(type, condition) {
-  if(window[type])
+  if(window['css'+type])
     return;
 
-  if(CONFIG[type]) {
+  if(LOCAL[type]) {
     var linkTag = document.createElement('link');
     linkTag.setAttribute('rel','stylesheet');
-    linkTag.href = assetUrl(type);
+    linkTag.href = assetUrl("css", type);
 
     document.head.appendChild(linkTag);
 
-    window[type] = true;
+    window['css'+type] = true;
   }
 }
 
@@ -532,8 +534,10 @@ const loadComments = function () {
   var intersectionObserver = new IntersectionObserver(function(entries, observer) {
     vendorJs('valine', function() {
       var entry = entries[0];
+      vendorCss('valine');
+
       if (entry.isIntersecting) {
-        var options = CONFIG.comments;
+        var options = /*COMMENTCONFIG*/;
         options.el = '#comments';
         options.path = element.attr('data-id');
 
@@ -554,6 +558,9 @@ const pagePostion = function(url) {
 }
 
 const algoliaSearch = function(pjax) {
+  if(CONFIG.search === null)
+    return
+
   var search = instantsearch({
     indexName: CONFIG.search.indexName,
     searchClient  : algoliasearch(CONFIG.search.appID, CONFIG.search.apiKey),
@@ -577,7 +584,7 @@ const algoliaSearch = function(pjax) {
 
     instantsearch.widgets.searchBox({
       container           : '.search-input-container',
-      placeholder         : CONFIG.search.labels.input_placeholder,
+      placeholder         : LOCAL.search.placeholder,
       // Hide default icons of algolia search
       showReset           : false,
       showSubmit          : false,
@@ -591,7 +598,7 @@ const algoliaSearch = function(pjax) {
       container: '#search-stats',
       templates: {
         text: function(data) {
-          var stats = CONFIG.search.labels.hits_stats
+          var stats = LOCAL.search.stats
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS);
           return stats + '<span class="algolia-powered"></span><hr>';
@@ -608,7 +615,7 @@ const algoliaSearch = function(pjax) {
         },
         empty: function(data) {
           return '<div id="hits-empty">'+
-              CONFIG.search.labels.hits_empty.replace(/\$\{query}/, data.query) +
+              LOCAL.search.empty.replace(/\$\{query}/, data.query) +
             '</div>';
         }
       },
@@ -872,19 +879,20 @@ const siteInit = function () {
     cacheBust: false
   });
 
+  CONFIG.quicklink.ignores = LOCAL.ignores;
   quicklink.listen(CONFIG.quicklink);
 
   document.addEventListener('visibilitychange', function() {
     switch(document.visibilityState) {
       case 'hidden':
         $('[rel="icon"]').attr('href', statics + CONFIG.favicon.hidden);
-        document.title = CONFIG.favicon.hide;
+        document.title = LOCAL.favicon.hide;
         Loader.show()
         clearTimeout(titleTime);
       break;
       case 'visible':
         $('[rel="icon"]').attr('href', statics + CONFIG.favicon.normal);
-        document.title = CONFIG.favicon.show;
+        document.title = LOCAL.favicon.show;
         Loader.hide(1000)
         titleTime = setTimeout(function () {
           document.title = originTitle;

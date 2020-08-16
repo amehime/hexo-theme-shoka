@@ -1,0 +1,285 @@
+@import 'copy-code';
+
+// Placeholder: $code-block
+$code-block {
+  background: var(--grey-2);
+  color: var(--grey-7);
+  line-height: $line-height-code-block;
+  margin: 20px auto;
+}
+
+pre,
+code {
+  font-family: $font-family-monospace;
+  font-size: $font-size-medium;
+}
+
+code {
+  background: var(--grey-0);
+  border-radius: 3px;
+  color: var(--primary-color);
+  padding: .2em .3em;
+  word-wrap();
+}
+
+// 代码样式
+:not(pre)>code {
+  color: var(--primary-color);
+  border-radius: .3em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--grey-0);
+}
+
+.highlight {
+  position: relative;
+  border-radius: 0.25rem;
+  overflow: hidden;
+
+  @extend $code-block;
+
+  *::selection {
+    background: var(--grey-4);
+  }
+
+  pre {
+    border: 0;
+    margin: 0;
+    padding: 10px 0;
+    box-sizing: unset;
+  }
+
+  figcaption {
+    color: var(--grey-7);
+    display: flex;
+    font-size: $font-size-small;
+    line-height: 1.2;
+    padding: .5em;
+
+    min-height: 1.5rem;
+
+    &::before,
+    &::after {
+      content: "";
+      display: table;
+    }
+
+    &::after {
+      clear: both;
+    }
+
+    span {
+      margin: auto .6rem;
+    }
+
+    span:first-child {
+      float: left;
+      margin-left: 0.5rem;
+    }
+
+    span.external-link {
+      float: right;
+      margin-right: 2em;
+    }
+
+    .lang {
+      float: left;
+      color: var(--grey-4);
+    }
+
+    a {
+      color: var(--grey-7);
+
+      &:hover {
+        border-bottom-color: var(--grey-7);
+      }
+    }
+
+
+    .carbon {
+      display: flex;
+      margin: 0.2rem 0 0 0.5rem;
+      font-size: 0;
+      align-items: center;
+
+      .dot {
+        display: inline-block;
+        margin: 0 4px;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+
+        &.red {
+          background-color: #ff5f56;
+        }
+
+        &.yellow {
+          background-color: #ffbd2e;
+        }
+
+        &.green {
+          background-color: #27c93f;
+        }
+      }
+    }
+  }
+
+  .code-container {
+    display: flex;
+    position: relative;
+
+    .show-btn {
+      position: absolute;
+      cursor: pointer;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      line-height: 70px;
+      text-align: center;
+      color: var(--text-color);
+      background-image: linear-gradient(180deg, transparent 10%, var(--grey-2) 50%);
+
+
+      &.open {
+        background: none;
+        bottom: 10px;
+      }
+
+    }
+  }
+
+  .marked {
+    display: inline-block;
+    margin-right: -10px;
+    padding-right: 10px;
+    box-sizing: unset;
+    background-color: var(--color-red-a1);
+    width: 100%;
+  }
+
+  pre.gutter {
+    disable-user-select();
+    width: 40px;
+    color: var(--color-grey);
+    padding-right: 10px;
+    text-align: right;
+    background-color: var(--grey-3);
+    overflow-y: hidden;
+  }
+
+  pre.code {
+    background: var(--grey-2);
+    padding: 10px;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    .marked {
+      margin: auto -10px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      the-transition();
+
+      &:hover {
+        background-color: var(--grey-3);
+      }
+    }
+  }
+}
+
+
+pre {
+  @extend $code-block;
+  overflow: auto;
+  padding: 10px;
+
+  code {
+    background: none;
+    color: var(--grey-7);
+    font-size: $font-size-small;
+    padding: 0;
+    text-shadow: none;
+  }
+
+  // For diff highlight
+  .deletion {
+    background: var(--color-pink-light);
+  }
+
+  .addition {
+    background: var(--color-cyan-light);
+  }
+
+  .meta {
+    color: var(--color-yellow);
+    disable-user-select();
+  }
+
+  .comment,
+  .punctuation {
+    color: var(--grey-5);
+  }
+
+  .variable,
+  .function,
+  .attribute,
+  .tag,
+  .name,
+  .regexp,
+  .ruby .constant,
+  .xml .tag .title,
+  .xml .pi,
+  .xml .doctype,
+  .html .doctype,
+  .css .id,
+  .css .class,
+  .css .pseudo {
+    color: var(--color-red);
+  }
+
+  .number,
+  .preprocessor,
+  .built_in,
+  .builtin-name,
+  .literal,
+  .params,
+  .constant,
+  .command {
+    color: var(--color-orange);
+  }
+
+  .ruby .class .title,
+  .css .rules .attribute,
+  .string,
+  .symbol,
+  .value,
+  .inheritance,
+  .header,
+  .ruby .symbol,
+  .xml .cdata,
+  .special,
+  .formula {
+    color: var(--color-green);
+  }
+
+  .title,
+  .css .hexcolor,
+  .namespace {
+    color: var(--color-aqua);
+  }
+
+  .class-name,
+  .python .decorator,
+  .python .title,
+  .ruby .function .title,
+  .ruby .title .keyword,
+  .perl .sub,
+  .javascript .title,
+  .coffeescript .title {
+    color: var(--color-blue);
+  }
+
+  .keyword,
+  .javascript .function {
+    color: var(--color-purple);
+  }
+}

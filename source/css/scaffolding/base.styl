@@ -1,0 +1,117 @@
+::selection {
+  background: var(--color-orange);
+  color: var(--grey-2);
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to top, var(--body-bg-shadow) 0%, var(--grey-1) 20%) no-repeat bottom;
+  color: var(--text-color);
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+
+  &.loaded {
+    overflow: auto;
+  }
+
+  +tablet-mobile() {
+    // Remove the padding of body when the sidebar is open.
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-headings;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 20px 0 15px;
+}
+
+
+/*p {
+  margin: 0 0 20px 0;
+}*/
+
+a, span.exturl {
+  //border-bottom: 1px solid $link-decoration-color;
+  border: none;
+  color: var(--grey-7);
+  outline: 0;
+  text-decoration: none;
+  word-wrap();
+  the-transition();
+
+  &:hover {
+    border-bottom-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
+  // For spanned external links.
+  cursor: pointer;
+}
+
+a, li, div {
+  -webkit-tap-highlight-color: transparent;
+}
+
+li {
+  list-style: none;
+}
+
+iframe, img, video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+hr {
+  background-image: repeating-linear-gradient(-45deg, var(--grey-3), var(--grey-4) 4px, transparent 4px, transparent 8px);
+  border: 0;
+  height: 3px;
+  margin: 40px 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--grey-4);
+  color: var(--grey-6);
+  margin: 20px 0;
+  padding: 10px 20px;
+
+  cite::before {
+    content: '-';
+    padding: 0 5px;
+  }
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+kbd {
+  background-color: var(--grey-1);
+  background-image: linear-gradient(var(--grey-2), var(--grey-0), var(--grey-2));
+  border: 1px solid var(--grey-4);
+  border-radius: .2em;
+  box-shadow: .1em .1em .2em var(--grey-9-a1);
+  color: var(--primary-color);
+  font-family: inherit;
+  padding: .1em .3em;
+  white-space: nowrap;
+}

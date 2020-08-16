@@ -33,3 +33,49 @@ njkRenderer.compile = function(data) {
 };
 
 hexo.extend.renderer.register('njk', 'html', njkRenderer);
+
+const url = require('url');
+
+hexo.extend.renderer.register('js', 'js', function(data, options){
+  const config = hexo.config;
+  const theme = hexo.theme.config;
+
+  var siteConfig = {
+    hostname  : url.parse(config.url).hostname || config.url,
+    root: config.root,
+    statics: theme.statics,
+    favicon: {
+      normal: theme.images + "/favicon.ico",
+      hidden: theme.images + "/failure.ico"
+    },
+    js: {
+      valine: theme.vendors.js.valine,
+      chart: theme.vendors.js.chart,
+      copy_tex: theme.vendors.js.copy_tex,
+      mediumzoom: theme.vendors.js.mediumzoom
+    },
+    css: {
+      valine: theme.css + "/comment.css",
+      katex: theme.vendors.css.katex,
+      mermaid: theme.css + "/mermaid.css"
+    },
+    search : null,
+    quicklink: {
+      timeout : theme.quicklink.timeout,
+      priority: theme.quicklink.priority
+    }
+  };
+
+  if(config.algolia) {
+    siteConfig.search = {
+      appID    : config.algolia.appId,
+      apiKey   : config.algolia.apiKey,
+      indexName: config.algolia.indexName,
+      hits     : theme.search.hits
+    }
+  }
+
+  return data.text
+  .replace("/*CONFIG*/", JSON.stringify(siteConfig))
+  .replace("/*COMMENTCONFIG*/", JSON.stringify(theme.valine));
+});

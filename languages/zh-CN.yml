@@ -75,6 +75,10 @@ state:
 
 search:
   placeholder: 搜索...
+  labels:
+    placeholder: 文章搜索
+    empty: "关于 ${query} ，什么也没搜到"
+    stats: "${time} ms 内找到 ${hits} 条结果"
 
 cheers:
   um: 嗯..
