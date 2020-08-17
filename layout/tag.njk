@@ -5,7 +5,7 @@
 {% block content %}
   <div class="collapse wrap">
     <h2 class="item header">
-      <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a>
+      <a href="{{ url_for(theme.page.tags) }}">{{ __('title.all') }}</a>
       <small>/</small>
       {{ page.tag }}
       <small>{{ __('title.tag') }}</small>

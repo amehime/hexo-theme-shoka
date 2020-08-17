@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id><%= config.url %></id>
+    <title><%= config.logo %> | <%= config.title %></title>
+    <subtitle><%= config.subtitle %></subtitle>
+    <icon><%= full_url_for('/images/favicon.ico') %></icon>
+    <link href="<%= config.url %>" />
+    <author>
+      <name><%= config.author %></name>
+    </author>
+    <updated><%= moment(lastBuildDate).toISOString() %></updated>
+    <%_ for (item of (config.keywords.split(',') || [])) { _%>
+    <category term="<%= item %>" />
+    <%_ } _%>
+    <%_ for (const post of posts) { _%>
+    <entry>
+        <id><%= post.permalink %></id>
+        <title><%= post.title %></title>
+        <link rel="alternate" href="<%= post.permalink %>"/>
+        <content type="html"><%= post.content %></content>
+        <%_ for (const { name, path } of (post.categories ? post.categories.toArray() : [])) { _%>
+        <category term="<%= name %>" scheme="<%= full_url_for(path) %>" />
+        <%_ } _%>
+        <%_ for (const { name, path } of (post.tags ? post.tags.toArray() : [])) { _%>
+        <category term="<%= name %>" scheme="<%= full_url_for(path) %>" />
+        <%_ } _%>
+        <updated><%= moment(post.date).toISOString() %></updated>
+    </entry>
+    <%_ } _%>
+</feed>

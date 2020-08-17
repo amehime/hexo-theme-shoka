@@ -10,7 +10,7 @@ hexo.extend.generator.register('cover', function (locals) {
   categories.forEach((cat, i) => {
     let cover_path = cat.path
     if (cat.path.startsWith('/')) {
-      cover_path = cat.path.substr(1)
+      cover_path = cat.path.substr(1);
     }
 
     cover_path  = cover_path + 'cover.jpg'

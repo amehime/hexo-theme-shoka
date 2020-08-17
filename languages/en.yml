@@ -8,7 +8,8 @@ title:
   archive: Archive
   category: Category
   tag: Tag
-  schedule: Schedule
+  all: All
+  not_found: Σ( ° △ °|||)︴404!
 
 menu:
   home: Home

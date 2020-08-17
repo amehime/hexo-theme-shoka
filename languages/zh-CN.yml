@@ -8,7 +8,8 @@ title:
   archive: 归档
   category: 分类
   tag: 标签
-  schedule: 日程表
+  all: 全部
+  not_found: Σ( ° △ °|||)︴404！何も見えない
 
 menu:
   home: 首页

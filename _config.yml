@@ -78,8 +78,8 @@ font:
 menu:
   home: / || home
   #about: /about/ || user
-  #tags: tags || tags
-  #categories: categories || th
+  #tags: /tags/ || tags
+  #categories: /categories/ || th
   #archives: /archives/ || list-alt
   #friends: /friends/ || heart
   #links: /links/ || magic
@@ -129,6 +129,20 @@ index:
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
+
+# page dir for all categories and tags
+page:
+  categories: categories
+  tags: tags
+
+# TagCloud settings for tags page.
+tagcloud:
+  # All values below are same as default, change them by yourself.
+  min: 12 # Minimun font size in px
+  max: 30 # Maxium font size in px
+  start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
+  end: "#111" # End color (hex, rgba, hsla or color keywords)
+  amount: 200 # Amount of tags, change it if you have more than 200 tags
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
@@ -189,7 +203,7 @@ valine:
     - nick
     - mail
   enableQQ: true
-  masters: ['master@email.com']
+  masters: ['master@email.com', 'master2@email.com']
   masterTag: 主人
   tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
 

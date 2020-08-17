@@ -1,9 +1,42 @@
 {% extends '_partials/layout.njk' %}
 {% import '_macro/sidebar.njk' as sidebar with context %}
 
-{% block title %}{{ page.title }} | {% endblock %}
+{% block title %}
+{%- if page.type === 'categories' %}
+  {{- __('title.category') }}
+{%- elif page.type === 'tags' %}
+  {{- __('title.tag') }}
+{%- elif page.type === '404' %}
+  {{- __('title.not_found') }}
+{%- else %}
+  {{- page.title }}
+{%- endif %} |
+{% endblock %}
 
 {% block content %}
+{%- if page.type === 'categories' %}
+  <div class="collapse wrap">
+    <h2 class="item title"><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small> {{ _p('counter.categories', site.categories.length) }}</h2>
+    {{ _list_categories(3) }}
+  </div>
+{%- elif page.type === 'tags' %}
+  <div class="collapse wrap">
+      <h2 class="item title"><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small> {{ _p('counter.tag_cloud', site.tags.length) }}</h2>
+
+  {{ tagcloud({
+      min_font   : theme.tagcloud.min,
+      max_font   : theme.tagcloud.max,
+      amount     : theme.tagcloud.amount,
+      color      : true,
+      start_color: theme.tagcloud.start,
+      end_color  : theme.tagcloud.end})
+    }}
+  </div>
+{%- elif page.type === '404' %}
+  <div class="page wrap">
+    <div class="notfound">{{ __('title.not_found') }}</div>
+  </div>
+{%- else %}
   <div class="page wrap">
     <div class="post block">
       <header><h1 class="title">{{- page.title }}</h1></header>
@@ -24,6 +57,7 @@
   {%- if page.comment !== false %}
   <div class="comments wrap" id="comments" data-id="{{ page.path }}"></div>
   {%- endif %}
+{%- endif %}
 {% endblock %}
 
 {% block sidebar %}

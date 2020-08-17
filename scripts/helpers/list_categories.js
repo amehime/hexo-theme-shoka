@@ -2,6 +2,66 @@
 
 var fs = require('hexo-fs');
 
+const prepareQuery = (categories, parent) => {
+  const query = {};
+
+  if (parent) {
+    query.parent = parent;
+  } else {
+    query.parent = {$exists: false};
+  }
+
+  return categories.find(query).sort('name', 1).filter(cat => cat.length);
+};
+
+hexo.extend.helper.register('_list_categories', function(depth = 0) {
+  let hexo = this;
+  let categories = hexo.site.categories;
+
+  if (!categories || !categories.length) return '';
+
+
+  const hierarchicalList = (level, parent) => {
+    let result = '';
+
+    prepareQuery(categories, parent).forEach((cat, i) => {
+      let child;
+
+      if (level + 1 < depth) {
+        child = hierarchicalList(level + 1, cat._id);
+      }
+
+      let catname = `<a itemprop="url" href="${hexo.url_for(cat.path)}">${cat.name}</a><small>( ${cat.length} )</small>`;
+
+      switch(level) {
+        case 0:
+          result += `<div><h2 class="item header">${catname}</h2>`;
+          break;
+
+        case 1:
+          result += `<h3 class="item section">${catname}</h3>`;
+          break;
+
+        case 2:
+          result += `<div class="item normal"><div class="title">${catname}</div></div>`;
+          break;
+      }
+
+      if (child) {
+        result += `${child}`;
+      }
+
+      if(level === 0) {
+        result += '</div>';
+      }
+    });
+
+    return result;
+  };
+
+  return hierarchicalList(0);
+});
+
 hexo.extend.helper.register('_categories', function() {
   let hexo = this;
   let categories = hexo.site.categories;
@@ -13,22 +73,11 @@ hexo.extend.helper.register('_categories', function() {
     }
   };
 
-  const prepareQuery = parent => {
-    const query = {};
-
-    if (parent) {
-      query.parent = parent;
-    } else {
-      query.parent = {$exists: false};
-    }
-
-    return categories.find(query).sort('name', 1).filter(cat => cat.length);
-  };
 
   let result = {};
 
   categories.forEach((cat, i) => {
-    let child = prepareQuery(cat._id);
+    let child = prepareQuery(categories, cat._id);
     let cover = 'source/_posts/' + cat.path + 'cover.jpg'
 
     if (fs.existsSync(cover)) {

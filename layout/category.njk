@@ -6,10 +6,9 @@
   <div class="collapse wrap">
     {%- set prev = _category_prev(page.category) %}
     <h2 class="item header">
+      <a href="{{ url_for(theme.page.categories) }}">{{ __('title.all') }}</a>
       {%- if prev %}
-        {{prev}}
-      {%- else %}
-        <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a>
+        <small>/</small> {{prev}}
       {%- endif %}
       <small>/</small>
       {{ page.title }}

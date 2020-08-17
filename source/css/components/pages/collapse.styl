@@ -6,17 +6,16 @@
     margin-left: $posts-collapse-margin-mobile;
   }
 
+  small {
+    color: var(--grey-4);
+    margin: auto 5px;
+  }
 
   .item {
     position: relative;
     padding: 20px 30px;
     margin: 0;
 
-
-    small {
-      color: var(--grey-4);
-      margin: auto 5px;
-    }
 
     &::before {
       content: "";
@@ -33,7 +32,7 @@
       background: var(--grey-1);
     }
 
-    &:not(:last-child)::after {
+    &:not(:last-child):not(.title)::after {
       content: "";
       position: absolute;
       top: 1.8em;
@@ -72,7 +71,7 @@
     }
   }
 
-  .item.header, .item.section {
+  .item.title, .item.header, .item.section {
     a {
       border-bottom: 1px dashed var(--grey-4);
     }

@@ -10,7 +10,10 @@ alternate title for image tooltip (nullable) | main title | url | description | 
 
 function linkGrid(args, content) {
 
-  const image     = args[0] || '/images/avatar.gif';
+  const config = hexo.theme.config;
+
+
+  const image     = args[0] || 'images/avatar.gif';
   const delimiter = args[1] || '|';
   const comment   = args[2] || '%';
 
@@ -26,17 +29,23 @@ function linkGrid(args, content) {
       data = url.parse(item[2]);
     }
 
+    var item_image = item[4] || image;
+
+    if (!item_image.startsWith('//') && !item_image.startsWith('http')) {
+      item_image = config.statics + item_image;
+    }
+
     if (data.protocol && data.hostname !== siteHost)  {
       item[2] = Buffer.from(item[2]).toString('base64');
       return `<div class="item" style="--block-color:${item[5] || '#666'};" title="${item[0] || item[1]}">
-<span class="exturl image" data-url="${item[2]}" data-background-image="${item[4] || image}"></span>
+<span class="exturl image" data-url="${item[2]}" data-background-image="${item_image}"></span>
 <div class="info">
 <span class="exturl title" data-url="${item[2]}">${item[1]}</span>
 <p class="desc">${item[3] || item[2]}</p>
 </div></div>`;
     } else  {
       return `<div class="item" style="--block-color:${item[5] || '#666'};" title="${item[0] || item[1]}">
-<a href="${item[2]}" class="image" data-background-image="${item[4] || image}"></a>
+<a href="${item[2]}" class="image" data-background-image="${item_image}"></a>
 <div class="info">
 <a href="${item[2]}" class="title">${item[1]}</a>
 <p class="desc">${item[3] || item[2]}</p>

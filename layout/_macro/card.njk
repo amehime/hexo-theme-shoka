@@ -9,11 +9,11 @@
       {%- set itemname = item.name %}
     {%- else %}
       {%- if item.cover %}
-      {%- if item.cover.startsWith('//') or item.cover.startsWith('http') %}
-        {%- set cover = item.cover %}
-      {%- else %}
-        {%- set cover = theme.statics + item.cover %}
-      {%- endif %}
+        {%- if item.cover.startsWith('//') or item.cover.startsWith('http') %}
+          {%- set cover = item.cover %}
+        {%- else %}
+          {%- set cover = theme.statics + item.cover %}
+        {%- endif %}
       {%- elseif item.photos.length > 0 %}
         {%- if item.photos[0].startsWith('//') or item.photos[0].startsWith('http') %}
           {%- set cover = item.photos[0] %}

@@ -1,0 +1,16 @@
+<%- JSON.stringify({
+    version: 'https://jsonfeed.org/version/1',
+    title: config.logo + ' | ' + config.title,
+    subtitle: config.subtitle,
+    icon: full_url_for('/images/favicon.ico'),
+    description: config.description,
+    home_page_url: config.url,
+    items: posts.map(post => ({
+        id: post.permalink,
+        url: post.permalink,
+        title: post.title,
+        date_published: moment(post.date).toISOString(),
+        content_html: post.content || '',
+        tags: [...(post.categories ? post.categories.toArray() : []).map(({ name }) => name), ...(post.tags ? post.tags.toArray() : []).map(({ name }) => name)]
+    }))
+}, null, 4) _%>
