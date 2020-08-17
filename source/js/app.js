@@ -365,7 +365,7 @@ const postBeauty = function () {
       caption.insertAdjacentHTML('afterBegin', '<div class="carbon"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>');
     }
 
-    if(code_container.height() > 300) {
+    if(code_container && code_container.height() > 300) {
       code_container.style.maxHeight = "300px";
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down up-down"></i></div>');
       var showBtn = code_container.querySelector('.show-btn');
