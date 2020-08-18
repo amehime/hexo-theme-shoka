@@ -22,15 +22,16 @@
 {%- elif page.type === 'tags' %}
   <div class="collapse wrap">
       <h2 class="item title"><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small> {{ _p('counter.tag_cloud', site.tags.length) }}</h2>
-
-  {{ tagcloud({
-      min_font   : theme.tagcloud.min,
-      max_font   : theme.tagcloud.max,
-      amount     : theme.tagcloud.amount,
-      color      : true,
-      start_color: theme.tagcloud.start,
-      end_color  : theme.tagcloud.end})
-    }}
+      <div class="tag cloud">
+        {{ tagcloud({
+          min_font   : theme.tagcloud.min,
+          max_font   : theme.tagcloud.max,
+          amount     : theme.tagcloud.amount,
+          color      : true,
+          start_color: theme.tagcloud.start,
+          end_color  : theme.tagcloud.end})
+        }}
+      </div>
   </div>
 {%- elif page.type === '404' %}
   <div class="page wrap">
@@ -40,16 +41,20 @@
   <div class="page wrap">
     <div class="post block">
       <header><h1 class="title">{{- page.title }}</h1></header>
-      <div class="body{%- if page.direction and page.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}">
+      <div class="body md{%- if page.direction and page.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}">
         {{ page.content }}
       </div>
       <footer>
+        {{ partial('_partials/post/footer.njk') }}
+
         {%- if theme.reward.enable %}
-          {{ partial('_partials/post/reward.njk') }}
+          {{ partial('_partials/post/reward.njk', {}, {cache: true}) }}
         {%- endif %}
+
         {%- if theme.creative_commons.license %}
           {{ partial('_partials/post/copyright.njk') }}
         {%- endif %}
+
       </footer>
     </div>
   </div>

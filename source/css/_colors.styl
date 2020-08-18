@@ -37,12 +37,13 @@
 
   --body-bg-shadow: var(--grey-2);
   --text-color: var(--grey-7);
+  --header-text-color: var(--grey-0);
   --primary-color: var(--color-red);
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
+[data-theme="dark"] {
+  &:root {
     --grey-0: #222;
     --grey-1: #333;
     --grey-2: #444;
@@ -63,9 +64,9 @@
     --color-pink-light: shade(#ffe6fa, 80%);
     --color-cyan-light: shade(#e3fdf5, 80%);
 
-    --color-red: lighten(#e9546b, 20%);
-    --color-pink: lighten(#ed6ea0, 20%);
-    --color-orange: lighten(#ec8c69, 20%);
+    --color-red: alpha(lighten(#e9546b, 20%), .9);
+    --color-pink: alpha(lighten(#ed6ea0, 20%), .8);
+    --color-orange: alpha(lighten(#ec8c69, 20%), .8);
     --color-yellow: lighten(#eab700, 50%);
     --color-green: lighten(#316745, 50%);
     --color-aqua: lighten(#3e999f, 50%);
@@ -73,10 +74,9 @@
     --color-purple: lighten(#9d5b8b, 50%);
     --color-grey: lighten(#869194, 50%);
 
-
     --body-bg-shadow: var(--grey-0);
     --text-color: var(--grey-5);
-
+    --header-text-color: var(--grey-9);
   }
 
   .note, .label {
@@ -88,11 +88,6 @@
     }
   }
 
-  img, [data-background-image] {
-    animation: blur-dark .8s ease-in-out forwards;
-  }
-
-
   img, [data-background-image], .sidebar .tab li, .overview .menu .item, .index.wrap .card .message .btn {
     the-transition();
     opacity: .75;
@@ -101,4 +96,5 @@
       opacity: .9;
     }
   }
+
 }

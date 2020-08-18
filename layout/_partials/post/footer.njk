@@ -1,9 +1,5 @@
 <div class="meta">
-  {%- set date_diff = date(post.date) != date(post.updated) %}
-  {%- set time_diff = time(post.date) != time(post.updated) %}
-  {%- set datetime_diff = date_diff or time_diff %}
-
-  {%- if datetime_diff %}
+  {%- if date(post.date) != date(post.updated) or time(post.date) != time(post.updated) %}
   <span class="item">
     <span class="icon">
       <i class="ic i-calendar-check"></i>

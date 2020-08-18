@@ -1,4 +1,4 @@
-.post .body .note {
+.md .note {
 
   border-radius: 3px;
   margin-bottom: 20px;
@@ -9,9 +9,12 @@
   border: 1px solid var(--note-border);
   color: var(--note-text);
   font-size: $font-size-small;
-  line-height: 1.8;
 
   padding-left: 3em;
+
+  p {
+    line-height: 1.8;
+  }
 
   a,
   span.exturl {
@@ -63,8 +66,20 @@
 
   ul {
     li::before {
+      background: var(--note-text);
+      top: .65rem;
+    }
+  }
+
+  ol {
+    li:before {
       background: var(--note-text) !important;
-      top: 8px !important;
+      width: .8rem;
+      height: .8rem;
+      font-size: .45rem;
+      line-height: .8rem;
+      top: .4rem;
+      left: -1.2rem
     }
   }
 

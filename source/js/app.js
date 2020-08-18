@@ -341,6 +341,7 @@ const postBeauty = function () {
     }
   });
   if($('.post .body :not(a) > img, .post .body > img')) {
+    LOCAL['mediumzoom'] = true;
     vendorJs('mediumzoom', function() {
         window.mediumZoom('.post .body :not(a) > img, .post .body > img', {
           background: 'rgba(0, 0, 0, 0.6)'
@@ -657,7 +658,6 @@ const algoliaSearch = function(pjax) {
           $('.search-input').focus();
         }
       });
-
     });
   });
 
@@ -807,6 +807,58 @@ const pjaxScript = function(element) {
   parent.appendChild(script);
 }
 
+const changeTheme = function(type) {
+  if(type) {
+    window.document.documentElement.setAttribute('data-theme', type);
+  } else {
+    window.document.documentElement.removeAttribute('data-theme');
+  }
+}
+
+const themeColorListener = function () {
+  window.matchMedia('(prefers-color-scheme: dark)').addListener(function(mediaQueryList) {
+    if(mediaQueryList.matches){
+      changeTheme('dark');
+    } else {
+      changeTheme();
+    }
+  });
+
+  $('.theme-btn').addEventListener('click', function(event) {
+    var btn = event.currentTarget.querySelector('.ic')
+    if(btn.classList.contains('i-sun')) {
+      changeTheme('dark');
+      btn.classList.remove('i-sun')
+      btn.classList.add('i-moon')
+    } else {
+      changeTheme();
+      btn.classList.remove('i-moon')
+      btn.classList.add('i-sun')
+    }
+  });
+}
+
+const visibilityListener = function () {
+  document.addEventListener('visibilitychange', function() {
+    switch(document.visibilityState) {
+      case 'hidden':
+        $('[rel="icon"]').attr('href', statics + CONFIG.favicon.hidden);
+        document.title = LOCAL.favicon.hide;
+        Loader.show()
+        clearTimeout(titleTime);
+      break;
+      case 'visible':
+        $('[rel="icon"]').attr('href', statics + CONFIG.favicon.normal);
+        document.title = LOCAL.favicon.show;
+        Loader.hide(1000)
+        titleTime = setTimeout(function () {
+          document.title = originTitle;
+        }, 2000);
+      break;
+    }
+  });
+}
+
 const siteRefresh = function (reload) {
 
   vendorCss('katex');
@@ -882,24 +934,8 @@ const siteInit = function () {
   CONFIG.quicklink.ignores = LOCAL.ignores;
   quicklink.listen(CONFIG.quicklink);
 
-  document.addEventListener('visibilitychange', function() {
-    switch(document.visibilityState) {
-      case 'hidden':
-        $('[rel="icon"]').attr('href', statics + CONFIG.favicon.hidden);
-        document.title = LOCAL.favicon.hide;
-        Loader.show()
-        clearTimeout(titleTime);
-      break;
-      case 'visible':
-        $('[rel="icon"]').attr('href', statics + CONFIG.favicon.normal);
-        document.title = LOCAL.favicon.show;
-        Loader.hide(1000)
-        titleTime = setTimeout(function () {
-          document.title = originTitle;
-        }, 2000);
-      break;
-    }
-  });
+  visibilityListener();
+  themeColorListener();
 
   $('.toggle.menu').addEventListener('click', sideBarToggleHandle);
   $('.dimmer').addEventListener('click', sideBarToggleHandle);
@@ -927,3 +963,4 @@ const siteInit = function () {
 }
 
 window.addEventListener('DOMContentLoaded', siteInit);
+

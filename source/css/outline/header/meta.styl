@@ -24,7 +24,7 @@
 
     .logo {
       border-bottom: none;
-      color: white;
+      color: var(--header-text-color);
       display: inline-block;
       line-height: $font-size-title;
       padding: 0 40px;
@@ -39,7 +39,7 @@
     }
 
     .subtitle {
-      color: white;
+      color: var(--header-text-color);
       font-size: $font-size-subtitle;
       margin: 10px 0;
     }
@@ -52,6 +52,7 @@
       background-image: url('../images/logo.svg');
       background-repeat: no-repeat;
       filter: drop-shadow(0px 0px 8px alpha(#000, .5));
+      fill: var(--header-text-color);
 
       +mobile() {
         width: 217px;

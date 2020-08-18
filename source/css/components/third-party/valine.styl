@@ -87,7 +87,7 @@
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    fill: var(--grey-6);
+    fill: var(--text-color);
     vertical-align: middle
   }
 
@@ -182,7 +182,7 @@
       max-height: 145px;
       overflow: auto;
       padding-bottom: 10px;
-      box-shadow: 0 0 1px #f0f0f0
+      box-shadow: 0 0 1px var(--grey-9-a1);
     }
 
     .vemojis i {
@@ -244,7 +244,6 @@
 .vempty {
   padding: 1.25em;
   text-align: center;
-  color: #555;
   overflow: auto
 }
 
@@ -281,6 +280,10 @@
       padding: .125em
     }
 
+    &:hover > .vimg {
+      animation: 0.8s ease-out 0s 1 normal both running shake;
+    }
+
     .vhead {
       line-height: 1.5;
       margin-top: 0;
@@ -305,7 +308,7 @@
       display: inline-block;
       line-height: 20px;
       border-radius: 2px;
-      color: #fff;
+      color: var(--grey-1);
       padding: 0 5px;
       position: inherit;
       &.vmaster {
@@ -316,7 +319,7 @@
     .vh {
       overflow: hidden;
       padding-bottom: .5em;
-      border-bottom: 1px dashed #f5f5f5
+      border-bottom: 1px dashed var(--grey-3);
 
       .vtime {
         font-size: .75em;
@@ -367,8 +370,7 @@
           left: 0;
           top: 0;
           bottom: 3.15em;
-          background: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 100%, 0)), to(hsla(0, 0%, 100%, .9)));
-          background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .9));
+          background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), var(--grey-1));
           z-index: 999
         }
 
@@ -376,7 +378,6 @@
           display: block;
           content: attr(data-expand);
           text-align: center;
-          color: #828586;
           position: absolute;
           width: 100%;
           height: 3.15em;
@@ -384,7 +385,7 @@
           left: 0;
           bottom: 0;
           z-index: 999;
-          background: hsla(0, 0%, 100%, .9)
+          background: var(--grey-1);
         }
       }
     }
@@ -392,7 +393,7 @@
 
     .vquote {
       padding-left: 1em;
-      border-left: 1px dashed hsla(0, 0%, 93%, .5)
+      border-left: 1px dashed var(--grey-3);
       .vimg {
         width: 2.225em;
         height: 2.225em
@@ -457,169 +458,3 @@
   margin: 0 5px
 }
 
-.dark .v .status-bar,
-.dark .v .veditor,
-.dark .v .vinput,
-.dark .v p,
-.dark .v pre code,
-.night .v .status-bar,
-.night .v .veditor,
-.night .v .vinput,
-.night .v p,
-.night .v pre code,
-.theme__dark .v .status-bar,
-.theme__dark .v .veditor,
-.theme__dark .v .vinput,
-.theme__dark .v p,
-.theme__dark .v pre code,
-[data-theme=dark] .v .status-bar,
-[data-theme=dark] .v .veditor,
-[data-theme=dark] .v .vinput,
-[data-theme=dark] .v p,
-[data-theme=dark] .v pre code {
-  color: #b2b2b5
-}
-
-.dark .v .vsys,
-.dark .v .vtime,
-.night .v .vsys,
-.night .v .vtime,
-.theme__dark .v .vsys,
-.theme__dark .v .vtime,
-[data-theme=dark] .v .vsys,
-[data-theme=dark] .v .vtime {
-  color: #929298
-}
-
-.dark .v code,
-.dark .v pre,
-.dark .v pre code,
-.night .v code,
-.night .v pre,
-.night .v pre code,
-.theme__dark .v code,
-.theme__dark .v pre,
-.theme__dark .v pre code,
-[data-theme=dark] .v code,
-[data-theme=dark] .v pre,
-[data-theme=dark] .v pre code {
-  color: #929298;
-  background-color: #151414
-}
-
-.dark .v .vwrap,
-.night .v .vwrap,
-.theme__dark .v .vwrap,
-[data-theme=dark] .v .vwrap {
-  border-color: #b2b2b5
-}
-
-.dark .v .vicon,
-.night .v .vicon,
-.theme__dark .v .vicon,
-[data-theme=dark] .v .vicon {
-  fill: #b2b2b5
-}
-
-.dark .v .vicon.actived,
-.night .v .vicon.actived,
-.theme__dark .v .vicon.actived,
-[data-theme=dark] .v .vicon.actived {
-  fill: #66b1ff
-}
-
-.dark .v .vbtn,
-.night .v .vbtn,
-.theme__dark .v .vbtn,
-[data-theme=dark] .v .vbtn {
-  color: #b2b2b5;
-  border-color: #b2b2b5
-}
-
-.dark .v .vbtn:hover,
-.night .v .vbtn:hover,
-.theme__dark .v .vbtn:hover,
-[data-theme=dark] .v .vbtn:hover {
-  color: #66b1ff;
-  border-color: #66b1ff
-}
-
-.dark .v a:hover,
-.night .v a:hover,
-.theme__dark .v a:hover,
-[data-theme=dark] .v a:hover {
-  color: var(--primary-color)
-}
-
-.dark .v .vcards .vcard .vcontent.expand:before,
-.night .v .vcards .vcard .vcontent.expand:before,
-.theme__dark .v .vcards .vcard .vcontent.expand:before,
-[data-theme=dark] .v .vcards .vcard .vcontent.expand:before {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .3)), to(rgba(0, 0, 0, .7)));
-  background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7))
-}
-
-.dark .v .vcards .vcard .vcontent.expand:after,
-.night .v .vcards .vcard .vcontent.expand:after,
-.theme__dark .v .vcards .vcard .vcontent.expand:after,
-[data-theme=dark] .v .vcards .vcard .vcontent.expand:after {
-  background: rgba(0, 0, 0, .7)
-}
-
-@media (prefers-color-scheme:dark) {
-
-  .v .status-bar,
-  .v .veditor,
-  .v .vinput,
-  .v p,
-  .v pre code {
-    color: #b2b2b5
-  }
-
-  .v .vsys,
-  .v .vtime {
-    color: #929298
-  }
-
-  .v code,
-  .v pre,
-  .v pre code {
-    color: #929298;
-    background-color: #151414
-  }
-
-  .v .vwrap {
-    border-color: #b2b2b5
-  }
-
-  .v .vicon {
-    fill: #b2b2b5
-  }
-
-  .v .vicon.actived {
-    fill: #66b1ff
-  }
-
-  .v .vbtn {
-    color: #b2b2b5;
-    border-color: #b2b2b5
-  }
-
-  .v .vbtn:hover {
-    color: #66b1ff;
-    border-color: #66b1ff
-  }
-
-  .v a:hover {
-    color: var(--primary-color)
-  }
-
-  .v .vcards .vcard .vcontent.expand:before {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .3)), to(rgba(0, 0, 0, .7)));
-    background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7))
-  }
-
-  .v .vcards .vcard .vcontent.expand:after {
-    background: rgba(0, 0, 0, .7)
-  }
-}
