@@ -1,3 +1,6 @@
+# Alternate site name
+alternate: Yume Shoka
+
 # Assets
 statics: / #//cdn.jsdelivr.net/gh/username/RepositoryName@latest/
 assets: assets
@@ -54,15 +57,21 @@ font:
     size:
 
   # Font settings for site title.
+  logo:
+    external: true
+    family: Fredericka the Great
+    size: 3.5
+
+  # Font settings for site title.
   title:
     external: true
-    family: Noto Serif SC
+    family: Noto Serif JP
     size: 2
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family: Noto Serif JP
+    family: Noto Serif SC
     size:
 
   # Font settings for posts.
