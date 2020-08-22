@@ -27,17 +27,13 @@
       <div class="search-btn">
         <i class="ic i-search"></i>
       </div>
-      <div class="back-to-top">
-        <i class="ic i-arrow-up"></i>
-        <span>0%</span>
-      </div>
     </div>
   </div>
 </nav>
 <div class="brand">
   <div class="meta">
     <a href="{{ config.root }}" class="logo" rel="start">
-      <span class="artboard"></span>
+      <span class="artboard">{{ alternate }}</span>
       <h1 class="title">{{ title }}</h1>
     </a>
     {%- if subtitle %}
@@ -74,5 +70,13 @@
         <div id="search-pagination"></div>
       </div>
     </div>
+  </div>
+</div>
+<div class="tool">
+  <div class="player"></div>
+  <div class="chat"><i class="ic i-comments"></i></div>
+  <div class="back-to-top">
+    <i class="ic i-arrow-up"></i>
+    <span>0%</span>
   </div>
 </div>

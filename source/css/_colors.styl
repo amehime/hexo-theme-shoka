@@ -14,6 +14,7 @@
   --grey-1-a5: alpha(#fdfdfd, .5);
   --grey-1-a3: alpha(#fdfdfd, .3);
   --grey-9-a1: alpha(#000, .1);
+  --grey-9-a5: alpha(#000, .5);
 
   --color-pink-light: #ffe6fa;
   --color-cyan-light: #e3fdf5;
@@ -88,13 +89,20 @@
     }
   }
 
-  img, [data-background-image], .sidebar .tab li, .overview .menu .item, .index.wrap .card .message .btn {
+  .sidebar .tab li,
+  .overview .menu .item,
+  .index.wrap .card .message .btn,
+  img, [data-background-image] {
     the-transition();
     opacity: .75;
 
     &:hover {
       opacity: .9;
     }
+  }
+
+  .container>header .lozad::before {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
 }

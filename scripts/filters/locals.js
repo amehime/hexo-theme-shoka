@@ -22,7 +22,7 @@ hexo.extend.filter.register('template_locals', locals => {
   };
 
   // Language & Config
-  locals.logo = __('logo') !== 'logo' ? __('logo') : config.logo;
+  locals.alternate = theme.alternate;
   locals.title = pangu.spacing(__('title') !== 'title' ? __('title') : config.title);
   locals.subtitle = pangu.spacing(__('subtitle') !== 'subtitle' ? __('subtitle') : config.subtitle);
   locals.author = __('author') !== 'author' ? __('author') : config.author;

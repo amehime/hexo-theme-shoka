@@ -4,7 +4,7 @@
 <head>
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
-  <title>{% block title %}{% endblock %}{{ logo + " = " if logo }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
+  <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="loading">
@@ -46,6 +46,8 @@
     </footer>
   </div>
 
+{%- set ccIcon = '<i class="ic i-creative-commons"></i>' %}
+{%- set ccText = theme.creative_commons.license | upper %}
 <script data-config type="text/javascript">
   var LOCAL = {
     favicon: {
@@ -62,7 +64,9 @@
     {%- if page.chart %}chart: true,{%- endif %}
     {%- if page.math %}copy_tex: true,
     katex: true,{%- endif %}
-    {%- if page.mermaid %}mermaid: true,{% endif %}
+    {%- if page.mermaid %}mermaid: true,{%- endif %}
+    {%- if page.audio and page.audio !== false %}audio: {{ page.audio|safedump }},{%- endif %}
+    {%- if page.copyright !== false %}copyright: '{{ _p("tips.copyright", ccIcon + ccText) }}',{%- endif %}
     ignores : [
       function(uri) {
         return uri.includes('#');

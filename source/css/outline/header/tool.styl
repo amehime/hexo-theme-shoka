@@ -1,0 +1,155 @@
+.container>header .tool {
+  position: fixed;
+  right: 10px;
+  top: 300px;
+  z-index: $zindex-2;
+
+  > div {
+    display: none;
+    width: 30px;
+    height: 30px;
+    opacity: .5;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    the-transition();
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  .player {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: $font-size-largest;
+    width: auto;
+    height: auto;
+
+    > div {
+      font-family-icons();
+      width: 30px;
+      text-align: center;
+      &+div {
+        margin-right: 10px;
+      }
+    }
+
+    .play-pause {
+      &::before {
+        @extend .i-play:before;
+      }
+    }
+
+    .music {
+      display: none;
+      &::before {
+        @extend .i-music:before;
+      }
+    }
+
+    &.playing {
+      .play-pause::before {
+        @extend .i-pause:before;
+      }
+    }
+  }
+
+  .back-to-top {
+    span {
+      font-size: $font-size-smallest;
+    }
+  }
+
+
+  &.affix {
+    text-shadow: none;
+    right: 0px;
+    top: auto;
+    bottom: 0px;
+
+    > div {
+      display: flex;
+      background: var(--color-red);
+      margin-top: 2px;
+      border-radius: 2px;
+    }
+
+    .player {
+      font-size: $font-size-base;
+      flex-direction: column-reverse;
+      > div+div {
+        margin-right: 0;
+      }
+
+      .music {
+        display: block;
+      }
+    }
+
+    .back-to-top {
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      padding: 5px 0 0;
+    }
+  }
+}
+
+
+
+.play-list {
+  position: fixed;
+  display: none;
+  bottom: 0;
+  right: 45px;
+  min-width: 260px;
+  z-index: $zindex-2;
+  padding: 10px 0;
+  border-radius: 10px;
+  background: var(--grey-1);
+  color: var(--text-color);
+  font-size: $font-size-smaller;
+  text-shadow: none;
+  shadow-box();
+
+  &.on {
+    display: block;
+  }
+
+  li {
+    padding: 5px 15px 5px 25px;
+    cursor: pointer;
+    the-transition();
+    &::before {
+      display: none;
+      font-family-icons();
+      @extend .i-play:before;
+      margin-left: -20px;
+      width: 20px;
+    }
+
+    &.current {
+      color: var(--primary-color);
+      position:relative;
+
+      &::before {
+        display: inline-block;
+      }
+
+      > div {
+        position: absolute;
+        height: 100%;
+        background: var(--color-pink-a3);
+        top: 0;
+        left: 0;
+        z-index: -1;
+        the-transition(.2s, ease-out);
+      }
+    }
+
+    &:hover {
+      color: var(--color-blue);
+    }
+  }
+}

@@ -1,5 +1,6 @@
 {% extends '_partials/layout.njk' %}
 {% import '_macro/sidebar.njk' as sidebar with context %}
+{% import '_macro/comment.njk' as comment with context %}
 
 {% block title %}
 {%- if page.type === 'categories' %}
@@ -39,29 +40,9 @@
   </div>
 {%- else %}
   <div class="page wrap">
-    <div class="post block">
-      <header><h1 class="title">{{- page.title }}</h1></header>
-      <div class="body md{%- if page.direction and page.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}">
-        {{ page.content }}
-      </div>
-      <footer>
-        {{ partial('_partials/post/footer.njk') }}
-
-        {%- if theme.reward.enable %}
-          {{ partial('_partials/post/reward.njk', {}, {cache: true}) }}
-        {%- endif %}
-
-        {%- if theme.creative_commons.license %}
-          {{ partial('_partials/post/copyright.njk') }}
-        {%- endif %}
-
-      </footer>
-    </div>
+    {{ partial('_partials/post/post.njk', {post: page}) }}
   </div>
-
-  {%- if page.comment !== false %}
-  <div class="comments wrap" id="comments" data-id="{{ page.path }}"></div>
-  {%- endif %}
+  {{ comment.render() }}
 {%- endif %}
 {% endblock %}
 

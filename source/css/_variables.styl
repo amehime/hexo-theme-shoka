@@ -17,10 +17,13 @@ $font-family-base         = $font-family-chinese, sans-serif;
 $font-family-base         = get_font_family('global'), $font-family-base if get_font_family('global');
 
 $font-family-logo         = $font-family-base;
-$font-family-logo         = get_font_family('title'), $font-family-base if get_font_family('title');
+$font-family-logo         = get_font_family('logo'), $font-family-base if get_font_family('title');
+
+$font-family-title         = $font-family-base;
+$font-family-title         = get_font_family('title'), $font-family-base if get_font_family('title');
 
 $font-family-headings     = $font-family-base;
-$font-family-headings     = get_font_family('headings'), $font-family-logo if get_font_family('headings');
+$font-family-headings     = get_font_family('headings'), $font-family-title if get_font_family('headings');
 
 $font-family-posts        = $font-family-base;
 $font-family-posts        = get_font_family('posts'), $font-family-base if get_font_family('posts');
@@ -84,8 +87,9 @@ $content-desktop-largest      = 73%;
 // Site Meta
 
 $site-meta-text-align           = center;
-$font-size-title                = (hexo-config('font.enable') and hexo-config('font.title.size') is a 'unit') ? unit(hexo-config('font.title.size'), em) : 1.375em;
+$font-size-title                = (hexo-config('font.enable') and hexo-config('font.title.size') is a 'unit') ? unit(hexo-config('font.title.size'), em) : 2em;
 $font-size-subtitle             = $font-size-small;
+$font-size-logo                = (hexo-config('font.enable') and hexo-config('font.logo.size') is a 'unit') ? unit(hexo-config('font.logo.size'), em) : 3.5em;
 
 
 // Posts Collpase

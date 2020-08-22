@@ -75,6 +75,10 @@ hexo.extend.renderer.register('js', 'js', function(data, options){
     }
   }
 
+  if(theme.audio) {
+    siteConfig.audio = theme.audio
+  }
+
   return data.text
   .replace("/*CONFIG*/", JSON.stringify(siteConfig))
   .replace("/*COMMENTCONFIG*/", JSON.stringify(theme.valine));

@@ -6,11 +6,23 @@ Object.assign(HTMLElement.prototype, {
     this.parentNode.removeChild(this);
     wrapper.appendChild(this);
   },
-  height: function() {
+  height: function(h) {
+    if(h) {
+      this.style.height = typeof h == 'number' ? h + 'px' : h;
+    }
     return this.getBoundingClientRect().height
+  },
+  width: function(w) {
+    if(w) {
+      this.style.width = typeof w == 'number' ? w + 'px' : w;
+    }
+    return this.getBoundingClientRect().width
   },
   top: function() {
     return this.getBoundingClientRect().top
+  },
+  left:function() {
+    return this.getBoundingClientRect().left
   },
   attr: function(type, value) {
     if(value) {
@@ -26,6 +38,9 @@ Object.assign(HTMLElement.prototype, {
     }else{
         parent.insertBefore(element, this.nextSibling);
     }
+  },
+  display: function(d) {
+    this.style.display = d;
   }
 });
 
@@ -53,6 +68,8 @@ var scrollAction = { x: 'undefined', y: 'undefined' };
 var diffY = 0;
 var originTitle, titleTime;
 
+
+const BODY = document.getElementsByTagName('body')[0];
 const Container = $('body > .container');
 const siteNav = $('.container > header nav');
 const siteNavHeight = siteNav.height();
@@ -60,7 +77,10 @@ const siteHeader = $('.container > header');
 const headerHight = siteHeader.height();
 const headerHightInner = headerHight - siteNavHeight;
 const backToTop = $('.back-to-top');
+const goToComment = $('.chat');
 const metaBox = $('.container > header .brand .meta');
+const toolBtn = $('.container > header .tool');
+const toolPlayer = $('.container > header .tool .player');
 const sideBar = $('main .sidebar');
 
 const getDocHeight = function () {
@@ -70,10 +90,10 @@ const getDocHeight = function () {
 const resizeHandle = function (event) {
   var docHeight = getDocHeight();
   if (docHeight > document.body.offsetHeight) {
-    $('.sidebar .quick').style.display = 'flex';
-    $('.sidebar .panels').style.height = '100vh';
+    $('.sidebar .quick').display('flex');
+    $('.sidebar .panels').height('100vh');
   } else {
-    $('.sidebar .quick').style.display = 'none';
+    $('.sidebar .quick').display('none');
   }
 
   $.each('pre.code span.marked', function(element) {
@@ -89,6 +109,7 @@ const scrollHandle = function (event) {
   var docHeight = getDocHeight();
   var contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight;
   var SHOW = window.pageYOffset > headerHightInner;
+  var startScroll = window.pageYOffset > 0;
 
   if (SHOW) {
     $('meta[name="theme-color"]').setAttribute('content',  '#FFF');
@@ -97,7 +118,8 @@ const scrollHandle = function (event) {
   }
 
   siteNav.classList.toggle('show', SHOW);
-  metaBox.classList.toggle('affix', window.pageYOffset > 0);
+  metaBox.classList.toggle('affix', startScroll);
+  toolBtn.classList.toggle('affix', startScroll);
   sideBar.classList.toggle('affix', SHOW && document.body.offsetWidth > 991);
 
   if (typeof scrollAction.y == 'undefined') {
@@ -230,10 +252,12 @@ const sidebarTOC = function () {
   sections = sections.map(function (element, index) {
     var link = element.querySelector('a.toc-link');
     var anchor = $(decodeURI(link.attr('href')));
+    var alink = anchor.querySelector('a.anchor');
 
-    var clickScroll = function (event) {
+    var anchorScroll = function (event) {
       event.preventDefault();
       var target = $(decodeURI(event.currentTarget.attr('href')));
+
       activeLock = index;
       pageScroll(window.pageYOffset + target.top() - target.height() - headerHightInner - siteNavHeight,
         function() {
@@ -243,8 +267,8 @@ const sidebarTOC = function () {
     };
 
     // TOC item animation navigate.
-    link.addEventListener('click', clickScroll);
-    anchor.querySelector('a.anchor').addEventListener('click', clickScroll);
+    link.addEventListener('click', anchorScroll);
+    alink && alink.addEventListener('click', anchorScroll);
     return anchor;
   });
 
@@ -348,7 +372,6 @@ const postBeauty = function () {
         });
       }, window.mediumZoom);
   }
-
 
   $.each('li ruby', function(element) {
     var parent = element.parentNode;
@@ -482,6 +505,10 @@ const goToBottomHandle = function () {
   pageScroll(getDocHeight() + $('.container > footer').offsetHeight)
 }
 
+const goToCommentHandle = function () {
+  pageScroll(window.pageYOffset + $('#comments').top() - siteNavHeight)
+}
+
 const getScript = function(url, callback, condition) {
   if (condition) {
     callback();
@@ -529,7 +556,10 @@ const vendorCss = function(type, condition) {
 const loadComments = function () {
   var element = $('#comments');
   if (!element) {
+    goToComment.display("none")
     return;
+  } else {
+    goToComment.display("")
   }
 
   var intersectionObserver = new IntersectionObserver(function(entries, observer) {
@@ -712,32 +742,23 @@ const blockMotion = function() {
   Velocity($('main > .inner > .content > .wrap'), 'transition.bounceUpIn', {display: blocktype});
 }
 
-const addCopyRight = function() {
-  if(!$('#copyright'))
-    return;
 
-  var body_element = document.getElementsByTagName('body')[0];
-  var selection;
-  if(window.getSelection){//DOM,FF,Webkit,Chrome,IE10
-    selection = window.getSelection();
-  }else if(document.getSelection){//IE10
-    selection= document.getSelection();
-  }else if(document.selection){//IE6+10-
-    selection= document.selection.createRange().text;
-  }else{
-    selection= "";
-  }
-  var pagelink = $('#copyright').innerHTML;
-  var copy_text = selection + '<br>-----------<br>' + pagelink;
+const showtip = function(msg) {
+  if(!msg)
+    return
+
   var new_div = document.createElement('div');
-  new_div.style.left='-99999px';
-  new_div.style.position='absolute';
-  body_element.appendChild(new_div );
-  new_div.innerHTML = copy_text ;
-  selection.selectAllChildren(new_div );
+  new_div.innerHTML = msg;
+  new_div.classList.add('tip');
+  BODY.appendChild(new_div);
+  Velocity(new_div, "fadeIn");
   window.setTimeout(function() {
-      body_element.removeChild(new_div );
-  },0);
+      Velocity(new_div, "fadeOut", {
+        complete: function() {
+          BODY.removeChild(new_div);
+        }
+      });
+  }, 3000);
 }
 
 const registerExtURL = function() {
@@ -859,6 +880,234 @@ const visibilityListener = function () {
   });
 }
 
+
+const initAudioPlayer = function(config) {
+  var t = this,
+  option = {
+    btns: ['play-pause', 'music'],
+    events: {
+      "play-pause": function(event) {
+        if(t.player.media.paused) {
+          t.player.play()
+        } else {
+          t.player.pause()
+        }
+      },
+      "music": function(event) {
+        var animateAction = 'transition.slideRightIn'
+        if(t.player.list.classList.contains('on')) {
+          animateAction = 'transition.slideRightOut'
+        }
+        Velocity(t.player.list, "finish");
+        Velocity(t.player.list, animateAction, {
+          duration: 500,
+          complete: function () {
+            t.player.list.classList.toggle('on');
+          }
+        })
+      }
+    }
+  };
+
+  t.player = {
+    id: Math.floor((Math.random()*100000)),
+    index: -1,
+    media: null,
+    buttons: {},
+    utils: {
+      random: function(len) {
+        return Math.floor((Math.random()*len))
+      },
+      list: function(data) {
+        return data.map(function(source) {
+          var source = source.split('||');
+          var id = source[0].trim();
+          return {
+            url: id.indexOf('//') > 0 ?id : "http://music.163.com/song/media/outer/url?id="+id+".mp3",
+            title: source[1].trim()
+          };
+        })
+      }
+    },
+    getSource: function(type) {
+      var total = this.options.mediaList.length;
+
+      var next = function(index) {
+        if((index + 1) == total) {
+          index = -1;
+        }
+        t.player.index = ++index;
+      }
+
+      switch (type) {
+        case 'random':
+          var newindex = this.utils.random(total)
+          if(this.index !== newindex) {
+            this.index = newindex
+          } else {
+            next(this.index)
+          }
+          break;
+        case 'next':
+          next(this.index)
+          break;
+      }
+
+      return this.options.mediaList[this.index];
+    },
+    refresh: function(newList) {
+      if(newList) {
+        newList = this.utils.list(newList);
+        if(this.options.mediaList !== newList) {
+          this.options.mediaList = newList;
+          // 设置一个地址
+          this.set('random');
+          this.setPlayList();
+        }
+      }
+    },
+    set: function(type) {
+      var source = this.getSource(type);
+
+      var playing = false;
+      if(!this.media.paused) {
+        playing = true
+        this.stop()
+      }
+      this.media.attr('src', source.url);
+      this.media.attr('title', source.title);
+
+      if(playing == true) {
+        this.play()
+      }
+    },
+    setPlayList: function() {
+      t.player.list.innerHTML = "";
+      this.options.mediaList.forEach(function(item, index) {
+        var el = document.createElement('li');
+        el.innerHTML = item.title;
+
+        el.addEventListener('click', function(event) {
+          var current = t.player.options.mediaList[t.player.index]
+          if(t.player.index == index && current.progress) {
+            t.player.media.currentTime = t.player.media.duration * Math.floor((event.clientX - current.element.left()))/current.element.width();
+            return;
+          }
+          t.player.setCurrent(index);
+          t.player.play();
+        });
+
+        t.player.options.mediaList[index].element = el;
+
+        t.player.list.appendChild(el);
+      })
+
+      t.player.setCurrent(t.player.index);
+    },
+    setCurrent: function(index) {
+      if(index != this.index) {
+        var old = this.options.mediaList[this.index]
+        old.element && old.element.classList.remove('current');
+        old.progress && old.element.removeChild(old.progress);
+        if(index) {
+          this.index = index;
+          this.set();
+        } else {
+          this.set('next');
+        }
+      }
+
+      var current = this.options.mediaList[this.index];
+      current.element.classList.add('current');
+      var progress = document.createElement('div');
+      current.element.appendChild(progress);
+      current.progress = progress;
+      this.options.mediaList[this.index] = current;
+    },
+    pause: function() {
+      this.media.pause()
+    },
+    play: function() {
+      this.media.play()
+    },
+    stop: function() {
+      this.media.pause();
+      this.media.currentTime = 0;
+    }
+  };
+
+  var create = {
+    button: function(b) {
+      if(!t.player.buttons[b]) {
+        var el = document.createElement('div');
+        el.classList.add(b);
+        el.addEventListener('click', t.player.options.events[b] || function(){});
+        t.appendChild(el);
+        t.player.buttons[b] = el;
+      }
+    },
+    audio: function() {
+      if(!t.player.media) {
+        var el = document.createElement('audio');
+
+        el.attr('muted', true);
+
+        el.addEventListener('play', function() {
+          t.classList.add('playing');
+          showtip(t.player.media.attr('title'))
+        });
+
+        el.addEventListener('pause', function() {
+          t.classList.remove('playing');
+        });
+
+        el.addEventListener('timeupdate', function() {
+          var percent = Math.floor((el.currentTime / el.duration * 100));
+          t.player.options.mediaList[t.player.index].progress.width(percent + '%')
+          if (percent == 100) {
+            t.player.setCurrent();
+            t.player.play();
+          }
+        });
+
+        t.appendChild(el);
+        t.player.media = el;
+      }
+    },
+    list: function() {
+      if(!t.player.list) {
+        var el = document.createElement('ul');
+        el.id = "player-" + t.player.id;
+        el.classList.add('play-list');
+
+        t.insertAfter(el);
+        t.player.list = el;
+      }
+    }
+  },
+  init = function(config) {
+    if(t.player.created)
+      return;
+    else
+      t.player.created = true;
+
+    t.player.options = Object.assign(option, config);
+    // 初始化button以及click事件
+    t.player.options.btns.forEach(create.button);
+    // 初始化audio
+    create.audio();
+    // 初始化music list
+    create.list();
+  }
+
+  init();
+}
+
+
+Object.assign(HTMLElement.prototype, {
+  initPlayer: initAudioPlayer
+})
+
 const siteRefresh = function (reload) {
 
   vendorCss('katex');
@@ -883,6 +1132,7 @@ const siteRefresh = function (reload) {
   postBeauty()
   registerExtURL()
 
+  toolPlayer.player.refresh(LOCAL.audio || CONFIG.audio || {});
 
   lozad($.all('img, [data-background-image]'), {
       loaded: function(el) {
@@ -918,7 +1168,9 @@ const siteRefresh = function (reload) {
 }
 
 const siteInit = function () {
-  document.body.oncopy = addCopyRight;
+  document.body.oncopy = function() {
+    showtip(LOCAL.copyright)
+  };
 
   var pjax = new Pjax({
     selectors: [
@@ -939,14 +1191,19 @@ const siteInit = function () {
 
   $('.toggle.menu').addEventListener('click', sideBarToggleHandle);
   $('.dimmer').addEventListener('click', sideBarToggleHandle);
-  $('.quick .up').addEventListener('click', backToTopHandle);
   $('.quick .down').addEventListener('click', goToBottomHandle);
+  $('.quick .up').addEventListener('click', backToTopHandle);
+  backToTop.addEventListener('click', backToTopHandle);
 
   $('.loading').addEventListener('click', Loader.vanish);
 
-
   window.addEventListener('scroll', scrollHandle);
-  backToTop.addEventListener('click', backToTopHandle);
+
+  goToComment.addEventListener('click', goToCommentHandle);
+
+  toolPlayer.initPlayer();
+
+
   window.addEventListener('resize', resizeHandle);
 
   window.addEventListener('pjax:send', pjaxReload);

@@ -9,9 +9,8 @@
   .meta {
     position: fixed;
     width: 556px;
-    top: 0;
+    top: 100px;
     left: calc(50% - 278px);
-    padding-top: 50px;
     text-align: $site-meta-text-align;
 
     +mobile() {
@@ -24,41 +23,26 @@
 
     .logo {
       border-bottom: none;
-      color: var(--header-text-color);
       display: inline-block;
       line-height: $font-size-title;
-      padding: 0 40px;
       position: relative;
     }
 
     .title {
       font-weight: bold;
-      font-family: $font-family-logo;
+      font-family: $font-family-title;
       font-size: $font-size-title;
       margin: 0;
     }
 
     .subtitle {
-      color: var(--header-text-color);
       font-size: $font-size-subtitle;
-      margin: 10px 0;
+      margin: 0;
     }
 
     .artboard {
-      width: 435px;
-      height: 100px;
-      margin: 20px;
-      display: block;
-      background-image: url('../images/logo.svg');
-      background-repeat: no-repeat;
-      filter: drop-shadow(0px 0px 8px alpha(#000, .5));
-      fill: var(--header-text-color);
-
-      +mobile() {
-        width: 217px;
-        height: 69px;
-        margin: 5px;
-      }
+      font-family: $font-family-logo;
+      font-size: $font-size-logo;
     }
   }
 

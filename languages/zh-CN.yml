@@ -122,3 +122,6 @@ symbols_count_time:
   time_minutes: 分钟
   word: 字
   view: 次
+
+tips:
+  copyright: "复制成功，转载请遵守 %s 协议。"

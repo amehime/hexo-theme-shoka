@@ -1,24 +1,8 @@
-<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-<i class="ic i-home"></i>
-<span><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a></span>
-{%- if post.categories and post.categories.length %}
-{%- set cat_length = post.categories.length %}
-<i class="ic i-angle-right"></i>
-{%- for cat in post.categories.toArray() %}
-<span {% if loop.index == cat_length %} class="current"{% endif %} itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ url_for(cat.path) }}" itemprop="item" rel="index" title="{{ __('post.in') }} {{ cat.name }}"><span itemprop="name">{{ cat.name }}</span></a>
-<meta itemprop="position" content="{{ loop.index }}" /></span>
-{%- if cat_length > 1 and loop.index !== cat_length %}
-<i class="ic i-angle-right"></i>
-{%- endif %}
-{%- endfor %}
-{%- endif %}
-</div>
-
 <article itemscope itemtype="http://schema.org/Article" class="post block" lang="{{ post.lang or config.language }}">
   <link itemprop="mainEntityOfPage" href="{{ post.permalink }}">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="image" content="{{ url_for(theme.avatar.url or theme.images + '/avatar.gif') }}">
+    <meta itemprop="image" content="{{ url_for(theme.statics + theme.images +'/avatar.jpg') }}">
     <meta itemprop="name" content="{{ author }}">
     <meta itemprop="description" content="{{ subtitle }}{{ description }}">
   </span>
@@ -46,7 +30,7 @@
           {{- post.title }}
         {%- endif %}
       </h1>
-
+      {%- if is_post() %}
       <div class="meta">
         {%- set create_title = __('post.created') + __('symbol.colon') + full_date(post.date) %}
         <span class="item" title="{{ create_title }}">
@@ -75,7 +59,7 @@
         </span>
         {%- endif %}
       </div>
-
+      {%- endif %}
       {%- if post.tags and post.tags.length %}
         <div class="tags">
           {%- for tag in post.tags.toArray() %}
@@ -106,7 +90,6 @@
   {### END POST BODY ###}
   {#####################}
 
-  {# {%- if not is_index %} #}
    <footer>
 
     {{ partial('_partials/post/footer.njk') }}
@@ -120,10 +103,4 @@
     {%- endif %}
   </footer>
 
-  {# {% else %}
-  </div>
-  {%- endif %} #}
 </article>
-  {######################}
-  {### END POST BLOCK ###}
-  {######################}

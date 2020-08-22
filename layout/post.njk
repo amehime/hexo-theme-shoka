@@ -1,5 +1,7 @@
 {% extends '_partials/layout.njk' %}
 {% import '_macro/sidebar.njk' as sidebar with context %}
+{% import '_macro/breadcrumb.njk' as breadcrumb with context %}
+{% import '_macro/comment.njk' as comment with context %}
 
 {% block title %}
 {%- set page_title = page.title %}
@@ -17,12 +19,11 @@
 
 {% block content %}
   <div class="article wrap">
+    {{ breadcrumb.render(page) }}
     {{ partial('_partials/post/post.njk', {post: page}) }}
   </div>
   {{ partial('_partials/post/nav.njk', {post: page}) }}
-  {%- if page.comment !== false %}
-  <div class="comments wrap" id="comments" data-id="{{ page.path }}"></div>
-  {%- endif %}
+  {{ comment.render() }}
 {% endblock %}
 
 {% block sidebar %}
