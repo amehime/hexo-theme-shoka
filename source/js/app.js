@@ -751,13 +751,9 @@ const showtip = function(msg) {
   new_div.innerHTML = msg;
   new_div.classList.add('tip');
   BODY.appendChild(new_div);
-  Velocity(new_div, "fadeIn");
+
   window.setTimeout(function() {
-      Velocity(new_div, "fadeOut", {
-        complete: function() {
-          BODY.removeChild(new_div);
-        }
-      });
+      BODY.removeChild(new_div);
   }, 3000);
 }
 
