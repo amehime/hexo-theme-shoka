@@ -1,6 +1,6 @@
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   background: transparent;
 }
 
@@ -17,11 +17,6 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
   background-clip: padding-box;
-  border: 2px solid transparent;
   background-color: var(--color-pink-light);
-
-
-  &:hover {
-    background-color: var(--color-pink-light);
-  }
+  background-image: -webkit-linear-gradient(45deg,hsla(0,0%,100%,.6) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.6) 0,hsla(0,0%,100%,.6) 75%,transparent 0,transparent);
 }
