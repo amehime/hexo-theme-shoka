@@ -384,30 +384,37 @@ const postBeauty = function () {
   })
 
   $.each('figure.highlight', function (element) {
-    const caption = element.querySelector('figcaption');
-    var code_container = element.querySelector('.code-container');
 
-    if (caption) {
-      caption.insertAdjacentHTML('afterBegin', '<div class="carbon"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>');
+    var code_container = element.querySelector('.code-container');
+    var removeFullscreen = function() {
+      element.classList.remove('fullscreen');
+      $('html').classList.remove('fullscreen');
     }
 
     if(code_container && code_container.height() > 300) {
       code_container.style.maxHeight = "300px";
-      code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down up-down"></i></div>');
+      code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>');
       var showBtn = code_container.querySelector('.show-btn');
       var showBtnIcon = showBtn.querySelector('i');
+
+      var showCode = function() {
+        code_container.style.maxHeight = ""
+        showBtn.classList.add('open')
+      }
+
+      var hideCode = function() {
+        code_container.style.maxHeight = "300px"
+        showBtn.classList.remove('open')
+
+      }
+
       showBtn.addEventListener('click', function(event) {
         if (showBtn.classList.contains('open')) {
-          code_container.style.maxHeight = "300px"
-          showBtn.classList.remove('open')
-          showBtnIcon.classList.add('i-angle-down')
-          showBtnIcon.classList.remove('i-angle-up')
-          Velocity(code_container.parentNode, "scroll");
+          removeFullscreen()
+          hideCode()
+          Velocity(code_container.parentNode, "scroll")
         } else {
-          code_container.style.maxHeight = ""
-          showBtn.classList.add('open')
-          showBtnIcon.classList.remove('i-angle-down')
-          showBtnIcon.classList.add('i-angle-up')
+          showCode()
         }
       });
     }
@@ -444,6 +451,19 @@ const postBeauty = function () {
       setTimeout(function () {
         event.target.querySelector('i').className = 'ic i-clipboard';
       }, 300);
+    });
+
+
+    element.querySelector('figcaption').addEventListener('click', function(event) {
+      if (element.classList.contains('fullscreen')) {
+        removeFullscreen();
+        hideCode && hideCode();
+        Velocity(code_container.parentNode, "scroll")
+      } else {
+        element.classList.add('fullscreen');
+        $('html').classList.add('fullscreen');
+        showCode && showCode();
+      }
     });
   });
 
@@ -783,8 +803,14 @@ const Loader = {
 
 const blockMotion = function() {
   document.body.classList.add('loaded');
-  var blocktype = $('main > .inner > .content > .wrap').style.display;
-  Velocity($('main > .inner > .content > .wrap'), 'transition.bounceUpIn', {display: blocktype});
+  var wrap = $('main > .inner > .content > .wrap')
+  var blocktype = wrap.style.display;
+  Velocity(wrap, 'transition.bounceUpIn', {
+    display: blocktype,
+    complete: function() {
+      wrap.style.transform = "";
+    }
+  });
 }
 
 

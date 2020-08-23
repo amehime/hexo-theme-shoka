@@ -14,6 +14,7 @@
   animation: UpDown 2s infinite;
 }
 
+
 @keyframes rotate {
   from {
     transform: rotate(0)
@@ -117,6 +118,17 @@
   }
 }
 
+@keyframes DownUp {
+  0%, 100% {
+    opacity: .8;
+    transform: rotate(180deg) translateY(0);
+  }
+  50% {
+    opacity: .4;
+    transform: rotate(180deg) translateY(-10px);
+  }
+}
+
 @keyframes slideRightIn {
     0% {
       opacity: 0;
@@ -138,5 +150,23 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+}
+
+@keyframes elastic {
+    0% {
+        transform: scale(0)
+    }
+
+    55% {
+        transform: scale(1)
+    }
+
+    70% {
+        transform: scale(.98)
+    }
+
+    100% {
+        transform: scale(1)
     }
 }
