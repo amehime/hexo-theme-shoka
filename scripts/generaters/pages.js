@@ -1,16 +1,16 @@
 'use strict';
 
 hexo.extend.generator.register('pages', function(locals){
-  const config = this.theme.config;
+  const config = this.config;
 
   return [
     {
-      path: config.page.categories + '/index.html',
+      path: config.category_dir + '/index.html',
       data: {type: 'categories'},
       layout: ['page']
     },
     {
-      path: config.page.tags + '/index.html',
+      path: config.tag_dir + '/index.html',
       data: {type: 'tags'},
       layout: ['page']
     },

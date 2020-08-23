@@ -173,9 +173,7 @@ const menuActive = function () {
     var isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname);
     var active = target.hostname === location.hostname && (isSamePath || isSubPath)
     element.classList.toggle('active', active);
-    if(active && element.parentNode.classList.contains('sub')) {
-      element.parentNode.parentNode.classList.toggle('expand', active);
-    }
+    element.parentNode.parentNode.classList.toggle('expand', element.parentNode.classList.contains('sub') && element.parentNode.querySelector('.active'));
   });
 }
 
@@ -358,7 +356,7 @@ const sidebarTOC = function () {
 
 const postBeauty = function () {
 
-  $.each('.post .body img', function(element) {
+  $.each('.md img', function(element) {
     var info;
     if(info = element.attr('title')) {
       var para = document.createElement('span');
@@ -368,10 +366,10 @@ const postBeauty = function () {
       element.insertAfter(para);
     }
   });
-  if($('.post .body :not(a) > img, .post .body > img')) {
+  if($('.md :not(a) > img, .md > img')) {
     LOCAL['mediumzoom'] = true;
     vendorJs('mediumzoom', function() {
-        window.mediumZoom('.post .body :not(a) > img, .post .body > img', {
+        window.mediumZoom('.md :not(a) > img, .md > img', {
           background: 'rgba(0, 0, 0, 0.6)'
         });
       }, window.mediumZoom);
@@ -449,7 +447,7 @@ const postBeauty = function () {
     });
   });
 
-  $.each('table', function (element) {
+  $.each('.md table', function (element) {
     const box = document.createElement('div');
     box.className = 'table-container';
     element.wrap(box);
@@ -487,6 +485,49 @@ const postBeauty = function () {
     element.addEventListener('click', function (event) {
       element.parentNode.classList.toggle('show')
     });
+  });
+
+  // tab
+  $.each('div.tab', function(element, index) {
+    var id = element.attr('data-id');
+    var title = element.attr('data-title');
+    var box = $('#' + id);
+    if(!box) {
+      box = document.createElement('div');
+      box.className = 'tabs';
+      box.id = id;
+      element.parentNode.insertBefore(box, element);
+      ul = document.createElement('ul');
+      ul.classList.add('nav');
+      box.appendChild(ul);
+    }
+
+    var ul = box.querySelector('.nav');
+    if(!ul) {
+      ul = document.createElement('ul');
+      ul.classList.add('nav');
+      box.appendChild(ul);
+    }
+
+    var li = document.createElement('li');
+    li.innerHTML = title;
+    if(index == 0) {
+      li.classList.add('active');
+      element.classList.add('active');
+    }
+
+    li.addEventListener('click', function(event) {
+      var target = event.currentTarget;
+      box.querySelectorAll('.active').forEach(function(el) {
+        el.classList.remove('active');
+      })
+      element.classList.add('active');
+      target.classList.add('active');
+    });
+
+    ul.appendChild(li);
+
+    box.appendChild(element);
   });
 
   loadComments();

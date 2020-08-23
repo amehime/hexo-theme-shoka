@@ -1,110 +1,57 @@
-.post .tabs {
-  margin-bottom: 20px;
-}
-
-.post .tabs, .tabs-comment {
+.md .tabs {
   display: block;
-  padding-top: 10px;
   position: relative;
+  shadow-box();
 
-  ul.nav-tabs {
+  ul.nav {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
     margin-bottom: -1px;
     padding: 0;
+    white-space: nowrap;
+    border: none;
+    z-index: 0;
+    border-bottom: 1px solid var(--grey-3);
 
-    +mobile-smallest() {
+    li {
+
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+      padding: 5px 20px;
+
+      &::before {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: auto;
+        bottom: 0;
+        transition: all .2s ease-in-out;
+        width: 100%;
+        height: 100%;
+        background: none;
+        border-radius: 0;
+        border-bottom: 2px solid transparent;
+      }
+
+      &.active::before {
+        left: 0;
+        right: 0;
+        border-bottom-color: var(--primary-color);
+      }
+
+    }
+  }
+
+  .tab {
+    padding: 20px;
+    display: none;
+    animation: fadeIn .5s;
+
+    &.active {
       display: block;
-      margin-bottom: 5px;
-    }
-
-    li.tab {
-      border-bottom: 1px solid var(--grey-2);
-      border-left: 1px solid transparent;
-      border-right: 1px solid transparent;
-      border-top: 3px solid transparent;
-      flex-grow: 1;
-      list-style-type: none;
-
-      +mobile-smallest() {
-        border-bottom: 1px solid transparent;
-        border-left: 3px solid transparent;
-        border-right: 1px solid transparent;
-        border-top: 1px solid transparent;
-      }
-
-      border-radius: $tbr $tbr 0 0;
-
-      +mobile-smallest() {
-        border-radius: $tbr;
-      }
-
-      if (hexo-config('tabs.transition.tabs')) {
-        the-transition(, ease-out);
-      }
-
-      a {
-        border-bottom: initial;
-        display: block;
-        line-height: 1.8;
-        outline: 0;
-        padding: .25em .75em;
-        text-align: center;
-
-        i {
-          width: (18em / 14);
-        }
-
-        if (hexo-config('tabs.transition.labels')) {
-          the-transition(, ease-out);
-        }
-      }
-
-      &.active {
-        border-bottom: 1px solid transparent;
-        border-left: 1px solid var(--grey-2);
-        border-right: 1px solid var(--grey-2);
-        border-top: 3px solid var(--color-orange);
-
-        +mobile-smallest() {
-          border-bottom: 1px solid var(--grey-2);
-          border-left: 3px solid var(--color-orange);
-          border-right: 1px solid var(--grey-2);
-          border-top: 1px solid var(--grey-2);
-        }
-
-        a {
-          color: var(--grey-6);
-          cursor: default;
-        }
-      }
     }
   }
 
-  .tab-content {
-    .tab-pane {
-      border: 1px solid var(--grey-2);
-      border-top: 0;
-      padding: 20px 20px 0 20px;
-
-      border-radius: $tbr;
-
-      &:not(.active) {
-        display: none;
-      }
-
-      &.active {
-        display: block;
-
-        &:nth-of-type(1) {
-          border-radius: 0 $tbr $tbr $tbr;
-
-          +mobile-smallest() {
-            border-radius: $tbr;
-          }
-        }
-      }
-    }
-  }
 }

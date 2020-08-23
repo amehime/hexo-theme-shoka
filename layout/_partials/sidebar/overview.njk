@@ -11,7 +11,7 @@
       {%- if theme.menu.archives %}
         <a href="{{ url_for(theme.menu.archives.split('||')[0] | trim) }}">
       {% else %}
-        <a href="{{ url_for(config.archive_dir + '/') }}">
+        <a href="{{ url_for(config.archive_dir) }}">
       {%- endif %}
         <span class="count">{{ site.posts.length }}</span>
         <span class="name">{{ __('state.posts') }}</span>
@@ -19,21 +19,21 @@
     </div>
   {%- endif %}
 
-  {%- if site.categories.length > 0 %}
+  {%- if config.category_dir != '/' and site.categories.length > 0 %}
     <div class="item categories">
-      {%- if theme.page.categories %}<a href="{{ url_for(theme.page.categories) + '/' }}">{%- endif %}
-      <span class="count">{{ site.categories.length }}</span>
-      <span class="name">{{ __('state.categories') }}</span>
-      {%- if theme.page.categories %}</a>{%- endif %}
+      <a href="{{ url_for(config.category_dir)}}">
+        <span class="count">{{ site.categories.length }}</span>
+        <span class="name">{{ __('state.categories') }}</span>
+      </a>
     </div>
   {%- endif %}
 
-  {%- if site.tags.length > 0 %}
+  {%- if config.tag_dir != '/' and site.tags.length > 0 %}
     <div class="item tags">
-      {%- if theme.page.tags %}<a href="{{ url_for(theme.page.tags) + '/' }}">{%- endif %}
-      <span class="count">{{ site.tags.length }}</span>
-      <span class="name">{{ __('state.tags') }}</span>
-      {%- if theme.page.tags %}</a>{%- endif %}
+      <a href="{{ url_for(config.tag_dir) }}">
+        <span class="count">{{ site.tags.length }}</span>
+        <span class="name">{{ __('state.tags') }}</span>
+      </a>
     </div>
   {%- endif %}
 </nav>
