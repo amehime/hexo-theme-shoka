@@ -171,7 +171,11 @@ const menuActive = function () {
     if (!target) return;
     var isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '');
     var isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname);
-    element.classList.toggle('active', target.hostname === location.hostname && (isSamePath || isSubPath));
+    var active = target.hostname === location.hostname && (isSamePath || isSubPath)
+    element.classList.toggle('active', active);
+    if(active && element.parentNode.classList.contains('sub')) {
+      element.parentNode.parentNode.classList.toggle('expand', active);
+    }
   });
 }
 
@@ -967,7 +971,8 @@ const initAudioPlayer = function(config) {
       }
     },
     setPlayList: function() {
-      t.player.list.innerHTML = "";
+      var list = t.player.list.querySelector("ul");
+      list.innerHTML = "";
       this.options.mediaList.forEach(function(item, index) {
         var el = document.createElement('li');
         el.innerHTML = item.title;
@@ -975,14 +980,18 @@ const initAudioPlayer = function(config) {
         el.addEventListener('click', function(event) {
           var current = t.player.list.querySelectorAll('li')[t.player.index]
           if(t.player.index == index && t.player.progress) {
-            t.player.media.currentTime = t.player.media.duration * Math.floor((event.clientX - current.left()))/current.width();
+            if(t.player.media.paused) {
+              t.player.play();
+            } else {
+              t.player.media.currentTime = t.player.media.duration * Math.floor((event.clientX - current.left()))/current.width();
+            }
             return;
           }
           t.player.setCurrent(index);
           t.player.play();
         });
 
-        t.player.list.appendChild(el);
+        list.appendChild(el);
       })
 
       t.player.setCurrent(t.player.index);
@@ -1036,8 +1045,6 @@ const initAudioPlayer = function(config) {
       if(!t.player.media) {
         var el = document.createElement('audio');
 
-        el.attr('muted', true);
-
         el.addEventListener('play', function() {
           t.classList.add('playing');
           showtip(t.player.media.attr('title'))
@@ -1062,12 +1069,11 @@ const initAudioPlayer = function(config) {
     },
     list: function() {
       if(!t.player.list) {
-        var el = document.createElement('ul');
-        el.id = "player-" + t.player.id;
+        var el = document.createElement('div');
         el.classList.add('play-list');
-
-        t.insertAfter(el);
+        el.innerHTML = '<div class="preview"></div><ul></ul>';
         t.player.list = el;
+        t.insertAfter(el);
       }
     }
   },

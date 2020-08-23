@@ -86,12 +86,14 @@ font:
 
 menu:
   home: / || home
-  #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
-  #archives: /archives/ || list-alt
-  #friends: /friends/ || heart
-  #links: /links/ || magic
+  # about: /about/ || user
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  # friends: /friends/ || heart
+  # links: /links/ || magic
 
 # themes/shoka/source/images/banner/***
 header_bg:

@@ -17,9 +17,19 @@
       line-height: 3;
     }
 
+    .sub {
+      display: none;
+      padding: 0;
+      animation: slideUpIn 0.3s 0.1s ease both;
+    }
+
     &:hover {
       background-color: rgba(0,0,0,.1);
       color: inherit;
+
+      .sub {
+        display: block;
+      }
     }
 
     i {
@@ -33,6 +43,16 @@
       &:hover {
         box-shadow: 0 0 12px var(--color-pink);
       }
+    }
+
+
+    &.expand {
+      background-color: rgba(0,0,0,.05);
+
+      .sub {
+        display: block;
+      }
+
     }
 
   }

@@ -8,17 +8,7 @@
       </div>
     </div>
     <ul class="list menu">
-      {%- for name, path in theme.menu %}
-      {%- set itemURL = path.split('||')[0] | trim %}
-      {%- if not itemURL.startsWith('http') %}
-      {%- set itemURL = itemURL | replace('//', '/') %}
-      {%- endif %}
-      {%- set menuIcon = '<i class="ic i-' + path.split('||')[1] | trim + '"></i>' %}
-      {%- set menuText = __('menu.' + name) | replace('menu.', '') %}
-      <li class="item">
-        {{ _url(itemURL, menuIcon + menuText, {rel: 'section'}) }}
-      </li>
-      {%- endfor %}
+      {{ partial('_partials/sidebar/menu.njk', {}, {cache: true}) }}
     </ul>
     <div class="right menu">
       <div class="theme-btn">
@@ -73,9 +63,9 @@
   </div>
 </div>
 <div class="tool">
-  <div class="player"></div>
-  <div class="chat"><i class="ic i-comments"></i></div>
-  <div class="back-to-top">
+  <div class="item player"></div>
+  <div class="item chat"><i class="ic i-comments"></i></div>
+  <div class="item back-to-top">
     <i class="ic i-arrow-up"></i>
     <span>0%</span>
   </div>

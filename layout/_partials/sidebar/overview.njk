@@ -8,22 +8,32 @@
 <nav class="state">
   {%- if config.archive_dir != '/' and site.posts.length > 0 %}
     <div class="item posts">
-      <span class="count">{{ site.posts.length }}</span>
-      <span class="name">{{ __('state.posts') }}</span>
+      {%- if theme.menu.archives %}
+        <a href="{{ url_for(theme.menu.archives.split('||')[0] | trim) }}">
+      {% else %}
+        <a href="{{ url_for(config.archive_dir + '/') }}">
+      {%- endif %}
+        <span class="count">{{ site.posts.length }}</span>
+        <span class="name">{{ __('state.posts') }}</span>
+      </a>
     </div>
   {%- endif %}
 
   {%- if site.categories.length > 0 %}
     <div class="item categories">
+      {%- if theme.page.categories %}<a href="{{ url_for(theme.page.categories) + '/' }}">{%- endif %}
       <span class="count">{{ site.categories.length }}</span>
       <span class="name">{{ __('state.categories') }}</span>
+      {%- if theme.page.categories %}</a>{%- endif %}
     </div>
   {%- endif %}
 
   {%- if site.tags.length > 0 %}
     <div class="item tags">
+      {%- if theme.page.tags %}<a href="{{ url_for(theme.page.tags) + '/' }}">{%- endif %}
       <span class="count">{{ site.tags.length }}</span>
       <span class="name">{{ __('state.tags') }}</span>
+      {%- if theme.page.tags %}</a>{%- endif %}
     </div>
   {%- endif %}
 </nav>
@@ -36,17 +46,6 @@
   {%- endfor %}
 </div>
 
-
 <ul class="menu">
-  {%- for name, path in theme.menu %}
-    {%- set itemURL = path.split('||')[0] | trim %}
-    {%- if not itemURL.startsWith('http') %}
-      {%- set itemURL = itemURL | replace('//', '/') %}
-    {%- endif %}
-    {%- set menuIcon = '<i class="ic i-' + path.split('||')[1] | trim + '"></i>' %}
-    {%- set menuText = __('menu.' + name) | replace('menu.', '') %}
-    <li class="item">
-      {{ _url(itemURL, menuIcon + menuText, {rel: 'section'}) }}
-    </li>
-    {%- endfor %}
+  {{ partial('_partials/sidebar/menu.njk', {}, {cache: true}) }}
 </ul>
