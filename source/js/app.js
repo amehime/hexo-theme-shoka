@@ -890,17 +890,7 @@ const initAudioPlayer = function(config) {
         }
       },
       "music": function(event) {
-        var animateAction = 'transition.slideRightIn'
-        if(t.player.list.classList.contains('on')) {
-          animateAction = 'transition.slideRightOut'
-        }
-        Velocity(t.player.list, "finish");
-        Velocity(t.player.list, animateAction, {
-          duration: 500,
-          complete: function () {
-            t.player.list.classList.toggle('on');
-          }
-        })
+        t.player.list.classList.toggle('on');
       }
     }
   };
@@ -953,10 +943,9 @@ const initAudioPlayer = function(config) {
     },
     refresh: function(newList) {
       if(newList) {
-        newList = this.utils.list(newList);
-        if(this.options.mediaList !== newList) {
-          this.options.mediaList = newList;
-          // 设置一个地址
+        if(this.options.rawList !== newList) {
+          this.options.rawList = newList;
+          this.options.mediaList = this.utils.list(newList);
           this.set('random');
           this.setPlayList();
         }
@@ -984,16 +973,14 @@ const initAudioPlayer = function(config) {
         el.innerHTML = item.title;
 
         el.addEventListener('click', function(event) {
-          var current = t.player.options.mediaList[t.player.index]
-          if(t.player.index == index && current.progress) {
-            t.player.media.currentTime = t.player.media.duration * Math.floor((event.clientX - current.element.left()))/current.element.width();
+          var current = t.player.list.querySelectorAll('li')[t.player.index]
+          if(t.player.index == index && t.player.progress) {
+            t.player.media.currentTime = t.player.media.duration * Math.floor((event.clientX - current.left()))/current.width();
             return;
           }
           t.player.setCurrent(index);
           t.player.play();
         });
-
-        t.player.options.mediaList[index].element = el;
 
         t.player.list.appendChild(el);
       })
@@ -1002,9 +989,11 @@ const initAudioPlayer = function(config) {
     },
     setCurrent: function(index) {
       if(index != this.index) {
-        var old = this.options.mediaList[this.index]
-        old.element && old.element.classList.remove('current');
-        old.progress && old.element.removeChild(old.progress);
+        var old = this.list.querySelectorAll('li')
+        if(old[this.index]) {
+          old[this.index].classList.remove('current');
+          this.progress && old[this.index].removeChild(this.progress);
+        }
         if(index) {
           this.index = index;
           this.set();
@@ -1013,12 +1002,13 @@ const initAudioPlayer = function(config) {
         }
       }
 
-      var current = this.options.mediaList[this.index];
-      current.element.classList.add('current');
-      var progress = document.createElement('div');
-      current.element.appendChild(progress);
-      current.progress = progress;
-      this.options.mediaList[this.index] = current;
+      var current = t.player.list.querySelectorAll('li');
+      if(current[this.index]) {
+        current[this.index].classList.add('current');
+        var progress = document.createElement('div');
+        current[this.index].appendChild(progress);
+        this.progress = progress;
+      }
     },
     pause: function() {
       this.media.pause()
@@ -1059,7 +1049,7 @@ const initAudioPlayer = function(config) {
 
         el.addEventListener('timeupdate', function() {
           var percent = Math.floor((el.currentTime / el.duration * 100));
-          t.player.options.mediaList[t.player.index].progress.width(percent + '%')
+          t.player.progress.width(percent + '%')
           if (percent == 100) {
             t.player.setCurrent();
             t.player.play();

@@ -55,6 +55,58 @@
     }
   }
 
+  .play-list {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    right: 45px;
+    min-width: 260px;
+    z-index: $zindex-2;
+    padding: 10px 0;
+    border-radius: 10px;
+    background: var(--grey-1);
+    color: var(--text-color);
+    font-size: $font-size-smaller;
+    text-shadow: none;
+    shadow-box();
+
+    li {
+      padding: 5px 15px 5px 25px;
+      cursor: pointer;
+      the-transition();
+      &::before {
+        display: none;
+        font-family-icons();
+        @extend .i-play:before;
+        margin-left: -20px;
+        width: 20px;
+      }
+
+      &.current {
+        color: var(--primary-color);
+        position:relative;
+
+        &::before {
+          display: inline-block;
+        }
+
+        > div {
+          position: absolute;
+          height: 100%;
+          background: var(--color-pink-a3);
+          top: 0;
+          left: 0;
+          z-index: -1;
+          the-transition(.2s, ease-out);
+        }
+      }
+
+      &:hover {
+        color: var(--color-blue);
+      }
+    }
+  }
+
   .back-to-top {
     span {
       font-size: $font-size-smallest;
@@ -87,6 +139,13 @@
       }
     }
 
+    .play-list {
+      &.on {
+        display: block;
+        animation: slideRightIn .5s;
+      }
+    }
+
     .back-to-top {
       align-items: center;
       justify-content: center;
@@ -98,58 +157,6 @@
 
 
 
-.play-list {
-  position: fixed;
-  display: none;
-  bottom: 0;
-  right: 45px;
-  min-width: 260px;
-  z-index: $zindex-2;
-  padding: 10px 0;
-  border-radius: 10px;
-  background: var(--grey-1);
-  color: var(--text-color);
-  font-size: $font-size-smaller;
-  text-shadow: none;
-  shadow-box();
 
-  &.on {
-    display: block;
-  }
 
-  li {
-    padding: 5px 15px 5px 25px;
-    cursor: pointer;
-    the-transition();
-    &::before {
-      display: none;
-      font-family-icons();
-      @extend .i-play:before;
-      margin-left: -20px;
-      width: 20px;
-    }
 
-    &.current {
-      color: var(--primary-color);
-      position:relative;
-
-      &::before {
-        display: inline-block;
-      }
-
-      > div {
-        position: absolute;
-        height: 100%;
-        background: var(--color-pink-a3);
-        top: 0;
-        left: 0;
-        z-index: -1;
-        the-transition(.2s, ease-out);
-      }
-    }
-
-    &:hover {
-      color: var(--color-blue);
-    }
-  }
-}
