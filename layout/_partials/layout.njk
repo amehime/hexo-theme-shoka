@@ -35,7 +35,7 @@
       </div>
       <div id="imgs" class="pjax">
       {%- set covers = _cover(page, 6) %}
-      {%- if covers.length > 1 %}
+      {%- if covers.length == 6 %}
         <ul>
           {%- for image in covers %}
           <li class="item" data-background-image="{{ image }}"></li>
