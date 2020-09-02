@@ -1,0 +1,41 @@
+#copyright {
+  background: var(--grey-2);
+  padding: 1em 2em;
+  position: relative;
+  font-size: $font-size-smallest;
+  border-radius: .625rem;
+  color: var(--grey-6);
+
+  li {
+    &::before {
+      font-family-icons()
+      color: var(--grey-5);
+      margin-right: .3125rem;
+      font-size: 1.1em;
+      line-height: .75em;
+      vertical-align: -.0667em;
+    }
+  }
+
+  .author::before {
+    @extend .i-person:before;
+  }
+
+  .link::before {
+    @extend .i-link-circle:before;
+  }
+
+  .license::before {
+    @extend .i-share:before;
+  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: .3125rem;
+  //   height: 100%;
+  //   left: -.3125rem;
+  //   top: 0rem;
+  //   background: var(--primary-color);
+  //   border-radius: .375rem;
+  // }
+}

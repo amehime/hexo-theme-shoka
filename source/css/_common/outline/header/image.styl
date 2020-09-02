@@ -1,0 +1,67 @@
+#imgs {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70vh;
+  min-height: 25rem;
+  z-index: -9;
+
+  .item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 36s linear infinite 0s;
+  }
+
+  for num in (1 .. 6) {
+    .item:nth-child({num+1}) {
+      animation-delay: unit(num * 6, 's');
+    }
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: $zindex-1;
+    the-transition();
+  }
+}
+
+@keyframes imageAnimation {
+  0% {
+      opacity: 0;
+      animation-timing-function: ease-in;
+  }
+  2% {
+      opacity: 1;
+  }
+  8% {
+      opacity: 1;
+      transform: scale(1.05);
+      animation-timing-function: ease-out;
+  }
+  17% {
+      opacity: 1;
+      transform: scale(1.1);
+  }
+  25% {
+      opacity: 0;
+      transform: scale(1.1);
+  }
+  100% { opacity: 0 }
+}

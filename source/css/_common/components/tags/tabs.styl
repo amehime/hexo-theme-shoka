@@ -1,0 +1,57 @@
+.md .tabs {
+  display: block;
+  position: relative;
+  shadow-box();
+
+  ul.nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    margin-bottom: -.0625rem;
+    padding: 0;
+    white-space: nowrap;
+    border: none;
+    z-index: 0;
+    border-bottom: .0625rem solid var(--grey-3);
+
+    li {
+      position: relative;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+      padding: .3125rem 1.25rem;
+
+      &::before {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: auto;
+        bottom: 0;
+        transition: all .2s ease-in-out;
+        width: auto;
+        height: auto;
+        background: none;
+        border-radius: 0;
+        border-bottom: .125rem solid transparent;
+      }
+
+      &.active::before {
+        left: 0;
+        right: 0;
+        border-bottom-color: var(--primary-color);
+      }
+
+    }
+  }
+
+  .tab {
+    padding: 1.25rem;
+    display: none;
+    @extend .fade-in;
+
+    &.active {
+      display: block;
+    }
+  }
+
+}

@@ -35,7 +35,7 @@ hexo.extend.helper.register('_vendor_js', () => {
   if (!config) return '';
 
   //Get a font list from config
-  let vendorJs = ['pace', 'pjax', 'velocity', 'velocity_ui', 'algolia', 'instantsearch', 'lazyload', 'quicklink'].map(item => {
+  let vendorJs = ['pace', 'pjax', 'fetch', 'velocity', 'velocity_ui', 'algolia', 'instantsearch', 'lazyload', 'quicklink'].map(item => {
     if (config[item]) {
       return config[item];
     }

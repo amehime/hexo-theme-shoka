@@ -2,6 +2,12 @@
 
 {% block title %}{{ __('title.tag') }}{{ __('symbol.colon') }}{{ page.tag }} | {% endblock %}
 
+{% block header %}
+  <h1 itemprop="name headline">
+    {{  _p('title.tag_in', page.tag) }}
+  </h1>
+{% endblock %}
+
 {% block content %}
   <div class="collapse wrap">
     <h2 class="item header">

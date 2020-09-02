@@ -1,0 +1,130 @@
+g.stateGroup text {
+  fill: var(--text-color);
+  stroke: none;
+  font-size: .625rem;
+  font-family: var(--mermaid-font-family);
+}
+g.stateGroup text {
+  fill: var(--text-color);
+  stroke: none;
+  font-size: .625rem;
+
+}
+g.stateGroup .state-title {
+  font-weight: bolder;
+  fill: black;
+}
+
+g.stateGroup rect {
+  fill: var(--grey-1);
+  stroke: var(--text-color);
+}
+
+g.stateGroup line {
+  stroke: var(--text-color);
+  stroke-width: 1;
+}
+
+.transition {
+  stroke: var(--text-color);
+  stroke-width: 1;
+  fill: none;
+}
+
+.stateGroup .composit {
+  fill: white;
+  border-bottom: .0625rem
+}
+
+.stateGroup .alt-composit {
+  fill: #e0e0e0;
+  border-bottom: .0625rem
+}
+
+.state-note {
+  stroke: var(--grey-4);
+  fill: var(--grey-3);
+
+  text {
+    fill: black;
+    stroke: none;
+    font-size: .625rem;
+  }
+}
+
+.stateLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: var(--grey-1);
+  opacity: .5;
+}
+
+.stateLabel text {
+  fill: black;
+  font-size: .625rem;
+  font-weight: bold;
+  font-family: var(--mermaid-font-family);
+}
+
+.node circle.state-start {
+  fill: black;
+  stroke: black;
+}
+.node circle.state-end {
+  fill: black;
+  stroke: white;
+  stroke-width: 1.5
+}
+#statediagram-barbEnd {
+  fill: var(--text-color)
+}
+
+.statediagram-cluster rect {
+  fill: var(--grey-1);
+  stroke: var(--text-color);
+  stroke-width: .0625rem;
+}
+.statediagram-cluster rect.outer {
+  rx: .3125rem;
+  ry: .3125rem;
+}
+.statediagram-state .divider {
+  stroke: var(--text-color);
+}
+
+.statediagram-state .title-state {
+  rx: .3125rem;
+  ry: .3125rem;
+}
+.statediagram-cluster.statediagram-cluster .inner {
+  fill: white;
+}
+.statediagram-cluster.statediagram-cluster-alt .inner {
+  fill: #e0e0e0;
+}
+
+.statediagram-cluster .inner {
+  rx:0;
+  ry:0;
+}
+
+.statediagram-state rect.basic {
+  rx: .3125rem;
+  ry: .3125rem;
+}
+.statediagram-state rect.divider {
+  stroke-dasharray: 10,10;
+  fill: #efefef;
+}
+
+.note-edge {
+  stroke-dasharray: 5;
+}
+
+.statediagram-note rect {
+  stroke: var(--grey-4);
+  fill: var(--grey-3);
+  stroke-width: .0625rem;
+  rx: 0;
+  ry: 0;
+}

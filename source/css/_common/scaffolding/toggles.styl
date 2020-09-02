@@ -1,0 +1,59 @@
+.toggle {
+  line-height: 0;
+  cursor: pointer;
+
+  .line {
+    background: var(--header-text-color);
+    display: inline-block;
+    height: .125rem;
+    left: 0;
+    position: relative;
+    border-radius: .0625rem;
+    top: 0;
+    transition: all .4s;
+    vertical-align: top;
+    width: 100%;
+    box-shadow: 0rem 0rem .5rem alpha(#000, .5);
+
+    &:not(:first-child) {
+      margin-top: .1875rem;
+    }
+  }
+
+  &.toggle-arrow {
+    .toggle-line-first {
+      left: 50%;
+      top: .125rem;
+      transform: rotate(45deg);
+      width: 50%;
+    }
+
+    .toggle-line-middle {
+      left: .125rem;
+      width: 90%;
+    }
+
+    .toggle-line-last {
+      left: 50%;
+      top: -.125rem;
+      transform: rotate(-45deg);
+      width: 50%;
+    }
+  }
+
+  &.close {
+    .line:nth-child(1) {
+      transform: rotate(-45deg);
+      top: .3125rem;
+    }
+
+    .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .line:nth-child(3) {
+      transform: rotate(45deg);
+      top: -.3125rem;
+    }
+  }
+}

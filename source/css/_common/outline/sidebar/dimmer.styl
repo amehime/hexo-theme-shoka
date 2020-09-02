@@ -1,0 +1,23 @@
+.dimmer {
+  display: none;
+}
+
++tablet-mobile() {
+  .dimmer {
+    background: black;
+    height: 100%;
+    left: 100%;
+    opacity: 0;
+    top: 0;
+    width: 100%;
+    z-index: $zindex-2;
+    transition: opacity 1s;
+  }
+
+  #sidebar.on + .dimmer {
+    position: fixed;
+    display: block;
+    opacity: .3;
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,33 @@
+{% macro render(item) %}
+{%- if item.link %}
+  {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+{%- endif %}
+{%- set postText = item.title or item.link or __('post.untitled') %}
+<article class="item">
+  <div class="cover">
+    {{ _url(item.link or item.path, '<img src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
+  </div>
+  <div class="info">
+    {{postmeta.render(item)}}
+    <h3>{{ _url(item.link or item.path, postText + (postTitleIcon or ''), {itemprop: 'url', title: postText}) }}</h3>
+    <div class="excerpt">
+      {%- if item.description %}
+        {{ item.description }}
+      {% elif item.excerpt %}
+        {{ item.excerpt }}
+      {% else %}
+        {{ item.content | striptags(true) | escape | truncate(300) }}
+      {%- endif %}
+    </div>
+    {%- if item.categories.length > 0 %}
+    <div class="meta footer">
+      <span>
+      {%- set lastcat = item.categories.last() %}
+        {{ _url(lastcat.path, '<i class="ic i-flag"></i>' + lastcat.name, {itemprop: 'url', title: lastcat.name}) }}
+      </span>
+    </div>
+    {%- endif %}
+    {{ _url(item.link or item.path, 'more...', {itemprop: 'url', title: postText, class: 'btn'}) }}
+  </div>
+</article>
+{% endmacro %}

@@ -1,0 +1,53 @@
+#waves {
+  transform: translateZ(.0625rem);
+
+  >svg {
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -.6875rem;
+    min-height: 3.125rem;
+    max-height: 9.375rem;
+
+    +mobile() {
+      height: 10vh;
+    }
+  }
+}
+/* Animation */
+.parallax>use {
+  animation: wave 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+  fill: var(--grey-1-a7);
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+  fill: var(--grey-1-a5);
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+  fill: var(--grey-1-a3);
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+  fill: var(--grey-1);
+}
+
+@keyframes wave {
+  0% {
+    transform: translate3d(-5.625rem, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(5.3125rem, 0, 0);
+  }
+}

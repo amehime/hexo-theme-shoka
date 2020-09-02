@@ -1,6 +1,8 @@
 {
   "name": "hexo-theme-shoka",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "",
+  "author": "Ruri Shimotsuki",
+  "license": "MIT",
   "private": true
 }

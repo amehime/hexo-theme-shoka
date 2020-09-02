@@ -1,0 +1,77 @@
+#brand {
+  position: fixed;
+  padding: 3rem 5rem 0;
+  text-align: center;
+  width: 100%;
+  height: 50vh;
+  min-height: 10rem;
+
+  &.affix {
+    z-index: $zindex-0;
+  }
+
+  &, .pjax {
+    the-flex();
+  }
+
+  .artboard {
+    font-family: $font-family-logo;
+    font-size: $font-size-logo;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: $font-size-title;
+    letter-spacing: .125rem;
+  }
+
+  .artboard + h1 {
+    margin: .625rem 0;
+  }
+
+  .sticky {
+    font-size: $font-size-smallest;
+    display: inline-block;
+    transform: rotate(30deg);
+    backface-visibility: hidden;
+  }
+
+  .meta {
+    display: flex;
+    font-size: $font-size-subtitle;
+    margin: 0;
+
+    .item+.item {
+      margin-left: .625rem;
+    }
+  }
+
+  +tablet() {
+    .meta {
+      font-size: $font-size-smaller;
+    }
+  }
+
+  +mobile() {
+    padding: 3rem .5rem 0;
+
+    h1 {
+      font-size: $font-size-largest;
+    }
+
+    .meta {
+      font-size: $font-size-smallest;
+
+      .text {
+        display: none;
+      }
+    }
+  }
+
+
+  +mobile-smallest() {
+    .artboard {
+      font-size: $font-size-title;
+    }
+  }
+}

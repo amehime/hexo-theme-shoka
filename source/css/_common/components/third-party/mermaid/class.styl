@@ -1,0 +1,90 @@
+g.classGroup text {
+  fill: var(--text-color);
+  stroke: none;
+  font-family: var(--mermaid-font-family);
+  font-size: .625rem;
+
+  .title {
+    font-weight: bolder;
+  }
+}
+
+g.clickable {
+  cursor: pointer;
+}
+
+g.classGroup rect {
+  fill: var(--grey-1);
+  stroke: var(--text-color);
+}
+
+g.classGroup line {
+  stroke: var(--text-color);
+  stroke-width: 1;
+}
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: var(--grey-1);
+  opacity: .5;
+}
+
+.classLabel .label {
+  fill: var(--text-color);
+  font-size: .625rem;
+}
+
+.relation {
+  stroke: var(--text-color);
+  stroke-width: 1;
+  fill: none;
+}
+
+.dashed-line{
+  stroke-dasharray: 3;
+}
+
+@mixin composition {
+  fill: var(--text-color);
+  stroke: var(--text-color);
+  stroke-width: 1;
+}
+
+#compositionStart {
+  @include composition;
+}
+
+#compositionEnd {
+  @include composition;
+}
+
+@mixin aggregation {
+  fill: var(--grey-1);
+  stroke: var(--text-color);
+  stroke-width: 1;
+}
+
+#aggregationStart {
+  @include aggregation;
+}
+
+#aggregationEnd {
+  @include aggregation;
+}
+
+#dependencyStart {
+  @include composition;
+}
+
+#dependencyEnd {
+  @include composition;
+}
+
+#extensionStart {
+  @include composition;
+}
+
+#extensionEnd {
+  @include composition;
+}

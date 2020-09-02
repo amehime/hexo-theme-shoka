@@ -2,6 +2,7 @@
 {% import '_macro/sidebar.njk' as sidebar with context %}
 {% import '_macro/breadcrumb.njk' as breadcrumb with context %}
 {% import '_macro/comment.njk' as comment with context %}
+{% import '_macro/postmeta.njk' as postmeta with context %}
 
 {% block title %}
 {%- set page_title = page.title %}
@@ -15,6 +16,19 @@
   {%- set page_title = page_title + ' - ' + cat_list %}
 {%- endif %}
 {{ page_title }} |
+{% endblock %}
+
+{% block header %}
+  <h1 itemprop="name headline">
+    {%- if page.link %}
+      {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+      {%- set postText = page.title or page.link %}
+      {{ _url(page.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'}) }}
+    {%- else %}
+      {{- page.title }}
+    {%- endif %}
+  </h1>
+  {{postmeta.render(page, true)}}
 {% endblock %}
 
 {% block content %}

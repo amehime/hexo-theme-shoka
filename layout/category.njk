@@ -2,11 +2,17 @@
 
 {% block title %}{{ __('title.category') }}{{ __('symbol.colon') }}{{ page.category }} | {% endblock %}
 
+{% block header %}
+  <h1 itemprop="name headline">
+    {{  _p('title.category_in', page.title) }}
+  </h1>
+{% endblock %}
+
 {% block content %}
   <div class="collapse wrap">
     {%- set prev = _category_prev(page.category) %}
     <h2 class="item header">
-      <a href="{{ url_for(config.tag_dir) }}">{{ __('title.all') }}</a>
+      <a href="{{ url_for(config.category_dir) }}">{{ __('title.all') }}</a>
       {%- if prev %}
         <small>/</small> {{prev}}
       {%- endif %}

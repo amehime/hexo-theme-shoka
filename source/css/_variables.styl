@@ -11,10 +11,10 @@ get_font_family(config) {
 }
 
 // Font families.
-$font-family-chinese      = "PingFang SC", "Microsoft YaHei";
+$font-family-chinese      = -apple-system, "PingFang SC", "Microsoft YaHei";
 
 $font-family-base         = $font-family-chinese, sans-serif;
-$font-family-base         = get_font_family('global'), $font-family-base if get_font_family('global');
+$font-family-base       = get_font_family('global'), $font-family-base if get_font_family('global');
 
 $font-family-logo         = $font-family-base;
 $font-family-logo         = get_font_family('logo'), $font-family-base if get_font_family('title');
@@ -24,6 +24,9 @@ $font-family-title         = get_font_family('title'), $font-family-base if get_
 
 $font-family-headings     = $font-family-base;
 $font-family-headings     = get_font_family('headings'), $font-family-title if get_font_family('headings');
+$font-family-headings     = get_font_family('global'), $font-family-headings if get_font_family('global');
+$font-family-title         = get_font_family('title'), get_font_family('headings'), $font-family-base if get_font_family('headings');
+$font-family-title         = get_font_family('global'), $font-family-title if get_font_family('global');
 
 $font-family-posts        = $font-family-base;
 $font-family-posts        = get_font_family('posts'), $font-family-base if get_font_family('posts');
@@ -69,67 +72,28 @@ $zindex-5       = 9999;
 
 // Layout sizes
 // --------------------------------------------------
-$sidebar-width                = 240;
-$sidebar-desktop              = unit($sidebar-width, 'px');
-$content-offset               = 12px;
-$content-wrap                 = 'calc(100% - %s)' % unit($sidebar-width + $content-offset, 'px');
+$sidebar-width                = 15;
+$sidebar-desktop              = unit($sidebar-width, 'rem');
+$content-offset               = .75rem;
+$content-wrap                 = 'calc(100% - %s)' % unit($sidebar-width + $content-offset, 'rem');
 
-$content-desktop-padding        = 20px;
-$content-tablet-padding         = 10px;
-$content-mobile-padding         = 8px;
+$content-desktop-padding        = 1.25rem;
+$content-tablet-padding         = .625rem;
+$content-mobile-padding         = .5rem;
 
-$content-desktop              = 'calc(100% - %s)' % unit($content-desktop-padding / 2, 'px');
-$content-desktop-large        = 1160px;
+$content-desktop              = 'calc(100% - %s)' % unit($content-desktop-padding / 2, 'rem');
+$content-desktop-large        = 72.5rem;
 $content-desktop-largest      = 73%;
 
 
 
 // Site Meta
-
-$site-meta-text-align           = center;
 $font-size-title                = (hexo-config('font.enable') and hexo-config('font.title.size') is a 'unit') ? unit(hexo-config('font.title.size'), em) : 2em;
 $font-size-subtitle             = $font-size-small;
 $font-size-logo                = (hexo-config('font.enable') and hexo-config('font.logo.size') is a 'unit') ? unit(hexo-config('font.logo.size'), em) : 3.5em;
 
 
-// Posts Collpase
 // --------------------------------------------------
-$posts-collapse-margin          = 35px;
-$posts-collapse-margin-mobile   = 10px;
-
-
-// Components
-// --------------------------------------------------
-
-//  .post-expand .post-eof
-$post-eof-margin-top          = 80px; //  or 160px for more white space;
-$post-eof-margin-bottom       = 60px; //  or 120px for less white space;
-
-// Note colors
-// --------------------------------------------------
-// Read note light_bg_offset from NexT config and set in "$lbg%" to use it as string variable.
-
-
-
-// Tabs border radius
-// --------------------------------------------------
-$tbr                        = 0;
-
-// Label colors
-// --------------------------------------------------
-
-// Borders
-// --------------------------------------------------
-$box-shadow-inner                 = 5px;
-$box-shadow                       = initial;
-
-$border-radius-inner              = initial;
-$border-radius                    = initial;
-
-
-// --------------------------------------------------
-
-
 
 $default-border = #e1e1e1;
 $default-bg = #f8f8f9;

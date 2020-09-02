@@ -1,0 +1,295 @@
+@import 'operation';
+
+// Placeholder: $code-block
+$code-block {
+  background: var(--grey-2);
+  color: var(--grey-7);
+  line-height: $line-height-code-block;
+  margin: 1.25rem auto;
+}
+
+pre,
+code,
+.code-container {
+  font-family: $font-family-monospace;
+  font-size: $font-size-medium;
+  @extend $mini-scrollbar;
+}
+
+
+:not(td)>pre {
+  background: var(--grey-1);
+  border: .0625rem solid var(--grey-3);
+  border-radius: .3125rem;
+  padding: 1rem;
+  line-break: anywhere;
+  white-space: break-spaces;
+  code {
+    background: transparent;
+    color: currentColor;
+   }
+}
+
+// 代码样式
+:not(pre)>code {
+  color: var(--primary-color);
+  border-radius: .3em;
+  border: .0625rem solid rgba(0, 0, 0, .1);
+  background-color: var(--grey-0);
+  padding: .2em .3em;
+  word-wrap();
+}
+
+.highlight {
+  position: relative;
+  overflow: hidden;
+  border-radius: .5rem;
+  box-shadow: 0 .3125rem .625rem -.125rem var(--grey-9-a1);
+
+  @extend $code-block;
+
+  *::selection {
+    background: var(--grey-4);
+  }
+
+  &::before {
+    content: " ";
+    position: absolute;
+    border-radius: 50%;
+    background: #fc625d;
+    width: .75rem;
+    height: .75rem;
+    left: .75rem;
+    top: .8125rem;
+    box-shadow: 1.25rem 0 #fdbc40, 2.5rem 0 #35cd4b;
+  }
+
+  figcaption {
+    color: var(--grey-4);
+    display: inline-flex;
+    font-size: $font-size-small;
+    font-weight: 700;
+    padding: 0 6em;
+    min-height: 2.5rem;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--grey-3);
+    margin-bottom: .625rem;
+
+    &::before {
+      content: attr(data-lang);
+    }
+
+    span {
+      display: block;
+      margin-left: .625rem;
+    }
+
+    a {
+      color: var(--grey-7);
+
+      &:hover {
+        border-bottom-color: var(--grey-7);
+      }
+    }
+
+  }
+
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    z-index: $zindex-5;
+    margin: 0;
+    border-radius: 0rem;
+    @extend .elastic;
+
+    .code-container {
+      height: 100vh;
+      overflow: scroll;
+    }
+  }
+
+  &.breakline {
+    .code-container table {
+      line-break: anywhere;
+      white-space: break-spaces;
+
+      pre {
+        white-space: break-spaces;
+      }
+    }
+  }
+}
+
+
+.code-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::after {
+    content: "";
+    display: block;
+    height: .625rem;
+    width: 100%;
+  }
+
+  table {
+    white-space: pre;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  tr {
+    background-color: inherit;
+  }
+
+  td {
+    padding: unset;
+    vertical-align: unset;
+    border: unset;
+    the-transition();
+  }
+
+  td:last-child {
+    padding-left: 3.125rem;
+  }
+
+  td[data-num]::before {
+    position: absolute;
+    content: attr(data-num);
+    padding-right: .9375rem;
+    text-align: right;
+    overflow-y: hidden;
+    left: 0;
+    width: 2.5rem;
+    height: 100%;
+    overflow-x: visible !important;
+    color: var(--color-grey);
+    background: var(--grey-2);
+  }
+
+
+  .marked {
+    background-color: var(--color-red-a1);
+  }
+
+  td{
+    &:hover {
+      background-color: var(--grey-3);
+    }
+  }
+
+  .show-btn {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.875rem;
+    text-align: center;
+    color: var(--text-color);
+    background-image: linear-gradient(to bottom, var(--grey-2-a0) 0, var(--grey-2) 80%);
+
+    .ic {
+      @extend .up-down;
+    }
+
+    &.open {
+      background: none;
+      bottom: .5rem;
+      .ic {
+        @extend .down-up;
+      }
+    }
+  }
+
+  // For diff highlight
+  .deletion {
+    background: var(--color-pink-light);
+  }
+
+  .addition {
+    background: var(--color-cyan-light);
+  }
+
+  .meta {
+    color: var(--color-yellow);
+    disable-user-select();
+  }
+
+  .comment,
+  .punctuation {
+    color: var(--grey-5);
+  }
+
+  .variable,
+  .function,
+  .attribute,
+  .tag,
+  .name,
+  .regexp,
+  .ruby .constant,
+  .xml .tag .title,
+  .xml .pi,
+  .xml .doctype,
+  .html .doctype,
+  .css .id,
+  .css .class,
+  .css .pseudo {
+    color: var(--color-red);
+  }
+
+  .number,
+  .preprocessor,
+  .built_in,
+  .builtin-name,
+  .literal,
+  .params,
+  .constant,
+  .command {
+    color: var(--color-orange);
+  }
+
+  .ruby .class .title,
+  .css .rules .attribute,
+  .string,
+  .symbol,
+  .value,
+  .inheritance,
+  .header,
+  .ruby .symbol,
+  .xml .cdata,
+  .special,
+  .formula {
+    color: var(--color-green);
+  }
+
+  .title,
+  .css .hexcolor,
+  .namespace {
+    color: var(--color-aqua);
+  }
+
+  .class-name,
+  .python .decorator,
+  .python .title,
+  .ruby .function .title,
+  .ruby .title .keyword,
+  .perl .sub,
+  .javascript .title,
+  .coffeescript .title {
+    color: var(--color-blue);
+  }
+
+  .keyword,
+  .javascript .function {
+    color: var(--color-purple);
+  }
+}

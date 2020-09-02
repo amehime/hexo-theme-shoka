@@ -1,86 +1,44 @@
-{% macro render(item, type) %}
-  <div class="card{{ ' ' + item.class if item.class }}">
-
-    {%- if type == "category" %}
-      {%- set cover = theme.statics + item.path + 'cover.jpg' %}
-      {%- if item.path.startsWith('/') %}
-        {%- set cover = theme.statics + item.path.substr(1) + 'cover.jpg' %}
-      {%- endif %}
-      {%- set itemname = item.name %}
-    {%- else %}
-      {%- if item.cover %}
-        {%- if item.cover.startsWith('//') or item.cover.startsWith('http') %}
-          {%- set cover = item.cover %}
-        {%- else %}
-          {%- set cover = theme.statics + item.cover %}
-        {%- endif %}
-      {%- elseif item.photos.length > 0 %}
-        {%- if item.photos[0].startsWith('//') or item.photos[0].startsWith('http') %}
-          {%- set cover = item.photos[0] %}
-        {%- else %}
-          {%- set cover = theme.statics + item.photos[0] %}
-        {%- endif %}
-      {%- endif %}
-      {%- set itemname = item.title %}
+{% macro render(item) %}
+{%- set cover = url_for(theme.statics + item.slug + '/cover.jpg') %}
+{%- set itemname = item.name %}
+<section class="item">
+  <div data-top="{{item.top.name}}" class="cover"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
+  <h2 class="title">{{ itemname }}</h2>
+  </div>
+  <div class="info">
+    {%- if item.link %}
+      {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
     {%- endif %}
-
-
-    <div class="cover"{%- if cover %} data-background-image="{{ url_for(cover) }}"{% endif %}>
-      <p>{{ itemname }}</p>
-    </div>
-    <div class="message">
-      <div class="inner">
-        <h2 class="title">
-          {%- if item.link %}
-          {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
-          {%- set postText = itemname or item.link %}
-          {{ _url(item.link, postText + postTitleIcon, {itemprop: 'url', title: postText}) }}
-          {%- else %}
-          {{ _url(item.path, itemname or __('post.untitled'), {itemprop: 'url', title: itemname or __('post.untitled')}) }}
-          {%- endif %}
-        </h2>
-        {%- if type == "category" %}
-          {%- if item.child %}
-            <div class="meta">
-              <i class="ic i-file"></i>{{ _p('counter.index.category', item.child.length) }}
-            </div>
-            <ul class="posts">
-              {%- set subitems = item.child.sort({name: 1}) %}
-              {%- for subitem in subitems.toArray() %}
-                {% if loop.index < 7 %}
-                <li><a title="{{ subitem.name }}" href="{{ url_for(subitem.path) }}">{{ subitem.name }}</a></li>
-                {% endif %}
-              {%- endfor %}
-            </ul>
-          {%- else %}
-            <div class="meta">
-              <i class="ic i-file"></i>{{ _p('counter.index.post', item.length) }}
-            </div>
-            <ul class="posts">
-              {%- set posts = item.posts.sort({title: 1}) %}
-              {%- for post in posts.toArray() %}
-                {% if loop.index < 7 %}
-                <li><a title="{{ post.title }}" href="{{ url_for(post.path) }}">{{ post.title }}</a></li>
-                {% endif %}
-              {%- endfor %}
-            </ul>
-          {%- endif %}
-        {%- else %}
-          <div class="meta">
-            <i class="ic i-calendar"></i><time itemprop="dateCreated datePublished" datetime="{{ moment(item.date).format() }}">{{ date(item.date) }}</time>
-          </div>
-          <div class="posts">
-            {%- if item.description and theme.index.excerpt_description %}
-              {{ item.description }}
-            {% elif item.excerpt %}
-              {{ item.excerpt }}
-            {% else %}
-              {{ item.content }}
+    {%- set postText = itemname or item.link or __('post.untitled') %}
+    <div class="ribbon">{{ _url(item.link or item.path, postText + (postTitleIcon or ''), {itemprop: 'url', title: postText}) }}</div>
+    <div class="inner">
+      {%- if item.child %}
+          {%- set subs = item.child.sort({name: 1}) %}
+          {%- set len = _p('counter.index.category', item.child.length) %}
+      {%- else %}
+        {%- set subs = item.posts.sort({title: 1}) %}
+        {%- set len = _p('counter.index.post', item.length) %}
+      {%- endif %}
+        <ul class="posts">
+          {%- for sub in subs.toArray() %}
+            {%- if loop.index < 7 %}
+            {%- set subname = sub.name or sub.title %}
+            <li><a title="{{ subname }}" href="{{ url_for(sub.path) }}">{{ subname }}</a></li>
             {%- endif %}
-          </div>
-        {%- endif %}
+          {%- endfor %}
+        </ul>
+        <div class="meta footer">
+          {%- if item.top %}
+          <span>
+            {{ _url(item.top.path, '<i class="ic i-flag"></i>'+item.top.name, {itemprop: 'url', title: item.top.name}) }}
+          </span>
+          {%- endif %}
+          <span>
+            <i class="ic i-file"></i>{{ len }}
+          </span>
+        </div>
         {{ _url(item.path, 'more...', {itemprop: 'url', title: itemname, class: 'btn'}) }}
-      </div>
     </div>
   </div>
+</section>
 {% endmacro %}

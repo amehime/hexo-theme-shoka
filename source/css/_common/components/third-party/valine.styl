@@ -1,0 +1,461 @@
+.v {
+  .vsys,
+  .vtime,
+  .status-bar {
+    color: var(--grey-5)
+  }
+
+  .text-right {
+    text-align: right
+  }
+
+  .text-center {
+    text-align: center
+  }
+
+  .pd5 {
+    padding: .3125rem
+  }
+
+  .pd10 {
+    padding: .625rem
+  }
+
+  img {
+    max-width: 100%;
+    border: none
+  }
+
+  hr {
+    margin: .825em 0;
+  }
+
+  &.hide-avatar .vimg {
+    display: none
+  }
+
+  a {
+    position: relative;
+    cursor: pointer;
+    color: var(--color-aqua);
+    text-decoration: none;
+    display: inline-block
+  }
+
+  a:hover {
+    color: var(--primary-color)
+  }
+
+  pre {
+    padding: .625rem;
+    overflow: auto;
+    line-height: 1.45
+  }
+
+  pre code {
+    font-size: $font-size-medium;
+    background: transparent;
+  }
+
+  blockquote {
+    padding: 0 0 0 1em;
+    border-left: .25rem solid var(--grey-3);
+  }
+
+  .vinput {
+    border: none;
+    resize: none;
+    outline: none;
+    padding: .625rem .3125rem;
+    max-width: 100%;
+    font-size: $font-size-smallest;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -.125rem
+  }
+
+  .clear {
+    content: "";
+    display: block;
+    clear: both
+  }
+
+  .vicon {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    fill: var(--text-color);
+    vertical-align: middle
+  }
+
+  .vicon+.vicon {
+    margin-left: .625rem
+  }
+
+  .vicon.actived {
+    fill: var(--color-blue);
+  }
+
+  .vrow {
+    padding: .625rem 0;
+
+    .vcol {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: $font-size-small;
+
+      &.vcol-20 {
+        width: 20%
+      }
+
+      &.vcol-30 {
+        width: 30%
+      }
+
+      &.vcol-40 {
+        width: 40%
+      }
+
+      &.vcol-50 {
+        width: 50%
+      }
+
+      &.vcol-60 {
+        width: 60%
+      }
+
+      &.vcol-70 {
+        width: 70%
+      }
+
+      &.vcol-80 {
+        width: 80%
+      }
+
+      &.status-bar {
+        font-size: $font-size-smallest;
+
+        &.warning {
+          color: var(--color-orange);
+        }
+      }
+    }
+  }
+
+  .emoji,
+  .vemoji {
+    max-width: 1.5625rem;
+    vertical-align: middle;
+    margin: 0 .0625rem;
+    display: inline-block
+  }
+
+  .vwrap {
+    shadow-box();
+    margin-bottom: .625rem;
+    overflow: hidden;
+    position: relative;
+    padding: .625rem;
+
+    input {
+      background: transparent
+    }
+
+    .vedit {
+      position: relative;
+      padding-top: .625rem
+    }
+
+    .cancel-reply-btn {
+      position: absolute;
+      right: .3125rem;
+      top: .3125rem;
+      cursor: pointer
+    }
+
+    .vemojis {
+      display: none;
+      font-size: 1.125rem;
+      max-height: 9.0625rem;
+      overflow: auto;
+      padding-bottom: .625rem;
+      box-shadow: 0 0 .0625rem var(--grey-9-a1);
+    }
+
+    .vemojis i {
+      font-style: normal;
+      padding-top: .4375rem;
+      width: 2.25rem;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    .vpreview {
+      padding: .4375rem 1.25rem;
+      shadow-box();
+    }
+
+    .vheader{
+      .vinput {
+        width: 33.33%;
+        border-bottom: .0625rem dashed var(--grey-4);
+
+        &:focus {
+          border-bottom-color: var(--primary-color);
+        }
+      }
+
+      &.item2 .vinput {
+        width: 50%
+      }
+
+      &.item1 .vinput {
+        width: 100%
+      }
+    }
+  }
+
+}
+
+
+.vcount {
+  padding: .3125rem;
+  font-weight: 600;
+  font-size: $font-size-larger;
+}
+
+
+.veditor {
+  width: 100%;
+  min-height: 8.75em;
+  font-size: .875em;
+  background: transparent;
+  resize: vertical;
+  transition: all .25s ease
+}
+
+
+
+.vempty {
+  padding: 1.25em;
+  text-align: center;
+  overflow: auto
+}
+
+.vsys {
+  display: inline-block;
+  padding: .2em .5em;
+  font-size: .75em;
+  border-radius: .2em;
+  margin-right: .3em
+}
+
+
+.vcards {
+  width: 100%
+
+  .vcard {
+    padding-top: 1.25em;
+    position: relative;
+    display: block;
+
+    &::after {
+      content: "";
+      clear: both;
+      display: block
+    }
+
+    .vimg {
+      width: 3.125em;
+      height: 3.125em;
+      float: left;
+      border-radius: 50%;
+      margin-right: .7525em;
+      border: .0625rem solid var(--grey-3);
+      padding: .125em
+    }
+
+    &:hover > .vimg {
+      animation: .8s ease-out 0s 1 normal both running shake;
+    }
+
+    .vhead {
+      line-height: 1.5;
+      margin-top: 0;
+
+      .vnick {
+        position: relative;
+        font-size: $font-size-small;
+        font-weight: 500;
+        margin-right: .875em;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    .vtag {
+      font-size: .75rem;
+      display: inline-block;
+      line-height: 1.25rem;
+      border-radius: .125rem;
+      color: var(--grey-1);
+      padding: 0 .3125rem;
+      position: inherit;
+      &.vmaster {
+          background: var(--color-orange);
+      }
+    }
+
+    .vh {
+      overflow: hidden;
+      padding-bottom: .5em;
+      border-bottom: .0625rem dashed var(--grey-3);
+
+      .vtime {
+        font-size: .75em;
+        margin-right: .875em
+      }
+
+      .vmeta {
+        line-height: 1;
+        position: relative;
+        .vat {
+          font-size: .8125em;
+          color: var(--primary-color);
+          cursor: pointer;
+          float: right;
+          the-transition();
+
+          &:hover {
+            color: var(--color-aqua);
+          }
+        }
+      }
+    }
+
+    &:last-child .vh {
+      border-bottom: none
+    }
+
+    .vcontent {
+      word-wrap: break-word;
+      word-break: break-all;
+      font-size: .875em;
+      line-height: 2;
+      position: relative;
+      margin-bottom: .75em;
+      padding-top: .625em
+
+
+      &.expand {
+        cursor: pointer;
+        max-height: 8em;
+        overflow: hidden
+
+        &::before {
+          display: block;
+          content: "";
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+          bottom: 3.15em;
+          background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), var(--grey-1));
+          z-index: 999
+        }
+
+        &::after {
+          display: block;
+          content: attr(data-expand);
+          text-align: center;
+          position: absolute;
+          width: 100%;
+          height: 3.15em;
+          line-height: 3.15em;
+          left: 0;
+          bottom: 0;
+          z-index: 999;
+          background: var(--grey-1);
+        }
+      }
+    }
+
+
+    .vquote {
+      padding-left: 1em;
+      border-left: .0625rem dashed var(--grey-3);
+      .vimg {
+        width: 2.225em;
+        height: 2.225em
+      }
+    }
+
+  }
+}
+
+.vpage .vmore {
+  margin: 1em 0
+}
+
+
+@media screen and (max-width:51.25rem) {
+  .v .vwrap .vheader.item2 .vinput,
+  .v .vwrap .vheader .vinput {
+    width: 100%
+  }
+
+  .v .vsys {
+    display: none
+  }
+}
+
+@media screen and (max-width:71.25rem) {
+  .v .vcards .vcard .vimg {
+    width: 2.5em;
+    height: 2.5em
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn)
+  }
+}
+
+
+@keyframes pulse {
+  50% {
+    background: #dcdcdc
+  }
+}
+
+.v .vspinner {
+  width: 1.375rem;
+  height: 1.375rem;
+  display: inline-block;
+  border: .375rem double #a0a0a0;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  position: relative;
+  vertical-align: middle;
+  margin: 0 .3125rem
+}
+

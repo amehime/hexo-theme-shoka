@@ -7,9 +7,9 @@
   {%- set menuIcon = '<i class="ic i-' + path[1] | trim + '"></i>' %}
   {%- set menuText = __('menu.' + name) | replace('menu.', '') %}
   {%- if parent %}
-  <li class="item">
+  <li class="item dropdown">
     <a href="javascript:void(0);">{{menuIcon + menuText}}</a>
-    <ul class="sub menu">
+    <ul class="submenu">
   {%- else %}
   <li class="item">
     {{ _url(itemURL, menuIcon + menuText, {rel: 'section'}) }}

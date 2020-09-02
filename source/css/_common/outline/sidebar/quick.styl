@@ -1,0 +1,37 @@
+#quick {
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  width: $sidebar-desktop;
+  margin: 0;
+  padding: 0;
+
+  li {
+    width: 25%;
+    min-height: 1.875rem;
+
+    i {
+      cursor: pointer;
+    }
+
+    a {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  li.percent {
+    display: block;
+    background: var(--primary-color);
+    width: 0rem;
+    min-height: .125rem;
+  }
+}
+
+#sidebar.affix, #sidebar.on {
+  #quick {
+    position: fixed;
+    bottom: .125rem;
+  }
+}
+

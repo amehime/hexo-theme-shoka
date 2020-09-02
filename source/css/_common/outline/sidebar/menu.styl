@@ -1,0 +1,58 @@
+.overview .menu {
+  padding: 1.25rem;
+  margin: 0;
+
+  background-color: transparent;
+
+  .item {
+    border-radius: .9375rem;
+    margin-bottom: .625rem;
+    display: block;
+    color: var(--grey-5);
+    the-transition();
+
+    a {
+      color: inherit;
+      display: block;
+      line-height: 3;
+    }
+
+    .submenu {
+      display: none;
+      padding: 0;
+      @extend .slide-down-in;
+    }
+
+    &:hover {
+      background-color: rgba(0,0,0,.1);
+      color: inherit;
+
+      .submenu {
+        display: block;
+      }
+    }
+
+    .ic {
+      margin-right: .625rem;
+    }
+
+    &.active {
+      @extend $color-btn;
+      &:hover {
+        box-shadow: 0 0 .75rem var(--color-pink);
+        color: var(--grey-0);
+      }
+    }
+
+
+    &.expand {
+      background-color: rgba(0,0,0,.05);
+
+      .submenu {
+        display: block;
+      }
+
+    }
+
+  }
+}

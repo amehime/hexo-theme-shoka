@@ -5,6 +5,44 @@
 const { htmlTag } = require('hexo-util');
 const url = require('url');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
+
+const imageListFile = fs.readFileSync(path.join(__dirname, '../../_images.yml'));
+const imageList = yaml.safeLoad(imageListFile);
+
+const randomServer = function() {
+  return [1,2,3,4][Math.floor(Math.random() * 4)]
+}
+
+const randomBG = function(count = 1) {
+  if(count && count > 1) {
+    var shuffled = imageList.slice(0), i = imageList.length, min = i - count, temp, index;
+    while (i-- > min) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+
+    return shuffled.slice(min).map(function(img) {
+      return 'https://tva'+randomServer()+'.sinaimg.cn/large/'+img
+    });
+  }
+  return 'https://tva'+randomServer()+'.sinaimg.cn/mw690/'+imageList[Math.floor(Math.random() * imageList.length)]
+}
+
+
+hexo.extend.helper.register('hexo_env', function (type) {
+  return this.env[type]
+})
+
+
+hexo.extend.helper.register('theme_env', function (type) {
+  var env = require('../../package.json')
+  return env[type]
+})
 
 hexo.extend.helper.register('_css', function(...urls) {
   const { statics, css } = hexo.theme.config;
@@ -76,6 +114,27 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
 });
 
 
+hexo.extend.helper.register('_cover', function(item, num) {
+  var that = this
+  const { statics, js } = hexo.theme.config;
+
+  var format = function(img) {
+    if (img.startsWith('//') || img.startsWith('http')) {
+      return img
+    } else {
+      return that.url_for(statics + img)
+    }
+  }
+
+  if(item.cover) {
+    return format(item.cover)
+  } else if (item.photos && item.photos.length > 0) {
+    return format(item.photos[0])
+  } else {
+    return randomBG(num || 1);
+  }
+
+})
 
 hexo.extend.helper.register('_md5', function(path) {
   let str = this.url_for(path);

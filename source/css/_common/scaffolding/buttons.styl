@@ -1,0 +1,48 @@
+.button {
+  display: inline-block;
+  cursor: pointer;
+  touch-action: manipulation;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-radius: .3rem;
+  border: .0625rem solid var(--grey-3);
+
+  color: var(--grey-6);
+  font-size: $font-size-small;
+  font-weight: 400;
+  line-height: 1.5;
+
+  background: transparent;
+  margin-bottom: 0;
+  min-height: 1em;
+  padding: .5em 1.25em;
+  user-select: none;
+  outline: none;
+  will-change: auto;
+  the-transition();
+
+  &+.button {
+    margin-left: 1.25em
+  }
+
+  &:active,
+  &:hover {
+    color: var(--grey-0);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  &:disabled {
+    border-color: var(--grey-4);
+    color: var(--grey-4);
+    background-color: var(--grey-2);
+    cursor: not-allowed
+  }
+
+  .ic {
+    text-align: left;
+    width: (18em / 14);
+  }
+}

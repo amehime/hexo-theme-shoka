@@ -1,0 +1,251 @@
+/** Section styling */
+
+.mermaid-main-font {
+  font-family: var(--mermaid-font-family);
+}
+
+.section {
+  stroke: none;
+  opacity: .2;
+}
+
+.section0 {
+  fill: var(--grey-1);
+}
+
+.section2 {
+  fill: var(--grey-1);
+}
+
+.section1,
+.section3 {
+  fill: var(--grey-0);
+  opacity: .2;
+}
+
+.sectionTitle0 {
+  fill: var(--text-color);
+}
+
+.sectionTitle1 {
+  fill: var(--text-color);
+}
+
+.sectionTitle2 {
+  fill: var(--text-color);
+}
+
+.sectionTitle3 {
+  fill: var(--text-color);
+}
+
+.sectionTitle {
+  text-anchor: start;
+  font-size: .6875rem;
+  text-height: .875rem;
+  font-family: var(--mermaid-font-family);
+}
+
+
+/* Grid and axis */
+
+.grid .tick {
+  stroke: var(--text-color);
+  opacity: .8;
+  shape-rendering: crispEdges;
+  text {
+    font-family: var(--mermaid-font-family);
+  }
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+
+/* Today line */
+
+.today {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: .125rem;
+}
+
+
+/* Task styling */
+
+/* Default task */
+
+.task {
+  stroke-width: 2;
+}
+
+.taskText {
+  text-anchor: middle;
+  font-family: var(--mermaid-font-family);
+}
+
+.taskText:not([font-size]) {
+  font-size: .6875rem;
+}
+
+.taskTextOutsideRight {
+  fill: var(--text-color);
+  text-anchor: start;
+  font-size: .6875rem;
+  font-family: var(--mermaid-font-family);
+
+}
+
+.taskTextOutsideLeft {
+  fill: var(--text-color);
+  text-anchor: end;
+  font-size: .6875rem;
+}
+
+/* Special case clickable */
+.task.clickable {
+  cursor: pointer;
+}
+.taskText.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold;
+}
+
+.taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold;
+}
+
+.taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold;
+}
+
+/* Specific task settings for the sections*/
+
+.taskText0,
+.taskText1,
+.taskText2,
+.taskText3 {
+  fill: var(--grey-1);
+}
+
+.task0,
+.task1,
+.task2,
+.task3 {
+  fill: var(--text-color);
+  stroke: var(--text-color);
+}
+
+.taskTextOutside0,
+.taskTextOutside2
+{
+  fill: var(--color-blue);
+}
+
+.taskTextOutside1,
+.taskTextOutside3 {
+  fill: var(--color-purple);
+}
+
+
+/* Active task */
+
+.active0,
+.active1,
+.active2,
+.active3 {
+  fill: var(--grey-1);
+  stroke: var(--text-color);
+}
+
+.activeText0,
+.activeText1,
+.activeText2,
+.activeText3 {
+  fill: var(--text-color) !important;
+}
+
+
+/* Completed task */
+
+.done0,
+.done1,
+.done2,
+.done3 {
+  stroke: var(--color-green);
+  fill: var(--grey-1);
+  stroke-width: 2;
+}
+
+.doneText0,
+.doneText1,
+.doneText2,
+.doneText3 {
+  fill: var(--text-color) !important;
+}
+
+
+/* Tasks on the critical line */
+
+.crit0,
+.crit1,
+.crit2,
+.crit3 {
+  stroke: var(--primary-color);
+  fill: var(--primary-color);
+  stroke-width: 2;
+}
+
+.activeCrit0,
+.activeCrit1,
+.activeCrit2,
+.activeCrit3 {
+  stroke: var(--primary-color);
+  fill: var(--grey-1);
+  stroke-width: 2;
+}
+
+.doneCrit0,
+.doneCrit1,
+.doneCrit2,
+.doneCrit3 {
+  stroke: var(--text-color);
+  fill: var(--text-color);
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+
+.milestone {
+  transform: rotate(45deg) scale(.8,.8);
+}
+
+.milestoneText {
+  font-style: italic;
+}
+.doneCritText0,
+.doneCritText1,
+.doneCritText2,
+.doneCritText3 {
+  fill: var(--color-green) !important;
+}
+
+.activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: var(--text-color) !important;
+}
+
+.titleText {
+  text-anchor: middle;
+  font-size: 1.125rem;
+  fill: var(--text-color);
+  font-family: var(--mermaid-font-family);
+}

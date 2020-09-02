@@ -10,6 +10,9 @@ title:
   tag: Tag
   all: All
   not_found: Σ( ° △ °|||)︴404!
+  category_in: Posted in category "%s"
+  tag_in: Posted with tag "%s"
+  archive_in: Posted on "%s"
 
 menu:
   home: Home

@@ -1,0 +1,47 @@
+.contents {
+  ol {
+
+    padding: 0 .125rem .3125rem .625rem;
+    text-align: left;
+
+    >ol {
+      padding-left: 0;
+    }
+  }
+
+  .toc-item {
+    font-size: $font-size-medium;
+    line-height: 1.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .toc-child {
+    display: none;
+  }
+
+  .active>.toc-child {
+    display: block;
+  }
+
+  .current>.toc-child {
+    display: block;
+
+    >.toc-item {
+      display: block;
+    }
+  }
+
+  .active>a {
+    color: var(--primary-color);
+  }
+
+  .current>a {
+    color: var(--primary-color);
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}

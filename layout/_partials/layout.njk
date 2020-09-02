@@ -7,7 +7,7 @@
   <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="loading">
+  <div id="loading">
     <div class="cat">
       <div class="body"></div>
       <div class="body"></div>
@@ -15,31 +15,62 @@
       <div class="head"></div>
     </div>
   </div>
-
-  <div class="container">
-    <header itemscope itemtype="http://schema.org/WPHeader">
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="inner">
-        {% block header %}{{ partial('_partials/header.njk', {}, {cache: true}) }}{% endblock %}
+        <div id="brand">
+          <div class="pjax">
+          {% block header %}
+            <a href="{{ config.root }}" class="logo" rel="start">
+              {%- if alternate %}<p class="artboard">{{ alternate }}</p>{%- endif %}
+              <h1 itemprop="name headline" class="title">{{ title }}</h1>
+            </a>
+            {%- if subtitle %}
+            <p class="meta" itemprop="description">= {{ subtitle }} =</p>
+            {%- endif %}
+          {% endblock %}
+          </div>
+        </div>
+        {{ partial('_partials/header.njk', {}, {cache: true}) }}
       </div>
-      <ul class="lozad">
-      {%- for image in theme.header_bg %}
-        <li data-background-image="{{ url_for(theme.statics + theme.images +'/banner/'+ image) }}"></li>
-      {%- endfor %}
-      </ul>
+      <div id="imgs" class="pjax">
+      {%- set covers = _cover(page, 6) %}
+      {%- if covers.length > 1 %}
+        <ul>
+          {%- for image in covers %}
+          <li class="item" data-background-image="{{ image }}"></li>
+          {%- endfor %}
+        </ul>
+      {%- else %}
+          <img src="{{ covers }}">
+      {%- endif %}
+      </div>
     </header>
-    <main>
+    <div id="waves">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main id="main">
       <div class="inner">
-        <div class="content pjax">
+        <div id="content" class="pjax">
           {% block content %}{% endblock %}
         </div>
-        <div class="sidebar">
+        <div id="sidebar">
           {% block sidebar %}{{ sidebar.render() }}{% endblock %}
         </div>
         <div class="dimmer"></div>
       </div>
     </main>
-
-    <footer>
+    <footer id="footer">
       <div class="inner">
         {{ partial('_partials/footer.njk', {}, {cache: true}) }}
       </div>

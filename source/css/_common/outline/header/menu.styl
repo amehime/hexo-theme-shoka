@@ -1,0 +1,112 @@
+// Menu
+// --------------------------------------------------
+#nav .menu {
+  padding: .625rem 0;
+  margin: 0;
+  width: 100%;
+
+  .item {
+    display: inline-block;
+    position: relative;
+
+    padding: 0 .625rem;
+    letter-spacing: .0625rem;
+
+    +mobile() {
+      display: none;
+    }
+
+    .ic {
+      margin-right: .5rem;
+    }
+
+    a {
+      display: block;
+      font-size: $font-size-medium;
+
+      @extend $hover-underline;
+    }
+
+    &.active:not(.dropdown), &:not(.dropdown):hover {
+      a::before {
+        width: 70%;
+      }
+    }
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    margin-top: .5rem;
+    padding: 0;
+    width: max-content;
+    background-color: var(--grey-9-a5);
+    box-shadow: 0 .3125rem 1.25rem -.25rem var(--grey-9-a1);
+    border-radius: .625rem 0;
+    @extend .slide-up-in;
+
+    &::before {
+      position: absolute;
+      top: -1.25rem;
+      left: 0;
+      width: 100%;
+      height: 2.5rem;
+      content: '';
+    }
+
+    &:hover {
+      display: block;
+    }
+
+    .item {
+      display: block;
+
+      &:first-child{
+        border-radius: .625rem 0 0 0;
+      }
+
+      &:last-child{
+        border-radius: 0 0 .625rem 0
+      }
+
+      a {
+        display: inline-block;
+        padding: .3rem .7rem;
+        width: 100%;
+        text-shadow: none;
+        &::before {
+          content: none;
+        }
+      }
+
+      &:hover a {
+        transform: translateX(.3rem);
+      }
+
+      &:hover, &.active {
+        @extend $color-btn;
+        a {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .item.dropdown {
+    >a::after {
+      content: "";
+      display: inline-block;
+      margin-left: .3em;
+      vertical-align: middle;
+      border-top: .3em solid;
+      border-right: .3em solid transparent;
+      border-bottom: 0;
+      border-left: .3em solid transparent;
+    }
+    &:hover {
+      .submenu {
+        display: block;
+      }
+    }
+  }
+}

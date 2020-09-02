@@ -1,0 +1,71 @@
+#sidebar .tab {
+  position: absolute;
+  display: inline-flex;
+  padding: 1.875rem 0 .625rem;
+  margin: 0;
+  min-height: 1.875rem;
+
+
+  .item {
+    cursor: pointer;
+    display: inline-flex;
+    font-size: $font-size-small;
+    padding: .3125rem .9375rem;
+    color: var(--grey-5);
+
+    border-radius: .625rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, .08);
+
+    the-transition(.2s, ease-out);
+
+    &:nth-child(2) {
+      margin: auto .625rem;
+    }
+
+    span {
+      display: none;
+      word-break: keep-all;
+    }
+
+    &.active span {
+      display: inherit;
+    }
+
+    &:hover,
+    &.active {
+      @extend $color-btn;
+    }
+
+
+    &.active:hover {
+      box-shadow: 0rem 0rem .75rem var(--color-pink);
+    }
+
+    &::before {
+      font-family-icons();
+    }
+
+    &.contents::before {
+      @extend .i-list-ol:before;
+    }
+
+    &.related::before {
+      @extend .i-sitemap:before;
+    }
+
+    &.overview::before {
+      @extend .i-home:before;
+    }
+
+    &.active::before {
+      margin-right: .3125rem;
+    }
+  }
+
+}
+
+#sidebar.affix .tab {
+  padding-top: .625rem;
+}

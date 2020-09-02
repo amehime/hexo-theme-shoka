@@ -1,0 +1,36 @@
+pre.mermaid, pre.graphviz {
+  background: none;
+  padding: 0;
+}
+
+pre > svg {
+  display: block;
+  margin: 0 auto;
+}
+
+pre.graphviz {
+  white-space: normal;
+  max-width: calc(100% - 3.125rem);
+  svg > g > polygon {
+    fill: var(--grey-1);
+  }
+}
+
+.mermaid {
+  &.graph svg{
+    max-height: 18.75rem;
+  }
+
+  @import 'flowchart';
+  @import 'sequence';
+  @import 'gantt';
+  @import 'class';
+  @import 'git';
+  @import 'pie';
+  @import 'state';
+}
+
+:root {
+  --mermaid-font-family: "trebuchet ms", verdana, arial;
+}
+

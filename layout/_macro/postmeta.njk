@@ -1,0 +1,35 @@
+{% macro render(item, full = false) %}
+<div class="meta">
+  {%- set create_title = __('post.created') + __('symbol.colon') + full_date(item.date) %}
+  <span class="item" title="{{ create_title }}">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    {%- if full %}
+    <span class="text">{{ __('post.posted') }}</span>
+    {%- endif %}
+    <time itemprop="dateCreated datePublished" datetime="{{ moment(item.date).format() }}">{{ date(item.date) }}</time>
+  </span>
+  {%- if theme.post.count %}
+  <span class="item" title="{{ __('symbols_count_time.count') }}">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    {%- if full %}
+    <span class="text">{{ __('symbols_count_time.count') }}</span>
+    {%- endif %}
+    <span>{{ symbolsCount(item) }}</span>
+    <span class="text">{{ __('symbols_count_time.word') }}</span>
+  </span>
+  <span class="item" title="{{ __('symbols_count_time.time') }}">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    {%- if full %}
+    <span class="text">{{ __('symbols_count_time.time') }}</span>
+    {%- endif %}
+    <span>{{ symbolsTime(item, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+  </span>
+  {%- endif %}
+</div>
+{% endmacro %}

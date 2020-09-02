@@ -15,6 +15,7 @@
   --grey-1-a3: alpha(#fdfdfd, .3);
   --grey-9-a1: alpha(#000, .1);
   --grey-9-a5: alpha(#000, .5);
+  --grey-2-a0: alpha(#f7f7f7, 0);
 
   --color-pink-light: #ffe6fa;
   --color-cyan-light: #e3fdf5;
@@ -37,6 +38,7 @@
   --color-pink-light-a7: alpha(#ffe6fa, .7);
 
   --body-bg-shadow: var(--grey-2);
+  --box-bg-shadow: var(--grey-9-a1);
   --text-color: var(--grey-7);
   --header-text-color: var(--grey-0);
   --primary-color: var(--color-red);
@@ -47,7 +49,7 @@
   &:root {
     --grey-0: #222;
     --grey-1: #21252b;
-    --grey-2: #333;
+    --grey-2: #363636;
     --grey-3: #444;
     --grey-4: #666;
     --grey-5: #aaa;
@@ -61,6 +63,7 @@
     --grey-1-a5: alpha(#222, .5);
     --grey-1-a3: alpha(#222, .3);
     --grey-9-a1: alpha(#333, .1);
+    --grey-2-a0: alpha(#363636, 0);
 
     --color-pink-light: shade(#ffe6fa, 80%);
     --color-cyan-light: shade(#e3fdf5, 80%);
@@ -75,12 +78,13 @@
     --color-purple: lighten(#9d5b8b, 50%);
     --color-grey: lighten(#869194, 50%);
 
-    --body-bg-shadow: var(--grey-0);
+    --body-bg-shadow: #000;
+    --box-bg-shadow: #000;
     --text-color: var(--grey-5);
     --header-text-color: var(--grey-9);
   }
 
-  .note, .label {
+  .note, .label, .tags a {
     filter: brightness(.7);
     the-transition();
 

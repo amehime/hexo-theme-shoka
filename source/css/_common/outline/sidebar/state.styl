@@ -1,0 +1,37 @@
+.state {
+  display: flex;
+  justify-content: center;
+  line-height: 1.4;
+  margin-top: .625rem;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+
+
+  .item {
+    padding: 0 .9375rem;
+
+    &:not(:first-child) {
+      border-left: .0625rem solid var(--grey-4);
+    }
+
+    a {
+      border-bottom: none;
+    }
+
+    .count {
+      display: block;
+      font-size: $font-size-larger;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .name {
+      color: inherit;
+      font-size: $font-size-small;
+    }
+  }
+
+
+
+}

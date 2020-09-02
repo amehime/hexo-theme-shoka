@@ -4,14 +4,34 @@
 
 {% block title %}
 {%- if page.type === 'categories' %}
-  {{- __('title.category') }}
+  {{- __('title.all') + __('title.category') }}
 {%- elif page.type === 'tags' %}
-  {{- __('title.tag') }}
+  {{- __('title.all') + __('title.tag') }}
 {%- elif page.type === '404' %}
   {{- __('title.not_found') }}
 {%- else %}
   {{- page.title }}
 {%- endif %} |
+{% endblock %}
+
+{% block header %}
+  <h1 itemprop="name headline">
+    {%- if page.link %}
+      {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+      {%- set postText = page.title or page.link %}
+      {{ _url(page.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'}) }}
+    {%- else %}
+      {%- if page.type === 'categories' %}
+        {{- __('title.all') + __('title.category') }}
+      {%- elif page.type === 'tags' %}
+        {{- __('title.all') + __('title.tag') }}
+      {%- elif page.type === '404' %}
+        {{- __('title.not_found') }}
+      {%- else %}
+        {{- page.title }}
+      {%- endif %}
+    {%- endif %}
+  </h1>
 {% endblock %}
 
 {% block content %}

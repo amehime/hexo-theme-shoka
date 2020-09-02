@@ -1,0 +1,73 @@
+#sidebar {
+  position: static;
+  width: $sidebar-desktop;
+  top: 0;
+  bottom: 0;
+  the-transition();
+
+  +tablet-mobile() {
+    display: none;
+    position: fixed;
+    right: 0;
+    background: var(--grey-1);
+    box-shadow: 0 .375rem .9375rem .3125rem rgba(0, 0, 0, .2);
+    z-index: $zindex-3;
+  }
+
+  &.affix {
+    >.inner {
+      position: fixed;
+      top: 0rem;
+    }
+    .panels {
+      padding-top: 3.625rem;
+    }
+  }
+
+  >.inner {
+    position: relative;
+    width: $sidebar-desktop;
+    color: var(--grey-6);
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    z-index: $zindex-1;
+  }
+}
+
+.panels {
+  padding: 4.6875rem .9375rem 2rem;
+  width: 100%;
+  overflow: hidden;
+
+  .inner {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: auto;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .panel {
+    display: none;
+    padding-top: 1.25rem;
+  }
+}
+
+
+@import 'dimmer';
+@import 'author';
+@import 'menu';
+@import 'social';
+
+@import 'quick';
+@import 'tab';
+
+@import 'toc';
+@import 'related';
+@import 'state';

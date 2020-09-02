@@ -9,13 +9,25 @@
 {{ __('title.archive') }} |
 {% endblock %}
 
+{% block header %}
+  <h1 itemprop="name headline">
+    {%- if is_month() %}
+      {{  _p('title.archive_in', page.year + __('symbol.year') + page.month + __('symbol.month')) }}
+    {%- elif is_year() %}
+      {{  _p('title.archive_in', page.year + __('symbol.year')) }}
+    {%- else %}
+      {{- __('title.archive') }}
+    {%- endif %}
+  </h1>
+{% endblock %}
+
 {% block content %}
   <div class="collapse wrap">
     <h2 class="item header">
         {%- if is_month() %}
-          <a href="{{ url_for(config.archive_dir + '/' + page.year )}}">{{page.year}} {{__('symbol.year')}}</a> <small>/</small> {{page.month}} {{__('symbol.month')}}<small>{{ __('title.archive') }}</small>
+          <a href="{{ url_for(config.archive_dir) }}">{{ __('title.all') }}</a> <small>/</small> <a href="{{ url_for(config.archive_dir + '/' + page.year )}}">{{page.year}} {{__('symbol.year')}}</a> <small>/</small> {{page.month}} {{__('symbol.month')}}<small>{{ __('title.archive') }}</small>
         {% elif is_year() %}
-          <a href="{{ url_for(config.archive_dir )}}">{{page.year}} {{__('symbol.year')}}</a> <small>{{ __('title.archive') }}</small>
+          <a href="{{ url_for(config.archive_dir) }}">{{ __('title.all') }}</a> <small>/</small> {{page.year}} {{__('symbol.year')}} <small>{{ __('title.archive') }}</small>
         {% else %}
           <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small>
           {%- set posts_length = site.posts.length %}

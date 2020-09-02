@@ -1,0 +1,63 @@
+.nav {
+  display: flex;
+  margin-bottom: 2.5rem;
+
+  +mobile() {
+    flex-direction: column;
+  }
+
+  .item {
+    width: 50%;
+    +mobile() {
+      width: 100%;
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      color: var(--header-text-color);
+      padding: 1.25rem 2.5rem;
+      background-size: cover;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg,#434343,#000);
+        opacity: .5;
+        the-transition();
+        z-index: -1;
+        top: 0;
+        left: 0;
+      }
+
+      &:hover {
+        &::before {
+          opacity: .4;
+        }
+      }
+    }
+
+    span {
+      font-size: $font-size-smaller;
+    }
+
+    &.left {
+      span, h3 {
+        align-self: flex-start;
+      }
+    }
+
+    &.right {
+      span, h3 {
+        align-self: flex-end;
+        text-align: right;
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,154 @@
+.md .note {
+
+  border-radius: .1875rem;
+  margin-bottom: 1.25rem;
+  padding: 1em;
+  position: relative;
+
+  background: var(--note-bg);
+  border: .0625rem solid var(--note-border);
+  color: var(--note-text);
+  font-size: $font-size-small;
+
+  padding-left: 3em;
+
+  p {
+    line-height: 1.8;
+  }
+
+  a {
+    &:not(.btn) {
+      color: var(--note-hover);
+      border-bottom: .0625rem dashed var(--note-border);
+
+      &:hover {
+        color: var(--note-text);
+        border-bottom-color: var(--note-text);
+      }
+    }
+  }
+
+  &::before {
+    font-size: $font-size-largest;
+    left: .4em;
+    position: absolute;
+    top: calc(50% - 1em);
+    font-family-icons();
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: .1875rem;
+    border-bottom: initial;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  p,
+  ul,
+  ol,
+  table,
+  pre,
+  blockquote,
+  img {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    li::before {
+      background: var(--note-text);
+      top: .65rem;
+    }
+  }
+
+  ol {
+    li:before {
+      background: var(--note-text) !important;
+      width: .8rem;
+      height: .8rem;
+      font-size: .45rem;
+      line-height: .8rem;
+      top: .4rem;
+      left: -1.2rem
+    }
+  }
+
+
+  &.default {
+    --note-border: $default-border;
+    --note-bg: $default-bg;
+    --note-text: $default-text;
+    --note-hover: $default-hover;
+
+    &::before {
+      @extend .i-arrow-circle-right:before;
+    }
+  }
+
+  &.primary {
+    --note-border: $primary-border;
+    --note-bg: $primary-bg;
+    --note-text: $primary-text;
+    --note-hover: $primary-hover;
+
+    &::before {
+      @extend .i-plus-circle:before;
+    }
+  }
+
+  &.info {
+    --note-border: $info-border;
+    --note-bg: $info-bg;
+    --note-text: $info-text;
+    --note-hover: $info-hover;
+
+    &::before {
+      @extend .i-info-circle:before;
+    }
+  }
+
+  &.success {
+    --note-border: $success-border;
+    --note-bg: $success-bg;
+    --note-text: $success-text;
+    --note-hover: $success-hover;
+
+    &::before {
+      @extend .i-check-circle:before;
+    }
+
+  }
+
+  &.warning {
+    --note-border: $warning-border;
+    --note-bg: $warning-bg;
+    --note-text: $warning-text;
+    --note-hover: $warning-hover;
+
+    &::before {
+      @extend .i-exclamation-circle:before;
+    }
+
+  }
+
+  &.danger {
+    --note-border: $danger-border;
+    --note-bg: $danger-bg;
+    --note-text: $danger-text;
+    --note-hover: $danger-hover;
+
+    &::before {
+      @extend .i-minus-circle:before;
+    }
+
+  }
+}

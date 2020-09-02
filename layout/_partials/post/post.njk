@@ -4,75 +4,13 @@
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="{{ url_for(theme.statics + theme.images +'/avatar.jpg') }}">
     <meta itemprop="name" content="{{ author }}">
-    <meta itemprop="description" content="{{ subtitle }}{{ description }}">
+    <meta itemprop="description" content="{{ subtitle }}, {{ description }}">
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="{{ title }}">
   </span>
 
-
-  {%- if post.header !== false %}
-    <header>
-
-      <h1 class="title{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="name headline">
-        {# Link posts #}
-        {%- if post.link %}
-          {%- if post.sticky > 0 %}
-            <span class="sticky" title="{{ __('post.sticky') }}">
-              <i class="ic i-thumbtack"></i>
-            </span>
-          {%- endif %}
-          {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
-          {%- set postText = post.title or post.link %}
-          {{ _url(post.link, postText + postTitleIcon, {class: 'link external', itemprop: 'url'}) }}
-        {%- else %}
-          {{- post.title }}
-        {%- endif %}
-      </h1>
-      {%- if is_post() %}
-      <div class="meta">
-        {%- set create_title = __('post.created') + __('symbol.colon') + full_date(post.date) %}
-        <span class="item" title="{{ create_title }}">
-          <span class="icon">
-            <i class="ic i-calendar"></i>
-          </span>
-          <span class="text">{{ __('post.posted') }}</span>
-          <time itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date) }}</time>
-        </span>
-        {%- if theme.post.count %}
-        <span class="item" title="{{ __('symbols_count_time.count') }}">
-          <span class="icon">
-            <i class="ic i-file-word"></i>
-          </span>
-          <span class="text">{{ __('symbols_count_time.count') }}</span>
-          <span>{{ symbolsCount(post) }}</span>
-          <span class="text">{{ __('symbols_count_time.word') }}</span>
-        </span>
-
-        <span class="item" title="{{ __('symbols_count_time.time') }}">
-          <span class="icon">
-            <i class="ic i-clock"></i>
-          </span>
-          <span class="text">{{ __('symbols_count_time.time') }}</span>
-          <span> &asymp; {{ symbolsTime(post, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
-        </span>
-        {%- endif %}
-      </div>
-      {%- endif %}
-      {%- if post.tags and post.tags.length %}
-        <div class="tags">
-          {%- for tag in post.tags.toArray() %}
-            <a href="{{ url_for(tag.path) }}" rel="tag"><i class="ic i-tag"></i> {{ tag.name }}</a>
-          {%- endfor %}
-        </div>
-      {%- endif %}
-    </header>
-  {%- endif %}
-
-  {#################}
-  {### POST BODY ###}
-  {#################}
   <div class="body md{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="articleBody">
     {# Gallery support #}
     {%- if post.photos and post.photos.length %}
@@ -84,11 +22,15 @@
     {%- endif %}
 
     {{ post.content }}
-  </div>
 
-  {#####################}
-  {### END POST BODY ###}
-  {#####################}
+    {%- if post.tags and post.tags.length %}
+      <div class="tags">
+        {%- for tag in post.tags.toArray() %}
+          <a href="{{ url_for(tag.path) }}" rel="tag"><i class="ic i-tag"></i> {{ tag.name }}</a>
+        {%- endfor %}
+      </div>
+    {%- endif %}
+  </div>
 
    <footer>
 

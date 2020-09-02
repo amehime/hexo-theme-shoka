@@ -10,6 +10,9 @@ title:
   tag: 标签
   all: 全部
   not_found: Σ( ° △ °|||)︴404！何も見えない
+  category_in: 分类于"%s"的文章
+  tag_in: 包含标签"%s"的文章
+  archive_in: 发表于"%s"的文章
 
 menu:
   home: 首页
@@ -27,6 +30,11 @@ sidebar:
   overview: 站点概览
   toc: 文章目录
   related: 系列文章
+
+index:
+  sticky: 置顶文章
+  category: 精选分类
+  posts: 文章列表
 
 post:
   posted: 发表于
@@ -55,8 +63,8 @@ footer:
 
 counter:
   index:
-    post: "共 %d 篇文章"
-    category:  "共 %d 个子项"
+    post: "%d 篇文章"
+    category:  "%d 个子项"
   tag_cloud:
     zero: 暂无标签
     one: 目前共计 1 个标签

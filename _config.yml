@@ -7,28 +7,6 @@ assets: assets
 css: css
 js: js
 images: images
-#! ---------------------------------------------------------------
-#! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
-#! UNLESS YOU KNOW WHAT YOU ARE DOING
-#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
-#! ---------------------------------------------------------------
-vendors:
-  css:
-    katex: npm/katex@0/dist/katex.min.css
-    comment: css/comment.css
-  js:
-    pace: npm/pace-js@1.0.2/pace.min.js
-    pjax: npm/pjax@0.2.8/pjax.min.js
-    velocity: npm/velocity-animate@1.5.2/velocity.min.js
-    velocity_ui: npm/velocity-animate@1.5.2/velocity.ui.min.js
-    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
-    lazyload: npm/lozad@1/dist/lozad.min.js
-    quicklink: npm/quicklink@2/dist/quicklink.umd.js
-    mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
-    valine: js/valine.js
-    copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
-    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
 
 # themes/shoka/source/images/***
 favicon:
@@ -53,7 +31,7 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family:
+    family: Mulish
     size:
 
   # Font settings for alternate title.
@@ -66,7 +44,7 @@ font:
   title:
     external: true
     family: Noto Serif JP
-    size: 2
+    size: 2.5
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
@@ -95,14 +73,6 @@ menu:
   # friends: /friends/ || heart
   # links: /links/ || magic
 
-# themes/shoka/source/images/banner/***
-header_bg:
-  - 1.jpg
-  - 2.jpg
-  - 3.jpg
-  - 4.jpg
-  - 5.jpg
-  - 6.jpg
 
 # Social Links
 # Usage: `Key: permalink || icon || color`
@@ -180,8 +150,7 @@ reward:
 
 # bgm
 audio:
-  - 563563649 || 花の戦士 - 樱花大战~炽热之血
-  - 430208037 || 偽りの空の先にあるもの - KOKIA
+  - https://music.163.com/#/my/m/music/playlist?id=2031842656
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
@@ -213,7 +182,7 @@ valine:
     - nick
     - mail
   enableQQ: true
-  masters: ['master@email.com', 'master2@email.com']
+  masters: ['hash of master@email.com', 'hash of master2@email.com']
   masterTag: 主人
   tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
 
@@ -258,3 +227,28 @@ baidu_site_verification:
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
 baidu_push: false
+
+
+#! ---------------------------------------------------------------
+#! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
+#! UNLESS YOU KNOW WHAT YOU ARE DOING
+#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
+#! ---------------------------------------------------------------
+vendors:
+  css:
+    katex: npm/katex@0/dist/katex.min.css
+    comment: css/comment.css
+  js:
+    pace: npm/pace-js@1.0.2/pace.min.js
+    pjax: npm/pjax@0.2.8/pjax.min.js
+    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js
+    velocity: npm/velocity-animate@1.5.2/velocity.min.js
+    velocity_ui: npm/velocity-animate@1.5.2/velocity.ui.min.js
+    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
+    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
+    lazyload: npm/lozad@1/dist/lozad.min.js
+    quicklink: npm/quicklink@2/dist/quicklink.umd.js
+    mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
+    valine: js/valine.js
+    copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
+    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js

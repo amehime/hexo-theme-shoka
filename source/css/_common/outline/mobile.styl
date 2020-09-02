@@ -1,0 +1,62 @@
+/*
+// < 47.9375rem
++mobile() {
+
+}
+*/
+
++mobile-small() {
+  .post.block {
+    padding: initial !important;
+  }
+
+  .md {
+    // For headers narrow width.
+    h1, h2, h3, h4, h5, h6 {
+      padding-left: 1.25rem;
+    }
+
+    // Rewrite paddings & margins inside tags.
+    .note, .tabs .tab-content .tab-pane {
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0 .3125rem;
+      }
+    }
+
+    // For paragraphs narrow width.
+    > p {
+      margin: 0 0 .625rem 0;
+    }
+
+    // Rewrite paddings & margins inside tags.
+    .note > p, .tabs .tab-content .tab-pane > p {
+      padding: 0 .3125rem;
+    }
+
+    img, video {
+      margin-bottom: .625rem !important;
+    }
+
+    .note {
+      margin-bottom: .625rem !important;
+      padding: .625rem !important;
+      padding-left: 2.1875rem !important;
+    }
+
+    .tabs .tab-content .tab-pane {
+      padding: .625rem .625rem 0 .625rem !important;
+    }
+  }
+
+  .post .eof {
+    margin: 2.5rem auto 1.25rem !important;
+  }
+
+}
+
+/*
+// < 25.8125rem
++mobile-smallest() {
+
+}
+*/

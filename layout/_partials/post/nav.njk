@@ -1,18 +1,25 @@
+{% macro navpost(item, type) %}
+  {%- set postText = item.title or item.link or __('post.untitled') %}
+  {%- set lastcat = item.categories.last() %}
+
+  {%- set itemlink %}
+  <span class="type">{{__('post.' + type)}}</span>
+  <span class="category"><i class="ic i-flag"></i> {{lastcat.name}}</span>
+  <h3>{{ postText }}</h3>
+  {% endset %}
+
+  {{ _url(item.path, itemlink, {itemprop: 'url', rel: type, 'data-background-image': _cover(item), title: postText}) }}
+{% endmacro %}
+
 <div class="nav">
-  <div class="inner">
-    <div class="item">
+    <div class="item left">
       {%- if post.next %}
-      <a href="{{ url_for(post.next.path) }}" rel="prev">
-        <i class="ic i-chevron-left"></i> {{__('post.prev')}}
-      </a>
+      {{navpost(post.next, 'prev')}}
       {%- endif %}
     </div>
-    <div class="item">
+    <div class="item right">
       {%- if post.prev %}
-      <a href="{{ url_for(post.prev.path) }}" rel="next">
-        {{__('post.next')}} <i class="ic i-chevron-right"></i>
-      </a>
+      {{navpost(post.prev, 'next')}}
       {%- endif %}
     </div>
-  </div>
 </div>

@@ -1,23 +1,43 @@
 {% extends '_partials/layout.njk' %}
 {% import '_macro/card.njk' as card with context %}
+{% import '_macro/postmeta.njk' as postmeta with context %}
+{% import '_macro/segment.njk' as segment with context %}
 
 {% block content %}
   <div class="index wrap">
-  {%- if theme.index.mode == 'category' %}
-    {%- set categories = _categories() %}
-    {%- if categories %}
-      {%- for id,cat in categories %}
-        {{ card.render(cat, theme.index.mode) }}
-      {%- endfor %}
+    {%- if page.current == 1 %}
+      {%- if page.sticky.length > 0%}
+      <h2 class="divider">{{ __('index.sticky') }}</h2>
+      {%- set sticky = page.sticky.toArray() %}
+      <div class="segments sticky">
+        {%- for post in sticky %}
+          {{ segment.render(post) }}
+        {%- endfor %}
+      </div>
+      {%- endif %}
+
+      {%- if page.catlist.length > 0%}
+      <h2 class="divider">{{ __('index.category') }}</h2>
+      <div class="cards">
+        {%- for cat in page.catlist %}
+          {{ card.render(cat) }}
+        {%- endfor %}
+      </div>
+      {%- endif %}
     {%- endif %}
-  {%- else %}
+
+    {%- if page.posts.length > 0%}
     {%- set posts = page.posts.toArray() %}
-
+    {%- if page.current == 1 %}
+    <h2 class="divider">{{ __('index.posts') }}</h2>
+    {%- endif %}
+    <div class="segments posts">
       {%- for post in posts %}
-        {{ card.render(post, theme.index.mode) }}
+        {{ segment.render(post) }}
       {%- endfor %}
+    </div>
+    {%- endif %}
 
-  {%- endif %}
   </div>
 
   {% include '_partials/pagination.njk' %}

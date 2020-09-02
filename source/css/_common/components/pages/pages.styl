@@ -1,0 +1,56 @@
+// Page specific styles
+
+@import 'home';
+@import 'collapse';
+@import 'tag-cloud';
+
+.page {
+  .notfound {
+    width: 18.75rem;
+    height: 2.625rem;
+    background: url("../images/404.png") no-repeat center bottom;
+    text-align: center;
+    margin:6.25rem auto;
+  }
+
+  .anchor::before {
+    font-family-icons();
+    color: var(--grey-4);
+    position: absolute;
+    left: -1.5625rem;
+    margin-top: .25em;
+    visibility: visible;
+
+    +mobile-small() {
+      left: -.1875rem;
+    }
+  }
+
+  .body h1 .anchor::before {
+    @extend .i-sakura:before;
+    @extend .rotate;
+    font-size: $font-size-small;
+    margin-top: .15em;
+    color: pink;
+    left: -1.875rem;
+
+    +mobile-small() {
+      left: -.3125rem;
+    }
+  }
+
+  .body h2 .anchor::before {
+    @extend .i-heartbeat:before;
+    @extend .beat;
+    font-size: $font-size-smaller;
+    color: var(--color-pink);
+  }
+
+  .body h3 .anchor::before {
+    @extend .i-star:before;
+    @extend .flash;
+    font-size: $font-size-smallest;
+    color: var(--color-orange);
+  }
+
+}

@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('hexo-fs');
 const pagination = require('hexo-pagination');
 
 hexo.config.index_generator = Object.assign({
@@ -8,31 +9,77 @@ hexo.config.index_generator = Object.assign({
 }, hexo.config.index_generator);
 
 hexo.extend.generator.register('index', function(locals) {
+  let covers = [];
+  let catlist = [];
+  let pages = [];
   const config = this.config;
   const theme = this.theme.config;
-  const posts = locals.posts.sort(config.index_generator.order_by);
+  const sticky = locals.posts.find({'sticky': true}).sort(config.index_generator.order_by);
+  const posts = locals.posts.find({'sticky': {$exists: false}}).sort(config.index_generator.order_by);
   const paginationDir = config.pagination_dir || 'page';
   const path = config.index_generator.path || '';
-
   const categories = locals.categories;
 
-  if (theme.index.mode == 'category' && categories && categories.length) {
-    return {
-      path,
-      layout: ['index', 'archive'],
-      data: {
-        __index: true
-      }
-    };
+  var getTopcat = function(cat) {
+    if (cat.parent) {
+      var pCat = categories.findOne({'_id': cat.parent})
+      return getTopcat(pCat);
+    } else {
+      return cat
+    }
   }
 
-  return pagination(path, posts, {
-    perPage: config.index_generator.per_page,
-    layout: ['index', 'archive'],
-    format: paginationDir + '/%d/',
-    data: {
-      __index: true
-    }
-  });
+  if (categories && categories.length) {
+    categories.forEach((cat) => {
+      let cover = 'source/_posts/' + cat.slug + '/cover.jpg'
+
+      if (fs.existsSync(cover)) {
+        covers.push({
+          path: cat.slug + '/cover.jpg',
+          data: function () {
+            return fs.createReadStream(cover)
+          }
+        });
+
+        let topcat = getTopcat(cat)
+
+        if (topcat._id != cat._id) {
+          cat.top = topcat;
+        }
+
+        let child = categories.find({'parent': cat._id});
+        if (child.length != 0) {
+          cat.child = child;
+        }
+
+        catlist.push(cat)
+      }
+    });
+  }
+
+  if(posts.length > 0) {
+    pages = pagination(path, posts, {
+      perPage: config.index_generator.per_page,
+      layout: ['index', 'archive'],
+      format: paginationDir + '/%d/',
+      data: {
+        __index: true,
+        catlist: catlist,
+        sticky: sticky
+      }
+    });
+  } else {
+    pages = [{
+        path,
+        layout: ['index', 'archive'],
+        data: {
+          __index: true,
+          catlist: catlist,
+          sticky: sticky
+        }
+      }];
+  }
+
+  return [...covers, ...pages];
 
 });
