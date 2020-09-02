@@ -187,8 +187,8 @@ const postBeauty = function () {
     element.child('figcaption').addEventListener('click', fullscreenHandle);
 
 
-    if(code_container && code_container.height() > 18.75) {
-      code_container.style.maxHeight = "18.75rem";
+    if(code_container && code_container.height() > 300) {
+      code_container.style.maxHeight = "300px";
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>');
       var showBtn = code_container.child('.show-btn');
       var showBtnIcon = showBtn.child('i');
@@ -199,7 +199,7 @@ const postBeauty = function () {
       }
 
       var hideCode = function() {
-        code_container.style.maxHeight = "18.75rem"
+        code_container.style.maxHeight = "300px"
         showBtn.removeClass('open')
       }
 
