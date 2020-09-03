@@ -93,6 +93,8 @@ const registerExtURL = function() {
 
 
 const postBeauty = function () {
+  loadComments();
+
   if(!$('.md'))
     return
 
@@ -313,8 +315,6 @@ const postBeauty = function () {
 
     box.appendChild(element);
   });
-
-  loadComments();
 }
 
 const loadComments = function () {
