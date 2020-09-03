@@ -23,7 +23,7 @@
       z-index: $zindex-1;
       the-transition();
       box-sizing: unset;
-      top: 1.4em;
+      top: 1.9rem;
       left: 0;
       width: .6rem;
       height: .6rem;
@@ -35,15 +35,10 @@
     &:not(:last-child):not(.title)::after {
       content: "";
       position: absolute;
-      top: 1.8em;
-      bottom: -1.8em;
+      top: 1.9rem;
+      bottom: -1.9rem;
       left: .35rem;
       border-left: .2rem solid var(--color-red-a3);
-    }
-
-    &.header:not(:last-child)::after, &.section:not(:last-child)::after {
-      top: 1.4em;
-      bottom: -1.4em;
     }
 
     &:hover::before {
@@ -83,6 +78,7 @@
   .item.normal {
 
     &::before {
+      top: 1.4rem;
       width: .2rem;
       height: .2rem;
       margin-left: .2rem;
@@ -111,7 +107,6 @@
 
     .title {
       display: inline;
-
 
       a {
         color: var(--primary-color);

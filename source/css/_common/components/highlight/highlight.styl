@@ -33,10 +33,10 @@ code,
 // 代码样式
 :not(pre)>code {
   color: var(--primary-color);
-  border-radius: .3em;
+  border-radius: .3rem;
   border: .0625rem solid rgba(0, 0, 0, .1);
   background-color: var(--grey-0);
-  padding: .2em .3em;
+  padding: .2rem .3rem;
   word-wrap();
 }
 
@@ -69,7 +69,7 @@ code,
     display: inline-flex;
     font-size: $font-size-small;
     font-weight: 700;
-    padding: 0 6em;
+    padding: 0 6rem;
     min-height: 2.5rem;
     width: 100%;
     text-align: center;
@@ -151,10 +151,15 @@ code,
   }
 
   td {
+    position: relative;
     padding: unset;
     vertical-align: unset;
     border: unset;
     the-transition();
+  }
+
+  td:first-child {
+    background: var(--grey-2);
   }
 
   td:last-child {
@@ -172,7 +177,7 @@ code,
     height: 100%;
     overflow-x: visible !important;
     color: var(--color-grey);
-    background: var(--grey-2);
+    z-index: 1;
   }
 
 
@@ -192,18 +197,32 @@ code,
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 1.875rem;
+    height: 2.875rem;
     text-align: center;
     color: var(--text-color);
     background-image: linear-gradient(to bottom, var(--grey-2-a0) 0, var(--grey-2) 80%);
 
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1rem;
+      background: var(--grey-2);
+    }
+
     .ic {
+      margin-top: 1rem;
       @extend .up-down;
     }
 
     &.open {
       background: none;
       bottom: .5rem;
+
+      &::after {
+        display: none;
+      }
+
       .ic {
         @extend .down-up;
       }

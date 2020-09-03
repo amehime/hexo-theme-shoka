@@ -1,33 +1,35 @@
 const cardActive = function() {
-  if($('.index.wrap')) {
-    var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(article) {
-            if (!window.IntersectionObserver) {
-                if( article.target.hasClass("show") === false){
-                    article.target.addClass("show");
-                }
-            } else {
-                if (article.target.hasClass("show")) {
-                    io.unobserve(article.target)
-                } else {
-                    if (article.isIntersecting) {
-                        article.target.addClass("show");
-                        io.unobserve(article.target)
-                    }
-                }
+  if(!$('.index.wrap'))
+    return
+
+  var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(article) {
+        if (!window.IntersectionObserver) {
+          if( article.target.hasClass("show") === false){
+              article.target.addClass("show");
+          }
+        } else {
+          if (article.target.hasClass("show")) {
+            io.unobserve(article.target)
+          } else {
+            if (article.isIntersecting) {
+              article.target.addClass("show");
+              io.unobserve(article.target);
             }
-        })
-    }, {
-        root: null,
-        threshold: [0.44]
-    });
+          }
+        }
+      })
+  }, {
+      root: null,
+      threshold: [0.3]
+  });
 
-    $.each('.index.wrap article.item, .index.wrap section.item', function(article) {
-        io.observe(article)
-    })
-  }
+  $.each('.index.wrap article.item, .index.wrap section.item', function(article) {
+      io.observe(article)
+  })
 
-  var tabs;
+  $('.index.wrap .item:first-child').addClass("show")
+  // var tabs;
 
   $.each('.cards .item', function(element, index) {
     ['mouseenter', 'touchstart'].forEach(function(item){
@@ -70,8 +72,29 @@ const cardActive = function() {
   });
 }
 
+const registerExtURL = function() {
+  $.each('span.exturl', function(element) {
+      var link = document.createElement('a');
+      // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+      link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      link.rel = 'noopener external nofollow noreferrer';
+      link.target = '_blank';
+      link.className = element.className;
+      link.title = element.title || element.innerText;
+      link.innerHTML = element.innerHTML;
+      if(element.dataset.backgroundImage) {
+        link.dataset.backgroundImage = element.dataset.backgroundImage;
+      }
+      element.parentNode.replaceChild(link, element);
+    });
+}
+
 
 const postBeauty = function () {
+  if(!$('.md'))
+    return
 
   $.each('.md img', function(element) {
     var info;
@@ -115,7 +138,6 @@ const postBeauty = function () {
   $.each('figure.highlight', function (element) {
 
     var code_container = element.child('.code-container');
-
 
     element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>');
 
@@ -213,7 +235,6 @@ const postBeauty = function () {
         }
       });
     }
-
   });
 
   $.each('pre.mermaid > svg', function (element) {
@@ -224,7 +245,7 @@ const postBeauty = function () {
     element.addEventListener('click', function (event) {
       event.preventDefault();
       var qr = $('#qr')
-      if(qr.style.display === 'inline-flex') {
+      if(qr.display() === 'inline-flex') {
         Velocity(qr, "fadeOut");
       } else {
         Velocity(qr, "transition.slideUpBigIn", {display: 'inline-flex'});
@@ -296,25 +317,6 @@ const postBeauty = function () {
   loadComments();
 }
 
-const registerExtURL = function() {
-  $.each('span.exturl', function(element) {
-      var link = document.createElement('a');
-      // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-      link.href = decodeURIComponent(atob(element.dataset.url).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      link.rel = 'noopener external nofollow noreferrer';
-      link.target = '_blank';
-      link.className = element.className;
-      link.title = element.title || element.innerText;
-      link.innerHTML = element.innerHTML;
-      if(element.dataset.backgroundImage) {
-        link.dataset.backgroundImage = element.dataset.backgroundImage;
-      }
-      element.parentNode.replaceChild(link, element);
-    });
-}
-
 const loadComments = function () {
   var element = $('#comments');
   if (!element) {
@@ -322,28 +324,25 @@ const loadComments = function () {
     return;
   } else {
     goToComment.display("")
+    vendorJs('valine', function() {
+      var options = CONFIG.valine;
+      options.el = '#comments';
+      options.path = element.attr('data-id');
+
+      new Valine(options);
+    }, window.Valine);
   }
 
-  var intersectionObserver = new IntersectionObserver(function(entries, observer) {
-    vendorJs('valine', function() {
-      var entry = entries[0];
-      vendorCss('valine');
-
-      if (entry.isIntersecting) {
-        var options = CONFIG.valine;
-        options.el = '#comments';
-        options.path = element.attr('data-id');
-
-        new Valine(options);
-
-        Velocity($('#comments'), 'transition.bounceUpIn');
-
-        observer.disconnect();
-      }
-    }, window.Valine);
+  var io = new IntersectionObserver(function(entries, observer) {
+    var entry = entries[0];
+    vendorCss('valine');
+    if (entry.isIntersecting) {
+      Velocity($('#comments'), 'transition.bounceUpIn');
+      observer.disconnect();
+    }
   });
 
-  intersectionObserver.observe(element);
+  io.observe(element);
 }
 
 

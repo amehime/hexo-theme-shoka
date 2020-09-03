@@ -60,7 +60,12 @@ Object.assign(HTMLElement.prototype, {
     }
   },
   display: function(d) {
-    this.style.display = d;
+    if(d) {
+      this.style.display = d;
+    } else {
+      return this.style.display
+    }
+
   },
   child: function(selector) {
     return $(selector, this)
@@ -329,7 +334,7 @@ const mediaPlayer = function(config) {
     },
     scrollLrc: function(currentTime) {
       var that = this
-      if(!this.lrc)
+      if(!this.lrc.data)
         return
 
       if (this.lrc.index > this.lrc.data.length - 1 || currentTime < this.lrc.data[this.lrc.index][0] || (!this.lrc.data[this.lrc.index + 1] || currentTime >= this.lrc.data[this.lrc.index + 1][0])) {
@@ -452,7 +457,7 @@ const mediaPlayer = function(config) {
     preview: function() {
       var preview = t.media.list.child('.preview')
       var current = t.media.playlist[t.media.pointer]
-      preview.innerHTML = '<div class="cover"><div class="disc"><img src="'+current.pic+'" /></div></div>'
+      preview.innerHTML = '<div class="cover"><div class="disc"><img src="'+(current.pic)+'" class="blur" /></div></div>'
       + '<div class="info"><h4 class="title">'+current.title+'</h4><span>'+current.author+'</span><div class="lrc"></div></div>'
 
       var lrc = '';

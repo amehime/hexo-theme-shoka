@@ -15,7 +15,8 @@ const pjaxReload = function () {
     });
   }
 
-  siteContent.innerHTML = loadCat.innerHTML;
+  siteContent.innerHTML = ''
+  siteContent.appendChild(loadCat.lastChild.cloneNode(true));
 }
 
 const siteRefresh = function (reload) {
@@ -37,8 +38,8 @@ const siteRefresh = function (reload) {
   sideBarTab()
   sidebarTOC()
 
-  postBeauty()
   registerExtURL()
+  postBeauty()
 
   toolPlayer.media.load(LOCAL.audio || CONFIG.audio || {});
 
