@@ -34,7 +34,7 @@ hexo.extend.generator.register('script', function(locals){
       timeout : theme.quicklink.timeout,
       priority: theme.quicklink.priority
     },
-    versoin: env['version']
+    version: env['version']
   };
 
   if(config.algolia) {

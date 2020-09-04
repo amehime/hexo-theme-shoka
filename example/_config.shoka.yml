@@ -1,0 +1,121 @@
+alternate: Yume Shoka
+
+# Assets
+statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
+
+# /images/***
+favicon:
+  apple_touch_icon: /apple-touch-icon.png
+  #safari_pinned_tab: /logo.svg
+  #android_manifest: /manifest.json
+  #ms_browserconfig: /browserconfig.xml
+
+open_graph:
+  #twitter_id:
+  #google_plus:
+  #fb_admins:
+  #fb_app_id:
+
+
+menu:
+  home: / || home
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  friends: /friends/ || heart
+
+# Social Links
+# Usage: `Key: permalink || icon || color`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink,
+# secend value is the name of Font icon.
+social:
+  github: https://github.com/amehime || github || "#191717"
+  #google: https://plus.google.com/yourname || google
+  twitter: https://twitter.com/amehime || twitter || "#00aff0"
+  zhihu: https://www.zhihu.com/people/rurismzk || zhihu || "#1e88e5"
+  music: https://music.163.com/#/user/home?id=12886823 || cloud-music || "#e60026"
+  weibo: https://weibo.com/amehime || weibo || "#ea716e"
+  about: https://about.me/amehime || address-card || "#3b5998"
+  #email: mailto:yourname@mail.com || envelope || "#55acd5"
+  #facebook: https://www.facebook.com/yourname || facebook
+  #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
+  #youtube: https://youtube.com/yourname || youtube
+  #instagram: https://instagram.com/yourname || instagram
+  #skype: skype:yourname?call|chat || skype
+
+
+post:
+  count: true
+
+# TagCloud settings for tags page.
+tagcloud:
+  # All values below are same as default, change them by yourself.
+  min: 16 # Minimun font size in px
+  max: 22 # Maxium font size in px
+  start: "#72cecf" # Start color (hex, rgba, hsla or color keywords)
+  end: "#ffbac3" # End color (hex, rgba, hsla or color keywords)
+  amount: 200 # Amount of tags, change it if you have more than 200 tags
+
+footer:
+  # Specify the date when the site was setup. If not defined, current year will be used.
+  since: 2010
+  count: true
+
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/share-your-work/licensing-types-examples
+# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
+creative_commons:
+  license: by-nc-sa
+  language: deed.zh
+
+
+# ---------------------------------------------------------------
+# Third Party Plugins & Services Settings
+# ---------------------------------------------------------------
+
+# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+pangu: true
+
+# Algolia Search
+# For more information: https://www.algolia.com
+search:
+  hits:
+    per_page: 10
+
+# Comments
+# Valine
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
+valine:
+  appId:
+  appKey:
+  placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
+  avatar: mp # Gravatar style
+  pageSize: 10 # Pagination size
+  lang: zh-CN
+  visitor: true # Article reading statistic
+  recordIP: true # Whether to record the commenter IP
+  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
+  requiredFields:
+    - nick
+    - mail
+  enableQQ: true
+  masters: ['deea5a8d259d17182a53be1772e4c182']
+  masterTag: 主人
+  tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
+
+
+# ---------------------------------------------------------------
+# analytics & SEO Settings
+# ---------------------------------------------------------------
+
+
+# Disable Baidu transformation on mobile devices.
+disable_baidu_transformation: true
+
+# Automatically add external URL with Base64 encrypt & decrypt.
+exturl: true

@@ -1,0 +1,177 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Hexo
+subtitle: subtitle
+description: 描述123
+keywords: 关键词1,关键词2 # edit for Theme.shoka
+author: John Doe
+language: zh-CN
+timezone: 'Asia/Shanghai'
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://yoursite.com
+root: /
+permalink: :title/ # edit for Theme.shoka
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: false # edit for Theme.shoka
+  line_number: true
+  auto_detect: true
+  tab_replace: ''
+prismjs:
+  enable: false # edit for Theme.shoka
+
+# Category & Tag
+default_category: uncategorized
+category_map: # edit for Theme.shoka
+  计算机科学: computer-science
+  Java: java
+  二进制杂谈: note
+  零基础学Java语言-浙江大学-翁恺: course-1
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: shoka # edit for Theme.shoka
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type:
+
+
+# edit for Theme.shoka
+autoprefixer:
+  exclude:
+    - '*.min.css'
+
+markdown:
+  render:
+    html: true
+    xhtmlOut: true
+    breaks: true
+    linkify: true
+    typographer:
+    quotes: '“”‘’'
+  plugins:
+    - plugin:
+        name: markdown-it-toc-and-anchor
+        enable: true
+        options:
+          tocClassName: 'toc'
+          anchorClassName: 'anchor'
+    - plugin:
+        name: markdown-it-multimd-table
+        enable: true
+        options:
+          multiline: true
+          rowspan: true
+          headerless: true
+    - plugin:
+        name: ./markdown-it-furigana
+        enable: true
+        options:
+          fallbackParens: "()"
+    - plugin:
+        name: ./markdown-it-spoiler
+        enable: true
+        options:
+          title: "你知道得太多了"
+
+
+minify:
+  html:
+    enable: true
+    stamp: false
+    exclude:
+      - '**/json.ejs'
+      - '**/atom.ejs'
+      - '**/rss.ejs'
+  css:
+    enable: true
+    stamp: false
+    exclude:
+      - '**/*.min.css'
+  js:
+    enable: true
+    stamp: false
+    mangle:
+      toplevel: true
+    output:
+    compress:
+    exclude:
+      - '**/*.min.js'
+
+# algolia:
+#   appId:
+#   apiKey:
+#   adminApiKey:
+#   chunkSize: 5000
+#   indexName:
+#   fields:
+#     - categories
+#     - content:strip:truncate,0,4000
+#     - gallery
+#     - path
+#     - photos
+#     - tags
+#     - title
+
+feed:
+    limit: 20
+    order_by: "-date"
+    tag_dir: false
+    category_dir: false
+    rss:
+        enable: true
+        template: "themes/shoka/layout/_alternate/rss.ejs"
+        output: "rss.xml"
+    atom:
+        enable: true
+        template: "themes/shoka/layout/_alternate/atom.ejs"
+        output: "atom.xml"
+    jsonFeed:
+        enable: true
+        template: "themes/shoka/layout/_alternate/json.ejs"
+        output: "feed.json"
