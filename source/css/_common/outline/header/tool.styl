@@ -9,6 +9,12 @@
   top: 50vh;
   z-index: $zindex-2;
 
+
+  +tablet-mobile() {
+    right: 1rem;
+    left: auto;
+  }
+
   .item {
     display: none;
     width: 1.875rem;
@@ -67,7 +73,11 @@
     position: fixed;
     display: none;
     bottom: 0;
-    right: 3.5rem;
+    if (hexo-config('sidebar.position') == 'left') {
+      right: 3.5rem;
+    } else {
+      left: 3.5rem;
+    }
     width: 50vw;
     z-index: $zindex-2;
     color: var(--text-color);
@@ -232,6 +242,8 @@
       display: flex;
       flex-direction: column;
       margin-left: .625rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
       +mobile() {
         margin-left: 0;
@@ -303,21 +315,6 @@
     }
     bottom: 0;
 
-    +desktop-large() {
-      if (hexo-config('sidebar.position') == 'left') {
-        right: 1rem;
-      } else {
-        left: 1rem;
-      }
-      bottom: 1rem;
-    }
-
-    +tablet-mobile() {
-      right: 0;
-      bottom: 0;
-      left: auto;
-    }
-
     .item {
       display: flex;
       color: var(--primary-color);
@@ -338,9 +335,36 @@
     }
 
     .play-list {
+      if (hexo-config('sidebar.position') == 'left') {
+        right: 2.5rem;
+      } else {
+        left: 2.5rem;
+      }
+
+      +desktop-large() {
+        if (hexo-config('sidebar.position') == 'left') {
+          right: 3.5rem;
+        } else {
+          left: 3.5rem;
+        }
+      }
+
+      +tablet-mobile() {
+        right: 2.5rem;
+        left: auto;
+      }
+
       &.on {
         display: block;
-        @extend .slide-right-in;
+        if (hexo-config('sidebar.position') == 'left') {
+          @extend .slide-right-in;
+        } else {
+          @extend .slide-left-in;
+        }
+
+        +tablet-mobile() {
+          animation: slideRightIn .3s;
+        }
       }
     }
 
@@ -349,6 +373,21 @@
       justify-content: center;
       height: auto;
       padding: .3125rem 0 0;
+    }
+
+    +desktop-large() {
+      if (hexo-config('sidebar.position') == 'left') {
+        right: 1rem;
+      } else {
+        left: 1rem;
+      }
+      bottom: 1rem;
+    }
+
+    +tablet-mobile() {
+      right: 0;
+      bottom: 0;
+      left: auto;
     }
   }
 }
