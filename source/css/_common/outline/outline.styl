@@ -21,7 +21,9 @@
     align-items: flex-start;
     display: flex;
     justify-content: space-between;
-    flex-direction: row-reverse;
+    if (hexo-config('sidebar.position') == 'left') {
+      flex-direction: row-reverse;
+    }
 
     +desktop-large() {
       width: $content-desktop-large;

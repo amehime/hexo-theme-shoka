@@ -1,6 +1,11 @@
 #tool {
   position: fixed;
-  right: 1rem;
+  if (hexo-config('sidebar.position') == 'left') {
+    right: 1rem;
+  } else {
+    left: 1rem;
+  }
+
   top: 50vh;
   z-index: $zindex-2;
 
@@ -288,14 +293,29 @@
   &.affix {
     text-shadow: none;
     top: auto;
-    bottom: 1rem;
     box-shadow: 0 0 .5rem rgba(0,0,0,.1);
     background: var(--grey-1-a3);
     border-radius: .3125rem;
+    if (hexo-config('sidebar.position') == 'left') {
+      right: 0;
+    } else {
+      left: 0;
+    }
+    bottom: 0;
 
-    +mobile() {
+    +desktop-large() {
+      if (hexo-config('sidebar.position') == 'left') {
+        right: 1rem;
+      } else {
+        left: 1rem;
+      }
+      bottom: 1rem;
+    }
+
+    +tablet-mobile() {
       right: 0;
       bottom: 0;
+      left: auto;
     }
 
     .item {

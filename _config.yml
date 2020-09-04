@@ -73,6 +73,10 @@ menu:
   # friends: /friends/ || heart
   # links: /links/ || magic
 
+sidebar:
+  # Sidebar Position.
+  position: left
+  #position: right
 
 # Social Links
 # Usage: `Key: permalink || icon || color`
@@ -93,19 +97,6 @@ social:
   #youtube: https://youtube.com/yourname || youtube
   #instagram: https://instagram.com/yourname || instagram
   #skype: skype:yourname?call|chat || skype
-
-# Display mode of index
-# `post` will only show list of posts
-# `category` will only show list of categories
-# Only categories with defined cover image will be displayed
-# Define cover method:
-# `post` mode: add the front-matter variable `cover: image path`
-# `category` mode: put the cover image in the category corresponding directory, and named it `cover.jpg`
-index:
-  mode: post #or category
-  # default cover for post
-  cover: "linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%)"
-  excerpt_description: true
 
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
@@ -150,7 +141,7 @@ reward:
 
 # bgm
 audio:
-  - https://music.163.com/#/my/m/music/playlist?id=2031842656
+  - https://music.163.com/#/playlist?id=2031842656
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
