@@ -91,8 +91,8 @@ search:
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  appId:
-  appKey:
+  appId: #这里不要忘了改
+  appKey: #这里不要忘了改
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
   avatar: mp # Gravatar style
   pageSize: 10 # Pagination size

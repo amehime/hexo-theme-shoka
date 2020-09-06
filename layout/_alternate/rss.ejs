@@ -12,7 +12,7 @@
         <language><%= config.language %></language>
         <pubDate><%= moment(lastBuildDate).locale('en').format('ddd, DD MMM YYYY HH:mm:ss ZZ') %></pubDate>
         <lastBuildDate><%= moment(lastBuildDate).locale('en').format('ddd, DD MMM YYYY HH:mm:ss ZZ') %></lastBuildDate>
-        <%_ for (item of (config.keywords.split(',') || [])) { _%>
+        <%_ for (item of (config.keywords ? config.keywords.split(',') : [])) { _%>
         <category term="<%= item %>" />
         <%_ } _%>
         <%_ for (const post of posts) { _%>

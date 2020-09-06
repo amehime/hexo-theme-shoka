@@ -196,7 +196,7 @@ const goToCommentHandle = function () {
 }
 
 const menuActive = function () {
-  $.each('.menu .item', function (element) {
+  $.each('.menu .item:not(.title)', function (element) {
     var target = element.child('a[href]');
     if (!target) return;
     var isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '');

@@ -1,95 +1,219 @@
-$cat-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation: rotating 2.79s cubic-bezier(.65, .54, .12, .93) infinite;
-  backface-visibility: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-size: 200%;
-    background-repeat: no-repeat;
-    background-image: url("../images/cat.png");
-    background-color: var(--grey-1);
-    backface-visibility: hidden;
-  }
-}
-
 #loading {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: $zindex-5;
-  transform: translateZ(.125rem);
+  @extend $fix-fullscreen;
   background-color: var(--grey-1);
 }
 
-.cat {
-  position: relative;
-  width: 100%;
-  max-width: 10rem;
-  margin: auto;
-  overflow: hidden;
+$bgColor = var(--grey-1)
+$bodyColor = rgb(237, 166, 93)
+$tailColor = rgb(198, 130, 59)
+$tummyColor = rgb(242, 192, 137)
+$borderColor = rgb(56, 60, 75)
+$innerR = 8.125em
+$middleR = 12.8125em
+$outterR = 15em
+$tummyWidth = 1.5em
+$borderWidth = .375em
+$polygon-start = polygon(50% 50%, 0% 50%, 0% 100%, 100% 100%, 100% 20%)
+$polygon-a = polygon(50% 50%, 30% 120%, 50% 100%, 100% 100%, 100% 20%)
+$polygon-b = polygon(50% 50%, 100% 90%, 120% 90%, 100% 100%, 100% 20%)
+$polygon-middle = polygon(50% 50%, 100% 45%, 120% 45%, 120% 50%, 100% 20%)
+$polygon-c = polygon(50% 50%, 100% 65%, 120% 65%, 120% 50%, 100% 20%)
+$polygon-d = polygon(50% 50%, 75% 130%, 120% 65%, 120% 50%, 100% 20%)
+$polygon-e = polygon(50% 50%, -20% 110%, 50% 120%, 100% 100%, 100% 20%)
 
-  &::before {
-    content: '';
-    display: block;
-    padding-bottom: 100%;
-  }
+center-center()
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  margin: auto
+tummy-style()
+  width: $tummyWidth
+  height: $tummyWidth
+  position: absolute
+  border-radius: 50%
+  background-color: $tummyColor
+body-color()
+  background-image: radial-gradient(transparent 0%, transparent 35%, $borderColor 35%, $borderColor 39%, $bodyColor 39%, $bodyColor 46%, $tummyColor 46%, $tummyColor 60%, $bodyColor 60%, $bodyColor 67%, $borderColor 67%, $borderColor 100%)
+head-foot-color()
+  background-image: radial-gradient(transparent 0%, transparent 35%, $borderColor 35%, $borderColor 39%, $bodyColor 39%, $bodyColor 67%, $borderColor 67%, $borderColor 100%)
 
-  &:hover>* {
+.cat
+  position: relative
+  display: block
+  width: $outterR
+  height: 100%
+  font-size: 10px
+  margin: auto
+
+  *
+    box-sizing: content-box;
+
+  .head, .foot, .body, .paw
+    center-center()
+    border-radius: 50%
+    width: $outterR
+    height: $outterR
+  .body
+    body-color()
+  .head:before, .foot:before
+    head-foot-color()
+  .head
+    &:before
+      content: ''
+      width: 100%
+      height: 100%
+      position: absolute
+      border-radius: 50%
+      clip-path: polygon(100% 20%, 50% 50%, 70% -10%)
+      -webkit-clip-path: polygon(100% 20%, 50% 50%, 70% -10%)
+    &:after
+      content: ''
+      width: 4.125em
+      height: 2.5em
+      position: absolute
+      top: 0.8125em
+      right: 3.9375em
+      background-image: linear-gradient($bgColor 65%, transparent 65%), radial-gradient($bgColor 51%, $borderColor 55%, $borderColor 68%, transparent 70%)
+      transform: rotate(-66deg)
+    .face
+      width: 5em
+      height: 3.75em
+      left: 9.0625em
+      top: 1.8125em
+      position: absolute
+      transform: rotate(-47deg)
+      background: radial-gradient(circle, $tummyColor 0%, $tummyColor 23%, transparent 23%) -0.1875em 1.0625em no-repeat, radial-gradient(circle, $borderColor 0%, $borderColor 6%, transparent 6%) 0.75em -0.75em no-repeat, radial-gradient(circle, $borderColor 0%, $borderColor 6%, transparent 6%) -0.75em -0.75em no-repeat, radial-gradient($bodyColor 0%, $bodyColor 15%, transparent 15%) 0 -0.6875em no-repeat, radial-gradient(circle, transparent 5%, $borderColor 5%, $borderColor 10%, transparent 10%) -0.1875em -0.3125em no-repeat, radial-gradient(circle, transparent 5%, $borderColor 5%, $borderColor 10%, transparent 10%) 0.1875em -0.3125em no-repeat, radial-gradient(circle, $bodyColor 45%, transparent 45%) 0 -0.1875em, linear-gradient(transparent 35%, $borderColor 35%, $borderColor 41%, transparent 41%, transparent 44%, $borderColor 44%, $borderColor 50%, transparent 50%, transparent 53%, $borderColor 53%, $borderColor 59%, transparent 59%)
+  .foot
+    &:before, &:after
+      content: ''
+      width: 100%
+      height: 100%
+      position: absolute
+    &:before
+      border-radius: 50%
+      clip-path: polygon(50% 50%, 0% 50%, 0% 25%)
+      -webkit-clip-path: polygon(50% 50%, 0% 50%, 0% 25%)
+    .tummy-end
+      tummy-style()
+      left: 1.1875em
+      top: 6.5625em
+    .bottom
+      width: 2.1875em
+      height: 0.9375em
+      position: absolute
+      top: 4.875em
+      left: 0.75em
+      border: 0.375em solid $borderColor
+      border-bottom: 0
+      border-radius: 50%
+      transform: rotate(21deg)
+      background: $bodyColor
+  .hands, .legs, .foot:after
+    width: 0.625em
+    height: 1.5625em
+    position: absolute
+    border: $borderWidth solid $borderColor
+    background-color: $bodyColor
+  .hands
+    border-top: 0
+    border-radius: 0 0 0.75em 0.75em
+    &.left
+      top: 4.3em
+      left: 13.1875em
+      transform: rotate(-20deg)
+    &.right
+      top: 5.125em
+      left: 10.975em
+      transform: rotate(-25deg)
+  .legs
+    border-bottom: 0
+    border-radius: 0.75em 0.75em 0 0
+    &.left
+      top: 4.0625em
+      left: 3.125em
+      transform: rotate(25deg)
+    &.right
+      top: 3.3125em
+      left: 0.75em
+      transform: rotate(22deg)
+  .foot:after
+    width: .9em
+    height: 2.5em
+    top: 2.625em
+    left: 2.5em
+    z-index: -1
+    transform: rotate(25deg)
+    background-color: $tailColor
+    border-bottom: 0
+    border-radius: 0.75em 0.75em 0 0
+
+  animation: 2.74s linear infinite loading-cat
+
+  .body
+    animation: 2.74s linear infinite body
+  .foot
+    animation: 2.74s linear infinite foot
+
+
+  &:hover
     animation-play-state: paused;
-  }
+    .body, .foot
+      animation-play-state: paused;
 
-  &:active>* {
+  &:active
     animation-play-state: running;
+    .body, .foot
+      animation-play-state: running;
+
+@keyframes body {
+  0% {
+    clip-path: $polygon-start;
   }
-
-  .head {
-    @extend $cat-img;
-
-    &::before {
-      top: 0;
-      right: 0;
-      background-position: 100% 0%;
-      transform-origin: 0% 100%;
-      transform: rotate(90deg);
-    }
+  10% {
+    clip-path: $polygon-a;
   }
-
-  .tail {
-    @extend $cat-img;
-    animation-delay: .2s;
-
-    &::before {
-      left: 0;
-      bottom: 0;
-      background-position: 0% 100%;
-      transform-origin: 100% 0%;
-      transform: rotate(-30deg);
-    }
+  20% {
+    clip-path: $polygon-b;
   }
-
-  .body {
-    @extend $cat-img;
-    animation-delay: .1s;
-
-    &:nth-of-type(2) {
-      animation-delay: .2s;
-    }
-
-    &::before {
-      right: 0;
-      bottom: 0;
-      background-position: 100% 100%;
-      transform-origin: 0% 0%;
-    }
+  40% {
+    clip-path: $polygon-middle;
+  }
+  50% {
+    clip-path: $polygon-middle;
+  }
+  65% {
+    clip-path: $polygon-c;
+  }
+  80% {
+    clip-path: $polygon-d;
+  }
+  90% {
+    clip-path: $polygon-e;
+  }
+  100% {
+    clip-path: $polygon-start;
   }
 }
 
+@keyframes loading-cat {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(-80deg); }
+  20% { transform: rotate(-180deg); }
+  40% { transform: rotate(-245deg); }
+  50% { transform: rotate(-250deg); }
+  68% { transform: rotate(-300deg); }
+  90% { transform: rotate(-560deg); }
+  100% { transform: rotate(-720deg); }
+}
+
+@keyframes foot {
+  0% { transform: rotate(-10deg); }
+  10% { transform: rotate(-100deg); }
+  20% { transform: rotate(-145deg); }
+  35% { transform: rotate(-190deg); }
+  50% { transform: rotate(-195deg); }
+  70% { transform: rotate(-165deg); }
+  100% { transform: rotate(-10deg); }
+}

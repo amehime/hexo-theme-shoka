@@ -1,6 +1,16 @@
 /* global hexo */
 
 'use strict';
+const { htmlTag, url_for } = require('hexo-util');
+const theme_env = require('../../package.json');
+
+hexo.extend.helper.register('hexo_env', function (type) {
+  return this.env[type]
+})
+
+hexo.extend.helper.register('theme_env', function (type) {
+  return theme_env[type]
+})
 
 hexo.extend.helper.register('_vendor_font', () => {
   const config = hexo.theme.config.font;
@@ -25,7 +35,7 @@ hexo.extend.helper.register('_vendor_font', () => {
   fontFamilies = fontFamilies.join('|');
 
   // Merge extra parameters to the final processed font string
-  return fontFamilies ? `<link rel="stylesheet" href="${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}">` : '';
+  return fontFamilies ? htmlTag('link', { rel: 'stylesheet', href: `${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}` }) : '';
 });
 
 
@@ -48,6 +58,18 @@ hexo.extend.helper.register('_vendor_js', () => {
 
   let result = vendorJs ? `<script src="//cdn.jsdelivr.net/combine/${vendorJs}"></script>` : '';
 
-  return result;
+  return vendorJs ? htmlTag('script', { src: `//cdn.jsdelivr.net/combine/${vendorJs}` }, '') : '';
 });
 
+hexo.extend.helper.register('_css', function(...urls) {
+  const { statics, css } = hexo.theme.config;
+
+  return urls.map(url => htmlTag('link', { rel: 'stylesheet', href: url_for.call(this, `${statics}${css}/${url}?v=${theme_env['version']}`) })).join('');
+});
+
+
+hexo.extend.helper.register('_js', function(...urls) {
+  const { statics, js } = hexo.theme.config;
+
+  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env['version']}`) }, '')).join('');
+});

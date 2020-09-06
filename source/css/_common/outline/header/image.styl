@@ -7,6 +7,7 @@
   height: 70vh;
   min-height: 25rem;
   z-index: -9;
+  background-color: #363636;
 
   img {
     width: 100%;
@@ -29,6 +30,7 @@
     opacity: 0;
     z-index: 0;
     animation: imageAnimation 36s linear infinite 0s;
+    backface-visibility: hidden;
   }
 
   for num in (1 .. 6) {

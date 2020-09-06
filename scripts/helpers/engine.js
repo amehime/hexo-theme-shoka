@@ -2,7 +2,7 @@
 
 'use strict';
 
-const { htmlTag } = require('hexo-util');
+const { htmlTag, url_for } = require('hexo-util');
 const url = require('url');
 const crypto = require('crypto');
 const fs = require('fs');
@@ -13,7 +13,7 @@ const imageListFile = fs.readFileSync(path.join(__dirname, '../../_images.yml'))
 const imageList = yaml.safeLoad(imageListFile);
 
 const randomServer = function() {
-  return [1,2,3,4][Math.floor(Math.random() * 4)]
+  return parseInt(Math.random()*4,10)+1
 }
 
 const randomBG = function(count = 1) {
@@ -33,31 +33,6 @@ const randomBG = function(count = 1) {
   return 'https://tva'+randomServer()+'.sinaimg.cn/mw690/'+imageList[Math.floor(Math.random() * imageList.length)]
 }
 
-
-hexo.extend.helper.register('hexo_env', function (type) {
-  return this.env[type]
-})
-
-
-hexo.extend.helper.register('theme_env', function (type) {
-  var env = require('../../package.json')
-  return env[type]
-})
-
-hexo.extend.helper.register('_css', function(...urls) {
-  const { statics, css } = hexo.theme.config;
-
-  return urls.map(url => this.css(`${statics}${css}/${url}`)).join('');
-});
-
-
-hexo.extend.helper.register('_js', function(...urls) {
-  const { statics, js } = hexo.theme.config;
-
-  return urls.map(url => this.js(`${statics}${js}/${url}`)).join('');
-});
-
-
 hexo.extend.helper.register('_url', function(path, text, options = {}) {
   const { config } = this;
   const data = url.parse(path);
@@ -66,7 +41,7 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
   const theme = hexo.theme.config;
   let exturl = '';
   let tag = 'a';
-  let attrs = { href: this.url_for(path) };
+  let attrs = { href: url_for.call(this, path) };
 
   // If `exturl` enabled, set spanned links only on external links.
   if (theme.exturl && data.protocol && data.hostname !== siteHost) {
@@ -115,14 +90,13 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
 
 
 hexo.extend.helper.register('_cover', function(item, num) {
-  var that = this
   const { statics, js } = hexo.theme.config;
 
   var format = function(img) {
     if (img.startsWith('//') || img.startsWith('http')) {
       return img
     } else {
-      return that.url_for(statics + img)
+      return url_for.call(this, statics + img)
     }
   }
 
@@ -137,7 +111,7 @@ hexo.extend.helper.register('_cover', function(item, num) {
 })
 
 hexo.extend.helper.register('_md5', function(path) {
-  let str = this.url_for(path);
+  let str = url_for.call(this, path);
   str.replace('index.html', '');
   return crypto.createHash('md5').update(str).digest('hex');
 });
@@ -159,7 +133,7 @@ hexo.extend.helper.register('canonical', function() {
 hexo.extend.helper.register('i18n_path', function(language) {
   const { path, lang } = this.page;
   const base = path.startsWith(lang) ? path.slice(lang.length + 1) : path;
-  return this.url_for(`${this.languages.indexOf(language) === 0 ? '' : '/' + language}/${base}`);
+  return url_for.call(this, `${this.languages.indexOf(language) === 0 ? '' : '/' + language}/${base}`);
 });
 
 /**

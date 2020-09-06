@@ -19,7 +19,6 @@ const goToComment = toolBtn.child('.chat');
 const sideBar = $('#sidebar');
 const siteBrand = $('#brand');
 const siteSearch = $('#search');
-const siteContent = $('#content');
 const headerHight = $('#waves').top();
 const headerHightInner = headerHight - siteNavHeight;
 
@@ -30,7 +29,6 @@ const Loader = {
     clearTimeout(this.timer);
     document.body.removeClass('loaded');
     Velocity(loadCat, "fadeIn", {
-      display: "flex",
       complete: function() {
         Loader.lock = false;
       }
@@ -49,10 +47,15 @@ const Loader = {
 }
 
 const changeTheme = function(type) {
+  var btn = $('.theme .ic')
   if(type) {
     HTML.attr('data-theme', type);
+    btn.removeClass('i-sun')
+    btn.addClass('i-moon')
   } else {
     HTML.attr('data-theme', null);
+    btn.removeClass('i-moon');
+    btn.addClass('i-sun');
   }
 }
 
@@ -72,18 +75,48 @@ const themeColorListener = function () {
     }
   });
 
+  var t = store.get('theme');
+  if(t) {
+    changeTheme(t);
+  }
+
   $('.theme').addEventListener('click', function(event) {
     var btn = event.currentTarget.child('.ic')
+    var neko = $('#neko')
+
+    if(!neko) {
+      neko = document.createElement('div')
+      neko.id = 'neko'
+      neko.innerHTML = '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
+      BODY.appendChild(neko);
+    }
+
     if(btn.hasClass('i-sun')) {
-      changeTheme('dark');
-      btn.removeClass('i-sun')
-      btn.addClass('i-moon')
+      Velocity(neko, "fadeIn", {
+        complete: function() {
+          neko.addClass('dark');
+          changeTheme('dark');
+          store.set('theme', 'dark');
+          setTimeout(function() {
+            Velocity(neko, "fadeOut");
+          }, 2500);
+        }
+      });
     } else {
-      changeTheme();
-      btn.removeClass('i-moon')
-      btn.addClass('i-sun')
+      Velocity(neko, "fadeIn", {
+        complete: function() {
+          neko.removeClass('dark');
+          changeTheme();
+          store.del('theme');
+          setTimeout(function() {
+            Velocity(neko, "fadeOut");
+          }, 2500);
+        }
+      });
+
     }
   });
+
 }
 
 const visibilityListener = function () {
@@ -116,8 +149,11 @@ const showtip = function(msg) {
   new_div.addClass('tip');
   BODY.appendChild(new_div);
 
-  window.setTimeout(function() {
+  setTimeout(function() {
+    new_div.addClass('hide')
+    setTimeout(function() {
       BODY.removeChild(new_div);
+    }, 300);
   }, 3000);
 }
 

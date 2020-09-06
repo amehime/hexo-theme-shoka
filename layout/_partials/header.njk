@@ -8,6 +8,7 @@
       </div>
     </div>
     <ul class="menu">
+      <li class="item title"><a href="{{ config.root }}" rel="start">{{ alternate or title }}</a></li>
       {{ partial('_partials/sidebar/menu.njk', {}, {cache: true}) }}
     </ul>
     <ul class="right">

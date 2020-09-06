@@ -9,7 +9,7 @@
       <name><%= config.author %></name>
     </author>
     <updated><%= moment(lastBuildDate).toISOString() %></updated>
-    <%_ for (item of (config.keywords.split(',') || [])) { _%>
+    <%_ for (item of (config.keywords ? config.keywords.split(',') : [])) { _%>
     <category term="<%= item %>" />
     <%_ } _%>
     <%_ for (const post of posts) { _%>

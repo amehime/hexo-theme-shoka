@@ -20,6 +20,10 @@
   animation: fadeIn .5s;
 }
 
+.fade-out {
+  animation: fadeOut .3s;
+}
+
 .up-down {
   animation: UpDown 2s infinite;
 }
@@ -58,10 +62,6 @@
 
 .elastic {
   animation: elastic 1s;
-}
-
-.reverse {
-  animation-direction: reverse;
 }
 
 @keyframes rotate {
@@ -175,6 +175,15 @@
   }
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 @keyframes blur {
     0% {

@@ -354,16 +354,20 @@
         left: auto;
       }
 
-      &.on {
+      &.show {
         display: block;
         if (hexo-config('sidebar.position') == 'left') {
           @extend .slide-right-in;
         } else {
           @extend .slide-left-in;
+
+          +tablet-mobile() {
+            animation: slideRightIn .3s;
+          }
         }
 
-        +tablet-mobile() {
-          animation: slideRightIn .3s;
+        &.hide {
+          @extend .fade-out;
         }
       }
     }

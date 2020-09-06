@@ -60,12 +60,11 @@ Object.assign(HTMLElement.prototype, {
     }
   },
   display: function(d) {
-    if(d) {
-      this.style.display = d;
-    } else {
+    if(d == null) {
       return this.style.display
+    } else {
+      this.style.display = d;
     }
-
   },
   child: function(selector) {
     return $(selector, this)
@@ -129,8 +128,13 @@ const mediaPlayer = function(config) {
         }
       },
       "music": function(event) {
-        t.media.list.toggleClass('on');
-        t.media.scroll();
+        if(t.media.list.hasClass('show')) {
+          t.media.hideList()
+        } else {
+          t.media.list.addClass('show');
+          t.media.scroll();
+          t.media.changeTitle();
+        }
       }
     }
   };
@@ -315,7 +319,7 @@ const mediaPlayer = function(config) {
         return;
       }
       this.source.play()
-      document.title = 'Now Playing...' + this.playlist[this.pointer]['title'] + ' - ' + this.playlist[this.pointer]['author'] + ' | ' + originTitle;
+      this.changeTitle()
     },
     pause: function() {
       this.source.pause()
@@ -349,6 +353,17 @@ const mediaPlayer = function(config) {
               }
           }
       }
+    },
+    hideList: function() {
+      var el = this.list
+      el.addClass('hide');
+      window.setTimeout(function() {
+        el.removeClass('show hide')
+      }, 300);
+    },
+    changeTitle: function() {
+      if(!this.source.paused)
+        document.title = 'Now Playing...' + this.playlist[this.pointer]['title'] + ' - ' + this.playlist[this.pointer]['author'] + ' | ' + originTitle;
     }
   };
 
@@ -408,7 +423,7 @@ const mediaPlayer = function(config) {
         t.insertAfter(el);
 
         $('#main').addEventListener('click', function() {
-          t.media.list.removeClass('on');
+          t.media.hideList()
         })
       }
     },

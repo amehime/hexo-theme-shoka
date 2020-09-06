@@ -11,16 +11,21 @@
 
     padding: 0 .625rem;
     letter-spacing: .0625rem;
+    text-align: center;
 
     +mobile() {
       display: none;
+
+      &.title {
+        display: block;
+      }
     }
 
     .ic {
       margin-right: .5rem;
     }
 
-    a {
+    &:not(.title) a {
       display: block;
       font-size: $font-size-medium;
 
