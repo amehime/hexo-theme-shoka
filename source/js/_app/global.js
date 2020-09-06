@@ -82,13 +82,20 @@ const themeColorListener = function () {
 
   $('.theme').addEventListener('click', function(event) {
     var btn = event.currentTarget.child('.ic')
-    var neko = $('#neko')
 
-    if(!neko) {
-      neko = document.createElement('div')
-      neko.id = 'neko'
-      neko.innerHTML = '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
-      BODY.appendChild(neko);
+    var neko = document.createElement('div')
+    neko.id = 'neko'
+    neko.innerHTML = '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
+    BODY.appendChild(neko);
+
+    var hideNeko = function() {
+      setTimeout(function() {
+        Velocity(neko, "fadeOut", {
+          complete: function() {
+            BODY.removeChild(neko)
+          }
+        });
+      }, 2500);
     }
 
     if(btn.hasClass('i-sun')) {
@@ -97,23 +104,19 @@ const themeColorListener = function () {
           neko.addClass('dark');
           changeTheme('dark');
           store.set('theme', 'dark');
-          setTimeout(function() {
-            Velocity(neko, "fadeOut");
-          }, 2500);
+          hideNeko();
         }
       });
     } else {
+      neko.addClass('dark');
       Velocity(neko, "fadeIn", {
         complete: function() {
           neko.removeClass('dark');
           changeTheme();
           store.del('theme');
-          setTimeout(function() {
-            Velocity(neko, "fadeOut");
-          }, 2500);
+          hideNeko();
         }
       });
-
     }
   });
 

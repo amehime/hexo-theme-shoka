@@ -13,7 +13,7 @@ mermaid: true
 
 :::note info
 跳票N久终于更新的简单的使用说明
-- [hexo-theme-shoka@0.1.2](https://github.com/amehime/hexo-theme-shoka) ：本博客自用的主题
+- [hexo-theme-shoka@0.1.3](https://github.com/amehime/hexo-theme-shoka) ：本博客自用的主题
 - [hexo-renderer-multi-markdown-it@0.1.0](https://github.com/amehime/hexo-renderer-multi-markdown-it)：配套的markdown渲染器
 
 已经支持hexo 5。。。本文档不定期更新中
