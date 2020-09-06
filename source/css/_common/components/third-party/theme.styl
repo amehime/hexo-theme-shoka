@@ -56,30 +56,28 @@
     width: 135px;
     left: 50%;
     margin-left: -100px;
-    background: #777777;
-    transition: bottom 0.25s ease-in-out;
+    background: #777;
+    transition: all .25s ease-in-out;
+    animation: slideUpBigIn 1s;
 
-    &:before {
+    &:before, &:after  {
+      position: absolute;
+      content: "";
       width: 0;
       height: 0;
+      border-bottom: 20px solid #777;
+      top: -20px;
+      transition: all .25s ease-in-out;
+    }
+    &:before {
       border-left: 0px solid transparent;
       border-right: 30px solid transparent;
-      border-bottom: 20px solid #777;
-      top: -20px;
       left: 0;
-      position: absolute;
-      content: "";
     }
     &:after {
-      width: 0;
-      height: 0;
       border-right: 0px solid transparent;
       border-left: 30px solid transparent;
-      border-bottom: 20px solid #777;
-      top: -20px;
       right: 0;
-      position: absolute;
-      content: "";
     }
 
     .eyes {
@@ -100,44 +98,24 @@
       right: 12px;
     }
 
-    .eyes .pupil {
+    .eyes .pupil, .nose {
       display: block;
       position: relative;
       background: #ffb399;
-      height: 100%;
-      width: 5px;
       border-radius: 100%;
       margin: 0 auto;
-      transition: width 0.5s ease-in-out;
+    }
+
+    .eyes .pupil {
+      height: 100%;
+      width: 5px;
+      transition: width 1s .5s ease-in-out;
     }
 
     .nose {
-      display: block;
-      position: relative;
-      background: #ffb399;
+      top: 45px;
       height: 10px;
       width: 10px;
-      border-radius: 100%;
-      margin: 0 auto;
-      top: 45px;
-    }
-  }
-
-
-
-  &:hover {
-    .body {
-      display: block;
-      position: absolute;
-      bottom: -40px;
-      cursor: pointer;
-      .eyes {
-        display: block;
-        position: absolute;
-        height: 8px;
-        width: 40px;
-        bottom: 100px;
-      }
     }
   }
 
@@ -157,39 +135,16 @@
     .body {
       background: #444;
       &:before {
-        width: 0;
-        height: 0;
-        border-left: 0px solid transparent;
-        border-right: 30px solid transparent;
         border-bottom: 20px solid #444;
-        top: -20px;
-        left: 0;
-        position: absolute;
-        content: "";
       }
       &:after {
-        width: 0;
-        height: 0;
-        border-right: 0px solid transparent;
-        border-left: 30px solid transparent;
         border-bottom: 20px solid #444;
-        top: -20px;
-        right: 0;
-        position: absolute;
-        content: "";
       }
 
       .eyes .pupil {
         height: 90%;
         width: 34px;
         margin: 5% auto;
-      }
-    }
-
-    &:hover {
-      .body .eyes {
-        height: 40px;
-        bottom: 80px;
       }
     }
   }
