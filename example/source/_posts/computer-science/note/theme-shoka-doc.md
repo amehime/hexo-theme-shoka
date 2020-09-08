@@ -628,9 +628,9 @@ drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
     - `circle1=shape1;`
 {.options}
     > - :heavy_check_mark: 令基类对象的指针指向派生类对象
-    > - x 派生类指针指向基类的引用
+    > - :x: 派生类指针指向基类的引用
     > - :heavy_check_mark: 派生类对象给基类对象赋值
-    > - x 基类对象给派生类对象赋值
+    > - :x: 基类对象给派生类对象赋值
     > {.options}
 
 3. 下列叙述正确的是 []{.gap} 。 {.quiz}
@@ -664,9 +664,9 @@ drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
     - `circle1=shape1;`
 {.options}
     > - :heavy_check_mark: 令基类对象的指针指向派生类对象
-    > - x 派生类指针指向基类的引用
+    > - :x: 派生类指针指向基类的引用
     > - :heavy_check_mark: 派生类对象给基类对象赋值
-    > - x 基类对象给派生类对象赋值
+    > - :x: 基类对象给派生类对象赋值
     > {.options}
 
 3. 编译时多态主要指运算符重载与函数重载，而运行时多态主要指虚函数。 {.quiz .true}
