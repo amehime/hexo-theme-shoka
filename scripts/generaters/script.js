@@ -10,6 +10,7 @@ hexo.extend.generator.register('script', function(locals){
   var env = require('../../package.json')
 
   var siteConfig = {
+    version: env['version'],
     hostname  : url.parse(config.url).hostname || config.url,
     root: config.root,
     statics: theme.statics,
@@ -33,8 +34,7 @@ hexo.extend.generator.register('script', function(locals){
     quicklink: {
       timeout : theme.quicklink.timeout,
       priority: theme.quicklink.priority
-    },
-    version: env['version']
+    }
   };
 
   if(config.algolia) {

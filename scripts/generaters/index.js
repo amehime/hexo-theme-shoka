@@ -12,8 +12,8 @@ hexo.extend.generator.register('index', function(locals) {
   let covers = [];
   let catlist = [];
   let pages = [];
-  const config = this.config;
-  const theme = this.theme.config;
+  const config = hexo.config;
+  const theme = hexo.theme.config;
   const sticky = locals.posts.find({'sticky': true}).sort(config.index_generator.order_by);
   const posts = locals.posts.find({'sticky': {$exists: false}}).sort(config.index_generator.order_by);
   const paginationDir = config.pagination_dir || 'page';

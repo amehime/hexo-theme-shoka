@@ -91,6 +91,7 @@
 {%- set ccText = theme.creative_commons.license | upper %}
 <script data-config type="text/javascript">
   var LOCAL = {
+    path: '{{ url | replace('index.html', '') }}',
     favicon: {
       show: "{{ __('favicon.show') }}",
       hide: "{{ __('favicon.hide') }}"
@@ -113,7 +114,7 @@
         return uri.includes('#');
       },
       function(uri) {
-        return uri === '{{ url | replace('index.html', '') }}';
+        return uri === LOCAL.path;
       }{%- if theme.quicklink.ignores %},
       {{ theme.quicklink.ignores|safedump }}
       {% endif %}

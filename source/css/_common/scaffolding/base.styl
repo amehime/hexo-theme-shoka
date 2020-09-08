@@ -44,16 +44,14 @@ body {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-}
+  &.fullscreen {
+    overflow: hidden;
 
-.fullscreen {
-  overflow: hidden;
-
-  #nav, #tool, #sidebar>.inner {
-    z-index: 0;
+    #tool, #sidebar>.inner {
+      z-index: 0;
+    }
   }
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headings;
   font-weight: bold;

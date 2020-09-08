@@ -379,6 +379,14 @@
       padding: .3125rem 0 0;
     }
 
+    .contents {
+      display: none;
+
+      +tablet-mobile() {
+        display: flex;
+      }
+    }
+
     +desktop-large() {
       if (hexo-config('sidebar.position') == 'left') {
         right: 1rem;

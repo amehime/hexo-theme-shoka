@@ -173,7 +173,7 @@ valine:
     - nick
     - mail
   enableQQ: true
-  masters: ['hash of master@email.com', 'hash of master2@email.com']
+  masters: # ['hash of master@email.com', 'hash of master2@email.com']
   masterTag: 主人
   tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
 

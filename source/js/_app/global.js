@@ -8,19 +8,14 @@ const HTML = document.documentElement;
 const Container = $('#container');
 const loadCat = $('#loading');
 const siteNav = $('#nav');
-const siteNavHeight = siteNav.height();
 const siteHeader = $('#header');
 const menuToggle = siteNav.child('.toggle');
 const quickBtn = $('#quick');
-const toolBtn = $('#tool');
-const toolPlayer = toolBtn.child('.player');
-const backToTop = toolBtn.child('.back-to-top');
-const goToComment = toolBtn.child('.chat');
 const sideBar = $('#sidebar');
 const siteBrand = $('#brand');
-const siteSearch = $('#search');
-const headerHight = $('#waves').top();
-const headerHightInner = headerHight - siteNavHeight;
+var toolBtn = $('#tool'), toolPlayer, backToTop, goToComment, showContents;
+var siteSearch = $('#search');
+var siteNavHeight, headerHightInner, headerHight;
 
 const Loader = {
   timer: null,
@@ -83,10 +78,10 @@ const themeColorListener = function () {
   $('.theme').addEventListener('click', function(event) {
     var btn = event.currentTarget.child('.ic')
 
-    var neko = document.createElement('div')
-    neko.id = 'neko'
-    neko.innerHTML = '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
-    BODY.appendChild(neko);
+    var neko = BODY.createChild('div', {
+      id: 'neko',
+      innerHTML: '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
+    });
 
     var hideNeko = function() {
       setTimeout(function() {
@@ -147,34 +142,33 @@ const showtip = function(msg) {
   if(!msg)
     return
 
-  var new_div = document.createElement('div');
-  new_div.innerHTML = msg;
-  new_div.addClass('tip');
-  BODY.appendChild(new_div);
+  var tipbox = BODY.createChild('div', {
+    innerHTML: msg,
+    className: 'tip'
+  });
 
   setTimeout(function() {
-    new_div.addClass('hide')
+    tipbox.addClass('hide')
     setTimeout(function() {
-      BODY.removeChild(new_div);
+      BODY.removeChild(tipbox);
     }, 300);
   }, 3000);
 }
 
 const resizeHandle = function (event) {
-  var docHeight = getDocHeight();
-  if (docHeight > document.body.offsetHeight) {
-    quickBtn.display('flex');
-    sideBar.child('.panels').height('100vh');
-  } else {
-    quickBtn.display('none');
-  }
+  siteNavHeight = siteNav.height();
+  headerHightInner = siteHeader.height();
+  headerHight = headerHightInner + $('#waves').height();
+
+  sideBarToggleHandle(null, 1);
+  sideBar.style = '';
 }
 
 const scrollHandle = function (event) {
   var winHeight = window.innerHeight;
   var docHeight = getDocHeight();
   var contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight;
-  var SHOW = window.pageYOffset > headerHight;
+  var SHOW = window.pageYOffset > headerHightInner;
   var startScroll = window.pageYOffset > 0;
 
   if (SHOW) {
@@ -186,7 +180,7 @@ const scrollHandle = function (event) {
   siteNav.toggleClass('show', SHOW);
   toolBtn.toggleClass('affix', startScroll);
   siteBrand.toggleClass('affix', startScroll);
-  sideBar.toggleClass('affix', SHOW && document.body.offsetWidth > 991);
+  sideBar.toggleClass('affix', window.pageYOffset > headerHight && document.body.offsetWidth > 991);
 
   if (typeof scrollAction.y == 'undefined') {
     scrollAction.y = window.pageYOffset;
@@ -218,4 +212,47 @@ const scrollHandle = function (event) {
   var scrollPercent = Math.round(Math.min(100 * window.pageYOffset / contentVisibilityHeight, 100)) + '%';
   backToTop.child('span').innerText = scrollPercent;
   $('.percent').width(scrollPercent);
+}
+
+const pagePostion = function(url) {
+  store.set(url, scrollAction.y)
+}
+
+const postionInit = function() {
+  var anchor = window.location.hash
+  if(anchor) {
+    pageScroll($(decodeURI(anchor)));
+  } else {
+    var position = store.get(window.location.href)
+    if(position) {
+      pageScroll(BODY, position);
+      store.del(window.location.href);
+    }
+  }
+}
+
+const clipBoard = function(str, callback) {
+  var ta = BODY.createChild('textarea', {
+    style: {
+      top: window.scrollY + 'px', // Prevent page scrolling
+      position: 'absolute',
+      opacity: '0'
+    },
+    readOnly: true,
+    value: str
+  });
+
+  const selection = document.getSelection();
+  const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+  ta.select();
+  ta.setSelectionRange(0, str.length);
+  ta.readOnly = false;
+  var result = document.execCommand('copy');
+  callback && callback(result);
+  ta.blur(); // For iOS
+  if (selected) {
+    selection.removeAllRanges();
+    selection.addRange(selected);
+  }
+  BODY.removeChild(ta);
 }

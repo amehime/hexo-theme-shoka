@@ -13,8 +13,8 @@ mermaid: true
 
 :::note info
 跳票N久终于更新的简单的使用说明
-- [hexo-theme-shoka@0.1.3](https://github.com/amehime/hexo-theme-shoka) ：本博客自用的主题
-- [hexo-renderer-multi-markdown-it@0.1.0](https://github.com/amehime/hexo-renderer-multi-markdown-it)：配套的markdown渲染器
+- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka) ：本博客自用的主题
+- [hexo-renderer-multi-markdown-it](https://github.com/amehime/hexo-renderer-multi-markdown-it)：配套的markdown渲染器
 
 已经支持hexo 5。。。本文档不定期更新中
 :::
@@ -310,6 +310,24 @@ audio:
 ```
 如上，可以直接使用网易云、虾米、QQ音乐的播放列表、单曲，可以同时填写多个。
 
+
+## 文章字数及阅读时间统计
+
+安装好hexo-symbols-count-time插件后，不需要修改站点配置文件，直接使用插件默认配置就行。
+
+需要修改主题配置文件，找到两处`cout`，修改为`true`：
+
+```yml
+# 文章字数统计
+post:
+  count: true
+
+# 页尾全站统计
+footer:
+  since: 2010
+  count: true
+```
+
 ## 文章评论
 在主题`_config.yml`文件中设置好LeanCloud的appId和appKey，[如何获取戳此](https://valine.js.org/quickstart.html)。
 
@@ -541,29 +559,78 @@ sticky: true
 &#123;% linksfile friends/_data.yml %&#125;
 ```
 
+## `code`代码块
+
+使用`markdown-it-prism`进行代码高亮，支持的语言[戳此](https://prismjs.com/#supported-languages)
+支持显示行号、行高亮`mark`、命令行提示符`command`、代码块标题。
+
+~~~raw
+```java 标题 mark:1,6-7
+import java.util.Scanner;
+...
+Scanner in = new Scanner(System.in);
+// 输入Scan之后，按下键盘 Alt + “/” 键，Eclipse下自动补全。
+
+System.out.println(in.nextLine());
+System.out.println("Hello" + " world.");
+```
+
+```bash command:("[root@localhost] $":1||"[admin@remotehost] #":4-6)
+pwd
+/usr/home/chris/bin
+ls -la
+total 2
+drwxr-xr-x   2 chris  chris     11 Jan 10 16:48 .
+drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
+-rwxr-xr-x   1 chris  chris    444 Aug 25  2013 backup
+-rwxr-xr-x   1 chris  chris    642 Jan 17 14:42 deploy
+```
+~~~
+
+```java 标题 mark:1,6-7
+import java.util.Scanner;
+...
+Scanner in = new Scanner(System.in);
+// 输入Scan之后，按下键盘 Alt + “/” 键，Eclipse下自动补全。
+
+System.out.println(in.nextLine());
+System.out.println("Hello" + " world.");
+```
+
+```bash command:("[root@localhost] $":1||"[admin@remotehost] #":4-6)
+pwd
+/usr/home/chris/bin
+ls -la
+total 2
+drwxr-xr-x   2 chris  chris     11 Jan 10 16:48 .
+drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
+-rwxr-xr-x   1 chris  chris    444 Aug 25  2013 backup
+-rwxr-xr-x   1 chris  chris    642 Jan 17 14:42 deploy
+```
+
 ## `quiz` 练习题与答案
 这个功能是用来显示练习题的。
 点击选项可以显示答案，以及答案解析。
 看几个例子
 
-```raw
+~~~raw
 1. 编译时多态主要指运算符重载与函数重载，而运行时多态主要指虚函数。 {.quiz .true}
 
 2. 有基类`SHAPE`，派生类`CIRCLE`，声明如下变量：  {.quiz .multi}
-    `\``cpp
+    ```cpp
     SHAPE shape1,*p1;
     CIRCLE circle1,*q1;
-    `\``
+    ```
     下列哪些项是“派生类对象替换基类对象”。
     - `p1=&circle1;` {.correct}
     - `q1=&shape1;`
     - `shape1=circle1;` {.correct}
     - `circle1=shape1;`
 {.options}
-    > - √ 令基类对象的指针指向派生类对象
-    > - × 派生类指针指向基类的引用
-    > - √ 派生类对象给基类对象赋值
-    > - × 基类对象给派生类对象赋值
+    > - :heavy_check_mark: 令基类对象的指针指向派生类对象
+    > - x 派生类指针指向基类的引用
+    > - :heavy_check_mark: 派生类对象给基类对象赋值
+    > - x 基类对象给派生类对象赋值
     > {.options}
 
 3. 下列叙述正确的是 []{.gap} 。 {.quiz}
@@ -576,7 +643,7 @@ sticky: true
 10. 如果定义`int e=8; double f=6.4, g=8.9;`，则表达式 `f+int(e/3*int(f+g)/2)%4` 的值为 [9.4]{.gap}。 {.quiz .fill}
     > 注意运算顺序和数据类型
     > [8.4]{.mistake}
-```
+~~~
 
 1. 下列叙述正确的是 []{.gap} 。 {.quiz}
     - 虚函数只能定义成无参函数
@@ -596,10 +663,10 @@ sticky: true
     - `shape1=circle1;` {.correct}
     - `circle1=shape1;`
 {.options}
-    > - √ 令基类对象的指针指向派生类对象
-    > - × 派生类指针指向基类的引用
-    > - √ 派生类对象给基类对象赋值
-    > - × 基类对象给派生类对象赋值
+    > - :heavy_check_mark: 令基类对象的指针指向派生类对象
+    > - x 派生类指针指向基类的引用
+    > - :heavy_check_mark: 派生类对象给基类对象赋值
+    > - x 基类对象给派生类对象赋值
     > {.options}
 
 3. 编译时多态主要指运算符重载与函数重载，而运行时多态主要指虚函数。 {.quiz .true}
@@ -781,6 +848,46 @@ sticky: true
 !!黑幕黑幕黑幕黑幕黑幕黑幕!! ： 鼠标滑过显示内容
 !!模糊模糊模糊模糊模糊模糊!!{.bulr} ： 选中文字显示内容
 [彩虹彩虹彩虹彩虹彩虹彩虹]{.rainbow}
+
+## `furigana`文字注音
+
+原本用于日语汉字假名注音，但别的注音也可以。
+采用`markdown-it-ruby`的基本格式：`{文字|注音}`（为了兼容性。
+注音分隔基于`furigana-markdown-it`[显示说明看这里](https://www.npmjs.com/package/furigana-markdown-it#quick-usage)
+
+```raw
+{取り返す|とりかえす}
+
+{可愛い犬|か+わい・い・いぬ}
+{可愛い犬|か・わい・いいぬ}
+
+{アクセラレータ|accelerator}
+{accelerator|アクセラレータ}
+
+{食べる|たべる}
+{食べる|=たべる}
+
+{あいうえお|*}
+{あいうえお|*❤}
+
+{常用账号|contact}
+```
+
+{取り返す|とりかえす}
+
+{可愛い犬|か+わい・い・いぬ}
+{可愛い犬|か・わい・いいぬ}
+
+{アクセラレータ|accelerator}
+{accelerator|アクセラレータ}
+
+{食べる|たべる}
+{食べる|=たべる}
+
+{あいうえお|*}
+{あいうえお|*❤}
+
+{常用账号|contact}
 
 ## `math`数学公式
 

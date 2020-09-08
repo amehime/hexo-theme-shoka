@@ -1,6 +1,34 @@
-const pagePostion = function(url) {
-  store.set(url, scrollAction.y)
+const domInit = function() {
+  $.each('.overview .menu > .item', function(el) {
+    siteNav.child('.menu').appendChild(el.cloneNode(true));
+  })
+
+  loadCat.addEventListener('click', Loader.vanish);
+  menuToggle.addEventListener('click', sideBarToggleHandle);
+  $('.dimmer').addEventListener('click', sideBarToggleHandle);
+
+  quickBtn.child('.down').addEventListener('click', goToBottomHandle);
+  quickBtn.child('.up').addEventListener('click', backToTopHandle);
+
+  if(!toolBtn) {
+    toolBtn = siteHeader.createChild('div', {
+      id: 'tool',
+      innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
+    });
+  }
+
+  toolPlayer = toolBtn.child('.player');
+  backToTop = toolBtn.child('.back-to-top');
+  goToComment = toolBtn.child('.chat');
+  showContents = toolBtn.child('.contents');
+
+  backToTop.addEventListener('click', backToTopHandle);
+  goToComment.addEventListener('click', goToCommentHandle);
+  showContents.addEventListener('click', sideBarToggleHandle);
+
+  toolPlayer.player();
 }
+
 
 const pjaxReload = function () {
   pagePostion(window.location.href);
@@ -51,19 +79,13 @@ const siteRefresh = function (reload) {
 
   Loader.hide()
 
-  var position = store.get(window.location.href)
-  if(position) {
-    pageScroll(BODY, position);
-    store.del(window.location.href);
-  }
+  postionInit()
 
   cardActive()
 }
 
 const siteInit = function () {
-  document.body.oncopy = function() {
-    showtip(LOCAL.copyright)
-  };
+  domInit()
 
   var pjax = new Pjax({
     selectors: [
@@ -74,39 +96,27 @@ const siteInit = function () {
     ],
     analytics: false,
     cacheBust: false
-  });
+  })
 
-  CONFIG.quicklink.ignores = LOCAL.ignores;
-  quicklink.listen(CONFIG.quicklink);
+  CONFIG.quicklink.ignores = LOCAL.ignores
+  quicklink.listen(CONFIG.quicklink)
 
-  visibilityListener();
-  themeColorListener();
+  visibilityListener()
+  themeColorListener()
 
-  menuToggle.addEventListener('click', sideBarToggleHandle);
-  $('.dimmer').addEventListener('click', sideBarToggleHandle);
-  quickBtn.child('.down').addEventListener('click', goToBottomHandle);
-  quickBtn.child('.up').addEventListener('click', backToTopHandle);
-  backToTop.addEventListener('click', backToTopHandle);
+  algoliaSearch(pjax)
 
-  loadCat.addEventListener('click', Loader.vanish);
+  window.addEventListener('scroll', scrollHandle)
 
-  window.addEventListener('scroll', scrollHandle);
+  window.addEventListener('resize', resizeHandle)
 
-  goToComment.addEventListener('click', goToCommentHandle);
+  window.addEventListener('pjax:send', pjaxReload)
 
-  toolPlayer.player();
-
-  window.addEventListener('resize', resizeHandle);
-
-  window.addEventListener('pjax:send', pjaxReload);
-
-  window.addEventListener('pjax:success', siteRefresh);
+  window.addEventListener('pjax:success', siteRefresh)
 
   window.addEventListener("beforeunload", function() {
     pagePostion(window.location.href)
-  });
-
-  algoliaSearch(pjax)
+  })
 
   siteRefresh(1)
 }

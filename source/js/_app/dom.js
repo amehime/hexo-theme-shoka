@@ -17,10 +17,18 @@ $.each = function(selector, callback, element) {
 
 
 Object.assign(HTMLElement.prototype, {
-  wrap: function (wrapper) {
-    this.parentNode.insertBefore(wrapper, this);
+  createChild: function(tag, obj) {
+    var child = document.createElement(tag);
+    Object.assign(child, obj)
+    this.appendChild(child)
+    return child
+  },
+  wrap: function (obj) {
+    var box = document.createElement('div');
+    Object.assign(box, obj)
+    this.parentNode.insertBefore(box, this);
     this.parentNode.removeChild(this);
-    wrapper.appendChild(this);
+    box.appendChild(this);
   },
   height: function(h) {
     if(h) {

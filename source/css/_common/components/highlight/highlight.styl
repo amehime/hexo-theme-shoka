@@ -32,6 +32,7 @@ code,
    }
 }
 
+
 // 代码样式
 :not(pre)>code {
   color: var(--primary-color);
@@ -97,7 +98,6 @@ code,
         border-bottom-color: var(--grey-7);
       }
     }
-
   }
 
   &.fullscreen {
@@ -150,6 +150,11 @@ code,
 
   tr {
     background-color: inherit;
+    &:hover {
+      td {
+        background-color: var(--grey-3);
+      }
+    }
   }
 
   td {
@@ -158,38 +163,59 @@ code,
     vertical-align: unset;
     border: unset;
     the-transition();
+    pre::before {
+      content: " ";
+    }
   }
 
   td:first-child {
-    background: var(--grey-2);
-  }
-
-  td:last-child {
-    padding-left: 3.125rem;
-  }
-
-  td[data-num]::before {
     position: absolute;
-    content: attr(data-num);
-    padding-right: .9375rem;
+    background: var(--grey-2);
     text-align: right;
+    overflow-x: visible !important;
     overflow-y: hidden;
     left: 0;
     width: 2.5rem;
-    height: 100%;
-    overflow-x: visible !important;
+    padding-right: .9375rem;
     color: var(--color-grey);
-    z-index: 1;
+    z-index: $zindex-1;
   }
 
+  td:nth-child(2) {
+    padding-left: 3rem;
+  }
+
+  td:last-child {
+    padding-right: .9375rem;
+  }
+
+  td[data-num]::before {
+    content: attr(data-num);
+  }
+
+  td[data-command]::before {
+    content: attr(data-command) " ";
+    color: var(--grey-5);
+    display: block;
+    letter-spacing: -1px;
+    padding-right: .5rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  td[data-command] + td {
+    padding-left: .5rem;
+    border-left: 1px solid var(--grey-4);
+  }
 
   .marked {
-    background-color: var(--color-red-a1);
-  }
-
-  td{
-    &:hover {
+    td {
       background-color: var(--grey-3);
+    }
+    &:hover {
+      td:last-child {
+        background-color: var(--color-red-a1);
+      }
     }
   }
 
@@ -203,6 +229,7 @@ code,
     text-align: center;
     color: var(--text-color);
     background-image: linear-gradient(to bottom, var(--grey-2-a0) 0, var(--grey-2) 80%);
+    z-index: $zindex-1;
 
     &::after {
       content: "";

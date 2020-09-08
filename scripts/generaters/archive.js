@@ -27,7 +27,7 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
 
 
   hexo.extend.generator.register('archive', function(locals) {
-    const config = this.config;
+    const config = hexo.config;
     let archiveDir = config.archive_dir;
     const paginationDir = config.pagination_dir || 'page';
     const allPosts = locals.posts.sort(config.archive_generator.order_by || '-date');

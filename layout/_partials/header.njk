@@ -9,7 +9,6 @@
     </div>
     <ul class="menu">
       <li class="item title"><a href="{{ config.root }}" rel="start">{{ alternate or title }}</a></li>
-      {{ partial('_partials/sidebar/menu.njk', {}, {cache: true}) }}
     </ul>
     <ul class="right">
       <li class="item theme">
@@ -21,31 +20,3 @@
     </ul>
   </div>
 </nav>
-<div id="search">
-  <div class="inner">
-    <div class="header">
-      <span class="icon">
-        <i class="ic i-search"></i>
-      </span>
-      <div class="search-input-container"></div>
-      <span class="close-btn">
-        <i class="ic i-times-circle"></i>
-      </span>
-    </div>
-    <div class="results">
-      <div class="inner">
-        <div id="search-stats"></div>
-        <div id="search-hits"></div>
-        <div id="search-pagination"></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="tool">
-  <div class="item player"></div>
-  <div class="item chat"><i class="ic i-comments"></i></div>
-  <div class="item back-to-top">
-    <i class="ic i-arrow-up"></i>
-    <span>0%</span>
-  </div>
-</div>

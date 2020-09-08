@@ -1,12 +1,12 @@
 {%- if page.copyright !== false %}
-{%- set ccIcon = '<i class="ic i-creative-commons"></i>' %}
+{%- set ccIcon = '<i class="ic i-creative-commons"><em>(CC)</em></i>' %}
 {%- set ccText = theme.creative_commons.license | upper %}
 
 <div id="copyright">
 <ul>
   <li class="author">
     <strong>{{ __('post.copyright.author') + __('symbol.colon') }} </strong>
-    {{- page.author or author }} <i class="ic i-at"></i> {{- title}}
+    {{- page.author or author }} <i class="ic i-at"><em>@</em></i> {{- title}}
   </li>
   <li class="link">
     <strong>{{ __('post.copyright.link') + __('symbol.colon') }}</strong>

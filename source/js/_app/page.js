@@ -91,12 +91,31 @@ const registerExtURL = function() {
     });
 }
 
-
 const postBeauty = function () {
   loadComments();
 
   if(!$('.md'))
     return
+
+  $('.article.wrap').oncopy = function(event) {
+    showtip(LOCAL.copyright)
+
+    var copyright = $('#copyright')
+    if(window.getSelection().toString().length > 30 && copyright) {
+      event.preventDefault();
+      var author = "# " + copyright.child('.author').innerText
+      var link = "# " + copyright.child('.link').innerText
+      var license = "# " + copyright.child('.license').innerText
+      var htmlData = author + "<br>" + link + "<br>" + license + "<br><br>" + window.getSelection().toString().replace(/\r\n/g, "<br>");;
+      var textData = author + "\n" + link + "\n" + license + "\n\n" + window.getSelection().toString().replace(/\r\n/g, "\n");
+      if (event.clipboardData) {
+          event.clipboardData.setData("text/html", htmlData);
+          event.clipboardData.setData("text/plain", textData);
+      } else if (window.clipboardData) {
+          return window.clipboardData.setData("text", textData);
+      }
+    }
+  }
 
   $.each('.md img', function(element) {
     var info;
@@ -126,15 +145,15 @@ const postBeauty = function () {
   })
 
   $.each('.md > table', function (element) {
-    const box = document.createElement('div');
-    box.className = 'table-container';
-    element.wrap(box);
+    element.wrap({
+      className: 'table-container'
+    });
   });
 
   $.each('.highlight > table', function (element) {
-    const box = document.createElement('div');
-    box.className = 'code-container';
-    element.wrap(box);
+    element.wrap({
+      className: 'code-container'
+    });
   });
 
   $.each('figure.highlight', function (element) {
@@ -146,34 +165,22 @@ const postBeauty = function () {
     var copyBtn = element.child('.copy-btn');
     copyBtn.addEventListener('click', function (event) {
       var target = event.currentTarget;
-      var code = code_container.innerText.replace(/\n\n\t/g, '');
-      var ta = document.createElement('textarea');
-      ta.style.top = window.scrollY + 'px'; // Prevent page scrolling
-      ta.style.position = 'absolute';
-      ta.style.opacity = '0';
-      ta.readOnly = true;
-      ta.value = code;
-      document.body.append(ta);
-      const selection = document.getSelection();
-      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
-      ta.select();
-      ta.setSelectionRange(0, code.length);
-      ta.readOnly = false;
-      var result = document.execCommand('copy');
+      var comma = '', code = '';
+      code_container.find('pre').forEach(function(line) {
+        code += comma + line.innerText;
+        comma = '\n'
+      })
 
-      target.child('.ic').className = result ? 'ic i-check' : 'ic i-times';
-      ta.blur(); // For iOS
-      target.blur();
-      if (selected) {
-        selection.removeAllRanges();
-        selection.addRange(selected);
-      }
-      document.body.removeChild(ta);
+      clipBoard(code, function(result) {
+        target.child('.ic').className = result ? 'ic i-check' : 'ic i-times';
+        target.blur();
+        showtip(LOCAL.copyright);
+      })
     });
     copyBtn.addEventListener('mouseleave', function (event) {
       setTimeout(function () {
         event.target.child('.ic').className = 'ic i-clipboard';
-      }, 300);
+      }, 1000);
     });
 
     var breakBtn = element.child('.breakline-btn');
@@ -191,7 +198,7 @@ const postBeauty = function () {
     var fullscreenBtn = element.child('.fullscreen-btn');
     var removeFullscreen = function() {
       element.removeClass('fullscreen');
-      $('html').removeClass('fullscreen');
+      BODY.removeClass('fullscreen');
       fullscreenBtn.child('.ic').className = 'ic i-expand';
     }
     var fullscreenHandle = function(event) {
@@ -202,7 +209,7 @@ const postBeauty = function () {
         pageScroll(element)
       } else {
         element.addClass('fullscreen');
-        $('html').addClass('fullscreen');
+        BODY.addClass('fullscreen');
         fullscreenBtn.child('.ic').className = 'ic i-compress';
         showCode && showCode();
       }
@@ -283,20 +290,18 @@ const postBeauty = function () {
       box.className = 'tabs';
       box.id = id;
       element.parentNode.insertBefore(box, element);
-      ul = document.createElement('ul');
-      ul.addClass('nav');
-      box.appendChild(ul);
     }
 
     var ul = box.child('.nav');
     if(!ul) {
-      ul = document.createElement('ul');
-      ul.addClass('nav');
-      box.appendChild(ul);
+      ul = box.createChild('ul', {
+        className: 'nav'
+      });
     }
 
-    var li = document.createElement('li');
-    li.innerHTML = title;
+    var li = ul.createChild('li', {
+      innerHTML: title
+    });
     if(index == 0) {
       li.addClass('active');
       element.addClass('active');
@@ -310,8 +315,6 @@ const postBeauty = function () {
       element.addClass('active');
       target.addClass('active');
     });
-
-    ul.appendChild(li);
 
     box.appendChild(element);
   });
@@ -345,10 +348,16 @@ const loadComments = function () {
   io.observe(element);
 }
 
-
 const algoliaSearch = function(pjax) {
   if(CONFIG.search === null)
     return
+
+  if(!siteSearch) {
+    siteSearch = BODY.createChild('div', {
+      id: 'search',
+      innerHTML: '<div class="inner"><div class="header"><span class="icon"><i class="ic i-search"></i></span><div class="search-input-container"></div><span class="close-btn"><i class="ic i-times-circle"></i></span></div><div class="results"><div class="inner"><div id="search-stats"></div><div id="search-hits"></div><div id="search-pagination"></div></div></div></div>'
+    });
+  }
 
   var search = instantsearch({
     indexName: CONFIG.search.indexName,

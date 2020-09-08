@@ -133,4 +133,4 @@ symbols_count_time:
   view: times
 
 tips:
-  copyright: "Copied to clipboard successfully! All articles in this blog are licensed under %s unless stating additionally."
+  copyright: "Copied to clipboard successfully! <br> All articles in this blog are licensed under %s."

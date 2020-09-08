@@ -1,12 +1,20 @@
-const sideBarToggleHandle = function (event) {
-  menuToggle.toggleClass('close');
-  var animateAction = sideBar.hasClass('on') ? 'transition.slideRightOut' : 'transition.slideRightIn';
-  Velocity(sideBar, animateAction, {
-    duration: 200,
-    complete: function () {
-      sideBar.toggleClass('on');
-    }
-  });
+const sideBarToggleHandle = function (event, force) {
+  if(sideBar.hasClass('on')) {
+    sideBar.removeClass('on');
+    menuToggle.removeClass('close');
+    Velocity(sideBar, 'transition.slideRightOut', {duration: 200});
+  } else {
+    if(force)
+      return
+
+    Velocity(sideBar, 'transition.slideRightIn', {
+      duration: 200,
+      complete: function () {
+        sideBar.addClass('on');
+        menuToggle.addClass('close');
+      }
+    });
+  }
 }
 
 const sideBarTab = function () {
@@ -24,9 +32,17 @@ const sideBarTab = function () {
     var element = sideBar.child('.panel.' + item)
 
     if(element.innerHTML.replace(/(^\s*)|(\s*$)/g, "").length < 1) {
+      if(item == 'contents') {
+        showContents.display("none")
+      }
       return;
     }
-    var tab = document.createElement('li');
+
+    if(item == 'contents') {
+      showContents.display("")
+    }
+
+    var tab = document.createElement('li')
     var span = document.createElement('span')
     var text = document.createTextNode(element.attr('data-title'));
     span.appendChild(text);
@@ -67,7 +83,7 @@ const sideBarTab = function () {
     sideBarInner.insertBefore(list, sideBarInner.childNodes[0]);
     sideBar.child('.panels').style.paddingTop = ''
   } else {
-    sideBar.child('.panels').style.paddingTop = '10px'
+    sideBar.child('.panels').style.paddingTop = '.625rem'
   }
 }
 
@@ -99,7 +115,10 @@ const sidebarTOC = function () {
 
     // TOC item animation navigate.
     link.addEventListener('click', anchorScroll);
-    alink && alink.addEventListener('click', anchorScroll);
+    alink && alink.addEventListener('click', function(event) {
+      anchorScroll(event)
+      clipBoard(LOCAL.path + event.currentTarget.attr('href'))
+    });
     return anchor;
   });
 

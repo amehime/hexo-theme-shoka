@@ -5,6 +5,8 @@
   width: $sidebar-desktop;
   margin: 0;
   padding: 0;
+  position: fixed;
+  bottom: .125rem;
 
   li {
     width: 25%;
@@ -30,8 +32,7 @@
 
 #sidebar.affix, #sidebar.on {
   #quick {
-    position: fixed;
-    bottom: .125rem;
+    display: flex;
   }
 }
 

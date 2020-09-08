@@ -40,11 +40,11 @@ const vendorCss = function(type, condition) {
     return;
 
   if(LOCAL[type]) {
-    var linkTag = document.createElement('link');
-    linkTag.attr('rel','stylesheet');
-    linkTag.href = assetUrl("css", type);
 
-    document.head.appendChild(linkTag);
+    document.head.createChild('link', {
+      rel: 'stylesheet',
+      href: assetUrl("css", type)
+    });
 
     window['css'+type] = true;
   }
