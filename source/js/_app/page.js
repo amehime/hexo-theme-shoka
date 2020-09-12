@@ -97,7 +97,7 @@ const postBeauty = function () {
   if(!$('.md'))
     return
 
-  $('.article.wrap').oncopy = function(event) {
+  $('.post.block').oncopy = function(event) {
     showtip(LOCAL.copyright)
 
     var copyright = $('#copyright')
