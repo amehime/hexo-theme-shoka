@@ -113,6 +113,10 @@ code,
     border-radius: 0rem;
     overflow: scroll;
     @extend .elastic;
+
+    .show-btn{
+      position: fixed;
+    }
   }
 
   &.breakline {
@@ -131,7 +135,6 @@ code,
 .code-container {
   overflow-x: scroll;
   overflow-y: hidden;
-  position: relative;
 
   &::after {
     content: "";

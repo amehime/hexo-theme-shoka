@@ -198,6 +198,7 @@ const postBeauty = function () {
     var fullscreenBtn = element.child('.fullscreen-btn');
     var removeFullscreen = function() {
       element.removeClass('fullscreen');
+      element.scrollTop = 0;
       BODY.removeClass('fullscreen');
       fullscreenBtn.child('.ic').className = 'ic i-expand';
     }
