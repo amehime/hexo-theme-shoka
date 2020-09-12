@@ -144,16 +144,14 @@ const postBeauty = function () {
     parent.addClass('ruby');
   })
 
-  $.each('.md > table', function (element) {
+  $.each('.md table', function (element) {
     element.wrap({
       className: 'table-container'
     });
   });
 
-  $.each('.highlight > table', function (element) {
-    element.wrap({
-      className: 'code-container'
-    });
+  $.each('.highlight > .table-container', function (element) {
+    element.className = 'code-container'
   });
 
   $.each('figure.highlight', function (element) {

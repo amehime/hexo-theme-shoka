@@ -7,13 +7,13 @@
     }
 
     p {
-      margin: 0 0 .5rem;
+      margin: 0 0 .5em;
     }
   }
 
   ul, ol {
-    margin: 0 0 .8rem;
-    padding: .1rem .2rem .1rem 1.4rem;
+    margin: 0 0 .8em;
+    padding: .1em .2em .1em 1.4em;
   }
 
   ul > li,
@@ -21,16 +21,16 @@
     &::before {
       content: "";
       position: absolute;
-      width: .4rem;
-      height: .4rem;
+      width: .4em;
+      height: .4em;
       background: var(--primary-color);
       border-radius: 50%;
-      top: .85rem;
-      left: -1rem;
+      top: .85em;
+      left: -1em;
     }
 
     &.ruby::before {
-      top: 1.25rem;
+      top: 1.25em;
     }
 
     &:hover::before {
@@ -51,21 +51,21 @@
         counter-increment: counter;
         content: counter(counter);
         position: absolute;
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.4em;
+        height: 1.4em;
         border-radius: 50%;
         text-align: center;
         font-size: .8em;
         line-height: 1.4;
-        top: .5rem;
-        left: -1.6rem;
+        top: .5em;
+        left: -1.8em;
         background: var(--primary-color);
         color: var(--grey-1);
         cursor: pointer;
       }
 
       &.ruby::before {
-        top: .3rem;
+        top: .3em;
       }
 
       &:hover::before {
@@ -75,15 +75,15 @@
   }
 
   dl {
-    padding-inline-start: 2.5rem;
+    padding-inline-start: 2.5em;
     +tablet-mobile() {
-      padding-inline-start: 1.25rem;
+      padding-inline-start: 1.25em;
     }
     dt {
       position: relative;
     }
     dd {
-      padding-left: .9375rem;
+      padding-left: .9375em;
     }
   }
 
@@ -108,7 +108,7 @@
         font-family-icons();
         color: var(--grey-4);
         display: inline-block;
-        margin-right: .625rem;
+        margin-right: .625em;
       }
 
       input[type='checkbox']:checked+label::before {
@@ -116,23 +116,5 @@
         color: var(--primary-color);
       }
     }
-  }
-}
-
-#comments {
-  ul > li::before {
-    width: .3rem;
-    height: .3rem;
-    top: .7rem;
-    left: -.6rem;
-  }
-
-  ol > li::before {
-    width: .8rem;
-    height: .8rem;
-    font-size: .4rem;
-    line-height: 1.3;
-    top: .4rem;
-    left: -1.2rem;
   }
 }

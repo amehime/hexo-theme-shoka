@@ -100,7 +100,7 @@
     }
   }
 
-  blockquote {
+  blockquote, .note {
     display: none;
 
     .mistake {
@@ -119,7 +119,7 @@
     }
   }
 
-  &.show blockquote {
+  &.show blockquote, &.show .note {
     display: block;
     @extend .slide;
   }
