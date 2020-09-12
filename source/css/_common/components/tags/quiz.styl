@@ -73,29 +73,29 @@
     color: var(--color-blue) !important;
   }
 
-  &.show>p::after {
+  &.show>p:last-child::after {
     font-family-icons();
   }
 
-  &.show.true>p::after {
+  &.show.true>p:last-child::after {
     @extend .i-check:before;
     color: var(--color-green);
   }
 
-  &.show.false>p::after {
+  &.show.false>p:last-child::after {
     @extend .i-times:before;
     color: var(--color-red);
   }
 
 
   &.essay {
-    >p::before {
+    >p:first-child::before {
       content: "[问答题]";
     }
   }
 
   &.fill {
-    >p::before {
+    >p:first-child::before {
       content: "[填空题]";
     }
   }
