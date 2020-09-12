@@ -10,7 +10,8 @@ $code-block {
 
 pre,
 code,
-.code-container {
+.code-container,
+.highlight.fullscreen {
   font-family: $font-family-monospace;
   font-size: $font-size-medium;
   @extend $mini-scrollbar;
@@ -110,12 +111,8 @@ code,
     z-index: $zindex-5;
     margin: 0;
     border-radius: 0rem;
+    overflow: scroll;
     @extend .elastic;
-
-    .code-container {
-      height: calc(100% - 3rem);
-      overflow: scroll;
-    }
   }
 
   &.breakline {
