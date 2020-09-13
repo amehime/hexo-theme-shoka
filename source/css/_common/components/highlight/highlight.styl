@@ -10,11 +10,9 @@ $code-block {
 
 pre,
 code,
-.code-container,
-.highlight.fullscreen {
+.code-container {
   font-family: $font-family-monospace;
   font-size: $font-size-medium;
-  @extend $mini-scrollbar;
 }
 
 
@@ -90,6 +88,9 @@ code,
     span {
       display: block;
       margin-left: .625rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     a {
@@ -111,7 +112,8 @@ code,
     z-index: $zindex-5;
     margin: 0;
     border-radius: 0rem;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     @extend .elastic;
 
     .show-btn{
