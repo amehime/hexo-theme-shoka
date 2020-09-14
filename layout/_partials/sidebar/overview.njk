@@ -8,11 +8,7 @@
 <nav class="state">
   {%- if config.archive_dir != '/' and site.posts.length > 0 %}
     <div class="item posts">
-      {%- if theme.menu.archives %}
-        <a href="{{ url_for(theme.menu.archives.split('||')[0] | trim) }}">
-      {% else %}
-        <a href="{{ url_for(config.archive_dir) }}">
-      {%- endif %}
+      <a href="{{ url_for(config.archive_dir + '/') }}">
         <span class="count">{{ site.posts.length }}</span>
         <span class="name">{{ __('state.posts') }}</span>
       </a>
@@ -21,7 +17,7 @@
 
   {%- if config.category_dir != '/' and site.categories.length > 0 %}
     <div class="item categories">
-      <a href="{{ url_for(config.category_dir)}}">
+      <a href="{{ url_for(config.category_dir + '/')}}">
         <span class="count">{{ site.categories.length }}</span>
         <span class="name">{{ __('state.categories') }}</span>
       </a>
@@ -30,7 +26,7 @@
 
   {%- if config.tag_dir != '/' and site.tags.length > 0 %}
     <div class="item tags">
-      <a href="{{ url_for(config.tag_dir) }}">
+      <a href="{{ url_for(config.tag_dir + '/') }}">
         <span class="count">{{ site.tags.length }}</span>
         <span class="name">{{ __('state.tags') }}</span>
       </a>

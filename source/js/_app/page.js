@@ -157,6 +157,7 @@ const postBeauty = function () {
   $.each('figure.highlight', function (element) {
 
     var code_container = element.child('.code-container');
+    var caption = element.child('figcaption');
 
     element.insertAdjacentHTML('beforeend', '<div class="operation"><span class="breakline-btn"><i class="ic i-align-left"></i></span><span class="copy-btn"><i class="ic i-clipboard"></i></span><span class="fullscreen-btn"><i class="ic i-expand"></i></span></div>');
 
@@ -214,8 +215,7 @@ const postBeauty = function () {
       }
     }
     fullscreenBtn.addEventListener('click', fullscreenHandle);
-    element.child('figcaption').addEventListener('click', fullscreenHandle);
-
+    caption && caption.addEventListener('click', fullscreenHandle);
 
     if(code_container && code_container.height() > 300) {
       code_container.style.maxHeight = "300px";

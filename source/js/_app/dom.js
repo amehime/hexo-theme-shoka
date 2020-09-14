@@ -129,11 +129,11 @@ const mediaPlayer = function(config) {
     btns: ['play-pause', 'music'],
     events: {
       "play-pause": function(event) {
-        if(t.media.source.paused) {
-          t.media.play()
-        } else {
-          t.media.pause()
-        }
+          if(t.media.source.paused) {
+            t.media.play()
+          } else {
+            t.media.pause()
+          }
       },
       "music": function(event) {
         if(t.media.list.hasClass('show')) {
@@ -178,6 +178,30 @@ const mediaPlayer = function(config) {
         })
         return result
       },
+      fetch: function(source, callback) {
+        var list = []
+
+        return new Promise(function(resolve, reject){
+          source.forEach(function(raw) {
+            var meta = utils.parse(raw)
+            var skey = JSON.stringify(meta)
+            var playlist = store.get(skey)
+            if(playlist) {
+              list.push.apply(list, JSON.parse(playlist));
+              resolve(list);
+            } else {
+              fetch('https://api.i-meto.com/meting/api?server='+meta[0]+'&type='+meta[1]+'&id='+meta[2]+'&r='+ Math.random())
+                .then(function(response) {
+                  return response.json()
+                }).then(function(json) {
+                  store.set(skey, JSON.stringify(json))
+                  list.push.apply(list, json);
+                  resolve(list);
+                }).catch(function(ex) {})
+            }
+          })
+        })
+      },
       lrc: function(lrc_s) {
         if (lrc_s) {
             lrc_s = lrc_s.replace(/([^\]^\n])\[/g, function(match, p1){return p1 + '\n['});
@@ -218,46 +242,34 @@ const mediaPlayer = function(config) {
 
   t.media = {
     pointer: -1,
+    loaded: false,
     source: null,
     buttons: {},
     playlist: [],
     lrc: {},
-    fetch: function(source, callback) {
-      var that = this
-      var list = []
-
-      return new Promise(function(resolve, reject){
-        source.forEach(function(raw) {
-          var meta = utils.parse(raw)
-          var skey = JSON.stringify(meta)
-          var playlist = store.get(skey)
-          if(playlist) {
-            list.push.apply(list, JSON.parse(playlist));
-            resolve(list);
-          } else {
-            fetch('https://api.i-meto.com/meting/api?server='+meta[0]+'&type='+meta[1]+'&id='+meta[2]+'&r='+ Math.random())
-              .then(function(response) {
-                return response.json()
-              }).then(function(json) {
-                store.set(skey, JSON.stringify(json))
-                list.push.apply(list, json);
-                resolve(list);
-              }).catch(function(ex) {})
-          }
-        })
-      })
+    fetch: function (callback) {
+      var that = this;
+      callback = callback || function() {}
+      if(!this.loaded) {
+        utils.fetch(this.options.rawList).then(function(list) {
+          that.playlist = list;
+          create.list();
+          that.setMode(t.media.options.mode);
+          that.loaded = true;
+          callback();
+        });
+      } else {
+        callback()
+      }
     },
     load: function(newList) {
       if(newList) {
         if(this.options.rawList !== newList) {
-          var that = this
           this.options.rawList = newList;
-
-          this.fetch(newList).then(function(list) {
-            that.playlist = list;
-            create.list();
-            that.setMode(that.options.mode);
-          });
+          if(this.loaded) {
+            this.loaded = false;
+            this.fetch();
+          }
         }
       }
     },
@@ -303,6 +315,7 @@ const mediaPlayer = function(config) {
       var item = this.playlist[this.pointer]
 
       if(item['error']) {
+        this.setMode('next');
         return;
       }
 
@@ -324,10 +337,13 @@ const mediaPlayer = function(config) {
     },
     play: function() {
       if(this.playlist[this.pointer]['error']) {
+        this.setMode('next');
         return;
       }
-      this.source.play()
-      this.changeTitle()
+      var that = this
+      this.source.play().then(function() {
+        that.changeTitle()
+      }).catch(function(e) {});
     },
     pause: function() {
       this.source.pause()
@@ -380,7 +396,9 @@ const mediaPlayer = function(config) {
       if(!t.media.buttons[b]) {
         var el = document.createElement('div');
         el.addClass(b + ' btn');
-        el.addEventListener('click', t.media.options.events[b] || function(){});
+        el.addEventListener('click', function(){
+          t.media.fetch(t.media.options.events[b])
+        });
         t.appendChild(el);
         t.media.buttons[b] = el;
       }

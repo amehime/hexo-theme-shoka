@@ -69,7 +69,7 @@ const siteRefresh = function (reload) {
   registerExtURL()
   postBeauty()
 
-  toolPlayer.media.load(LOCAL.audio || CONFIG.audio || {});
+  toolPlayer.media.load(LOCAL.audio || CONFIG.audio || {})
 
   lozad($.all('img, [data-background-image]'), {
       loaded: function(el) {

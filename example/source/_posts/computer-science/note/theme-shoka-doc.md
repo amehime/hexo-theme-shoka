@@ -50,9 +50,38 @@ hexo-feed|[链接](https://www.npmjs.com/package/hexo-feed)|生成Feed文件| �
 
 安装完以上插件后，修改站点`_config.yml`文件，加入相关配置。
 
-## multi-markdown-it配置建议
+## multi-markdown-it安装与配置
 
-安装时记得务必卸载掉默认的`hexo-renderer-marked`，以及别的markdown文件渲染器。
+### 安装
+
+1. 安装前，记得务必卸载掉默认的`hexo-renderer-marked`，以及别的markdown文件渲染器。
+    ```bash
+    npm un hexo-renderer-marked --save
+    # 或者
+    yarn remove hexo-renderer-marked
+    ```
+
+2. 安装
+    ```bash
+    npm i hexo-renderer-multi-markdown-it --save
+    # 或者
+    yarn add hexo-renderer-multi-markdown-it
+    ```
+
+3. 如果安装缓慢，或者失败
+    如报错
+    ```bash
+    ERROR: Failed to download Chromium r515411! Set "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" env variable to skip download.
+    ```
+    因为有一步需要下载puppeteer里的Chromium内核，基于天朝内部网络现状，这一步能不能成功要靠科学和运气，所以为了避免安装失败，需要加上`--ignore-scripts`跳过Chromium内核的下载。
+    ```bash
+    npm i hexo-renderer-multi-markdown-it --save --ignore-scripts
+    # 或者
+    yarn add hexo-renderer-multi-markdown-it --ignore-scripts
+    ```
+    puppeteer主要是用来渲染mermaid流程图，只要文章中不使用mermaid就没有任何问题，如果要使用mermaid建议还是想办法完全安装。
+
+### 配置
 
 1. 加入`markdown`配置，用来渲染md文件
 ```yml
