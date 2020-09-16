@@ -64,10 +64,10 @@ function linkGrid(args, content) {
     result += `<div class="item" style="--block-color:${item.color || '#666'};" title="${item.owner || item.site}">`;
 
     if (urlparam.protocol && urlparam.hostname !== siteHost) {
-      item.url = Buffer.from(item.url).toString('base64');
-      result += `<span class="exturl image" data-url="${item.url}" data-background-image="${item_image}"></span>
+      var durl = Buffer.from(item.url).toString('base64');
+      result += `<span class="exturl image" data-url="${durl}" data-background-image="${item_image}"></span>
           <div class="info">
-          <span class="exturl title" data-url="${item.url}">${item.site}</span>
+          <span class="exturl title" data-url="${durl}">${item.site}</span>
           <p class="desc">${item.desc || item.url}</p>
           </div></div>`;
     } else {
