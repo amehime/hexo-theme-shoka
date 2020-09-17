@@ -161,6 +161,25 @@ autoprefixer:
 
 缺少这个插件，首页卡片翻转效果在部分浏览器中无法正确显示。
 
+## algolia配置建议
+
+```yml
+algolia:
+  appId: #Your appId
+  apiKey: #Your apiKey
+  adminApiKey: #Your adminApiKey
+  chunkSize: 5000
+  indexName: #"shoka"
+  fields:
+    - categories
+    - content:strip:truncate,0,2000
+    - gallery
+    - path
+    - photos
+    - tags
+    - title
+```
+
 ## feed配置建议
 
 ```yml

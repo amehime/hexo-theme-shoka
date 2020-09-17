@@ -407,8 +407,8 @@ const algoliaSearch = function(pjax) {
       container: '#search-hits',
       templates: {
         item: function(data) {
-          var cats = data.categories.join('<i class="ic i-angle-right"></i>')
-          return '<a href="' + CONFIG.root + data.path +'"><span>'+cats+'</span>'+data._highlightResult.title.value+'</a>';
+          var cats = data.categories ? '<span>'+data.categories.join('<i class="ic i-angle-right"></i>')+'</span>' : '';
+          return '<a href="' + CONFIG.root + data.path +'">'+cats+data._highlightResult.title.value+'</a>';
         },
         empty: function(data) {
           return '<div id="hits-empty">'+
