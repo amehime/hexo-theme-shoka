@@ -12,9 +12,7 @@ const yaml = require('js-yaml');
 const imageListFile = fs.readFileSync(path.join(__dirname, '../../_images.yml'));
 const imageList = yaml.safeLoad(imageListFile);
 
-const randomServer = function() {
-  return parseInt(Math.random()*4,10)+1
-}
+const randomServer = parseInt(Math.random()*4,10)+1
 
 const randomBG = function(count = 1) {
   if(count && count > 1) {
@@ -27,10 +25,10 @@ const randomBG = function(count = 1) {
     }
 
     return shuffled.slice(min).map(function(img) {
-      return 'https://tva'+randomServer()+'.sinaimg.cn/large/'+img
+      return 'https://tva'+randomServer+'.sinaimg.cn/large/'+img
     });
   }
-  return 'https://tva'+randomServer()+'.sinaimg.cn/mw690/'+imageList[Math.floor(Math.random() * imageList.length)]
+  return 'https://tva'+randomServer+'.sinaimg.cn/mw690/'+imageList[Math.floor(Math.random() * imageList.length)]
 }
 
 hexo.extend.helper.register('_url', function(path, text, options = {}) {

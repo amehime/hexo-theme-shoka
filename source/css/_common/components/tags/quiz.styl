@@ -100,7 +100,7 @@
     }
   }
 
-  blockquote, .note {
+  blockquote {
     display: none;
 
     .mistake {
@@ -117,6 +117,18 @@
         color: var(--grey-4);
       }
     }
+  }
+
+  .note {
+    display: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    border-radius: inherit;
+    color: unset;
+    font-size: inherit;
+    filter: unset;
   }
 
   &.show blockquote, &.show .note {
