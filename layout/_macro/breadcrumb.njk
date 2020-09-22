@@ -1,13 +1,21 @@
-{% macro render(post) %}
+{% macro render(post, home) %}
+{%- if home %}
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a></span>
+{%- else %}
+<div class="breadcrumb">
+{%- endif %}
 {%- if post.categories and post.categories.length %}
 {%- set cat_length = post.categories.length %}
-<i class="ic i-angle-right"></i>
+{%- if home %}<i class="ic i-angle-right"></i>{%- endif %}
 {%- for cat in post.categories.toArray() %}
+{%- if home %}
 <span {% if loop.index == cat_length %} class="current"{% endif %} itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ url_for(cat.path) }}" itemprop="item" rel="index" title="{{ __('post.in') }} {{ cat.name }}"><span itemprop="name">{{ cat.name }}</span></a>
 <meta itemprop="position" content="{{ loop.index }}" /></span>
+{%- else %}
+<a href="{{ url_for(cat.path) }}" title="{{ __('post.in') }} {{ cat.name }}">{{ cat.name }}</a>
+{%- endif %}
 {%- if cat_length > 1 and loop.index !== cat_length %}
 <i class="ic i-angle-right"></i>
 {%- endif %}

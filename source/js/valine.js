@@ -2533,11 +2533,16 @@
           })
         },
         s = function (e) {
-          o.default.sdkLoader("//api.ip.sb/jsonip?callback=getIP", "getIP"),
-            window.getIP = function (t) {
-              e && e(t.ip),
-                o.default.deleteInWin("getIP")
+          o.default.ajax({
+            type: "GET",
+            url: 'https://ip.zxinc.org/api.php',
+            data: {
+              type: 'json'
+            },
+            success: function (data) {
+              e && e(data.data.myip)
             }
+          })
         };
       t.fetchQQFn = a,
         t.recordIPFn = s

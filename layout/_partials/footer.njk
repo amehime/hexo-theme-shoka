@@ -1,28 +1,30 @@
-<div class="copyright">
-  {% set copyright_year = date(null, 'YYYY') %}
-  &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
-  <span itemprop="copyrightYear">{{ copyright_year }}</span>
-  <span class="with-love">
-    <i class="ic i-{{ theme.footer.icon.name }}"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">{{ author }} @ {{ alternate if alternate else title}}</span>
-</div>
+<div class="status">
+  <div class="copyright">
+    {% set copyright_year = date(null, 'YYYY') %}
+    &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
+    <span itemprop="copyrightYear">{{ copyright_year }}</span>
+    <span class="with-love">
+      <i class="ic i-{{ theme.footer.icon.name }}"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">{{ author }} @ {{ alternate if alternate else title}}</span>
+  </div>
 
-{%- if theme.footer.count %}
-<div>
-  <span class="post-meta-item-icon">
-    <i class="ic i-chart-area"></i>
-  </span>
-  <span title="{{ __('symbols_count_time.count_total') }}">{{ symbolsCountTotal(site) }} {{__('symbols_count_time.word')}}</span>
+  {%- if theme.footer.count %}
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="{{ __('symbols_count_time.count_total') }}">{{ symbolsCountTotal(site) }} {{__('symbols_count_time.word')}}</span>
 
-  <span class="post-meta-divider">|</span>
-  <span class="post-meta-item-icon">
-    <i class="ic i-coffee"></i>
-  </span>
-  <span title="{{ __('symbols_count_time.time_total') }}">{{ symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
-</div>
-{%- endif %}
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="{{ __('symbols_count_time.time_total') }}">{{ symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+  </div>
+  {%- endif %}
 
-<div class="powered-by">
-  {{ __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}
+  <div class="powered-by">
+    {{ __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}
+  </div>
 </div>

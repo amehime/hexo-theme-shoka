@@ -33,7 +33,7 @@
 
 {% block content %}
   <div class="article wrap">
-    {{ breadcrumb.render(page) }}
+    {{ breadcrumb.render(page, true) }}
     {{ partial('_partials/post/post.njk', {post: page}) }}
   </div>
   {{ partial('_partials/post/nav.njk', {post: page}) }}

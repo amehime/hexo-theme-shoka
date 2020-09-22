@@ -35,6 +35,8 @@ index:
   sticky: Sticky Posts
   category: Categories
   posts: Post List
+  random_posts: Random Posts
+  recent_comments: Recent Comments
 
 post:
   posted: Posted on

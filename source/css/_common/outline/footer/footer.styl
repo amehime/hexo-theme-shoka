@@ -1,16 +1,15 @@
 // Footer Section
 // --------------------------------------------------
-#container > footer {
+#footer {
   color: var(--grey-5);
   font-size: $font-size-small;
-  bottom:0;
-  width:100%;
   background: var(--body-bg-shadow);
 
   .inner {
     margin: 0 auto;
-    text-align: center;
     width: $content-desktop;
+    position: relative;
+
     if (hexo-config('sidebar.position') == 'left') {
       padding-left: 16.25rem;
     } else {
@@ -31,6 +30,11 @@
       width: auto;
     }
   }
+}
+
+.status {
+  width: 100%;
+  text-align: center;
 }
 
 .languages {

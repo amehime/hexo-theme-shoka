@@ -492,6 +492,8 @@ sticky: true
     零基础学Java语言-浙江大学-翁恺: course-1
     面向对象程序设计-Java语言-浙江大学-翁恺: course-2
   ```
+  > 注意：hexo会自动处理路径中的特殊字符，~\`!@#$%^&*()-_+=[]{}|\\;:"'<>,.?以及空格，这些全部会被替换成`-`
+  > 所以避免在设置中使用上述字符，否则可导致无法抓取到目录下的`cover.jpg`
   
 2. 在`<root>/source/_posts`文件夹相应的目录里，存放封面图
 例子：如 [第1周 计算](https://shoka.lostyu.me/computer-science/java/course-1/week-1/) 这篇文章。

@@ -240,6 +240,7 @@ vendors:
     lazyload: npm/lozad@1/dist/lozad.min.js
     quicklink: npm/quicklink@2/dist/quicklink.umd.js
     mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
+    leancloud: npm/leancloud-storage@3/dist/av-min.js
     valine: js/valine.js
     copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js

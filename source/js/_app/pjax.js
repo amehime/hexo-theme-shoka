@@ -27,6 +27,8 @@ const domInit = function() {
   showContents.addEventListener('click', sideBarToggleHandle);
 
   toolPlayer.player();
+
+  loadRecentComment();
 }
 
 

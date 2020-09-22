@@ -114,7 +114,6 @@ const themeColorListener = function () {
       });
     }
   });
-
 }
 
 const visibilityListener = function () {
@@ -255,4 +254,55 @@ const clipBoard = function(str, callback) {
     selection.addRange(selected);
   }
   BODY.removeChild(ta);
+}
+
+const loadRecentComment = function (root) {
+  // set serverURLs
+  var prefix = 'https://'
+  var serverURLs = ''
+  var options = CONFIG.valine
+  if (!options.serverURLs) {
+    switch (options.appId.slice(-9)) {
+      // TAB
+      case '-9Nh9j0Va':
+        prefix += 'tab.leancloud.cn';
+        break;
+        // US
+      case '-MdYXbMMI':
+        prefix += 'us.avoscloud.com';
+        break
+      default:
+        prefix += 'avoscloud.com';
+        break;
+    }
+  }
+  serverURLs = options.serverURLs || prefix
+  try {
+    AV.init({
+      appId: options.appId,
+      appKey: options.appKey,
+      serverURLs: serverURLs
+    })
+
+    AV.Query.doCloudQuery(
+      "select nick, mail, comment, url from Comment where (rid='' or rid is not exists) order by -createdAt limit 0,10"
+    ).then(function(rets){
+      rets = (rets && rets.results) || []
+      const len = rets.length
+      if (len) {
+        var html = ''
+        for (var i = 0; i < len; i++) {
+          html += '<li class="item">'
+          +'<a href="'+ CONFIG.root + rets[i].get('url') +'#comments">'
+          + '<span class="breadcrumb">'+rets[i].get('nick') + ' @ '+ dateFormat(rets[i].createdAt)+'</span>'
+          + '<span>'+rets[i].get('comment').replace(/<[^>]+>/gi, '').substr(0, 100)+'</span></a>'
+          +'</li>'
+        }
+
+        $('#rcomment').createChild('ul', {
+          innerHTML: html
+        })
+      }
+    }).catch(function(e){})
+  } catch (e) {}
 }
