@@ -256,7 +256,7 @@ const clipBoard = function(str, callback) {
   BODY.removeChild(ta);
 }
 
-const loadRecentComment = function (root) {
+const loadRecentComment = function (pjax) {
   // set serverURLs
   var prefix = 'https://'
   var serverURLs = ''
@@ -283,7 +283,7 @@ const loadRecentComment = function (root) {
       appKey: options.appKey,
       serverURLs: serverURLs
     })
-
+    var el = $('#rcomment')
     AV.Query.doCloudQuery(
       "select nick, mail, comment, url from Comment where (rid='' or rid is not exists) order by -createdAt limit 0,10"
     ).then(function(rets){
@@ -299,9 +299,11 @@ const loadRecentComment = function (root) {
           +'</li>'
         }
 
-        $('#rcomment').createChild('ul', {
+        el.createChild('ul', {
           innerHTML: html
         })
+
+        pjax.refresh(el);
       }
     }).catch(function(e){})
   } catch (e) {}

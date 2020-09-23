@@ -27,8 +27,6 @@ const domInit = function() {
   showContents.addEventListener('click', sideBarToggleHandle);
 
   toolPlayer.player();
-
-  loadRecentComment();
 }
 
 
@@ -47,6 +45,7 @@ const pjaxReload = function () {
 
   $('#content').innerHTML = ''
   $('#content').appendChild(loadCat.lastChild.cloneNode(true));
+  pageScroll(BODY);
 }
 
 const siteRefresh = function (reload) {
@@ -107,6 +106,7 @@ const siteInit = function () {
   themeColorListener()
 
   algoliaSearch(pjax)
+  loadRecentComment(pjax)
 
   window.addEventListener('scroll', scrollHandle)
 
