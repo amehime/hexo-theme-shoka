@@ -100,6 +100,8 @@ const sidebarTOC = function () {
   sections = sections.map(function (element, index) {
     var link = element.child('a.toc-link');
     var anchor = $(decodeURI(link.attr('href')));
+    if(!anchor)
+      return
     var alink = anchor.child('a.anchor');
 
     var anchorScroll = function (event) {
@@ -135,15 +137,15 @@ const sidebarTOC = function () {
     }
 
     $.each('.toc .active', function (element) {
-      element.removeClass('active current');
+      element && element.removeClass('active current');
     });
 
     sections.forEach(function (element) {
-      element.removeClass('active');
+      element && element.removeClass('active');
     });
 
     target.addClass('active current');
-    sections[index].addClass('active');
+    sections[index] && sections[index].addClass('active');
 
     var parent = target.parentNode;
 
