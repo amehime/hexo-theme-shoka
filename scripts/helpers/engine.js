@@ -89,12 +89,13 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
 
 hexo.extend.helper.register('_cover', function(item, num) {
   const { statics, js } = hexo.theme.config;
+  var that = this
 
   var format = function(img) {
     if (img.startsWith('//') || img.startsWith('http')) {
       return img
     } else {
-      return url_for.call(this, statics + img)
+      return url_for.call(that, statics + img)
     }
   }
 

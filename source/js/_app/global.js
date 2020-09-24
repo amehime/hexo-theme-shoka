@@ -261,6 +261,8 @@ const loadRecentComment = function (pjax) {
   var prefix = 'https://'
   var serverURLs = ''
   var options = CONFIG.valine
+  if(!options.appId)
+    return;
   if (!options.serverURLs) {
     switch (options.appId.slice(-9)) {
       // TAB
