@@ -280,6 +280,7 @@ font:
 ## 菜单与社交按钮icon
 这里没有直接使用Font Awesome，是因为用不到那么多icon感觉非常浪费，因此在Iconfont上重新建立了一个项目。
 `font-family`设为`ic`，所有字体样式前缀为`i-`，具体参见`themes/shoka/source/css/scaffolding/iconfont.styl`。
+全部图标预览可以打开`themes/shoka/source/css/_common/scaffolding/icon/demo_index.html`文件查看。
 
 ```yml
 menu:
@@ -748,7 +749,7 @@ drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
 `>` | 答案解析
 `[8.4]{.mistake}` | 错题备注
 
-## `emoji` 颜文字
+## `emoji` 绘文字
 
 本功能基于`markdown-it-emoji`
 
