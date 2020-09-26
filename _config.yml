@@ -77,6 +77,8 @@ sidebar:
   # Sidebar Position.
   position: left
   #position: right
+  # Replace the default avatar image and set the url here.
+  avatar: avatar.jpg
 
 # Social Links
 # Usage: `Key: permalink || icon || color`
@@ -120,6 +122,13 @@ footer:
     color: "#ffc0cb"
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
+  powered: true
+
+widgets:
+  # if true, will show random posts
+  random_posts: true
+  # if true, will show recent comments
+  recent_comments: true
 
 # Creative Commons 4.0 International License.
 # See: https://creativecommons.org/share-your-work/licensing-types-examples
@@ -139,16 +148,16 @@ reward:
     alipay: /alipay.png
     paypal: /paypal.png
 
-# bgm
-audio:
-  - https://music.163.com/#/playlist?id=2031842656
-
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
 
 # Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
 pangu: false
+
+# bgm
+audio:
+  - https://music.163.com/#/playlist?id=2031842656
 
 # Algolia Search
 # For more information: https://www.algolia.com

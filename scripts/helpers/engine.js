@@ -86,23 +86,24 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
   return htmlTag(tag, attrs, decodeURI(text), false);
 });
 
+hexo.extend.helper.register('_image_url', function(img) {
+  const { statics } = hexo.theme.config;
+
+  if (img.startsWith('//') || img.startsWith('http')) {
+    return img
+  } else {
+    return url_for.call(this, statics + img)
+  }
+
+})
 
 hexo.extend.helper.register('_cover', function(item, num) {
   const { statics, js } = hexo.theme.config;
-  var that = this
-
-  var format = function(img) {
-    if (img.startsWith('//') || img.startsWith('http')) {
-      return img
-    } else {
-      return url_for.call(that, statics + img)
-    }
-  }
 
   if(item.cover) {
-    return format(item.cover)
+    return this._image_url(item.cover)
   } else if (item.photos && item.photos.length > 0) {
-    return format(item.photos[0])
+    return this._image_url(item.photos[0])
   } else {
     return randomBG(num || 1);
   }

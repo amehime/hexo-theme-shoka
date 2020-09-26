@@ -24,7 +24,9 @@
   </div>
   {%- endif %}
 
+  {%- if theme.footer.powered %}
   <div class="powered-by">
     {{ __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}
   </div>
+  {%- endif %}
 </div>

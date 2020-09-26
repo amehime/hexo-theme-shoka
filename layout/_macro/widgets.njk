@@ -1,0 +1,30 @@
+{% macro field(item) %}
+  {%- if item.link %}
+    {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
+  {%- endif %}
+  <li class="item">
+    {{ breadcrumb.render(item, false) }}
+    {%- set postText = item.title or item.link or __('post.untitled') %}
+    <span>{{ _url(item.link or item.path, postText + (postTitleIcon or ''), {title: postText}) }}</span>
+  </li>
+{% endmacro %}
+
+{% macro render(item) %}
+{%- if theme.widgets.random_posts %}
+<div class="rpost pjax">
+  <h2>{{__('index.random_posts')}}</h2>
+  <ul>
+    {%- set posts = site.posts.shuffle().limit(10).toArray() %}
+    {%- for item in posts %}
+      {{field(item)}}
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif %}
+
+{%- if theme.widgets.recent_comments %}
+<div id="rcomment">
+  <h2>{{__('index.recent_comments')}}</h2>
+</div>
+{%- endif %}
+{% endmacro %}

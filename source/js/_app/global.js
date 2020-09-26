@@ -257,12 +257,15 @@ const clipBoard = function(str, callback) {
 }
 
 const loadRecentComment = function (pjax) {
+  var options = CONFIG.valine
+  var el = $('#rcomment')
+
+  if(!options.appId || !el)
+    return;
+
   // set serverURLs
   var prefix = 'https://'
   var serverURLs = ''
-  var options = CONFIG.valine
-  if(!options.appId)
-    return;
   if (!options.serverURLs) {
     switch (options.appId.slice(-9)) {
       // TAB
@@ -285,7 +288,7 @@ const loadRecentComment = function (pjax) {
       appKey: options.appKey,
       serverURLs: serverURLs
     })
-    var el = $('#rcomment')
+
     AV.Query.doCloudQuery(
       "select nick, mail, comment, url from Comment where (rid='' or rid is not exists) order by -createdAt limit 0,10"
     ).then(function(rets){

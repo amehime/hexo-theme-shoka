@@ -1,5 +1,6 @@
 {% import '_macro/sidebar.njk' as sidebar with context %}
 {% import '_macro/breadcrumb.njk' as breadcrumb with context %}
+{% import '_macro/widgets.njk' as widgets with context %}
 
 <!DOCTYPE html>
 <html lang="{{ config.language }}">
@@ -85,25 +86,7 @@
     <footer id="footer">
       <div class="inner">
         <div class="widgets">
-          <div class="rpost pjax">
-            <h2>{{__('index.random_posts')}}</h2>
-            <ul>
-              {%- set posts = site.posts.shuffle().limit(10).toArray() %}
-              {%- for item in posts %}
-                {%- if item.link %}
-                  {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
-                {%- endif %}
-                <li class="item">
-                  {{ breadcrumb.render(item, false) }}
-                  {%- set postText = item.title or item.link or __('post.untitled') %}
-                  <span>{{ _url(item.link or item.path, postText + (postTitleIcon or ''), {title: postText}) }}</span>
-                </li>
-              {%- endfor %}
-            </ul>
-          </div>
-          <div id="rcomment">
-            <h2>{{__('index.recent_comments')}}</h2>
-          </div>
+          {{ widgets.render() }}
         </div>
         {{ partial('_partials/footer.njk', {}, {cache: true}) }}
       </div>

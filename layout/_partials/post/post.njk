@@ -2,7 +2,7 @@
   <link itemprop="mainEntityOfPage" href="{{ post.permalink }}">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="image" content="{{ url_for(theme.statics + theme.images +'/avatar.jpg') }}">
+    <meta itemprop="image" content="{{ url_for(theme.statics + theme.images + '/' + theme.sidebar.avatar) }}">
     <meta itemprop="name" content="{{ author }}">
     <meta itemprop="description" content="{{ subtitle }}, {{ description }}">
   </span>
@@ -16,7 +16,7 @@
     {%- if post.photos and post.photos.length %}
       <div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
         {%- for photo in post.photos %}
-          <img data-src="{{ url_for(theme.statics + photo) }}" itemprop="contentUrl">
+          <img data-src="{{ _image_url(photo) }}" itemprop="contentUrl">
         {%- endfor %}
       </div>
     {%- endif %}
