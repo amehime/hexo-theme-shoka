@@ -329,6 +329,10 @@ const postBeauty = function () {
 
     box.appendChild(element);
   });
+
+  $.each('div.tags a', function(element) {
+    element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
+  })
 }
 
 const loadComments = function () {
