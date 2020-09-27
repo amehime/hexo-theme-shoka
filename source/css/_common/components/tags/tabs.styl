@@ -1,6 +1,7 @@
 .md .tabs {
   display: block;
   position: relative;
+  margin: 0 0 2rem;
   shadow-box();
 
   ul.nav {
@@ -38,7 +39,7 @@
       &.active::before {
         left: 0;
         right: 0;
-        border-bottom-color: var(--primary-color);
+        border-bottom-color: var(--note-hover, var(--primary-color));
       }
 
     }
@@ -51,6 +52,23 @@
 
     &.active {
       display: block;
+    }
+  }
+
+  .show-btn {
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    width: 2.875rem;
+    height: 2.875rem;
+    text-align: center;
+    color: var(--grey-4);
+    z-index: $zindex-1;
+
+    &::before {
+      font-family-icons();
+      @extend .i-arrow-up:before;
     }
   }
 

@@ -66,7 +66,7 @@ footer:
 counter:
   index:
     post: "%d posts in total"
-    category:  "%d subcategories in total"
+    category:  "%d subcategories in total, "
   tag_cloud:
     zero: No tags
     one: 1 tag in total

@@ -109,7 +109,7 @@
 
       input[type='checkbox']:checked+label::before {
         @extend .i-check-circle:before;
-        color: var(--primary-color);
+        color: var(--note-text, var(--primary-color));
       }
     }
   }

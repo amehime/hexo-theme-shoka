@@ -80,6 +80,7 @@
     font-size: 90%;
     background-color: var(--grey-2);
     margin: 1.25rem 0;
+    border-radius: .1875rem;
 
     ul {
       margin: .625rem 0 !important;
@@ -97,14 +98,7 @@
   }
 
   >blockquote {
-    /*margin: 0 -1.875rem 1.25rem -2.0625rem;*/
-    border-left: .1875rem solid var(--primary-color);
-    padding: .625rem .9375rem;
-
-    +tablet-mobile() {
-      //margin: 0 -1.25rem 1.25rem;
-      padding: .625rem 1.5625rem;
-    }
+    border-left-color: var(--primary-color);
   }
 
   iframe {
@@ -138,48 +132,15 @@
     }
   }
 
-
-  ::-webkit-details-marker {
-    display: none;
-  }
-
-  details{
-    > summary:first-of-type {
-      list-style-type: none;
-    }
-    summary {
-      outline: none;
-      cursor: pointer;
-      padding: .625rem;
-
-      .details-marker:before {
-        font-family-icons();
-        @extend .i-angle-right:before;
-        color: var(--grey-4);
-      }
-    }
-    p {
-      padding: .625rem;
-      margin: 0rem;
-    }
-    li p {
-      padding: 0;
-    }
-  }
-
-  details[open] {
-    > summary {
-      border-radius: 1.25rem;
-      background: var(--grey-2);
-      .details-marker:before {
-        @extend .i-angle-down:before;
-        color: var(--primary-color);
-      }
-    }
-    p {
-      color: var(--grey-6);
-      @extend .fade-in;
-    }
+  .kbd, kbd {
+    background-color: var(--grey-1);
+    background-image: linear-gradient(var(--grey-2), var(--grey-0), var(--grey-2));
+    border: .0625rem solid var(--grey-4);
+    border-radius: .2rem;
+    box-shadow: .1rem .1rem .2rem var(--grey-9-a1);
+    font-family: inherit;
+    padding: .1rem .3rem;
+    white-space: nowrap;
   }
 
   mark {
@@ -187,8 +148,20 @@
   }
 
   ins {
+    --line-color: var(--note-hover, var(--primary-color));
     text-decoration: none;
-    border-bottom: .125rem solid var(--primary-color);
+    border-bottom: .125rem solid var(--line-color);
+
+    &.wavy {
+      text-decoration-style: wavy;
+      text-decoration-line: underline;
+      text-decoration-color: var(--line-color);
+      border-bottom: none;
+    }
+
+    &.dot {
+      border-bottom: .2rem dotted var(--line-color);
+    }
   }
 
   ruby {

@@ -280,6 +280,7 @@ const postBeauty = function () {
   });
 
   // tab
+  var first_tab
   $.each('div.tab', function(element, index) {
     var id = element.attr('data-id');
     var title = element.attr('data-title');
@@ -288,7 +289,17 @@ const postBeauty = function () {
       box = document.createElement('div');
       box.className = 'tabs';
       box.id = id;
+      box.innerHTML = '<div class="show-btn"></div>'
+
+      var showBtn = box.child('.show-btn');
+      showBtn.addEventListener('click', function(event) {
+        pageScroll(box)
+      });
+
       element.parentNode.insertBefore(box, element);
+      first_tab = true;
+    } else {
+      first_tab = false;
     }
 
     var ul = box.child('.nav');
@@ -301,7 +312,8 @@ const postBeauty = function () {
     var li = ul.createChild('li', {
       innerHTML: title
     });
-    if(index == 0) {
+
+    if(first_tab) {
       li.addClass('active');
       element.addClass('active');
     }

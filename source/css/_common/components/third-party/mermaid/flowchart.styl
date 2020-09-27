@@ -1,11 +1,11 @@
 .label {
   font-family: var(--mermaid-font-family);
-  color: #333;
+  color: var(--grey-7);
   font-size: $font-size-small;
 }
 
 .label text {
-  fill: #333;
+  fill: var(--text-color);
 }
 
 .node rect,
@@ -31,13 +31,13 @@
 
 .edgePath .path {
   stroke: var(--text-color);
-  stroke-width: 1..3125rem;
 }
 
 .edgeLabel {
-  background-color: #e8e8e8;
+  background-color: var(--grey-2);
   rect {
-    opacity: .9;
+    opacity: .8;
+    fill: var(--grey-2) !important;
   }
   text-align: center;
 }

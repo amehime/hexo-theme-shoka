@@ -1,0 +1,72 @@
+::-webkit-details-marker {
+  display: none;
+}
+
+details{
+  > summary:first-of-type {
+    list-style-type: none;
+  }
+
+  summary {
+    outline: none;
+    cursor: pointer;
+    padding: .625rem;
+    background: var(--note-bg, none);
+    border-radius: .25rem;
+    transition: all .4s ease;
+
+    &::before {
+      font-family-icons();
+      @extend .i-angle-right:before;
+      color: var(--grey-4);
+      margin-right: .5rem;
+    }
+  }
+
+  > div {
+    padding: .625rem;
+  }
+
+  &.primary, &.info, &.success, &.warning, &.danger {
+    margin: 0 0 .8rem;
+    summary {
+      color: var(--note-text);
+      &::before {
+        color: var(--note-text);
+      }
+    }
+  }
+}
+
+details[open] {
+  background: var(--note-bg, none);
+  border-radius: .25rem;
+  color: var(--grey-6);
+
+  summary {
+    background: var(--note-hover, var(--grey-2));
+    border-radius: .25rem;
+
+    &::before {
+      @extend .i-angle-down:before;
+      color: var(--primary-color);
+    }
+  }
+
+  > div {
+    margin: 0 0 .8rem;
+    @extend .fade-in;
+  }
+
+  &.primary, &.info, &.success, &.warning, &.danger {
+    color: var(--note-text);
+    > summary {
+      color: #FFF;
+      border-radius: .25rem .25rem 0 0;
+
+      &::before {
+        color: #FFF;
+      }
+    }
+  }
+}

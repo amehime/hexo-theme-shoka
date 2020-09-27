@@ -48,8 +48,20 @@ hexo.extend.generator.register('index', function(locals) {
         }
 
         let child = categories.find({'parent': cat._id});
+        let pl = 6;
+
         if (child.length != 0) {
-          cat.child = child;
+          cat.child = child.length;
+          cat.subs = child.sort({name: 1}).limit(6).toArray();
+          pl = Math.max(0, pl - child.length)
+          if(pl > 0) {
+            cat.subs.push.apply(cat.subs, cat.posts.sort({title: 1}).filter(function(item, i) {
+                                            if(item.categories.last()._id == cat._id)
+                                              return true
+                                          }).limit(pl).toArray());
+          }
+        } else {
+          cat.subs = cat.posts.sort({title: 1}).limit(6).toArray();
         }
 
         catlist.push(cat)

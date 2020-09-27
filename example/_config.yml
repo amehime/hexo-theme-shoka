@@ -56,6 +56,7 @@ category_map: # edit for Theme.shoka
   Java: java
   二进制杂谈: note
   零基础学Java语言-浙江大学-翁恺: course-1
+  Theme Shoka Documentation: theme-shoka-doc
 tag_map:
 
 # Date / Time format
@@ -87,18 +88,18 @@ autoprefixer:
     - '*.min.css'
 
 markdown:
-  render:
-    html: true
-    xhtmlOut: true
-    breaks: true
-    linkify: true
+  render: # 渲染器设置
+    html: false # 是否过滤 HTML 标签
+    xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
+    breaks: true # 转换段落里的 '\n' 到 <br>。
+    linkify: true # 将类似 URL 的文本自动转换为链接。
     typographer:
     quotes: '“”‘’'
-  plugins:
+  plugins: # markdown-it插件设置
     - plugin:
         name: markdown-it-toc-and-anchor
         enable: true
-        options:
+        options: # 文章目录以及锚点应用的class名称，shoka主题必须设置成这样
           tocClassName: 'toc'
           anchorClassName: 'anchor'
     - plugin:
@@ -118,7 +119,6 @@ markdown:
         enable: true
         options:
           title: "你知道得太多了"
-
 
 minify:
   html:

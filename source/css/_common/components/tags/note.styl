@@ -1,127 +1,45 @@
 .md .note {
-
   border-radius: .1875rem;
   margin: 1rem 0;
   padding: 1rem;
   position: relative;
 
-  background: var(--note-bg);
-  border: .0625rem solid var(--note-border);
-  color: var(--note-text);
+  background: var(--note-bg, var(--grey-2));
+  color: var(--grey-6);
+  border-left: .25rem solid var(--note-border, var(--grey-4));
+
   font-size: $font-size-small;
 
-  padding-left: 3rem;
-
-  p {
-    line-height: 1.8;
-  }
-
-  a {
-    &:not(.btn) {
-      color: var(--note-hover);
-      border-bottom: .0625rem dashed var(--note-border);
-
-      &:hover {
-        color: var(--note-text);
-        border-bottom-color: var(--note-text);
-      }
-    }
-  }
+  padding-left: 2.5rem;
 
   &::before {
-    font-size: 1.5rem;
-    left: .4rem;
     position: absolute;
+    left: .5rem;
     top: calc(50% - 1.5rem);
     font-family-icons();
+    font-size: 1.5rem;
+    color: var(--note-text, var(--grey-6));
   }
-
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: .1875rem;
-    border-bottom: initial;
-    margin-bottom: 0;
-    padding-top: 0;
-  }
-
-  p,
-  ul,
-  ol,
-  table,
-  pre,
-  blockquote,
-  img {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  ul {
-    li::before {
-      background: var(--note-text);
-      top: .65rem;
-    }
-  }
-
-  ol {
-    li:before {
-      background: var(--note-text) !important;
-      width: .8rem;
-      height: .8rem;
-      font-size: .45rem;
-      line-height: .8rem;
-      top: .4rem;
-      left: -1.2rem
-    }
-  }
-
 
   &.default {
-    --note-border: $default-border;
-    --note-bg: $default-bg;
-    --note-text: $default-text;
-    --note-hover: $default-hover;
-
     &::before {
       @extend .i-arrow-circle-right:before;
     }
   }
 
   &.primary {
-    --note-border: $primary-border;
-    --note-bg: $primary-bg;
-    --note-text: $primary-text;
-    --note-hover: $primary-hover;
-
     &::before {
       @extend .i-plus-circle:before;
     }
   }
 
   &.info {
-    --note-border: $info-border;
-    --note-bg: $info-bg;
-    --note-text: $info-text;
-    --note-hover: $info-hover;
-
     &::before {
       @extend .i-info-circle:before;
     }
   }
 
   &.success {
-    --note-border: $success-border;
-    --note-bg: $success-bg;
-    --note-text: $success-text;
-    --note-hover: $success-hover;
-
     &::before {
       @extend .i-check-circle:before;
     }
@@ -129,26 +47,22 @@
   }
 
   &.warning {
-    --note-border: $warning-border;
-    --note-bg: $warning-bg;
-    --note-text: $warning-text;
-    --note-hover: $warning-hover;
-
     &::before {
       @extend .i-exclamation-circle:before;
     }
-
   }
 
   &.danger {
-    --note-border: $danger-border;
-    --note-bg: $danger-bg;
-    --note-text: $danger-text;
-    --note-hover: $danger-hover;
-
     &::before {
       @extend .i-minus-circle:before;
     }
+  }
 
+  &.no-icon {
+    &::before {
+      content: none;
+    }
+
+    padding-left: 1rem;
   }
 }

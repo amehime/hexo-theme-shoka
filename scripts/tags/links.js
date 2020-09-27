@@ -61,7 +61,9 @@ function linkGrid(args, content) {
       item_image = theme.statics + item_image;
     }
 
-    result += `<div class="item" style="--block-color:${item.color || '#666'};" title="${item.owner || item.site}">`;
+    item.color = item.color? ` style="--block-color:${item.color};"` : '';
+
+    result += `<div class="item" title="${item.owner || item.site}"${item.color}>`;
 
     if (urlparam.protocol && urlparam.hostname !== siteHost) {
       var durl = Buffer.from(item.url).toString('base64');
