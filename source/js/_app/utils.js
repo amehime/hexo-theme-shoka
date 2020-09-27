@@ -80,7 +80,7 @@ const pjaxScript = function(element) {
 }
 
 const pageScroll = function (target, height, complete) {
-  Velocity(target, "scroll", {
+  target && Velocity(target, "scroll", {
     duration: 500,
     easing: "easeOutQuart",
     offset: height || -siteNavHeight,

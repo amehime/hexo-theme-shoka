@@ -332,6 +332,8 @@ const loadComments = function () {
       options.path = element.attr('data-id');
 
       new Valine(options);
+
+      setTimeout(postionInit, 1000);
     }, window.Valine);
   }
 

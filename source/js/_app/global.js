@@ -16,6 +16,7 @@ const siteBrand = $('#brand');
 var toolBtn = $('#tool'), toolPlayer, backToTop, goToComment, showContents;
 var siteSearch = $('#search');
 var siteNavHeight, headerHightInner, headerHight;
+var LOCAL_HASH = 0;
 
 const Loader = {
   timer: null,
@@ -219,14 +220,21 @@ const pagePostion = function(url) {
 
 const postionInit = function() {
   var anchor = window.location.hash
-  if(anchor) {
-    pageScroll($(decodeURI(anchor)));
+  if(LOCAL_HASH == 0 && anchor) {
+    var target = $(decodeURI(anchor))
+    if(target) {
+      pageScroll(target);
+      LOCAL_HASH = 1
+    } else {
+      LOCAL_HASH = 0
+    }
   } else {
     var position = store.get(window.location.href)
     if(position) {
       pageScroll(BODY, position);
       store.del(window.location.href);
     }
+    LOCAL_HASH = -1
   }
 }
 
@@ -298,7 +306,7 @@ const loadRecentComment = function (pjax) {
         var html = ''
         for (var i = 0; i < len; i++) {
           html += '<li class="item">'
-          +'<a href="'+ CONFIG.root + rets[i].get('url') +'#comments">'
+          +'<a href="'+ CONFIG.root + rets[i].get('url') +'#'+rets[i].id+'">'
           + '<span class="breadcrumb">'+rets[i].get('nick') + ' @ '+ dateFormat(rets[i].createdAt)+'</span>'
           + '<span>'+rets[i].get('comment').replace(/<[^>]+>/gi, '').substr(0, 100)+'</span></a>'
           +'</li>'

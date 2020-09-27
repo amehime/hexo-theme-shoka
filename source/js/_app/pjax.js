@@ -80,6 +80,7 @@ const siteRefresh = function (reload) {
 
   Loader.hide()
 
+  LOCAL_HASH = 0
   postionInit()
 
   cardActive()
