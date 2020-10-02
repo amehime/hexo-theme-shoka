@@ -2,18 +2,15 @@ const sideBarToggleHandle = function (event, force) {
   if(sideBar.hasClass('on')) {
     sideBar.removeClass('on');
     menuToggle.removeClass('close');
-    Velocity(sideBar, 'transition.slideRightOut', {duration: 200});
+    transition(sideBar, 'slideRightOut'); // transition.slideRightOut
   } else {
     if(force)
       return
 
-    Velocity(sideBar, 'transition.slideRightIn', {
-      duration: 200,
-      complete: function () {
+    transition(sideBar, 'slideRightIn', function () {
         sideBar.addClass('on');
         menuToggle.addClass('close');
-      }
-    });
+      }); // transition.slideRightIn
   }
 }
 
@@ -109,7 +106,7 @@ const sidebarTOC = function () {
       var target = $(decodeURI(event.currentTarget.attr('href')));
 
       activeLock = index;
-      pageScroll(target, -siteNavHeight, function() {
+      pageScroll(target, null, function() {
           activateNavByIndex(index)
           activeLock = null
         })
@@ -119,12 +116,12 @@ const sidebarTOC = function () {
     link.addEventListener('click', anchorScroll);
     alink && alink.addEventListener('click', function(event) {
       anchorScroll(event)
-      clipBoard(LOCAL.path + event.currentTarget.attr('href'))
+      clipBoard(CONFIG.hostname + '/' + LOCAL.path + event.currentTarget.attr('href'))
     });
     return anchor;
   });
 
-  var tocElement = sideBar.child('.panels .inner');
+  var tocElement = sideBar.child('.contents.panel');
 
   var activateNavByIndex = function (index, lock) {
     var target = navItems[index]
@@ -160,10 +157,8 @@ const sidebarTOC = function () {
       parent = parent.parentNode;
     }
     // Scrolling to center active TOC element if TOC content is taller then viewport.
-    Velocity(target, "scroll", {
-      container: tocElement,
-      offset: - (tocElement.offsetHeight / 2)
-    });
+    if(sideBar.display() == 'block')
+      pageScroll(tocElement, target.offsetTop- (tocElement.offsetHeight / 2))
   }
 
   var findIndex = function(entries) {
@@ -205,11 +200,11 @@ const sidebarTOC = function () {
 }
 
 const backToTopHandle = function () {
-  pageScroll(BODY);
+  pageScroll(0);
 }
 
 const goToBottomHandle = function () {
-  pageScroll(BODY, Container.height());
+  pageScroll(parseInt(Container.height()));
 }
 
 const goToCommentHandle = function () {

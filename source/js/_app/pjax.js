@@ -29,30 +29,46 @@ const domInit = function() {
   toolPlayer.player();
 }
 
-
 const pjaxReload = function () {
   pagePostion(window.location.href);
 
   if(sideBar.hasClass('on')) {
-    Velocity(sideBar, 'transition.slideRightOut', {
-      duration: 200,
-      complete: function () {
+    transition(sideBar, function () {
         sideBar.removeClass('on');
         menuToggle.removeClass('close');
-      }
-    });
+      }); // 'transition.slideRightOut'
   }
 
   $('#content').innerHTML = ''
   $('#content').appendChild(loadCat.lastChild.cloneNode(true));
-  pageScroll(BODY);
+  pageScroll(0);
 }
+
+
+const lazyload = lozad('img, [data-background-image]', {
+    loaded: function(el) {
+        el.addClass('lozaded');
+    }
+})
 
 const siteRefresh = function (reload) {
   vendorCss('katex');
   vendorJs('copy_tex');
   vendorCss('mermaid');
   vendorJs('chart');
+
+  vendorJs('valine', function() {
+    var options = Object.assign({}, CONFIG.valine);
+    options = Object.assign(options, LOCAL.valine||{});
+    options.el = '#comments';
+    options.pathname = LOCAL.path;
+    options.pjax = pjax;
+    options.lazyload = lazyload;
+
+    new MiniValine(options);
+
+    setTimeout(postionInit, 1000);
+  }, window.MiniValine);
 
   if(!reload) {
     $.each('script[data-pjax]', pjaxScript);
@@ -72,33 +88,30 @@ const siteRefresh = function (reload) {
 
   toolPlayer.media.load(LOCAL.audio || CONFIG.audio || {})
 
-  lozad($.all('img, [data-background-image]'), {
-      loaded: function(el) {
-          el.addClass('lozaded');
-      }
-  }).observe()
-
   Loader.hide()
 
   LOCAL_HASH = 0
   postionInit()
 
   cardActive()
+
+  lazyload.observe()
 }
 
 const siteInit = function () {
+
   domInit()
 
-  var pjax = new Pjax({
-    selectors: [
-      'head title',
-      '.languages',
-      '.pjax',
-      'script[data-config]'
-    ],
-    analytics: false,
-    cacheBust: false
-  })
+  pjax = new Pjax({
+            selectors: [
+              'head title',
+              '.languages',
+              '.pjax',
+              'script[data-config]'
+            ],
+            analytics: false,
+            cacheBust: false
+          })
 
   CONFIG.quicklink.ignores = LOCAL.ignores
   quicklink.listen(CONFIG.quicklink)
@@ -107,7 +120,6 @@ const siteInit = function () {
   themeColorListener()
 
   algoliaSearch(pjax)
-  loadRecentComment(pjax)
 
   window.addEventListener('scroll', scrollHandle)
 

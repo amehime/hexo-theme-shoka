@@ -5,7 +5,7 @@
 {%- set postText = item.title or item.link or __('post.untitled') %}
 <article class="item">
   <div class="cover">
-    {{ _url(item.link or item.path, '<img src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
+    {{ _url(item.link or item.path, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
   </div>
   <div class="info">
     {{postmeta.render(item)}}

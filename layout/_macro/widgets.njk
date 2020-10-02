@@ -23,8 +23,9 @@
 {%- endif %}
 
 {%- if theme.widgets.recent_comments %}
-<div id="rcomment">
+<div>
   <h2>{{__('index.recent_comments')}}</h2>
+  <ul class="leancloud-recent-comment"></ul>
 </div>
 {%- endif %}
 {% endmacro %}

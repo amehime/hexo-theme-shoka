@@ -237,7 +237,7 @@ const postBeauty = function () {
         if (showBtn.hasClass('open')) {
           removeFullscreen()
           hideCode()
-          pageScroll(code_container.parentNode)
+          pageScroll(code_container)
         } else {
           showCode()
         }
@@ -254,9 +254,11 @@ const postBeauty = function () {
       event.preventDefault();
       var qr = $('#qr')
       if(qr.display() === 'inline-flex') {
-        Velocity(qr, "fadeOut");
+        transition(qr, 0)
       } else {
-        Velocity(qr, "transition.slideUpBigIn", {display: 'inline-flex'});
+        transition(qr, 1, function() {
+          qr.display('inline-flex')
+        }) // slideUpBigIn
       }
     });
   });
@@ -342,22 +344,13 @@ const loadComments = function () {
     return;
   } else {
     goToComment.display("")
-    vendorJs('valine', function() {
-      var options = CONFIG.valine;
-      options.el = '#comments';
-      options.path = element.attr('data-id');
-
-      new Valine(options);
-
-      setTimeout(postionInit, 1000);
-    }, window.Valine);
   }
 
   var io = new IntersectionObserver(function(entries, observer) {
     var entry = entries[0];
     vendorCss('valine');
     if (entry.isIntersecting) {
-      Velocity($('#comments'), 'transition.bounceUpIn');
+      transition($('#comments'), 'bounceUpIn');
       observer.disconnect();
     }
   });
@@ -466,19 +459,16 @@ const algoliaSearch = function(pjax) {
   $.each('.search', function(element) {
     element.addEventListener('click', function() {
       document.body.style.overflow = 'hidden';
-      Velocity(siteSearch, "transition.shrinkIn", {
-        duration: 200,
-        complete: function() {
+      transition(siteSearch, 'shrinkIn', function() {
           $('.search-input').focus();
-        }
-      });
+        }) // transition.shrinkIn
     });
   });
 
   // Monitor main search box
   const onPopupClose = function() {
     document.body.style.overflow = '';
-    Velocity(siteSearch, "transition.shrinkOut");
+    transition(siteSearch, 0); // "transition.shrinkOut"
   };
 
   siteSearch.addEventListener('click', function(event) {

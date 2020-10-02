@@ -24,7 +24,7 @@ const getScript = function(url, callback, condition) {
 }
 
 const assetUrl = function(asset, type) {
-  return (CONFIG[asset][type].indexOf('npm')>-1? "//cdn.jsdelivr.net/":statics)+CONFIG[asset][type];
+  return (CONFIG[asset][type].indexOf('npm')>-1||CONFIG[asset][type].indexOf('gh')>-1? "//cdn.jsdelivr.net/":(CONFIG[asset][type].indexOf('http')>-1?'':statics))+CONFIG[asset][type];
 }
 
 const vendorJs = function(type, callback, condition) {
@@ -79,29 +79,82 @@ const pjaxScript = function(element) {
   parent.appendChild(script);
 }
 
-const pageScroll = function (target, height, complete) {
-  target && Velocity(target, "scroll", {
+const pageScroll = function(target, offset, complete) {
+  anime({
+    targets: offset? target.parentNode : document.scrollingElement,
     duration: 500,
-    easing: "easeOutQuart",
-    offset: height || -siteNavHeight,
+    easing: "easeInOutQuad",
+    scrollTop: offset || (typeof target == 'number' ? target : target.top() + window.scrollY - siteNavHeight),
     complete: complete || function() {}
   });
 }
 
-const padWithZeros = function(vNumber, width) {
-  var numAsString = vNumber.toString()
-  while (numAsString.length < width) {
-    numAsString = '0' + numAsString
+const transition = function(target, type, complete) {
+  var animation = {}
+  var display = 'none'
+  switch(type) {
+    case 0:
+      animation = {opacity: [1, 0]}
+    break;
+    case 1:
+      animation = {opacity: [0, 1]}
+      display = 'block'
+    break;
+    case 'bounceUpIn':
+      animation = {
+        begin: function(anim) {
+          target.display('block')
+        },
+        translateY: [
+          { value: -60, duration: 200 },
+          { value: 10, duration: 200 },
+          { value: -5, duration: 200 },
+          { value: 0, duration: 200 }
+        ],
+        opacity: [0, 1]
+      }
+      display = 'block'
+    break;
+    case 'shrinkIn':
+      animation = {
+        begin: function(anim) {
+          target.display('block')
+        },
+        scale: [
+          { value: 1.1, duration: 300 },
+          { value: 1, duration: 200 }
+        ],
+        opacity: 1
+      }
+      display = 'block'
+    break;
+    case 'slideRightIn':
+      animation = {
+        begin: function(anim) {
+          target.display('block')
+        },
+        translateX: [100, 0],
+        opacity: [0, 1]
+      }
+      display = 'block'
+    break;
+    case 'slideRightOut':
+      animation = {
+        translateX: [0, 100],
+        opacity: [1, 0]
+      }
+    break;
+    default:
+      animation = type
+      display = type.display
+    break;
   }
-  return numAsString
-}
-
-const dateFormat = function(date) {
-  var vDay = padWithZeros(date.getDate(), 2)
-  var vMonth = padWithZeros(date.getMonth() + 1, 2)
-  var vYear = padWithZeros(date.getFullYear(), 2)
-  var vHour = padWithZeros(date.getHours(), 2);
-  var vMinute = padWithZeros(date.getMinutes(), 2);
-  var vSecond = padWithZeros(date.getSeconds(), 2);
-  return vYear + '-' + vMonth+ '-' + vDay + ' ' +vHour+ ':' +vMinute+ ':' +vSecond;
+  anime(Object.assign({
+    targets: target,
+    duration: 200,
+    easing: 'linear'
+  }, animation)).finished.then(function() {
+      target.display(display)
+      complete && complete()
+    });
 }

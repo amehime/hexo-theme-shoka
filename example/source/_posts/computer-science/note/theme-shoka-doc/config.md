@@ -6,6 +6,8 @@ categories:
 tags:
 - Hexo
 - 教程
+valine:
+  placeholder: "1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"
 ---
 
 :::primary
@@ -111,6 +113,7 @@ social:
   #youtube: https://youtube.com/yourname || youtube
   #instagram: https://instagram.com/yourname || instagram
   #skype: skype:yourname?call|chat || skype
+  #douban: https://www.douban.com/people/yourname/ || douban
 ```
 如上，使用`||`作为分隔符，依次为 `链接 || 图标 || 颜色`。
 注意，只需要写图标名称，如`github`，则会自动转换为`ic i-github`。
@@ -193,19 +196,45 @@ valine:
   appId: #Your_appId
   appKey: #Your_appkey
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
-  avatar: mp # Gravatar style
+  avatar: mp # Gravatar style : mp, identicon, monsterid, wavatar, robohash, retro
   pageSize: 10 # Pagination size
   lang: zh-CN
-  visitor: true # Article reading statistic
-  recordIP: true # Whether to record the commenter IP
+  visitor: true # 文章访问量统计
+  NoRecordIP: false # 不IP记录
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  requiredFields:
-    - nick
-    - mail
-  enableQQ: true
-  masters: ['主人email的MD5值', '另一个email的MD5值']
-  masterTag: 主人
-  tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
+  tagMeta:
+    - 主人
+    - 小伙伴
+    - 新朋友
+  master:
+    # - hash of master@email.com
+    # - hash of master2@email.com
+  friends:
+    # - hash of friend@email.com
+    # - hash of friend2@email.com
+  powerMode: true # 默认打开评论框输入特效
+```
+
+在文章Front Matter中也可以配置上述参数，访问该文章页面时，将覆盖全局配置。
+尤其可以用来配置一个特殊的placeholder。
+
+```yml
+valine:
+  placeholder: "1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"
+---
+```
+
+# 页面特效
+除了上述评论框的输入特效，单击页面的烟花效果配置如下
+
+```yml
+fireworks:
+  enable: true # 是否启用
+  color: # 烟花颜色
+    - "rgba(255,182,185,.9)"
+    - "rgba(250,227,217,.9)"
+    - "rgba(187,222,214,.9)"
+    - "rgba(138,198,209,.9)"
 ```
 
 # 加载第三方组件

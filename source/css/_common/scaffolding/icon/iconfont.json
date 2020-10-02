@@ -6,6 +6,188 @@
   "description": "hexo-theme-shoka的icon们",
   "glyphs": [
     {
+      "icon_id": "10918102",
+      "name": "douban-fill",
+      "font_class": "douban",
+      "unicode": "e75f",
+      "unicode_decimal": 59231
+    },
+    {
+      "icon_id": "5634753",
+      "name": "linux",
+      "font_class": "linux",
+      "unicode": "f1e8",
+      "unicode_decimal": 61928
+    },
+    {
+      "icon_id": "5634785",
+      "name": "opera",
+      "font_class": "opera",
+      "unicode": "f205",
+      "unicode_decimal": 61957
+    },
+    {
+      "icon_id": "5634808",
+      "name": "qq",
+      "font_class": "qq",
+      "unicode": "f216",
+      "unicode_decimal": 61974
+    },
+    {
+      "icon_id": "5634830",
+      "name": "safari",
+      "font_class": "safari",
+      "unicode": "f229",
+      "unicode_decimal": 61993
+    },
+    {
+      "icon_id": "5634848",
+      "name": "snapchat-ghost",
+      "font_class": "snapchat-ghost",
+      "unicode": "f234",
+      "unicode_decimal": 62004
+    },
+    {
+      "icon_id": "5634904",
+      "name": "weixin",
+      "font_class": "weixin",
+      "unicode": "f262",
+      "unicode_decimal": 62050
+    },
+    {
+      "icon_id": "5634909",
+      "name": "windows",
+      "font_class": "windows",
+      "unicode": "f266",
+      "unicode_decimal": 62054
+    },
+    {
+      "icon_id": "6986878",
+      "name": "stars",
+      "font_class": "stars",
+      "unicode": "e8c4",
+      "unicode_decimal": 59588
+    },
+    {
+      "icon_id": "14343500",
+      "name": "apple",
+      "font_class": "apple",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "14343526",
+      "name": "blackberry",
+      "font_class": "blackberry",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "14343550",
+      "name": "centos",
+      "font_class": "centos",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "14343621",
+      "name": "fedora",
+      "font_class": "fedora",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "14343775",
+      "name": "redhat",
+      "font_class": "redhat",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "14343836",
+      "name": "ubuntu",
+      "font_class": "ubuntu",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "14343915",
+      "name": "suse",
+      "font_class": "suse",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "5634240",
+      "name": "mobile-alt",
+      "font_class": "mobile-alt",
+      "unicode": "f052",
+      "unicode_decimal": 61522
+    },
+    {
+      "icon_id": "5634274",
+      "name": "paw",
+      "font_class": "paw",
+      "unicode": "f06b",
+      "unicode_decimal": 61547
+    },
+    {
+      "icon_id": "5634558",
+      "name": "android",
+      "font_class": "android",
+      "unicode": "f161",
+      "unicode_decimal": 61793
+    },
+    {
+      "icon_id": "5634601",
+      "name": "chrome",
+      "font_class": "chrome",
+      "unicode": "f178",
+      "unicode_decimal": 61816
+    },
+    {
+      "icon_id": "5634647",
+      "name": "edge",
+      "font_class": "edge",
+      "unicode": "f195",
+      "unicode_decimal": 61845
+    },
+    {
+      "icon_id": "5634661",
+      "name": "firefox",
+      "font_class": "firefox",
+      "unicode": "f1a1",
+      "unicode_decimal": 61857
+    },
+    {
+      "icon_id": "5634724",
+      "name": "internet-explorer",
+      "font_class": "internet-explorer",
+      "unicode": "f1d4",
+      "unicode_decimal": 61908
+    },
+    {
+      "icon_id": "5634755",
+      "name": "markdown",
+      "font_class": "markdown",
+      "unicode": "f1eb",
+      "unicode_decimal": 61931
+    },
+    {
+      "icon_id": "5635000",
+      "name": "grin-squint-tears",
+      "font_class": "smile",
+      "unicode": "f2a5",
+      "unicode_decimal": 62117
+    },
+    {
+      "icon_id": "16554499",
+      "name": "preview",
+      "font_class": "preview",
+      "unicode": "e901",
+      "unicode_decimal": 59649
+    },
+    {
       "icon_id": "14678781",
       "name": "arrow_uturn_right_circle",
       "font_class": "share",

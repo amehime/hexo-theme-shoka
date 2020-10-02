@@ -1,5 +1,5 @@
 {% macro render() %}
 {%- if page.comment !== false %}
-  <div class="wrap" id="comments" data-id="{{ page.path | replace('index.html', '') }}"></div>
+  <div class="wrap" id="comments"></div>
 {%- endif %}
 {% endmacro %}

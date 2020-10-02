@@ -72,6 +72,7 @@ Object.assign(HTMLElement.prototype, {
       return this.style.display
     } else {
       this.style.display = d;
+      return this
     }
   },
   child: function(selector) {
@@ -356,9 +357,7 @@ const mediaPlayer = function(config) {
     },
     scroll: function() {
       var current = this.list.find('li')[this.pointer];
-      Velocity(current, "scroll", {
-        container: current.parentNode
-      });
+      pageScroll(current, current.offsetTop)
     },
     scrollLrc: function(currentTime) {
       var that = this

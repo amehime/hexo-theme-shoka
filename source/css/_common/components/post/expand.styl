@@ -6,6 +6,24 @@
 }
 
 .md {
+  p,
+  ul,
+  ol,
+  table,
+  pre,
+  blockquote,
+  img,
+  .tabs,
+  .links {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   a {
     color: var(--primary-color); //原始链接颜色
 

@@ -97,7 +97,7 @@
 {%- set ccText = theme.creative_commons.license | upper %}
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '{{ url | replace('index.html', '') }}',
+    path: '{{ page.path | replace('index.html', '') }}',
     favicon: {
       show: "{{ __('favicon.show') }}",
       hide: "{{ __('favicon.hide') }}"
@@ -107,8 +107,8 @@
       empty: "{{ __('search.labels.empty') }}",
       stats: "{{ __('search.labels.stats') }}"
     },
-    {%- if (is_post() or is_page()) and page.comment !== false  %}
-    valine: true,{%- endif %}
+    {%- if theme.widgets.recent_comments or page.comment !== false  %}
+    valine: {{ page.valine|safedump if page.valine else "true"  }},{%- endif %}
     {%- if page.chart %}chart: true,{%- endif %}
     {%- if page.math %}copy_tex: true,
     katex: true,{%- endif %}
@@ -120,7 +120,7 @@
         return uri.includes('#');
       },
       function(uri) {
-        return uri === LOCAL.path;
+        return new RegExp(LOCAL.path+"$").test(uri);
       }{%- if theme.quicklink.ignores %},
       {{ theme.quicklink.ignores|safedump }}
       {% endif %}

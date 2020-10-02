@@ -8,6 +8,8 @@ tags:
 - Hexo
 - 教程
 sticky: true
+valine:
+  placeholder: "1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"
 ---
 
 :::info
@@ -69,4 +71,22 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 [主题的基础配置可以参考这里](config/)
 
 # 更新记录
-由于本人太懒，这条暂时没有。
+标签含义：
+❗❗ 需要手动操作的更新信息
+⚠️ 需要注意的更新信息
+🔧 已修复的问题
+
+## 0.1.9 👉 0.2
+
+⚠️  **评论功能大改**
+- 弃用不开源的Valine，改用MiniValine，并且进行了魔改，[项目戳此](https://github.com/amehime/MiniValine)
+	主要是大量压缩了代码，弃用一些花里胡哨的功能，又加了一些别的花里胡哨的功能。
+- 为防止泄露用户邮箱、IP等隐私信息，弃用QQ号获取昵称及头像。
+	❗❗ 同时需要手动进行一些迁移，[具体步骤戳此](https://github.com/imaegoo/Valine)
+- ❗❗ 评论相关的配置亦有更新，[配置戳此](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/#文章评论)
+
+
+⚠️ 增加单击页面烟花效果，[配置戳此](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/#页面特效)
+💡  弃用Velocity，改用anime.js，方便未来添加更多!!花里胡哨的!!功能!!严重拖慢页面滑行速度!!
+🔧 新增多枚icon，包括豆瓣`i-douban`等
+
