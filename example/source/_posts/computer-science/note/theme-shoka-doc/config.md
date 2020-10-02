@@ -224,6 +224,9 @@ valine:
 ---
 ```
 
+评论通知与管理工具建议使用这个[Valine-Admin](https://github.com/DesertsP/Valine-Admin)。
+注意`SITE_URL`需要以`/`结尾。
+
 # 页面特效
 除了上述评论框的输入特效，单击页面的烟花效果配置如下
 
