@@ -16,7 +16,6 @@ open_graph:
   #fb_admins:
   #fb_app_id:
 
-
 menu:
   home: / || home
   posts:
@@ -45,7 +44,7 @@ social:
   #youtube: https://youtube.com/yourname || youtube
   #instagram: https://instagram.com/yourname || instagram
   #skype: skype:yourname?call|chat || skype
-
+  #douban: https://www.douban.com/people/yourname/ || douban
 
 post:
   count: true
@@ -94,20 +93,12 @@ valine:
   appId: #这里不要忘了改
   appKey: #这里不要忘了改
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
-  avatar: mp # Gravatar style
   pageSize: 10 # Pagination size
   lang: zh-CN
-  visitor: true # Article reading statistic
-  recordIP: true # Whether to record the commenter IP
-  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  requiredFields:
-    - nick
-    - mail
-  enableQQ: true
-  masters: ['deea5a8d259d17182a53be1772e4c182']
-  masterTag: 主人
-  tips: "昵称框中填入QQ号，将自动获取QQ昵称&邮箱&头像；其他邮箱由Gavatar提供头像。"
-
+  master:
+    # - deea5a8d259d17182a53be1772e4c182
+  friends:
+    - deea5a8d259d17182a53be1772e4c182
 
 # ---------------------------------------------------------------
 # analytics & SEO Settings
