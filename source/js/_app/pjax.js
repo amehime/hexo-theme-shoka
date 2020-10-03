@@ -30,7 +30,7 @@ const domInit = function() {
 }
 
 const pjaxReload = function () {
-  pagePostion(window.location.href);
+  pagePostion()
 
   if(sideBar.hasClass('on')) {
     transition(sideBar, function () {
@@ -44,19 +44,14 @@ const pjaxReload = function () {
   pageScroll(0);
 }
 
-
-const lazyload = lozad('img, [data-background-image]', {
-    loaded: function(el) {
-        el.addClass('lozaded');
-    }
-})
-
 const siteRefresh = function (reload) {
+  LOCAL_HASH = 0
+  LOCAL_URL = window.location.href
+
   vendorCss('katex');
   vendorJs('copy_tex');
   vendorCss('mermaid');
   vendorJs('chart');
-
   vendorJs('valine', function() {
     var options = Object.assign({}, CONFIG.valine);
     options = Object.assign(options, LOCAL.valine||{});
@@ -67,7 +62,9 @@ const siteRefresh = function (reload) {
 
     new MiniValine(options);
 
-    setTimeout(postionInit, 1000);
+    setTimeout(function(){
+      postionInit(1)
+    }, 1000);
   }, window.MiniValine);
 
   if(!reload) {
@@ -90,7 +87,6 @@ const siteRefresh = function (reload) {
 
   Loader.hide()
 
-  LOCAL_HASH = 0
   postionInit()
 
   cardActive()
@@ -129,8 +125,8 @@ const siteInit = function () {
 
   window.addEventListener('pjax:success', siteRefresh)
 
-  window.addEventListener("beforeunload", function() {
-    pagePostion(window.location.href)
+  window.addEventListener('beforeunload', function() {
+    pagePostion()
   })
 
   siteRefresh(1)

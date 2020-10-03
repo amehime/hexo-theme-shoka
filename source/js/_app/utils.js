@@ -80,13 +80,14 @@ const pjaxScript = function(element) {
 }
 
 const pageScroll = function(target, offset, complete) {
-  anime({
+  var opt = {
     targets: offset? target.parentNode : document.scrollingElement,
     duration: 500,
     easing: "easeInOutQuad",
-    scrollTop: offset || (typeof target == 'number' ? target : target.top() + window.scrollY - siteNavHeight),
+    scrollTop: offset || (typeof target == 'number' ? target : target.top() + window.scrollY - siteNavHeight - (diffY > 0?siteNavHeight:0)),
     complete: complete || function() {}
-  });
+  }
+  anime(opt);
 }
 
 const transition = function(target, type, complete) {

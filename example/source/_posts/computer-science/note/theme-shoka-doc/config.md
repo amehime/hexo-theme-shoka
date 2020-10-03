@@ -82,6 +82,28 @@ font:
 此功能基本参考NexT。
 加粗标题的字体总是使用`Noto Serif`，为了正确友好的显示日文中的汉字，会先后加载`headings`和`title`的字体设置。
 
+# 加载动画
+
+```yml
+# 是否显示页面加载动画loading-cat
+loader:
+  start: true # 当初次打开页面时，显示加载动画
+  switch: true # tab切换到其他页面时，显示加载动画
+```
+
+tab切换后只是显示loading动画，实际并未重新加载页面
+
+# 边栏位置
+
+边栏可以选择在左侧，或右侧
+
+```yml
+sidebar:
+  # Sidebar Position.
+  position: left
+  #position: right
+```
+
 # 菜单与社交按钮icon
 这里没有直接使用Font Awesome，是因为用不到那么多icon感觉非常浪费，因此在Iconfont上重新建立了一个项目。
 `font-family`设为`ic`，所有字体样式前缀为`i-`，具体参见`themes/shoka/source/css/scaffolding/iconfont.styl`。

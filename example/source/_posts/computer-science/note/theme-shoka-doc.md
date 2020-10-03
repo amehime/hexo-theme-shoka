@@ -21,6 +21,10 @@ valine:
 如果有什么功能需求，欢迎留言。
 :::
 
+:::warning
+当前版本更新至 0.2.1，[更新记录点此](#更新记录)
+:::
+
 :::primary
 [**:rocket:快速开始**](/computer-science/note/theme-shoka-doc/) - [:love_letter:依赖插件](/computer-science/note/theme-shoka-doc/dependents/) - [:pushpin:基本配置](/computer-science/note/theme-shoka-doc/config/) - [:rainbow:界面显示](/computer-science/note/theme-shoka-doc/display/) - [:unicorn:特殊功能](/computer-science/note/theme-shoka-doc/special/)
 :::
@@ -72,9 +76,16 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 
 # 更新记录
 标签含义：
-❗❗ 需要手动操作的更新信息
+❗ 需要手动操作的更新信息
 ⚠️ 需要注意的更新信息
 🔧 已修复的问题
+
+
+## 0.2 👉 0.2.1
+⚠️ 配置文件添加 `loader` 参数，[配置戳此](config/#加载动画)
+💡  二级list区别显示
+🔧 修复浏览位置定位BUG
+🔧 优化评论功能
 
 ## 0.1.9 👉 0.2
 
@@ -82,11 +93,11 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 - 弃用不开源的Valine，改用MiniValine，并且进行了魔改，[项目戳此](https://github.com/amehime/MiniValine)
 	主要是大量压缩了代码，弃用一些花里胡哨的功能，又加了一些别的花里胡哨的功能。
 - 为防止泄露用户邮箱、IP等隐私信息，弃用QQ号获取昵称及头像。
-	❗❗ 同时需要手动进行一些迁移，[具体步骤戳此](https://github.com/imaegoo/Valine)
-- ❗❗ 评论相关的配置亦有更新，[配置戳此](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/#文章评论)
+	❗ 同时需要手动进行一些迁移，[具体步骤戳此](https://github.com/imaegoo/Valine)
+- ❗ 评论相关的配置亦有更新，[配置戳此](config/#文章评论)
 
 
-⚠️ 增加单击页面烟花效果，[配置戳此](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/#页面特效)
+⚠️ 增加单击页面烟花效果，[配置戳此](config/#页面特效)
 💡  弃用Velocity，改用anime.js，方便未来添加更多!!花里胡哨的!!功能!!严重拖慢页面滑行速度!!
 🔧 新增多枚icon，包括豆瓣`i-douban`等
-
+🔧 一些显示问题

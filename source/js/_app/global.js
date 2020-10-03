@@ -16,8 +16,13 @@ const siteBrand = $('#brand');
 var toolBtn = $('#tool'), toolPlayer, backToTop, goToComment, showContents;
 var siteSearch = $('#search');
 var siteNavHeight, headerHightInner, headerHight;
-var LOCAL_HASH = 0;
+var LOCAL_HASH = 0, LOCAL_URL = window.location.href;
 var pjax;
+const lazyload = lozad('img, [data-background-image]', {
+    loaded: function(el) {
+        el.addClass('lozaded');
+    }
+})
 
 const Loader = {
   timer: null,
@@ -215,29 +220,34 @@ const scrollHandle = function (event) {
   $('.percent').width(scrollPercent);
 }
 
-const pagePostion = function(url) {
-  store.set(url, scrollAction.y)
+const pagePostion = function() {
+  store.set(LOCAL_URL, scrollAction.y)
 }
 
-const postionInit = function() {
-
+const postionInit = function(comment) {
   var anchor = window.location.hash
-  if(LOCAL_HASH == 0 && anchor) {
-    var target = $(decodeURI(anchor))
-    if(target) {
-      pageScroll(target);
-      LOCAL_HASH = 1
-    } else {
-      LOCAL_HASH = 0
-    }
-  } else {
-    var position = store.get(window.location.href)
-    if(position) {
-      pageScroll(parseInt(position));
-      store.del(window.location.href);
-    }
-    LOCAL_HASH = -1
+  var target = null;
+  if(LOCAL_HASH) {
+    store.del(window.location.href);
+    return
   }
+
+  if(anchor)
+    target = $(decodeURI(anchor))
+  else {
+    target = parseInt(store.get(window.location.href))
+  }
+
+  if(target) {
+    pageScroll(target);
+    LOCAL_HASH = 1;
+  }
+
+  if(comment && !LOCAL_HASH) {
+    pageScroll(target);
+    LOCAL_HASH = 1;
+  }
+
 }
 
 const clipBoard = function(str, callback) {
