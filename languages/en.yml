@@ -1,8 +1,8 @@
 name: English
 
 favicon:
-  show: （●´3｀●）
-  hide: (´Д｀)
+  show: （●´3｀●）Goooood
+  hide: (´Д｀)Booooom
 
 title:
   archive: Archive
@@ -86,11 +86,9 @@ state:
   categories: categories
 
 search:
-  placeholder: Searching...
-  labels:
-    placeholder: Search for Posts
-    empty: "We didn't find any results for the search: ${query}"
-    stats: "${hits} results found in ${time} ms"
+  placeholder: Search for Posts
+  empty: "We didn't find any results for the search: ${query}"
+  stats: "${hits} results found in ${time} ms"
 
 cheers:
   um: Um..
@@ -111,7 +109,7 @@ symbol:
 
 reward:
   donate: Donate
-  text: give me a cup of coffee
+  text: Give me a cup of [coffee]~(￣▽￣)~*
   wechatpay: WeChat Pay
   alipay: Alipay
   paypal: PayPal
@@ -136,3 +134,11 @@ symbols_count_time:
 
 tips:
   copyright: "Copied to clipboard successfully! <br> All articles in this blog are licensed under %s."
+
+quiz:
+  choice: Multiple Choice
+  multiple: Multiple Answer
+  true_false: True/False
+  essay: Questions
+  gap_fill: Gap Filling
+  mistake: Wrong Answer

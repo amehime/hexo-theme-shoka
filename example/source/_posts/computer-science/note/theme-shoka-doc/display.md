@@ -107,3 +107,7 @@ widgets:
   random_posts: true
   recent_comments: true
 ```
+
+# 图片展示与相册
+在文章的Front Matter设置`fancybox: false`，可以关闭文章页的图片展示功能。
+使用[Justified-Gallery](http://miromannino.github.io/Justified-Gallery/)对Gallery Post内图案进行排列。

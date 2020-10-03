@@ -1,0 +1,144 @@
+---
+name: 日本語
+favicon:
+  show: （●´3｀●）やれやれだぜ
+  hide: (´Д｀)大変だ！
+
+title:
+  archive: アーカイブ
+  category: カテゴリ
+  tag: タグ
+  all: 全て
+  not_found: Σ( ° △ °|||)︴404！何も見えない
+  category_in: 「％s」に分類された記事
+  tag_in: タグ "％s"の記事
+  archive_in: 「％s」で公開された記事
+
+menu:
+  home: ホーム
+  posts: 投稿
+  archives: アーカイブ
+  categories: カテゴリ
+  tags: タグ
+  about: プロフィール
+  search: 検索
+  friends: 友達
+  links: リンク
+  travellings: 旅行
+
+sidebar:
+  overview: 概要
+  toc: 見出し
+  related: 関連記事
+
+index:
+  sticky: 固定記事
+  category: 注目のカテゴリ
+  posts: 記事のリスト
+  random_posts: ランダムな記事
+  recent_comments: 最近のコメント
+
+post:
+  posted: 投稿日
+  edited: 編集日
+  created: 作成日
+  modified: 修正日
+  edit: この記事を編集する
+  in: カテゴリ
+  read_more: 続きを読む
+  untitled: 無題
+  sticky: 固定
+  views: 閲覧数
+  related_posts: 関連記事
+  next: 次の記事
+  prev: 前の記事
+  copyright:
+    author: 著者
+    link: 記事へのリンク
+    license_title: 著作権表示
+    license_content: "このブログ内のすべての記事は、特別な記載がない限り %s の下のライセンスで保護されています。"
+
+footer:
+  powered: "Powered by %s"
+  total_views: 閲覧合計数
+  total_visitors: 合計閲覧者数
+
+counter:
+  index:
+    post: "%d 件の記事"
+    category:  "%d サブカテゴリ，"
+  tag_cloud:
+    zero: タグなし
+    one: 全 1 タグ
+    other: "全 %d タグ"
+  categories:
+    zero: カテゴリなし
+    one: 全 1 カテゴリ
+    other: "全 %d カテゴリ"
+  archive_posts:
+    zero: ポストなし
+    one: 全 1 ポスト
+    other: "全 %d ポスト"
+
+state:
+  posts: ポスト
+  tags: タグ
+  categories: カテゴリ
+
+search:
+  placeholder: 検索…
+  empty: "「 ${query} 」については何も見つかりませんでした"
+  stats: "${time} ms以内に ${hits} 件の結果が見つかりました"
+
+cheers:
+  um: うーん
+  ok: はい
+  nice: まあまあ
+  good: いいね
+  great: すごい
+  excellent: 最高
+
+keep_on: もっと書こう！
+
+symbol:
+  comma: "、"
+  period: "。"
+  colon: "："
+  year: 年
+  month: 月
+
+reward:
+  donate: 寄付
+  text: "*~(￣▽￣)~[お茶]を一杯ください"
+  wechatpay: WeChat 支払う
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: ビットコイン
+
+follow_me:
+  welcome: Welcome to my other publishing channels
+
+accessibility:
+  nav_toggle: ナビゲーションバーの切り替え
+  prev_page: 前のページ
+  next_page: 次のページ
+
+symbols_count_time:
+  count: 単語数
+  count_total: 単語の総数
+  time: 読書の時間
+  time_total: 読書の合計時間
+  time_minutes: 分
+  word: 単語
+  view: 回
+
+tips:
+  copyright: "コピーは成功しました。 <br> 再印刷については、 ％s 契約に従ってください。"
+
+quiz:
+  choice: 選択
+  multiple: 複数選択
+  true_false: 正誤
+  essay: 問答
+  gap_fill: 空欄
+  mistake: 間違った答え

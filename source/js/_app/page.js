@@ -128,12 +128,38 @@ const postBeauty = function () {
     }
   });
   if($('.md :not(a) > img, .md > img')) {
-    LOCAL['mediumzoom'] = true;
-    vendorJs('mediumzoom', function() {
-        window.mediumZoom('.md :not(a) > img, .md > img', {
-          background: 'rgba(0, 0, 0, 0.6)'
-        });
-      }, window.mediumZoom);
+    vendorCss('fancybox');
+    vendorJs('fancybox', function() {
+      var q = jQuery.noConflict();
+      $.all('.md :not(a) > img, .md > img').forEach(function(element) {
+        var $image = q(element);
+        var imageLink = $image.attr('data-src') || $image.attr('src');
+        var $imageWrapLink = $image.wrap('<a class="fancybox fancybox.image" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
+        if ($image.is('.gallery img')) {
+          $imageWrapLink.attr('data-fancybox', 'gallery').attr('rel', 'gallery');
+        } else {
+          $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
+        }
+
+        var imageTitle = $image.attr('title') || $image.attr('alt');
+        if (imageTitle) {
+          $imageWrapLink.append('<p class="image-caption">'+imageTitle+'</p>');
+          // Make sure img title tag will show correctly in fancybox
+          $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
+        }
+      });
+
+      q.fancybox.defaults.hash = false;
+      q('.fancybox').fancybox({
+        loop   : true,
+        helpers: {
+          overlay: {
+            locked: false
+          }
+        }
+      });
+      q('.gallery').justifiedGallery();
+    }, window.jQuery);
   }
 
   $.each('li ruby', function(element) {
@@ -279,6 +305,24 @@ const postBeauty = function () {
     element.addEventListener('click', function (event) {
       element.parentNode.toggleClass('show')
     });
+  });
+
+  $.each('.quiz > p:first-child', function (element) {
+    var quiz = element.parentNode;
+    var type = 'choice'
+    if(quiz.hasClass('true') || quiz.hasClass('false'))
+      type = 'true_false'
+    if(quiz.hasClass('multi'))
+      type = 'multiple'
+    if(quiz.hasClass('fill'))
+      type = 'gap_fill'
+    if(quiz.hasClass('essay'))
+      type = 'essay'
+    element.attr('data-type', LOCAL.quiz[type])
+  });
+
+  $.each('.quiz .mistake', function (element) {
+    element.attr('data-type', LOCAL.quiz.mistake)
   });
 
   // tab

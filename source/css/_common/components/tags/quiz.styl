@@ -2,16 +2,17 @@
   margin: .625rem 0;
 
   &::before{
-      counter-increment: counter;
-      content: counter(counter) ".";
-      position: absolute;
-      color: var(--primary-color);
-      text-align: right;
-      width: 2rem;
-      left: -2.2rem;
-      height: auto;
-      background: none !important;
-      font-size: $font-size-base;
+    counter-increment: counter;
+    content: counter(counter) ".";
+    position: absolute;
+    color: var(--primary-color);
+    text-align: right;
+    width: 2rem;
+    left: -2.2rem;
+    height: auto;
+    background: none !important;
+    border: none !important;
+    font-size: $font-size-base;
   }
 
   &.ruby::before {
@@ -23,16 +24,10 @@
     cursor: pointer;
 
     &:first-child::before {
-      content: "[单选题]";
+      content: "[" attr(data-type) "]";
       font-size: $font-size-smallest;
       color: var(--grey-4);
       margin: auto .3125rem;
-    }
-  }
-
-  &.multi {
-    >p:first-child::before {
-      content: "[多选题]";
     }
   }
 
@@ -58,13 +53,6 @@
     text-indent: 0rem;
   }
 
-  &.true,
-  &.false {
-    >p:first-child::before {
-      content: "[判断题]";
-    }
-  }
-
   &::before, &::after {
     the-transition();
   }
@@ -87,19 +75,6 @@
     color: var(--color-red);
   }
 
-
-  &.essay {
-    >p:first-child::before {
-      content: "[问答题]";
-    }
-  }
-
-  &.fill {
-    >p:first-child::before {
-      content: "[填空题]";
-    }
-  }
-
   blockquote {
     display: none;
 
@@ -112,7 +87,7 @@
 
       &::before {
         display: block;
-        content: "[错题备注]";
+        content: "[" attr(data-type) "]";
         font-size: $font-size-smaller;
         color: var(--grey-4);
       }

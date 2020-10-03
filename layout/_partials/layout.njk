@@ -103,9 +103,9 @@
       hide: "{{ __('favicon.hide') }}"
     },
     search : {
-      placeholder: "{{ __('search.labels.placeholder') }}",
-      empty: "{{ __('search.labels.empty') }}",
-      stats: "{{ __('search.labels.stats') }}"
+      placeholder: "{{ __('search.placeholder') }}",
+      empty: "{{ __('search.empty') }}",
+      stats: "{{ __('search.stats') }}"
     },
     {%- if theme.widgets.recent_comments or page.comment !== false  %}
     valine: {{ page.valine|safedump if page.valine else "true"  }},{%- endif %}
@@ -113,8 +113,18 @@
     {%- if page.math %}copy_tex: true,
     katex: true,{%- endif %}
     {%- if page.mermaid %}mermaid: true,{%- endif %}
-    {%- if page.audio and page.audio !== false %}audio: {{ page.audio|safedump }},{%- endif %}
+    {%- if page.audio %}audio: {{ page.audio|safedump }},{%- endif %}
+    {%- if page.audio === false %}audio: {},{%- endif %}
+    {%- if page.fancybox !== false %}fancybox: true,{%- endif %}
     {%- if page.copyright !== false %}copyright: '{{ _p("tips.copyright", ccIcon + ccText) }}',{%- endif %}
+    {%- if page.quiz %}quiz: {
+      choice: "{{ __('quiz.choice') }}",
+      multiple: "{{ __('quiz.multiple') }}",
+      true_false: "{{ __('quiz.true_false') }}",
+      essay: "{{ __('quiz.essay') }}",
+      gap_fill: "{{ __('quiz.gap_fill') }}",
+      mistake: "{{ __('quiz.mistake') }}"
+    },{%- endif %}
     ignores : [
       function(uri) {
         return uri.includes('#');

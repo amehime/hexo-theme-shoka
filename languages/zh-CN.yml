@@ -86,11 +86,9 @@ state:
   categories: 分类
 
 search:
-  placeholder: 搜索...
-  labels:
-    placeholder: 文章搜索
-    empty: "关于 ${query} ，什么也没搜到"
-    stats: "${time} ms 内找到 ${hits} 条结果"
+  placeholder: 文章搜索
+  empty: "关于 「 ${query} 」，什么也没搜到"
+  stats: "${time} ms 内找到 ${hits} 条结果"
 
 cheers:
   um: 嗯..
@@ -136,3 +134,11 @@ symbols_count_time:
 
 tips:
   copyright: "复制成功，转载请遵守 %s 协议。"
+
+quiz:
+  choice: 单选题
+  multiple: 多选题
+  true_false: 判断题
+  essay: 问答题
+  gap_fill: 填空题
+  mistake: 错题备注

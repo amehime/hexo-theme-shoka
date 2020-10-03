@@ -30,7 +30,7 @@ const domInit = function() {
 }
 
 const pjaxReload = function () {
-  pagePostion()
+  pagePosition()
 
   if(sideBar.hasClass('on')) {
     transition(sideBar, function () {
@@ -63,7 +63,7 @@ const siteRefresh = function (reload) {
     new MiniValine(options);
 
     setTimeout(function(){
-      postionInit(1)
+      positionInit(1)
     }, 1000);
   }, window.MiniValine);
 
@@ -87,7 +87,7 @@ const siteRefresh = function (reload) {
 
   Loader.hide()
 
-  postionInit()
+  positionInit()
 
   cardActive()
 
@@ -126,7 +126,7 @@ const siteInit = function () {
   window.addEventListener('pjax:success', siteRefresh)
 
   window.addEventListener('beforeunload', function() {
-    pagePostion()
+    pagePosition()
   })
 
   siteRefresh(1)

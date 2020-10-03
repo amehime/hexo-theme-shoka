@@ -18,8 +18,8 @@ function setCanvasSize() {
 }
 
 function updateCoords(e) {
-  pointerX = e.clientX || e.touches[0].clientX;
-  pointerY = e.clientY || e.touches[0].clientY;
+  pointerX = e.clientX || e.touches && e.touches[0].clientX;
+  pointerY = e.clientY || e.touches && e.touches[0].clientY;
 }
 
 function setParticuleDirection(p) {

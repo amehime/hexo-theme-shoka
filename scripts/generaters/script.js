@@ -22,12 +22,13 @@ hexo.extend.generator.register('script', function(locals){
       valine: theme.vendors.js.valine,
       chart: theme.vendors.js.chart,
       copy_tex: theme.vendors.js.copy_tex,
-      mediumzoom: theme.vendors.js.mediumzoom
+      fancybox: theme.vendors.js.fancybox
     },
     css: {
       valine: theme.css + "/comment.css",
       katex: theme.vendors.css.katex,
-      mermaid: theme.css + "/mermaid.css"
+      mermaid: theme.css + "/mermaid.css",
+      fancybox: theme.vendors.css.fancybox
     },
     loader: theme.loader,
     search : null,

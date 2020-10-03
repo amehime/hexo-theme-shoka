@@ -220,11 +220,11 @@ const scrollHandle = function (event) {
   $('.percent').width(scrollPercent);
 }
 
-const pagePostion = function() {
+const pagePosition = function() {
   store.set(LOCAL_URL, scrollAction.y)
 }
 
-const postionInit = function(comment) {
+const positionInit = function(comment) {
   var anchor = window.location.hash
   var target = null;
   if(LOCAL_HASH) {
@@ -243,7 +243,7 @@ const postionInit = function(comment) {
     LOCAL_HASH = 1;
   }
 
-  if(comment && !LOCAL_HASH) {
+  if(comment && anchor && !LOCAL_HASH) {
     pageScroll(target);
     LOCAL_HASH = 1;
   }

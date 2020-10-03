@@ -24,7 +24,14 @@ const getScript = function(url, callback, condition) {
 }
 
 const assetUrl = function(asset, type) {
-  return (CONFIG[asset][type].indexOf('npm')>-1||CONFIG[asset][type].indexOf('gh')>-1? "//cdn.jsdelivr.net/":(CONFIG[asset][type].indexOf('http')>-1?'':statics))+CONFIG[asset][type];
+  var str = CONFIG[asset][type]
+  if(str.indexOf('npm')>-1||str.indexOf('gh')>-1||str.indexOf('combine')>-1)
+    return "//cdn.jsdelivr.net/" + str
+
+  if(str.indexOf('http')>-1)
+    return str
+
+  return statics + str;
 }
 
 const vendorJs = function(type, callback, condition) {

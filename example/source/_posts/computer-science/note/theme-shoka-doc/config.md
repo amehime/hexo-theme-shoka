@@ -8,6 +8,7 @@ tags:
 - 教程
 valine:
   placeholder: "1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"
+audio: false
 ---
 
 :::primary
@@ -268,18 +269,18 @@ vendors:
   css:
     katex: npm/katex@0/dist/katex.min.css
     comment: css/comment.css
+    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
   js:
     pace: npm/pace-js@1.0.2/pace.min.js
     pjax: npm/pjax@0.2.8/pjax.min.js
     fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js
-    velocity: npm/velocity-animate@1.5.2/velocity.min.js
-    velocity_ui: npm/velocity-animate@1.5.2/velocity.ui.min.js
+    anime: npm/animejs@3.2.0/lib/anime.min.js
     algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
     instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
     lazyload: npm/lozad@1/dist/lozad.min.js
     quicklink: npm/quicklink@2/dist/quicklink.umd.js
-    mediumzoom: npm/medium-zoom@1.0.5/dist/medium-zoom.min.js
-    valine: js/valine.js
+    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js
+    valine: gh/amehime/MiniValine@4.2.2-beta8/dist/MiniValine.min.js
     copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
 ```
@@ -288,13 +289,13 @@ vendors:
 --|--|--
 `pace` | 加载进度条|全局
 `pjax` | 页面无刷新加载|全局
-`velocity` | js页面动画效果|全局
+`anime` | js动画效果|全局
 `algolia` `instantsearch`| 基于algolia的站内搜索|全局
 `lazyload` | 图片懒加载|全局
 `quicklink` | 链接资源预加载|全局
 `fetch` | 获取播放列表|全局
 `katex` `copy_tex`|数学公式显示及复制|按需
-`mediumzoom` | 图片放大显示|按需
+`fancybox` | 图片放大显示及排列|按需
 `valine` | 基于LeanCloud的评论系统及文章阅读次数统计|按需
 `chart` | 图表显示|按需
 

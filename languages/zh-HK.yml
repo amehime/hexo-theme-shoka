@@ -1,0 +1,144 @@
+---
+name: 繁體中文（香港）
+favicon:
+  show: （●´3｀●）復活成功
+  hide: (´Д｀)瀏覽器崩潰啦
+
+title:
+  archive: 歸檔
+  category: 分類
+  tag: 標籤
+  all: 全部
+  not_found: Σ( ° △ °|||)︴404！何も見えない
+  category_in: 分類於"%s"的文章
+  tag_in: 包含標籤"%s"的文章
+  archive_in: 發表於"%s"的文章
+
+menu:
+  home: 首頁
+  posts: 文章
+  archives: 歸檔
+  categories: 分類
+  tags: 標籤
+  about: 關於
+  search: 檢索
+  friends: 友達
+  links: 網址
+  travellings: 開往
+
+sidebar:
+  overview: 本站概覽
+  toc: 文章目錄
+  related: 系列文章
+
+index:
+  sticky: 置頂文章
+  category: 精選分類
+  posts: 文章列表
+  random_posts: 隨機文章
+  recent_comments: 最新評論
+
+post:
+  posted: 發表於
+  edited: 更新於
+  created: 創建時間
+  modified: 修改時間
+  edit: 編輯
+  in: 分類於
+  read_more: 閱讀全文
+  untitled: 未命名
+  sticky: 置頂
+  views: 閱讀次數
+  related_posts: 相關文章
+  next: 下一篇
+  prev: 上一篇
+  copyright:
+    author: 博主
+    link: 文章連結
+    license_title: 版權聲明
+    license_content: "本網誌所有文章除特別聲明外，均採用 %s 許可協議。轉載請註明出處！"
+
+footer:
+  powered: "基於 %s"
+  total_views: 總瀏覽次數
+  total_visitors: 訪客總數
+
+counter:
+  index:
+    post: "%d 篇文章"
+    category:  "%d 個子項，"
+  tag_cloud:
+    zero: 暫無標籤
+    one: 目前共有 1 個標籤
+    other: "目前共有 %d 個標籤"
+  categories:
+    zero: 暫無分類
+    one: 目前共有 1 個分類
+    other: "目前共有 %d 個分類"
+  archive_posts:
+    zero: 暫無文章。
+    one: 目前共有 1 篇文章。
+    other: "目前共有 %d 篇文章。"
+
+state:
+  posts: 文章
+  tags: 標籤
+  categories: 分類
+
+search:
+  placeholder: 文章搜索
+  empty: "關於 「 ${query} 」 ，什麼也沒搜到"
+  stats: "${time} ms 內找到 ${hits} 條結果"
+
+cheers:
+  um: 嗯..
+  ok: 還行
+  nice: 好
+  good: 很好
+  great: 非常好
+  excellent: 太棒了
+
+keep_on: 繼續努力。
+
+symbol:
+  comma: "，"
+  period: "。"
+  colon: "："
+  year: 年
+  month: 月
+
+reward:
+  donate: 打賞
+  text: 請我喝[茶]~(￣▽￣)~*
+  wechatpay: 微信支付
+  alipay: 支付寶
+  paypal: PayPal
+  bitcoin: 比特幣
+
+follow_me:
+  welcome: 歡迎關注我的其它發布渠道
+
+accessibility:
+  nav_toggle: 切換導航欄
+  prev_page: 上一頁
+  next_page: 下一頁
+
+symbols_count_time:
+  count: 本文字數
+  count_total: 站點總字數
+  time: 閱讀時長
+  time_total: 站點閱讀時長
+  time_minutes: 分鍾
+  word: 字
+  view: 次
+
+tips:
+  copyright: "複製成功，轉載請遵守 %s 協議。"
+
+quiz:
+  choice: 單選題
+  multiple: 多選題
+  true_false: 判斷題
+  essay: 問答題
+  gap_fill: 填空題
+  mistake: 錯題備註
