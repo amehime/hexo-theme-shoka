@@ -1,6 +1,7 @@
 .md {
   li {
     position: relative;
+    margin: .2rem 0;
 
     &:before {
       the-transition();
@@ -39,13 +40,11 @@
   }
 
   ol {
-
     &:not([start]) {
       counter-reset: counter;
     }
 
     >li {
-      margin: .2rem 0;
 
       &::before {
         counter-increment: counter;
@@ -69,6 +68,7 @@
       }
 
       &:hover::before {
+        color: var(--grey-1);
         background: var(--color-pink);
       }
     }
@@ -111,6 +111,28 @@
         @extend .i-check-circle:before;
         color: var(--note-text, var(--primary-color));
       }
+    }
+  }
+
+  li ul > li {
+    &::before {
+      background: var(--grey-1);
+      border: 1px solid var(--primary-color);
+    }
+  }
+
+  li ol > li {
+    &::before {
+      content: counter(counter) ".";
+      background: var(--grey-1);
+      color: var(--primary-color);
+      font-size: 1em;
+      line-height: 1;
+    }
+
+    &:hover::before {
+      color: var(--color-pink);
+      background: var(--grey-1);
     }
   }
 }

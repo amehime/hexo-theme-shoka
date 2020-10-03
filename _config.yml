@@ -62,6 +62,18 @@ font:
     external: true
     family: Inconsolata
 
+# Whether to show the loading cat
+loader:
+  start: true # When entering the page
+  switch: true # When switching to another page
+
+sidebar:
+  # Sidebar Position.
+  position: left
+  #position: right
+  # Replace the default avatar image and set the url here.
+  avatar: avatar.jpg
+
 menu:
   home: / || home
   # about: /about/ || user
@@ -72,13 +84,6 @@ menu:
     tags: /tags/ || tags
   # friends: /friends/ || heart
   # links: /links/ || magic
-
-sidebar:
-  # Sidebar Position.
-  position: left
-  #position: right
-  # Replace the default avatar image and set the url here.
-  avatar: avatar.jpg
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

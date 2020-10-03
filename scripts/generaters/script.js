@@ -29,6 +29,7 @@ hexo.extend.generator.register('script', function(locals){
       katex: theme.vendors.css.katex,
       mermaid: theme.css + "/mermaid.css"
     },
+    loader: theme.loader,
     search : null,
     valine: theme.valine,
     quicklink: {

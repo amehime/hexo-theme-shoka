@@ -25,17 +25,19 @@ const Loader = {
   show: function() {
     clearTimeout(this.timer);
     document.body.removeClass('loaded');
-    transition(loadCat, 1, function() {
-        Loader.lock = false;
-      })
+    loadCat.attr('style', 'display:block');
+    Loader.lock = false;
   },
   hide: function(sec) {
+    if(!CONFIG.loader.start)
+      sec = -1
     this.timer = setTimeout(this.vanish, sec||3000);
   },
   vanish: function() {
     if(Loader.lock)
       return;
-    transition(loadCat, 0)
+    if(CONFIG.loader.start)
+      transition(loadCat, 0)
     document.body.addClass('loaded');
     Loader.lock = true;
   }
@@ -120,13 +122,15 @@ const visibilityListener = function () {
       case 'hidden':
         $('[rel="icon"]').attr('href', statics + CONFIG.favicon.hidden);
         document.title = LOCAL.favicon.hide;
-        Loader.show()
+        if(CONFIG.loader.switch)
+          Loader.show()
         clearTimeout(titleTime);
       break;
       case 'visible':
         $('[rel="icon"]').attr('href', statics + CONFIG.favicon.normal);
         document.title = LOCAL.favicon.show;
-        Loader.hide(1000)
+        if(CONFIG.loader.switch)
+          Loader.hide(1000)
         titleTime = setTimeout(function () {
           document.title = originTitle;
         }, 2000);

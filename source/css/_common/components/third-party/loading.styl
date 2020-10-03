@@ -1,6 +1,9 @@
 #loading {
   @extend $fix-fullscreen;
   background-color: var(--grey-1);
+  if(!hexo-config('loader.start')) {
+    display: none;
+  }
 }
 
 $bgColor = var(--grey-1)
