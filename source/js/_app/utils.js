@@ -91,8 +91,10 @@ const pageScroll = function(target, offset, complete) {
     targets: offset? target.parentNode : document.scrollingElement,
     duration: 500,
     easing: "easeInOutQuad",
-    scrollTop: offset || (typeof target == 'number' ? target : target.top() + window.scrollY - siteNavHeight - (diffY > 0?siteNavHeight:0)),
-    complete: complete || function() {}
+    scrollTop: offset || (typeof target == 'number' ? target : target.top() + document.documentElement.scrollTop - siteNavHeight),
+    complete: function() {
+      complete && complete()
+    }
   }
   anime(opt);
 }
