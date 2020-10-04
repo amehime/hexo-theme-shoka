@@ -265,7 +265,7 @@ const mediaPlayer = function(config) {
       }
     },
     load: function(newList) {
-      var d = "block"
+      var d = ""
       if(newList && newList.length > 0) {
         if(this.options.rawList !== newList) {
           this.options.rawList = newList;
