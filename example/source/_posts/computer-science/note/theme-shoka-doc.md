@@ -85,6 +85,7 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 💡  增加语言包：`繁体中文`和`日语`
 💡  quiz功能优化，根据语言显示题型标签
 🔧 修复评论功能中反复初始化leancloud-storage
+🔧 修复`audio: false`时不能隐藏播放按钮、停止播放
 
 ## 0.2 👉 0.2.1
 ⚠️ 配置文件添加 `loader` 参数，[配置戳此](config/#加载动画)
