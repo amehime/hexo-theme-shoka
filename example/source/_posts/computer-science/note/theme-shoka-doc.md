@@ -81,8 +81,10 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 🔧 已修复的问题
 
 ## 0.2.1 👉 0.2.2
-💡  弃用`mediumzoom`，改成`fancybox`，[配置戳此](display/#图片展示与相册)
-🔧 修复评论功能中反复初始化lean-cloud-storage
+⚠️ 弃用`mediumzoom`，改成`fancybox`，[配置戳此](display/#图片展示与相册)
+💡  增加语言包：`繁体中文`和`日语`
+💡  quiz功能优化，根据语言显示题型标签
+🔧 修复评论功能中反复初始化leancloud-storage
 
 ## 0.2 👉 0.2.1
 ⚠️ 配置文件添加 `loader` 参数，[配置戳此](config/#加载动画)

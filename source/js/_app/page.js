@@ -117,36 +117,52 @@ const postBeauty = function () {
     }
   }
 
-  $.each('.md img', function(element) {
-    var info;
-    if(info = element.attr('title')) {
-      var para = document.createElement('span');
-      var txt = document.createTextNode(info);
-      para.appendChild(txt);
-      para.addClass('image-info');
-      element.insertAfter(para);
-    }
-  });
-  if($('.md :not(a) > img, .md > img')) {
+  if($('.md img')) {
     vendorCss('fancybox');
     vendorJs('fancybox', function() {
       var q = jQuery.noConflict();
-      $.all('.md :not(a) > img, .md > img').forEach(function(element) {
+
+      $.each('p.gallery', function(element) {
+        var box = document.createElement('div');
+        box.className = 'gallery';
+        box.attr('data-height', element.attr('data-height')||120);
+
+        box.innerHTML = element.innerHTML.replace(/<br>/g, "")
+
+        element.parentNode.insertBefore(box, element);
+        element.remove();
+      });
+
+      $.each('.md img', function(element) {
         var $image = q(element);
-        var imageLink = $image.attr('data-src') || $image.attr('src');
-        var $imageWrapLink = $image.wrap('<a class="fancybox fancybox.image" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
-        if ($image.is('.gallery img')) {
-          $imageWrapLink.attr('data-fancybox', 'gallery').attr('rel', 'gallery');
-        } else {
-          $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
+        var info, captionClass;
+        if(!$image.is('a img')) {
+          var imageLink = $image.attr('data-src') || $image.attr('src');
+          $image.data('safe-src', imageLink)
+          var $imageWrapLink = $image.wrap('<a class="fancybox" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
+          if (!$image.is('.gallery img')) {
+            $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
+            captionClass = 'image-info'
+          } else {
+            captionClass = 'jg-caption'
+          }
         }
 
-        var imageTitle = $image.attr('title') || $image.attr('alt');
-        if (imageTitle) {
-          $imageWrapLink.append('<p class="image-caption">'+imageTitle+'</p>');
-          // Make sure img title tag will show correctly in fancybox
-          $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
+        if(info = element.attr('title')) {
+          var para = document.createElement('span');
+          var txt = document.createTextNode(info);
+          para.appendChild(txt);
+          para.addClass(captionClass);
+          element.insertAfter(para);
         }
+      });
+
+      q('div.gallery').each(function (i, el) {
+          q(el).justifiedGallery({rowHeight: q(el).data('height')||120, rel: 'gallery-' + i}).on('jg.complete', function () {
+            q(this).find('a').each(function(k, ele) {
+              ele.attr('data-fancybox', 'gallery-' + i);
+            });
+          });
       });
 
       q.fancybox.defaults.hash = false;
@@ -158,7 +174,7 @@ const postBeauty = function () {
           }
         }
       });
-      q('.gallery').justifiedGallery();
+
     }, window.jQuery);
   }
 

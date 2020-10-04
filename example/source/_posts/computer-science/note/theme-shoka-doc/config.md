@@ -15,6 +15,9 @@ audio: false
 [:rocket:快速开始](/computer-science/note/theme-shoka-doc/) - [:love_letter:依赖插件](/computer-science/note/theme-shoka-doc/dependents/) - [**:pushpin:基本配置**](/computer-science/note/theme-shoka-doc/config/) - [:rainbow:界面显示](/computer-science/note/theme-shoka-doc/display/) - [:unicorn:特殊功能](/computer-science/note/theme-shoka-doc/special/)
 :::
 
+这里修改的是`themes/shoka/_config.yml`内的配置参数。
+建议在根目录新建一个yml文件，命名为`_config.shoka.yml`，并在这个自定义文件中增改配置，而非直接修改主体文件夹内的`_config.yml`。
+
 # 站点别称
 ```yml
 alternate: Yume Shoka
