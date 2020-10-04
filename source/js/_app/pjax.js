@@ -87,7 +87,9 @@ const siteRefresh = function (reload) {
 
   Loader.hide()
 
-  positionInit()
+  setTimeout(function(){
+    positionInit()
+  }, 500);
 
   cardActive()
 

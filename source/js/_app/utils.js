@@ -88,7 +88,7 @@ const pjaxScript = function(element) {
 
 const pageScroll = function(target, offset, complete) {
   var opt = {
-    targets: offset? target.parentNode : document.scrollingElement,
+    targets: typeof offset == 'number' ? target.parentNode : document.scrollingElement,
     duration: 500,
     easing: "easeInOutQuad",
     scrollTop: offset || (typeof target == 'number' ? target : target.top() + document.documentElement.scrollTop - siteNavHeight),
