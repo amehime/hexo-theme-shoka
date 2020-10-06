@@ -15,7 +15,7 @@ valine:
 :::
 
 :::warning
-请务必将hexo-renderer-multi-markdown-it升级到最新版，目前为 0.1.3
+请务必将hexo-renderer-multi-markdown-it升级到最新版，目前为 0.1.4
 :::
 
 Theme Shoka依赖以下Hexo插件
