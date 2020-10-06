@@ -3,10 +3,10 @@ title: Hexo主题Shoka & multi-markdown-it渲染器使用说明
 date: 2020/08/13 20:45:48
 update: 2020/09/27
 categories:
-- [计算机科学, 二进制杂谈, Theme Shoka Documentation]
+ - [计算机科学, 二进制杂谈, Theme Shoka Documentation]
 tags:
-- Hexo
-- 教程
+ - Hexo
+ - 教程
 sticky: true
 valine:
   placeholder: "1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"
@@ -108,3 +108,9 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 💡  弃用Velocity，改用anime.js，方便未来添加更多!!花里胡哨的!!功能!!严重拖慢页面滑行速度!!
 🔧 新增多枚icon，包括豆瓣`i-douban`等
 🔧 一些显示问题
+
+```info
+&#123;#&#125;
+<
+&#123;&#123;print $1&#125;&#125;
+```

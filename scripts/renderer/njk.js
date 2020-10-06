@@ -12,7 +12,10 @@ const pangu = require('pangu') || {
 function njkCompile(data) {
   const templateDir = path.dirname(data.path);
   const env = nunjucks.configure(templateDir, {
-    autoescape: false
+    autoescape: false,
+    throwOnUndefined: false,
+    trimBlocks: false,
+    lstripBlocks: false
   });
   env.addFilter('safedump', dictionary => {
     if (typeof dictionary !== 'undefined' && dictionary !== null) {

@@ -161,3 +161,5 @@ widgets:
 # 修改404页面
 找到`themes/shoka/layout/page.njk`的第57 - 61行。
 59行的内容可以任意修改。
+
+如果只是想修改图片的话，位于：`themes/shoka/source/images/404.png`
