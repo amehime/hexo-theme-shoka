@@ -74,7 +74,7 @@ const postFancybox = function(p) {
     vendorJs('fancybox', function() {
       var q = jQuery.noConflict();
 
-      $.each('p.gallery', function(element) {
+      $.each(p + ' p.gallery', function(element) {
         var box = document.createElement('div');
         box.className = 'gallery';
         box.attr('data-height', element.attr('data-height')||120);
@@ -85,16 +85,15 @@ const postFancybox = function(p) {
         element.remove();
       });
 
-      $.each('.md img:not(.emoji):not(.vemoji)', function(element) {
+      $.each(p + ' .md img:not(.emoji):not(.vemoji)', function(element) {
         var $image = q(element);
-        var info, captionClass;
+        var info, captionClass = 'image-info';
         if(!$image.is('a img')) {
           var imageLink = $image.attr('data-src') || $image.attr('src');
           $image.data('safe-src', imageLink)
           var $imageWrapLink = $image.wrap('<a class="fancybox" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
           if (!$image.is('.gallery img')) {
             $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
-            captionClass = 'image-info'
           } else {
             captionClass = 'jg-caption'
           }
@@ -108,7 +107,7 @@ const postFancybox = function(p) {
         }
       });
 
-      $.each('div.gallery', function (el, i) {
+      $.each(p + ' div.gallery', function (el, i) {
         q(el).justifiedGallery({rowHeight: q(el).data('height')||120, rel: 'gallery-' + i}).on('jg.complete', function () {
           q(this).find('a').each(function(k, ele) {
             ele.attr('data-fancybox', 'gallery-' + i);
@@ -117,7 +116,7 @@ const postFancybox = function(p) {
       });
 
       q.fancybox.defaults.hash = false;
-      q('.fancybox').fancybox({
+      q(p + ' .fancybox').fancybox({
         loop   : true,
         helpers: {
           overlay: {
