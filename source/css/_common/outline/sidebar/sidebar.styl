@@ -25,12 +25,6 @@
     }
   }
 
-  &.on {
-    .panels {
-      height: 100vh;
-    }
-  }
-
   >.inner {
     position: relative;
     width: $sidebar-desktop;
@@ -45,13 +39,14 @@
 }
 
 .panels {
-  padding: 4.6875rem .9375rem 2rem;
+  padding: 4.6875rem 0 2rem;
   width: 100%;
   overflow: hidden;
 
   .inner {
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     width: auto;
     height: 100%;
 
@@ -62,7 +57,7 @@
 
   .panel {
     display: none;
-    padding-top: .875rem;
+    padding: .875rem .9375rem 2rem;
   }
 }
 

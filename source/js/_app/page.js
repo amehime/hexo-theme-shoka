@@ -2,13 +2,15 @@ const cardActive = function() {
   if(!$('.index.wrap'))
     return
 
-  var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(article) {
-        if (!window.IntersectionObserver) {
-          if( article.target.hasClass("show") === false){
-              article.target.addClass("show");
-          }
-        } else {
+  if (!window.IntersectionObserver) {
+    $.each('.index.wrap article.item, .index.wrap section.item', function(article) {
+      if( article.hasClass("show") === false){
+          article.addClass("show");
+      }
+    })
+  } else {
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(article) {
           if (article.target.hasClass("show")) {
             io.unobserve(article.target)
           } else {
@@ -17,19 +19,18 @@ const cardActive = function() {
               io.unobserve(article.target);
             }
           }
-        }
-      })
-  }, {
-      root: null,
-      threshold: [0.3]
-  });
+        })
+    }, {
+        root: null,
+        threshold: [0.3]
+    });
 
-  $.each('.index.wrap article.item, .index.wrap section.item', function(article) {
+    $.each('.index.wrap article.item, .index.wrap section.item', function(article) {
       io.observe(article)
-  })
+    })
 
-  $('.index.wrap .item:first-child').addClass("show")
-  // var tabs;
+    $('.index.wrap .item:first-child').addClass("show")
+  }
 
   $.each('.cards .item', function(element, index) {
     ['mouseenter', 'touchstart'].forEach(function(item){
@@ -45,30 +46,6 @@ const cardActive = function() {
         element.removeClass('active')
       })
     });
-
-    // if (index == 0) {
-    //   tabs = document.createElement('ul');
-    //   tabs.addClass('filter');
-    //   element.parentNode.parentNode.insertBefore(tabs, element.parentNode)
-    // }
-    // var top = $('#'+element.child('.cover').attr('data-top'));
-    // if(!top) {
-    //   top = document.createElement('li');
-    //   top.id = element.child('.cover').attr('data-top');
-
-    //   top.addEventListener('click', function(event) {
-    //     var tab = event.currentTarget;
-    //     tab.parentNode.find('.show').forEach(function(el) {
-    //       el.removeClass('show');
-    //     })
-    //     $.each('[data-top=' + tab.attr('id') + ']', function(el) {
-    //       el.parentNode.parentNode.addClass('hide')
-    //       el.parentNode.addClass('show')
-    //     })
-    //   })
-
-    //   tabs.appendChild(top)
-    // }
   });
 }
 
@@ -91,11 +68,74 @@ const registerExtURL = function() {
     });
 }
 
+const postFancybox = function(p) {
+  if($(p + ' .md img')) {
+    vendorCss('fancybox');
+    vendorJs('fancybox', function() {
+      var q = jQuery.noConflict();
+
+      $.each('p.gallery', function(element) {
+        var box = document.createElement('div');
+        box.className = 'gallery';
+        box.attr('data-height', element.attr('data-height')||120);
+
+        box.innerHTML = element.innerHTML.replace(/<br>/g, "")
+
+        element.parentNode.insertBefore(box, element);
+        element.remove();
+      });
+
+      $.each('.md img:not(.emoji):not(.vemoji)', function(element) {
+        var $image = q(element);
+        var info, captionClass;
+        if(!$image.is('a img')) {
+          var imageLink = $image.attr('data-src') || $image.attr('src');
+          $image.data('safe-src', imageLink)
+          var $imageWrapLink = $image.wrap('<a class="fancybox" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
+          if (!$image.is('.gallery img')) {
+            $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
+            captionClass = 'image-info'
+          } else {
+            captionClass = 'jg-caption'
+          }
+        }
+        if(info = element.attr('title')) {
+          var para = document.createElement('span');
+          var txt = document.createTextNode(info);
+          para.appendChild(txt);
+          para.addClass(captionClass);
+          element.insertAfter(para);
+        }
+      });
+
+      $.each('div.gallery', function (el, i) {
+        q(el).justifiedGallery({rowHeight: q(el).data('height')||120, rel: 'gallery-' + i}).on('jg.complete', function () {
+          q(this).find('a').each(function(k, ele) {
+            ele.attr('data-fancybox', 'gallery-' + i);
+          });
+        });
+      });
+
+      q.fancybox.defaults.hash = false;
+      q('.fancybox').fancybox({
+        loop   : true,
+        helpers: {
+          overlay: {
+            locked: false
+          }
+        }
+      });
+    }, window.jQuery);
+  }
+}
+
 const postBeauty = function () {
   loadComments();
 
   if(!$('.md'))
     return
+
+  postFancybox('.post.block');
 
   $('.post.block').oncopy = function(event) {
     showtip(LOCAL.copyright)
@@ -115,67 +155,6 @@ const postBeauty = function () {
           return window.clipboardData.setData("text", textData);
       }
     }
-  }
-
-  if($('.md img')) {
-    vendorCss('fancybox');
-    vendorJs('fancybox', function() {
-      var q = jQuery.noConflict();
-
-      $.each('p.gallery', function(element) {
-        var box = document.createElement('div');
-        box.className = 'gallery';
-        box.attr('data-height', element.attr('data-height')||120);
-
-        box.innerHTML = element.innerHTML.replace(/<br>/g, "")
-
-        element.parentNode.insertBefore(box, element);
-        element.remove();
-      });
-
-      $.each('.md img', function(element) {
-        var $image = q(element);
-        var info, captionClass;
-        if(!$image.is('a img')) {
-          var imageLink = $image.attr('data-src') || $image.attr('src');
-          $image.data('safe-src', imageLink)
-          var $imageWrapLink = $image.wrap('<a class="fancybox" href="'+imageLink+'" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
-          if (!$image.is('.gallery img')) {
-            $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
-            captionClass = 'image-info'
-          } else {
-            captionClass = 'jg-caption'
-          }
-        }
-
-        if(info = element.attr('title')) {
-          var para = document.createElement('span');
-          var txt = document.createTextNode(info);
-          para.appendChild(txt);
-          para.addClass(captionClass);
-          element.insertAfter(para);
-        }
-      });
-
-      q('div.gallery').each(function (i, el) {
-          q(el).justifiedGallery({rowHeight: q(el).data('height')||120, rel: 'gallery-' + i}).on('jg.complete', function () {
-            q(this).find('a').each(function(k, ele) {
-              ele.attr('data-fancybox', 'gallery-' + i);
-            });
-          });
-      });
-
-      q.fancybox.defaults.hash = false;
-      q('.fancybox').fancybox({
-        loop   : true,
-        helpers: {
-          overlay: {
-            locked: false
-          }
-        }
-      });
-
-    }, window.jQuery);
   }
 
   $.each('li ruby', function(element) {
@@ -406,16 +385,20 @@ const loadComments = function () {
     goToComment.display("")
   }
 
-  var io = new IntersectionObserver(function(entries, observer) {
-    var entry = entries[0];
+  if (!window.IntersectionObserver) {
     vendorCss('valine');
-    if (entry.isIntersecting) {
-      transition($('#comments'), 'bounceUpIn');
-      observer.disconnect();
-    }
-  });
+  } else {
+    var io = new IntersectionObserver(function(entries, observer) {
+      var entry = entries[0];
+      vendorCss('valine');
+      if (entry.isIntersecting) {
+        transition($('#comments'), 'bounceUpIn');
+        observer.disconnect();
+      }
+    });
 
-  io.observe(element);
+    io.observe(element);
+  }
 }
 
 const algoliaSearch = function(pjax) {

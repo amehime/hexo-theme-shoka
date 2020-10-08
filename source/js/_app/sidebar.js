@@ -2,15 +2,20 @@ const sideBarToggleHandle = function (event, force) {
   if(sideBar.hasClass('on')) {
     sideBar.removeClass('on');
     menuToggle.removeClass('close');
-    transition(sideBar, 'slideRightOut'); // transition.slideRightOut
+    if(force) {
+      sideBar.style = '';
+    } else {
+      transition(sideBar, 'slideRightOut');
+    }
   } else {
-    if(force)
-      return
-
-    transition(sideBar, 'slideRightIn', function () {
-        sideBar.addClass('on');
-        menuToggle.addClass('close');
-      }); // transition.slideRightIn
+    if(force) {
+      sideBar.style = '';
+    } else {
+      transition(sideBar, 'slideRightIn', function () {
+          sideBar.addClass('on');
+          menuToggle.addClass('close');
+        });
+    }
   }
 }
 
@@ -65,7 +70,6 @@ const sideBarTab = function () {
       sideBar.find('.panel').forEach(function (element) {
         element.removeClass('active')
       });
-
 
       sideBar.child('.panel.' + target.className.replace(' item', '')).addClass('active');
 
@@ -181,6 +185,9 @@ const sidebarTOC = function () {
   }
 
   var createIntersectionObserver = function() {
+    if (!window.IntersectionObserver)
+      return
+
     var observer = new IntersectionObserver(function (entries, observe) {
       var index = findIndex(entries) + (diffY < 0? 1 : 0);
       if(activeLock === null) {
@@ -194,7 +201,6 @@ const sidebarTOC = function () {
     sections.forEach(function (element) {
       element && observer.observe(element);
     });
-
   }
 
   createIntersectionObserver();

@@ -63,7 +63,8 @@ const siteRefresh = function (reload) {
     new MiniValine(options);
 
     setTimeout(function(){
-      positionInit(1)
+      positionInit(1);
+      postFancybox('.v');
     }, 1000);
   }, window.MiniValine);
 

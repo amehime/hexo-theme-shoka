@@ -163,3 +163,25 @@ widgets:
 59行的内容可以任意修改。
 
 如果只是想修改图片的话，位于：`themes/shoka/source/images/404.png`
+
+# 自定义语言包
+本功能参考NexT，主要可以用来定义菜单等处显示的文字，且可以方便主题无脑覆盖升级。
+
+在`<root>/source/_data/`目录新建文件`languages.yml`。
+
+按照以下格式添加配置项：
+
+```yml
+# language
+zh-CN:
+  # items
+  post:
+    copyright:
+      # the translation you perfer
+      author: 本文博主
+en:
+  menu:
+    travellings: Travellings
+```
+
+可以参考主题目录下的`example/source/_data`文件夹。

@@ -154,14 +154,14 @@
   50%,
   70%,
   90% {
-    transform: translate3d(-.625rem, 0, 0);
+    transform: translate3d(-10px, 0, 0);
   }
 
   20%,
   40%,
   60%,
   80% {
-    transform: translate3d(.625rem, 0, 0);
+    transform: translate3d(10px, 0, 0);
   }
 }
 
@@ -187,7 +187,7 @@
 
 @keyframes blur {
     0% {
-        filter: blur(.625rem)
+        filter: blur(10px)
     }
 
     to {
@@ -197,7 +197,7 @@
 
 @keyframes blur-dark {
     0% {
-        filter: blur(.625rem) brightness(.9)
+        filter: blur(10px) brightness(.9)
     }
 
     to {
@@ -208,7 +208,7 @@
 @keyframes UpDown {
   0%, 100% {
     opacity: .8;
-    transform: translateY(.625rem);
+    transform: translateY(10px);
   }
   50% {
     opacity: .4;
@@ -223,7 +223,7 @@
   }
   50% {
     opacity: .4;
-    transform: rotate(180deg) translateY(-.625rem);
+    transform: rotate(180deg) translateY(-10px);
   }
 }
 
@@ -266,7 +266,7 @@
 @keyframes slideUpIn {
     0% {
       opacity: 0;
-      transform: translateY(.625rem);
+      transform: translateY(10px);
     }
 
     to {
@@ -278,7 +278,7 @@
 @keyframes slideUpBigIn {
     0% {
         opacity: 0;
-        transform: translateY(5rem)
+        transform: translateY(80px)
     }
 
     100% {
@@ -290,7 +290,7 @@
 @keyframes slideDownIn {
   0% {
     opacity: 0;
-    transform: translateY(-1.125rem)
+    transform: translateY(-18px)
   }
   100% {
     opacity: 1;

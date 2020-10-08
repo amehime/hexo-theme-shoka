@@ -16,6 +16,8 @@ const siteBrand = $('#brand');
 var toolBtn = $('#tool'), toolPlayer, backToTop, goToComment, showContents;
 var siteSearch = $('#search');
 var siteNavHeight, headerHightInner, headerHight;
+var oWinHeight = window.innerHeight;
+var oWinWidth = window.innerWidth;
 var LOCAL_HASH = 0, LOCAL_URL = window.location.href;
 var pjax;
 const lazyload = lozad('img, [data-background-image]', {
@@ -116,7 +118,7 @@ const themeColorListener = function () {
         }
     }
     transition(neko, 1, function() {
-      setTimeout(c, 1000)
+      setTimeout(c, 210)
     })
   });
 }
@@ -166,8 +168,12 @@ const resizeHandle = function (event) {
   headerHightInner = siteHeader.height();
   headerHight = headerHightInner + $('#waves').height();
 
-  sideBarToggleHandle(null, 1);
-  sideBar.style = '';
+  if(oWinWidth != window.innerWidth)
+    sideBarToggleHandle(null, 1);
+
+  oWinHeight = window.innerHeight;
+  oWinWidth = window.innerWidth;
+  sideBar.child('.panels').height(oWinHeight + 'px')
 }
 
 const scrollHandle = function (event) {

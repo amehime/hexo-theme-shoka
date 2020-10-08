@@ -146,21 +146,8 @@ social:
 十六进制颜色码需要`""`包绕。
 
 `menu` 支持一级子目录，子目录设置中的第一项必须为`default`，用来定义父级按钮的样式。
-菜单显示文字在`<root>/themes/shoka/languages/`语言包中定义：
 
-```yml
-menu:
-  home: 首页
-  posts: 文章
-  archives: 归档
-  categories: 分类
-  tags: 标签
-  about: 关于
-  search: 搜索
-  friends: 友達
-  links: 网址
-  travellings: 开往
-```
+菜单显示文字可以在语言包中定义，[具体请戳这里](/computer-science/note/theme-shoka-doc/display/#自定义语言包)
 
 # 图片修改
 位于`<root>/themes/shoka/source/images/`目录里的图片们都是可以修改的。

@@ -290,6 +290,9 @@ quiz: true
 ++紫色下划线++{.primary}
 ++绿色波浪线++{.wavy .success}
 ++黄色着重点++{.dot .warning}
+~~删除线~~
+~~红色删除线~~{.danger}
+==荧光高亮==
 [赤橙黄绿青蓝紫]{.rainbow}
 [红色]{.red}
 [粉色]{.pink}
@@ -301,6 +304,8 @@ quiz: true
 [紫色]{.purple}
 [灰色]{.grey}
 快捷键 [Ctrl]{.kbd} + [C]{.kbd .red}
+H~2~0
+29^th^
 ```
 
 ++下划线++
@@ -309,6 +314,9 @@ quiz: true
 ++紫色下划线++{.primary}
 ++绿色波浪线++{.wavy .success}
 ++黄色着重点++{.dot .warning}
+~~删除线~~
+~~红色删除线~~{.danger}
+==荧光高亮==
 [赤橙黄绿青蓝紫]{.rainbow}
 [红色]{.red}
 [粉色]{.pink}
@@ -320,6 +328,8 @@ quiz: true
 [紫色]{.purple}
 [灰色]{.grey}
 快捷键 [Ctrl]{.kbd} + [C]{.kbd .red}
+H~2~0
+29^th^
 
 # `spoiler`隐藏文字
 
