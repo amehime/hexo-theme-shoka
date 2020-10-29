@@ -52,7 +52,7 @@ const Loader = {
 
 const changeTheme = function(type) {
   var btn = $('.theme .ic')
-  if(type) {
+  if(type == 'dark') {
     HTML.attr('data-theme', type);
     btn.removeClass('i-sun')
     btn.addClass('i-moon')
@@ -82,6 +82,10 @@ const themeColorListener = function () {
   var t = store.get('theme');
   if(t) {
     changeTheme(t);
+  } else {
+    if(CONFIG.darkmode) {
+      changeTheme('dark');
+    }
   }
 
   $('.theme').addEventListener('click', function(event) {
@@ -113,7 +117,7 @@ const themeColorListener = function () {
       var c = function() {
           neko.removeClass('dark');
           changeTheme();
-          store.del('theme');
+          store.set('theme', 'light');
           hideNeko();
         }
     }
@@ -227,7 +231,8 @@ const scrollHandle = function (event) {
 }
 
 const pagePosition = function() {
-  store.set(LOCAL_URL, scrollAction.y)
+  if(CONFIG.autoScroll)
+    store.set(LOCAL_URL, scrollAction.y)
 }
 
 const positionInit = function(comment) {

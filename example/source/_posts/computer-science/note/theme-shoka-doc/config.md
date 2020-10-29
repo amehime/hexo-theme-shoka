@@ -86,8 +86,24 @@ font:
 此功能基本参考NexT。
 加粗标题的字体总是使用`Noto Serif`，为了正确友好的显示日文中的汉字，会先后加载`headings`和`title`的字体设置。
 
-# 加载动画
+# 夜间模式
+```yml
+darkmode: # true
+```
+默认情况下，是否开启夜间模式取决于（优先级从高到低）：
+1. 访客点击页面头部切换按钮的自行选择
+2. 访客切换了浏览设备的主题色调
+3. 您的`darkmode`配置项
 
+# 自动定位
+```yml
+autoScroll: # false
+```
+默认情况下，再次打开页面时，会自动滚动到上次浏览的位置。
+这个选项设为`false`时将停用此功能。
+
+
+# 加载动画
 ```yml
 # 是否显示页面加载动画loading-cat
 loader:
@@ -164,17 +180,34 @@ social:
 
 3. 修改 `favicon.ico`和`apple-touch-icon.png`
 
-4. 修改随机图库
+为了方便主题升级覆盖，可以在`<root>/source/`目录下新建一个`images`文件夹，同名保存你自己的上述文件。
+
+# 随机图库
+- 默认情况下
   图片列表位于`<root>/themes/shoka/_images.yml`中。
   使用了渣浪图库，使用一些上传工具，比如[这里](https://pic.gimhoy.com/)
   上传后图片的链接是`http://wx4.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg`。
   只需要增加一行，写上`- 6833939bly1gicmnywqgpj20zk0m8dwx.jpg`。
 
+- 也可以直接在图片列表yml文件中，写上任意外链图片地址
+```yml
+- https://i.loli.net/2020/10/30/qAMYEFXxJcKRsiG.gif
+- https://i.loli.net/2020/10/30/rjdhcSgEN8COBPA.jpg
+- https://i.loli.net/2020/10/30/HKyzSd7NI3mlBpt.jpg
+- https://i.loli.net/2020/10/30/Y1CBXqgeokEs457.jpg
+- https://i.loli.net/2020/10/30/Z5W6r2BSoiThHG1.jpg
+```
+
+- 也可以在主题`_config.yml`文件中设置图床API：
+```yml 比如
+image_server: "https://acg.xydwz.cn/api/api.php"
+```
+
 # 背景音乐
 在主题`_config.yml`文件中设置全局播放列表。
 在文章的 Front Matter 中，设置文章专有播放列表，访问该文章页面时，将覆盖全局配置。
 
-```yml
+```yml 单列表
 audio:
   - https://music.163.com/song?id=1387098940
   - https://music.163.com/#/playlist?id=2088001742
@@ -183,6 +216,51 @@ audio:
 ```
 如上，可以直接使用网易云、虾米、QQ音乐的播放列表、单曲，可以同时填写多个。
 
+```yml 多列表
+audio:
+  - title: 列表1
+    list:
+      - https://music.163.com/#/playlist?id=2943811283
+      - https://music.163.com/#/playlist?id=2297706586
+  - title: 列表2
+    list:
+      - https://music.163.com/#/playlist?id=2031842656
+```
+
+如果需要自定义媒体文件，可以按照以下格式填写：
+
+```yml 单列表
+audio:
+  - name: "曲目1"
+    url: "播放地址"
+    artist: "艺术家"
+    cover: "封面"
+    lrc: "歌词"
+  - name: "曲目2"
+    url: "播放地址"
+    artist: "艺术家"
+    cover: "封面"
+    lrc: "歌词"
+```
+
+```yml 多列表
+audio:
+    - title: 列表1
+      list:
+        - name: "曲目1"
+          url: "播放地址"
+          artist: "艺术家"
+          cover: "封面"
+          lrc: "歌词"
+        - name: "曲目2"
+          url: "播放地址"
+          artist: "艺术家"
+          cover: "封面"
+          lrc: "歌词"
+    - title: 列表2
+      list:
+        - https://music.163.com/#/playlist?id=2031842656
+```
 
 # 文章字数及阅读时间统计
 
@@ -213,19 +291,46 @@ valine:
   pageSize: 10 # Pagination size
   lang: zh-CN
   visitor: true # 文章访问量统计
-  NoRecordIP: false # 不IP记录
+  NoRecordIP: false # 不记录IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  tagMeta:
-    - 主人
-    - 小伙伴
-    - 新朋友
-  master:
-    # - hash of master@email.com
-    # - hash of master2@email.com
-  friends:
-    # - hash of friend@email.com
-    # - hash of friend2@email.com
   powerMode: true # 默认打开评论框输入特效
+  tagMeta:
+    visitor: 新朋友
+    master: 主人
+    friend: 小伙伴
+    investor: 金主粑粑
+  tagColor:
+    master: "var(--color-orange)"
+    friend: "var(--color-aqua)"
+    investor: "var(--color-pink)"
+  tagMember:
+    master:
+      # - hash of master@email.com
+      # - hash of master2@email.com
+    friend:
+      # - hash of friend@email.com
+      # - hash of friend2@email.com
+    investor:
+      # - hash of investor1@email.com
+```
+
+tag标签显示在评论者名字的后面，默认是`tagMeta.visitor`对应的值。
+在`tagMeta`和`tagColor`中，除了`visitor`这个key不能修改外，其他key都可以换一换，但需要保证一致性。
+
+```yml 举个栗子
+  tagMeta:
+    visitor: 游客
+    admin: 管理员
+    waifu: 我老婆
+  tagColor:
+    visitor: "#855194"
+    admin: "#a77c59"
+    waifu: "#ed6ea0"
+  tagMember:
+    admin:
+      # - hash of admin@email.com
+    waifu:
+      # - hash of waifu@email.com
 ```
 
 在文章Front Matter中也可以配置上述参数，访问该文章页面时，将覆盖全局配置。
@@ -257,22 +362,9 @@ fireworks:
 ```yml
 vendors:
   css:
-    katex: npm/katex@0/dist/katex.min.css
-    comment: css/comment.css
-    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
+    # 略略略
   js:
-    pace: npm/pace-js@1.0.2/pace.min.js
-    pjax: npm/pjax@0.2.8/pjax.min.js
-    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js
-    anime: npm/animejs@3.2.0/lib/anime.min.js
-    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
-    lazyload: npm/lozad@1/dist/lozad.min.js
-    quicklink: npm/quicklink@2/dist/quicklink.umd.js
-    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js
-    valine: gh/amehime/MiniValine@4.2.2-beta8/dist/MiniValine.min.js
-    copy_tex: npm/katex@0/dist/contrib/copy-tex.min.js
-    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
+    # 略略略
 ```
 包括
 
@@ -291,3 +383,8 @@ vendors:
 
 以上文件加载全部基于jsDelivr，并对全局加载的组件进行了文件合并。
 如果不明白啥意思，则不要轻易修改。
+
+:::danger
+主题版本升级的时候，可能会修改这里。
+如果修改过主题默认`_config.yml`，记得更新主题时，末尾的`vendors`也要及时修改。
+:::

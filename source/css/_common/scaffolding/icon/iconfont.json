@@ -6,6 +6,69 @@
   "description": "hexo-theme-shoka的icon们",
   "glyphs": [
     {
+      "icon_id": "1621430",
+      "name": "静音",
+      "font_class": "volume-off",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "1621486",
+      "name": "声音",
+      "font_class": "volume-on",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "2767703",
+      "name": "播放",
+      "font_class": "circle-play",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "2767705",
+      "name": "下一首",
+      "font_class": "forward",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "2767707",
+      "name": "上一首",
+      "font_class": "backward",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "2767708",
+      "name": "暂停",
+      "font_class": "circle-pause",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "2767709",
+      "name": "单曲循环",
+      "font_class": "loop",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "2767710",
+      "name": "列表循环",
+      "font_class": "order",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "2767712",
+      "name": "随机播放",
+      "font_class": "random",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
       "icon_id": "10918102",
       "name": "douban-fill",
       "font_class": "douban",

@@ -11,7 +11,7 @@
   {{ _url(item.path, itemlink, {itemprop: 'url', rel: type, 'data-background-image': _cover(item), title: postText}) }}
 {% endmacro %}
 
-<div class="nav">
+<div class="post-nav">
     <div class="item left">
       {%- if post.next %}
       {{navpost(post.next, 'prev')}}

@@ -128,7 +128,7 @@ hexo.extend.helper.register('_category_posts', function(page) {
   categories.find({_id: cat[cat.length - 1]._id}).forEach((category) => {
 
     if(category.posts) {
-      category.posts.sort('title', 1).forEach((post) => {
+      category.posts.sort('date', 1).forEach((post) => {
         var current = '';
         if(post.path == page.path) {
           current = ' class="active"';

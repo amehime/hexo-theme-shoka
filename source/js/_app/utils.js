@@ -57,7 +57,6 @@ const vendorCss = function(type, condition) {
   }
 }
 
-
 const pjaxScript = function(element) {
   var code = element.text || element.textContent || element.innerHTML || '';
   var parent = element.parentNode;
@@ -91,7 +90,7 @@ const pageScroll = function(target, offset, complete) {
     targets: typeof offset == 'number' ? target.parentNode : document.scrollingElement,
     duration: 500,
     easing: "easeInOutQuad",
-    scrollTop: offset || (typeof target == 'number' ? target : target.top() + document.documentElement.scrollTop - siteNavHeight),
+    scrollTop: offset || (typeof target == 'number' ? target : (target ? target.top() + document.documentElement.scrollTop - siteNavHeight : 0)),
     complete: function() {
       complete && complete()
     }
@@ -167,4 +166,17 @@ const transition = function(target, type, complete) {
       target.display(display)
       complete && complete()
     });
+}
+
+const store = {
+  get: function(item) {
+    return localStorage.getItem(item);
+  },
+  set: function(item, str) {
+    localStorage.setItem(item, str);
+    return str;
+  },
+  del: function(item) {
+    localStorage.removeItem(item);
+  }
 }

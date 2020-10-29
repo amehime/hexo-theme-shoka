@@ -124,15 +124,15 @@
   li ol > li {
     &::before {
       content: counter(counter) ".";
-      background: var(--grey-1);
+      background: none;
       color: var(--primary-color);
       font-size: 1em;
       line-height: 1;
     }
 
     &:hover::before {
+      background: none;
       color: var(--color-pink);
-      background: var(--grey-1);
     }
   }
 }

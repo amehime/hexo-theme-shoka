@@ -308,6 +308,11 @@ H~2~0
 29^th^
 ```
 
+:::warning
+这段代码因为自动被pangu.js处理了一下，加了几个空格，导致直接复制代码不能正常显示。
+正确的代码是`++下划线++` `~~删除线~~` `==荧光高亮==`，不能有空格哦。
+:::
+
 ++下划线++
 ++波浪线++{.wavy}
 ++着重点++{.dot}
@@ -651,6 +656,63 @@ H~2~0
 `{あいうえお^*}` | {あいうえお^*}
 `{あいうえお^*❤}` | {あいうえお^*❤}
 `{常用账号^contact}`|{常用账号^contact}
+
+# `media`多媒体
+本功能基于Hexo Tag功能，使用`media`标签，目前可选择两种类型，即`audio`和`video`。
+
+```raw
+&#123;% media audio %&#125;
+...音频列表
+&#123;% endmedia %&#125;
+
+&#123;% media video %&#125;
+...视频列表
+&#123;% endmedia %&#125;
+```
+
+标签包绕一段`yml`格式的内容，格式与[背景音乐](config/#背景音乐)的配置类似。
+
+亦可以直接使用网易云、虾米、QQ音乐的播放列表、单曲。
+
+
+```raw 举个栗子
+&#123;% media audio %&#125;
+- title: 列表1
+  list:
+    - https://music.163.com/#/playlist?id=2943811283
+    - https://music.163.com/#/playlist?id=2297706586
+- title: 列表2
+  list:
+    - https://music.163.com/#/playlist?id=2031842656
+&#123;% endmedia %&#125;
+
+
+&#123;% media video %&#125;
+- name: "测试1"
+  url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+- name: "测试2"
+  url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+&#123;% endmedia %&#125;
+```
+
+{% media audio %}
+- title: 列表1
+  list:
+    - https://music.163.com/#/playlist?id=2943811283
+    - https://music.163.com/#/playlist?id=2297706586
+- title: 列表2
+  list:
+    - https://music.163.com/#/playlist?id=2031842656
+{% endmedia %}
+
+
+{% media video %}
+- name: "测试1"
+  url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+- name: "测试2"
+  url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+{% endmedia %}
+
 
 # `math`数学公式
 

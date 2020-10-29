@@ -62,6 +62,15 @@ font:
     external: true
     family: Inconsolata
 
+# Dark Mode
+# By default, the page judges whether to turn on the dark mode according to the device settings or user selection
+# if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
+darkmode: # true
+
+# By default the page will automatically scroll to the last viewed position
+# if `false`, automatic positioning will be turned off
+autoScroll: # false
+
 # Whether to show the loading cat
 loader:
   start: true # When entering the page
@@ -70,18 +79,18 @@ loader:
 sidebar:
   # Sidebar Position.
   position: left
-  #position: right
+  # position: right
   # Replace the default avatar image and set the url here.
   avatar: avatar.jpg
 
 menu:
   home: / || home
   # about: /about/ || user
-  posts:
-    default: / || feather
-    archives: /archives/ || list-alt
-    categories: /categories/ || th
-    tags: /tags/ || tags
+  # posts:
+  #   default: / || feather
+  #   archives: /archives/ || list-alt
+  #   categories: /categories/ || th
+  #   tags: /tags/ || tags
   # friends: /friends/ || heart
   # links: /links/ || magic
 
@@ -164,7 +173,16 @@ pangu: false
 
 # bgm
 audio:
-  - https://music.163.com/#/playlist?id=2031842656
+  # - title: 列表1
+  #   list:
+  #    - https://music.163.com/#/playlist?id=2943811283
+  #    - https://music.163.com/#/playlist?id=2297706586
+  # - title: 列表2
+  #   list:
+  #    - https://music.163.com/#/playlist?id=2031842656
+
+# random image api
+image_server: # "https://acg.xydwz.cn/api/api.php"
 
 # Algolia Search
 # For more information: https://www.algolia.com
@@ -185,26 +203,34 @@ valine:
   visitor: true # Article reading statistic
   NoRecordIP: false # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  tagMeta:
-    - 主人
-    - 小伙伴
-    - 新朋友
-  master:
-    # - hash of master@email.com
-    # - hash of master2@email.com
-  friends:
-    # - hash of friend@email.com
-    # - hash of friend2@email.com
   powerMode: true
+  tagMeta:
+    visitor: 新朋友
+    master: 主人
+    friend: 小伙伴
+    investor: 金主粑粑
+  tagColor:
+    master: "var(--color-orange)"
+    friend: "var(--color-aqua)"
+    investor: "var(--color-pink)"
+  tagMember:
+    master:
+      # - hash of master@email.com
+      # - hash of master2@email.com
+    friend:
+      # - hash of friend@email.com
+      # - hash of friend2@email.com
+    investor:
+      # - hash of investor1@email.com
 
 # click with Firework
 fireworks:
   enable: true
   color:
-    - "rgba(255,182,185,.9)"
-    - "rgba(250,227,217,.9)"
-    - "rgba(187,222,214,.9)"
-    - "rgba(138,198,209,.9)"
+    # - "rgba(255,182,185,.9)"
+    # - "rgba(250,227,217,.9)"
+    # - "rgba(187,222,214,.9)"
+    # - "rgba(138,198,209,.9)"
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
@@ -269,6 +295,6 @@ vendors:
     lazyload: npm/lozad@1/dist/lozad.min.js
     quicklink: npm/quicklink@2/dist/quicklink.umd.js
     fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js
-    valine: gh/amehime/MiniValine@4.2.2-beta9/dist/MiniValine.min.js
+    valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js
     copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js
     chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js

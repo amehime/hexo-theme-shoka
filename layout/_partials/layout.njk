@@ -3,7 +3,7 @@
 {% import '_macro/widgets.njk' as widgets with context %}
 
 <!DOCTYPE html>
-<html lang="{{ config.language }}">
+<html lang="{{ page.language if page.language else config.language }}">
 <head>
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
@@ -72,9 +72,9 @@
         </g>
       </svg>
     </div>
-    <main id="main">
+    <main>
       <div class="inner">
-        <div id="content" class="pjax">
+        <div id="main" class="pjax">
           {% block content %}{% endblock %}
         </div>
         <div id="sidebar">

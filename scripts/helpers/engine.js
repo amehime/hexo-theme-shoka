@@ -14,7 +14,28 @@ const imageList = yaml.safeLoad(imageListFile);
 
 const randomServer = parseInt(Math.random()*4,10)+1
 
-const randomBG = function(count = 1) {
+const randomBG = function(count = 1, image_server = null) {
+  if (image_server) {
+    if(count && count > 1) {
+      var arr = new Array(count);
+      for(var i=0; i < arr.length; i++){
+        arr[i] = image_server + '?' + Math.floor(Math.random() * 999999)
+      }
+
+      return arr;
+    }
+
+    return image_server + '?' + Math.floor(Math.random() * 999999)
+  }
+
+  var parseImage = function(img, size) {
+    if (img.startsWith('//') || img.startsWith('http')) {
+      return img
+    } else {
+      return 'https://tva'+randomServer+'.sinaimg.cn/'+size+'/'+img
+    }
+  }
+
   if(count && count > 1) {
     var shuffled = imageList.slice(0), i = imageList.length, min = i - count, temp, index;
     while (i-- > min) {
@@ -25,10 +46,11 @@ const randomBG = function(count = 1) {
     }
 
     return shuffled.slice(min).map(function(img) {
-      return 'https://tva'+randomServer+'.sinaimg.cn/large/'+img
+      return parseImage(img, 'large')
     });
   }
-  return 'https://tva'+randomServer+'.sinaimg.cn/mw690/'+imageList[Math.floor(Math.random() * imageList.length)]
+
+  return parseImage(imageList[Math.floor(Math.random() * imageList.length)], 'mw690')
 }
 
 hexo.extend.helper.register('_url', function(path, text, options = {}) {
@@ -98,14 +120,14 @@ hexo.extend.helper.register('_image_url', function(img) {
 })
 
 hexo.extend.helper.register('_cover', function(item, num) {
-  const { statics, js } = hexo.theme.config;
+  const { statics, js, image_server } = hexo.theme.config;
 
   if(item.cover) {
     return this._image_url(item.cover)
   } else if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0])
   } else {
-    return randomBG(num || 1);
+    return randomBG(num || 1, image_server);
   }
 
 })

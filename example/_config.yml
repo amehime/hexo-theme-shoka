@@ -8,7 +8,7 @@ subtitle: subtitle
 description: 描述123
 keywords: 关键词1,关键词2 # edit for Theme.shoka
 author: John Doe
-language: zh-CN
+language: zh-CN # 这里只可以选 zh-CN、zh-HK、zh-TW、ja、en 这几个格式
 timezone: 'Asia/Shanghai'
 
 # URL
@@ -89,7 +89,7 @@ autoprefixer:
 
 markdown:
   render: # 渲染器设置
-    html: false # 是否过滤 HTML 标签
+    html: false # 过滤 HTML 标签
     xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
     breaks: true # 转换段落里的 '\n' 到 <br>。
     linkify: true # 将类似 URL 的文本自动转换为链接。

@@ -185,3 +185,6 @@ en:
 ```
 
 可以参考主题目录下的`example/source/_data`文件夹。
+
+> 站点配置及文件的Front Matter中，`language`项只支持`zh-CN`、`zh-HK`、`zh-TW`、`ja`、`en`。
+类似写成`zh_CN`这样是不可以的。

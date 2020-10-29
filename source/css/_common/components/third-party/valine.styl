@@ -320,17 +320,14 @@
       color: var(--grey-1);
       padding: 0 .3125rem;
       margin-right: .5rem;
+      background-color: var(--color-grey);
 
-      &.master {
-        background: var(--color-orange);
-      }
+      $tagcolor = hexo-config('valine.tagColor');
 
-      &.friend {
-        background: var(--color-aqua);
-      }
-
-      &.visitor {
-        background: var(--color-grey);
+      for type in $tagcolor {
+        &.{slice(type, 0, 1)} {
+          background-color: unquote(slice(type, 1));
+        }
       }
     }
 

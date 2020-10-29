@@ -1,20 +1,4 @@
-# Internationalization (i18n)
-
-[![Crowdin](https://badges.crowdin.net/hexo-theme-next/localized.svg)](https://crowdin.com/project/hexo-theme-next)
-
-You can use internationalization to present your site in different languages. The default language is set by modifying the `language` setting in Hexo `_config.yml`. You can also set multiple languages and modify the order of default languages.
-
-```yml
-language: en
-```
-
-```yml
-language:
-  - zh-CN
-  - en
-```
-
-## Override Default Translations
+# Override Default Translations
 
 If you would like to customize the default translation, you do not need to modify the translation files in the `languages` directory. You can override all translations using [Data Files](https://hexo.io/docs/data-files).
 

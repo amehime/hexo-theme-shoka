@@ -319,9 +319,26 @@ const postBeauty = function () {
     element.attr('data-type', LOCAL.quiz.mistake)
   });
 
+  $.each('div.tags a', function(element) {
+    element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
+  })
+
+  $.each('.md div.player', function(element) {
+    mediaPlayer(element, {
+      type: element.attr('data-type'),
+      mode: 'order',
+      btns: []
+    }).player.load(JSON.parse(element.attr('data-src'))).fetch()
+  })
+}
+
+const tabFormat = function() {
   // tab
   var first_tab
   $.each('div.tab', function(element, index) {
+    if(element.attr('data-ready'))
+      return
+
     var id = element.attr('data-id');
     var title = element.attr('data-title');
     var box = $('#' + id);
@@ -342,11 +359,12 @@ const postBeauty = function () {
       first_tab = false;
     }
 
-    var ul = box.child('.nav');
+    var ul = box.child('.nav ul');
     if(!ul) {
-      ul = box.createChild('ul', {
-        className: 'nav'
-      });
+      ul = box.createChild('div', {
+        className: 'nav',
+        innerHTML: '<ul></ul>'
+      }).child('ul');
     }
 
     var li = ul.createChild('li', {
@@ -368,11 +386,8 @@ const postBeauty = function () {
     });
 
     box.appendChild(element);
+    element.attr('data-ready', true)
   });
-
-  $.each('div.tags a', function(element) {
-    element.className = ['primary', 'success', 'info', 'warning', 'danger'][Math.floor(Math.random() * 5)]
-  })
 }
 
 const loadComments = function () {

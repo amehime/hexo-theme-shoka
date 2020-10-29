@@ -70,7 +70,7 @@ hexo-feed|[链接](https://www.npmjs.com/package/hexo-feed)|生成Feed文件| Fe
 ```yml
 markdown:
   render: # 渲染器设置
-    html: false # 是否过滤 HTML 标签
+    html: false # 过滤 HTML 标签
     xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
     breaks: true # 转换段落里的 '\n' 到 <br>。
     linkify: true # 将类似 URL 的文本自动转换为链接。
@@ -125,7 +125,9 @@ minify:
       - '**/*.min.js'
 ```
 
-3. 停用默认代码高亮功能
+3. 停用默认代码高亮功能，否则代码块的mac样式不能正常显示。
+找到`highlight`和`prismjs`，把`enable`改成`false`。
+
 ```yml
 highlight:
   enable: false

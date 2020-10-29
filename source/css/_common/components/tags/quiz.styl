@@ -1,3 +1,27 @@
+$check {
+  &::before {
+    color: var(--color-green);
+  }
+
+  &::after {
+    @extend .i-check:before;
+    color: var(--color-green);
+    animation: fadeIn .5s;
+  }
+}
+
+$times {
+  &::before {
+    color: var(--color-red);
+  }
+
+  &::after {
+    @extend .i-times:before;
+    color: var(--color-red);
+    animation: fadeIn .5s;
+  }
+}
+
 .md ol>li.quiz {
   margin: .625rem 0;
 
@@ -16,7 +40,7 @@
   }
 
   &.ruby::before {
-      top: .5rem;
+    top: .5rem;
   }
 
   >p {
@@ -55,24 +79,6 @@
 
   &::before, &::after {
     the-transition();
-  }
-
-  &.show::before {
-    color: var(--color-blue) !important;
-  }
-
-  &.show>p:last-child::after {
-    font-family-icons();
-  }
-
-  &.show.true>p:last-child::after {
-    @extend .i-check:before;
-    color: var(--color-green);
-  }
-
-  &.show.false>p:last-child::after {
-    @extend .i-times:before;
-    color: var(--color-red);
   }
 
   blockquote {
@@ -158,31 +164,34 @@
       }
 
       &.right {
-
-        &::before {
-          color: var(--color-green);
-        }
-
-        &::after {
-          @extend .i-check:before;
-          color: var(--color-green);
-          animation: fadeIn .5s;
-        }
+        @extend $check;
       }
 
       &.wrong {
-
-        &::before {
-          color: var(--color-red);
-        }
-
-        &::after {
-          @extend .i-times:before;
-          color: var(--color-red);
-          @extend .fade-in;
-        }
+        @extend $times;
       }
     }
+  }
+
+  &.show.false, &.show.true {
+    &::before {
+      visibility: hidden;
+    }
+
+    &::after {
+      font-family-icons();
+      position: absolute;
+      left: -1.2rem;
+      top: .25rem;
+    }
+  }
+
+  &.show.true {
+    @extend $check;
+  }
+
+  &.show.false {
+    @extend $times;
   }
 }
 

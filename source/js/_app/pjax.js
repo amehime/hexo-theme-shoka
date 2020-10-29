@@ -26,7 +26,10 @@ const domInit = function() {
   goToComment.addEventListener('click', goToCommentHandle);
   showContents.addEventListener('click', sideBarToggleHandle);
 
-  toolPlayer.player();
+  mediaPlayer(toolPlayer)
+  $('main').addEventListener('click', function() {
+    toolPlayer.player.mini()
+  })
 }
 
 const pjaxReload = function () {
@@ -39,8 +42,8 @@ const pjaxReload = function () {
       }); // 'transition.slideRightOut'
   }
 
-  $('#content').innerHTML = ''
-  $('#content').appendChild(loadCat.lastChild.cloneNode(true));
+  $('#main').innerHTML = ''
+  $('#main').appendChild(loadCat.lastChild.cloneNode(true));
   pageScroll(0);
 }
 
@@ -83,8 +86,9 @@ const siteRefresh = function (reload) {
 
   registerExtURL()
   postBeauty()
+  tabFormat()
 
-  toolPlayer.media.load(LOCAL.audio || CONFIG.audio || {})
+  toolPlayer.player.load(LOCAL.audio || CONFIG.audio || {})
 
   Loader.hide()
 

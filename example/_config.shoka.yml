@@ -80,6 +80,16 @@ creative_commons:
 # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
 pangu: true
 
+# bgm
+audio:
+   - title: 列表1
+      list:
+        - https://music.163.com/#/playlist?id=2943811283
+        - https://music.163.com/#/playlist?id=2297706586
+   - title: 列表2
+      list:
+        - https://music.163.com/#/playlist?id=2031842656
+
 # Algolia Search
 # For more information: https://www.algolia.com
 search:
@@ -95,10 +105,11 @@ valine:
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
   pageSize: 10 # Pagination size
   lang: zh-CN
-  master:
-    # - deea5a8d259d17182a53be1772e4c182
-  friends:
-    - deea5a8d259d17182a53be1772e4c182
+  tagMember:
+    master:
+      # - deea5a8d259d17182a53be1772e4c182
+    friend:
+      - deea5a8d259d17182a53be1772e4c182
 
 # ---------------------------------------------------------------
 # analytics & SEO Settings
