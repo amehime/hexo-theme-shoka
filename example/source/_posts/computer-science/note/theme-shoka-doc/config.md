@@ -180,7 +180,6 @@ social:
 
 3. 修改 `favicon.ico`和`apple-touch-icon.png`
 
-为了方便主题升级覆盖，可以在`<root>/source/`目录下新建一个`images`文件夹，同名保存你自己的上述文件。
 
 # 随机图库
 - 默认情况下
