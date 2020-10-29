@@ -83,7 +83,7 @@ const mediaPlayer = function(t, config) {
       })
     },
     secondToTime: function(second) {
-      var add0 = (num) => (num < 10 ? '0' + num : '' + num);
+      var add0 = function(num) { return num < 10 ? '0' + num : '' + num };
       var hour = Math.floor(second / 3600);
       var min = Math.floor((second - hour * 3600) / 60);
       var sec = Math.floor(second - hour * 3600 - min * 60);
@@ -261,7 +261,7 @@ const mediaPlayer = function(t, config) {
       source.currentTime = 0;
       document.title = originTitle;
     },
-    seek(time) {
+    seek: function(time) {
       time = Math.max(time, 0)
       time = Math.min(time, source.duration)
       source.currentTime = time;
