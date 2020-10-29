@@ -509,7 +509,6 @@ const mediaPlayer = function(t, config) {
           .then(function(response) {
             return response.text()
           }).then(function(body) {
-            store.set(skey, body)
             callback(body)
           }).catch(function(ex) {})
     }
