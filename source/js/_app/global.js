@@ -231,7 +231,7 @@ const scrollHandle = function (event) {
 }
 
 const pagePosition = function() {
-  if(CONFIG.autoScroll)
+  if(CONFIG.auto_scroll)
     store.set(LOCAL_URL, scrollAction.y)
 }
 
@@ -239,14 +239,14 @@ const positionInit = function(comment) {
   var anchor = window.location.hash
   var target = null;
   if(LOCAL_HASH) {
-    store.del(window.location.href);
+    store.del(LOCAL_URL);
     return
   }
 
   if(anchor)
     target = $(decodeURI(anchor))
   else {
-    target = parseInt(store.get(window.location.href))
+    target = CONFIG.auto_scroll ? parseInt(store.get(LOCAL_URL)) : 0
   }
 
   if(target) {

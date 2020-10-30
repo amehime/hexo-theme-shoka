@@ -89,7 +89,7 @@ Hexo5可以在根目录新建一个yml文件，命名为`_config.shoka.yml`。
 
 ⚠️ 配置新增
 - 夜间模式`darkmode`，[配置戳此](config/#夜间模式)
-- 自动定位`autoScroll`，[配置戳此](config/#自动定位)
+- 自动定位`auto_scroll`，[配置戳此](config/#自动定位)
 - 图床API设置`image_server`，[配置戳此](config/#随机图库)
 
 ⚠️ 背景音乐功能增强，[配置戳此](config/#背景音乐)

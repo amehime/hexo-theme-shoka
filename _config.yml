@@ -65,11 +65,11 @@ font:
 # Dark Mode
 # By default, the page judges whether to turn on the dark mode according to the device settings or user selection
 # if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
-darkmode: # true
+darkmode: false
 
 # By default the page will automatically scroll to the last viewed position
 # if `false`, automatic positioning will be turned off
-autoScroll: # false
+auto_scroll: true
 
 # Whether to show the loading cat
 loader:

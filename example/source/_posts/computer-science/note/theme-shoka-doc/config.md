@@ -97,7 +97,7 @@ darkmode: # true
 
 # 自动定位
 ```yml
-autoScroll: # false
+auto_scroll: # false
 ```
 默认情况下，再次打开页面时，会自动滚动到上次浏览的位置。
 这个选项设为`false`时将停用此功能。

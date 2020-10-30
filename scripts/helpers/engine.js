@@ -108,24 +108,24 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
   return htmlTag(tag, attrs, decodeURI(text), false);
 });
 
-hexo.extend.helper.register('_image_url', function(img) {
+hexo.extend.helper.register('_image_url', function(img, path = '') {
   const { statics } = hexo.theme.config;
+  const { post_asset_folder } = hexo.config;
 
   if (img.startsWith('//') || img.startsWith('http')) {
     return img
   } else {
-    return url_for.call(this, statics + img)
+    return url_for.call(this, statics + (post_asset_folder ? path : '') + img)
   }
-
 })
 
 hexo.extend.helper.register('_cover', function(item, num) {
   const { statics, js, image_server } = hexo.theme.config;
 
   if(item.cover) {
-    return this._image_url(item.cover)
+    return this._image_url(item.cover, item.path)
   } else if (item.photos && item.photos.length > 0) {
-    return this._image_url(item.photos[0])
+    return this._image_url(item.photos[0], item.path)
   } else {
     return randomBG(num || 1, image_server);
   }

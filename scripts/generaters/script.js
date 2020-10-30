@@ -18,8 +18,8 @@ hexo.extend.generator.register('script', function(locals){
       normal: theme.images + "/favicon.ico",
       hidden: theme.images + "/failure.ico"
     },
-    darkmode: theme.darkmode || false,
-    autoScroll: theme.autoScroll || true,
+    darkmode: theme.darkmode,
+    auto_scroll: theme.auto_scroll,
     js: {
       valine: theme.vendors.js.valine,
       chart: theme.vendors.js.chart,
