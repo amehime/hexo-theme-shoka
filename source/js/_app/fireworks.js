@@ -6,7 +6,7 @@ var ctx = canvasEl.getContext('2d');
 var numberOfParticules = 30;
 var pointerX = 0;
 var pointerY = 0;
-var tap = ('ontouchstart' in window || navigator.msMaxTouchPoints) ? 'touchstart' : 'mousedown';
+var tap = 'click'; // ('ontouchstart' in window || navigator.msMaxTouchPoints) ? 'touchstart' : 'mousedown'
 var colors = CONFIG.fireworks;
 
 function setCanvasSize() {

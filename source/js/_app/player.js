@@ -321,12 +321,6 @@ const mediaPlayer = function(t, config) {
       var el = this.el
       el.innerHTML = ""
 
-      var getPosition = function(e, el) {
-        var percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width();
-            percentage = Math.max(percentage, 0);
-        return Math.min(percentage, 1)
-      }
-
       this.data.map(function(item, index) {
         var id = 'list-' + t.player._id + '-'+item.group
         var tab = $('#' + id)
@@ -350,7 +344,7 @@ const mediaPlayer = function(t, config) {
               if(source.paused) {
                 t.player.play();
               } else {
-                t.player.seek(source.duration * getPosition(event, current))
+                t.player.seek(source.duration * progress.percent(event, current))
               }
               return;
             }
@@ -358,30 +352,6 @@ const mediaPlayer = function(t, config) {
             t.player.play();
           }
         })
-
-        var thumbMove = function(e) {
-          var percentage = getPosition(e, item.el)
-          progress.update(percentage)
-          lyrics.update(percentage * source.duration);
-        };
-
-        var thumbUp = function(e) {
-            document.removeEventListener(utils.nameMap.dragEnd, thumbUp)
-            document.removeEventListener(utils.nameMap.dragMove, thumbMove)
-            var percentage = getPosition(e, item.el)
-            progress.update(percentage)
-            t.player.seek(percentage * source.duration)
-            source.disableTimeupdate = false
-            progress.seeking(false)
-        };
-
-        item.el.addEventListener(utils.nameMap.dragStart, function (){
-            source.disableTimeupdate = true
-            progress.seeking(true)
-            document.addEventListener(utils.nameMap.dragMove, thumbMove)
-            document.addEventListener(utils.nameMap.dragEnd, thumbUp)
-        });
-
         return item
       })
 
@@ -533,14 +503,39 @@ const mediaPlayer = function(t, config) {
     el: null,
     bar: null,
     create: function() {
-      if(this.el) {
-        var li = playlist.el.child('li.current')
-        li && li.removeClass('current')
-        this.el.remove()
-      }
+      var current = playlist.current().el
+      var that = this
 
-      var current = playlist.current().el;
       if(current) {
+        var thumbMove = function(e) {
+          var percentage = that.percent(e, current)
+          progress.update(percentage)
+          lyrics.update(percentage * source.duration);
+        };
+
+        var thumbUp = function(e) {
+            current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
+            current.removeEventListener(utils.nameMap.dragMove, thumbMove)
+            var percentage = that.percent(e, current)
+            progress.update(percentage)
+            t.player.seek(percentage * source.duration)
+            source.disableTimeupdate = false
+            progress.seeking(false)
+        };
+
+        var dragHandle = function() {
+          source.disableTimeupdate = true
+          progress.seeking(true)
+          current.addEventListener(utils.nameMap.dragMove, thumbMove)
+          current.addEventListener(utils.nameMap.dragEnd, thumbUp)
+        }
+
+        if(this.el) {
+          current && current.removeClass('current'),
+          current.removeEventListener(utils.nameMap.dragStart, dragHandle)
+          this.el.remove()
+        }
+
         this.el = current.createChild('div', {
           className: 'progress',
         })
@@ -551,8 +546,15 @@ const mediaPlayer = function(t, config) {
 
         current.addClass('current')
 
+        current.addEventListener(utils.nameMap.dragStart, dragHandle);
+
         playlist.scroll()
       }
+    },
+    percent: function(e, el) {
+      var percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width();
+      percentage = Math.max(percentage, 0);
+      return Math.min(percentage, 1)
     },
     update: function(percent) {
       this.bar.width(Math.floor(percent * 100) + '%')
