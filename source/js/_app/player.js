@@ -83,7 +83,9 @@ const mediaPlayer = function(t, config) {
       })
     },
     secondToTime: function(second) {
-      var add0 = function(num) { return num < 10 ? '0' + num : '' + num };
+      var add0 = function(num) {
+        return isNaN(num) ? '00' : (num < 10 ? '0' + num : '' + num)
+      };
       var hour = Math.floor(second / 3600);
       var min = Math.floor((second - hour * 3600) / 60);
       var sec = Math.floor(second - hour * 3600 - min * 60);
@@ -123,41 +125,43 @@ const mediaPlayer = function(t, config) {
     },
     fetch: function () {
       var that = this;
-      return function() {
-        return new Promise(function(resolve, reject) {
+      return new Promise(function(resolve, reject) {
           if(playlist.data.length > 0) {
             resolve()
           } else {
             if(that.options.rawList) {
-              var LEN = that.options.rawList.length
+              var promises = [];
 
               that.options.rawList.forEach(function(raw, index) {
-                var group = index
-                var source
-                if(!raw.list) {
-                  group = 0
-                  that.group = false
-                  source = [raw]
-                } else {
-                  source = raw.list
-                }
-                utils.fetch(source).then(function(list) {
-                  playlist.add(group, list)
-                  if(index == LEN - 1)
-                    resolve(true)
-                })
+                promises.push(new Promise(function(resolve, reject) {
+                  var group = index
+                  var source
+                  if(!raw.list) {
+                    group = 0
+                    that.group = false
+                    source = [raw]
+                  } else {
+                    source = raw.list
+                  }
+                  utils.fetch(source).then(function(list) {
+                    playlist.add(group, list)
+                    resolve()
+                  })
+                }))
               })
 
+              Promise.all(promises).then(function() {
+                resolve(true)
+              })
             }
           }
+        }).then(function(c) {
+          if(c) {
+            playlist.create()
+            controller.create()
+            that.mode()
+          }
         })
-      }().then(function(c) {
-        if(c) {
-          playlist.create()
-          controller.create()
-          that.mode()
-        }
-      })
     },
     // 根据模式切换当前曲目index
     mode: function() {
@@ -319,9 +323,11 @@ const mediaPlayer = function(t, config) {
     },
     create: function() {
       var el = this.el
-      el.innerHTML = ""
 
       this.data.map(function(item, index) {
+        if(item.el)
+          return
+
         var id = 'list-' + t.player._id + '-'+item.group
         var tab = $('#' + id)
         if(!tab) {
@@ -331,7 +337,8 @@ const mediaPlayer = function(t, config) {
             innerHTML: '<ol></ol>',
           })
           if(t.player.group) {
-            tab.attr('data-title', t.player.options.rawList[item.group]['title']).attr('data-id', t.player._id)
+            tab.attr('data-title', t.player.options.rawList[item.group]['title'])
+                .attr('data-id', t.player._id)
           }
         }
 
@@ -352,6 +359,7 @@ const mediaPlayer = function(t, config) {
             t.player.play();
           }
         })
+
         return item
       })
 
@@ -382,8 +390,10 @@ const mediaPlayer = function(t, config) {
       var current = this.current()
       document.title = 'Now Playing...' + current['name'] + ' - ' + current['artist'] + ' | ' + originTitle;
     },
-    error: function(el) {
-      el.error = true
+    error: function() {
+      var current = this.current()
+      current.el.removeClass('current').addClass('error')
+      current.error = true
       this.errnum++
     }
   }
@@ -426,16 +436,16 @@ const mediaPlayer = function(t, config) {
         return
 
       if (this.index > this.data.length - 1 || currentTime < this.data[this.index][0] || (!this.data[this.index + 1] || currentTime >= this.data[this.index + 1][0])) {
-          for (var i = 0; i < this.data.length; i++) {
-              if (currentTime >= this.data[i][0] && (!this.data[i + 1] || currentTime < this.data[i + 1][0])) {
-                  this.index = i;
-                  var y = -(this.index-1);
-                  this.el.style.transform = 'translateY('+y+'rem)';
-                  this.el.style.webkitTransform = 'translateY('+y+'rem)';
-                  this.el.getElementsByClassName('current')[0].removeClass('current');
-                  this.el.getElementsByTagName('p')[i].addClass('current');
-              }
+        for (var i = 0; i < this.data.length; i++) {
+          if (currentTime >= this.data[i][0] && (!this.data[i + 1] || currentTime < this.data[i + 1][0])) {
+            this.index = i;
+            var y = -(this.index-1);
+            this.el.style.transform = 'translateY('+y+'rem)';
+            this.el.style.webkitTransform = 'translateY('+y+'rem)';
+            this.el.getElementsByClassName('current')[0].removeClass('current');
+            this.el.getElementsByTagName('p')[i].addClass('current');
           }
+        }
       }
     },
     parse: function(lrc_s) {
@@ -504,41 +514,20 @@ const mediaPlayer = function(t, config) {
     bar: null,
     create: function() {
       var current = playlist.current().el
-      var that = this
 
       if(current) {
-        var thumbMove = function(e) {
-          var percentage = that.percent(e, current)
-          progress.update(percentage)
-          lyrics.update(percentage * source.duration);
-        };
-
-        var thumbUp = function(e) {
-            current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
-            current.removeEventListener(utils.nameMap.dragMove, thumbMove)
-            var percentage = that.percent(e, current)
-            progress.update(percentage)
-            t.player.seek(percentage * source.duration)
-            source.disableTimeupdate = false
-            progress.seeking(false)
-        };
-
-        var dragHandle = function() {
-          source.disableTimeupdate = true
-          progress.seeking(true)
-          current.addEventListener(utils.nameMap.dragMove, thumbMove)
-          current.addEventListener(utils.nameMap.dragEnd, thumbUp)
-        }
 
         if(this.el) {
-          current && current.removeClass('current'),
-          current.removeEventListener(utils.nameMap.dragStart, dragHandle)
+          this.el.parentNode.removeClass('current')
+            .removeEventListener(utils.nameMap.dragStart, this.drag)
           this.el.remove()
         }
 
         this.el = current.createChild('div', {
-          className: 'progress',
+          className: 'progress'
         })
+
+        this.el.attr('data-dtime', utils.secondToTime(0))
 
         this.bar = this.el.createChild('div', {
           className: 'bar',
@@ -546,15 +535,10 @@ const mediaPlayer = function(t, config) {
 
         current.addClass('current')
 
-        current.addEventListener(utils.nameMap.dragStart, dragHandle);
+        current.addEventListener(utils.nameMap.dragStart, this.drag);
 
         playlist.scroll()
       }
-    },
-    percent: function(e, el) {
-      var percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width();
-      percentage = Math.max(percentage, 0);
-      return Math.min(percentage, 1)
     },
     update: function(percent) {
       this.bar.width(Math.floor(percent * 100) + '%')
@@ -565,6 +549,35 @@ const mediaPlayer = function(t, config) {
         this.el.addClass('seeking')
       else
         this.el.removeClass('seeking')
+    },
+    percent: function(e, el) {
+      var percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width();
+      percentage = Math.max(percentage, 0);
+      return Math.min(percentage, 1)
+    },
+    drag: function() {
+      var current = playlist.current().el
+
+      var thumbMove = function(e) {
+        var percentage = progress.percent(e, current)
+        progress.update(percentage)
+        lyrics.update(percentage * source.duration);
+      };
+
+      var thumbUp = function(e) {
+        current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
+        current.removeEventListener(utils.nameMap.dragMove, thumbMove)
+        var percentage = progress.percent(e, current)
+        progress.update(percentage)
+        t.player.seek(percentage * source.duration)
+        source.disableTimeupdate = false
+        progress.seeking(false)
+      };
+
+      source.disableTimeupdate = true
+      progress.seeking(true)
+      current.addEventListener(utils.nameMap.dragMove, thumbMove)
+      current.addEventListener(utils.nameMap.dragEnd, thumbUp)
     }
   }
 
@@ -630,9 +643,7 @@ const mediaPlayer = function(t, config) {
 
   var events = {
     onerror: function() {
-      var current = playlist.current()
-      current.el.addClass('error')
-      playlist.error(current)
+      playlist.error()
       t.player.mode()
     },
     ondurationchange: function() {
