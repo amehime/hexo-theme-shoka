@@ -3,13 +3,6 @@ alternate: Yume Shoka
 # Assets
 statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
 
-# /images/***
-favicon:
-  apple_touch_icon: /apple-touch-icon.png
-  #safari_pinned_tab: /logo.svg
-  #android_manifest: /manifest.json
-  #ms_browserconfig: /browserconfig.xml
-
 open_graph:
   #twitter_id:
   #google_plus:
@@ -46,55 +39,18 @@ social:
   #skype: skype:yourname?call|chat || skype
   #douban: https://www.douban.com/people/yourname/ || douban
 
-post:
-  count: true
-
-# TagCloud settings for tags page.
-tagcloud:
-  # All values below are same as default, change them by yourself.
-  min: 16 # Minimun font size in px
-  max: 22 # Maxium font size in px
-  start: "#72cecf" # Start color (hex, rgba, hsla or color keywords)
-  end: "#ffbac3" # End color (hex, rgba, hsla or color keywords)
-  amount: 200 # Amount of tags, change it if you have more than 200 tags
-
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
   since: 2010
   count: true
 
-# Creative Commons 4.0 International License.
-# See: https://creativecommons.org/share-your-work/licensing-types-examples
-# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
-# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
-creative_commons:
-  license: by-nc-sa
-  language: deed.zh
+post:
+  count: true
 
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
-
-# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-pangu: true
-
-# bgm
-audio:
-   - title: 列表1
-      list:
-        - https://music.163.com/#/playlist?id=2943811283
-        - https://music.163.com/#/playlist?id=2297706586
-   - title: 列表2
-      list:
-        - https://music.163.com/#/playlist?id=2031842656
-
-# Algolia Search
-# For more information: https://www.algolia.com
-search:
-  hits:
-    per_page: 10
 
 # Comments
 # Valine
@@ -110,6 +66,19 @@ valine:
       # - deea5a8d259d17182a53be1772e4c182
     friend:
       - deea5a8d259d17182a53be1772e4c182
+
+# bgm
+audio:
+   - title: 列表1
+      list:
+        - https://music.163.com/#/playlist?id=2943811283
+        - https://music.163.com/#/playlist?id=2297706586
+   - title: 列表2
+      list:
+        - https://music.163.com/#/playlist?id=2031842656
+
+# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
+pangu: true
 
 # ---------------------------------------------------------------
 # analytics & SEO Settings

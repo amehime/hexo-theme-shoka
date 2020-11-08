@@ -31,7 +31,7 @@ hexo-feed|[链接](https://www.npmjs.com/package/hexo-feed)|生成Feed文件| Fe
 > 没有正确安装以上插件的话，本主题会报错or无法正确显示or部分功能失效。
 > `hexo-renderer-multi-markdown-it`请注意升级到最新版
 
-安装完以上插件后，修改站点`_config.yml`文件，加入相关配置。
+安装完以上插件后，修改站点配置文件，加入相关配置。
 
 # multi-markdown-it安装与配置
 

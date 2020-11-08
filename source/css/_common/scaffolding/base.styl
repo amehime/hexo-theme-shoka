@@ -129,3 +129,36 @@ dd {
 input, textarea {
   color: var(--text-color);
 }
+
+@font-face {
+  font-family: 'ic';
+  src: url('//at.alicdn.com/t/font_' + $iconfont + '.eot');
+  src: url('//at.alicdn.com/t/font_' + $iconfont + '.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.woff') format('woff'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_' + $iconfont + '.svg#ic') format('svg');
+}
+
+.ic {
+  font-family: "ic" !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  width: 1.25em;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.ic em {
+  font-size: 0;
+}
+
+.ic-lg {
+  font-size: 1.33333em;
+  line-height: .75em;
+  vertical-align: -.0667em;
+}

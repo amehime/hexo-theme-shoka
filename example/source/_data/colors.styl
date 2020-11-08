@@ -1,0 +1,202 @@
+:root {
+  --grey-0: #fff;
+  --grey-1: #fdfdfd;
+  --grey-2: #f7f7f7;
+  --grey-3: #eff2f3;
+  --grey-4: #ccc;
+  --grey-5: #999;
+  --grey-6: #666;
+  --grey-7: #333;
+  --grey-8: #222;
+  --grey-9: #000;
+
+  --grey-1-a0: alpha(#fdfdfd, 0);
+  --grey-1-a7: alpha(#fdfdfd, .7);
+  --grey-1-a5: alpha(#fdfdfd, .5);
+  --grey-1-a3: alpha(#fdfdfd, .3);
+  --grey-9-a1: alpha(#000, .1);
+  --grey-9-a5: alpha(#000, .5);
+  --grey-2-a0: alpha(#f7f7f7, 0);
+
+  --color-pink-light: #ffe6fa;
+  --color-cyan-light: #e3fdf5;
+
+  --color-red: #e9546b;
+  --color-pink: #ed6ea0;
+  --color-orange: #ec8c69;
+  --color-yellow: #eab700;
+  --color-green: #0a7426;
+  --color-aqua: #3e999f;
+  --color-blue: #38a1db;
+  --color-purple: #9d5b8b;
+  --color-grey: #869194;
+
+  --color-red-a1: alpha(#e9546b, .1);
+  --color-red-a3: alpha(#e9546b, .3);
+  --color-pink-a3: alpha(#ed6ea0, .3);
+  --color-pink-light-a3: alpha(#ffe6fa, .3);
+  --color-pink-light-a5: alpha(#ffe6fa, .5);
+  --color-pink-light-a7: alpha(#ffe6fa, .7);
+
+  --body-bg-shadow: var(--grey-2);
+  --box-bg-shadow: var(--grey-9-a1);
+  --text-color: var(--grey-7);
+  --header-text-color: var(--grey-0);
+  --primary-color: var(--color-red);
+
+}
+
+.primary {
+  --note-border: #cda0c7;
+  --note-bg: #fdf8ff;
+  --note-text: #8a51c0;
+  --note-hover: #935aca;
+}
+
+.info {
+  --note-border: #8fa4dc;
+  --note-bg: #f1f9ff;
+  --note-text: #1d4974;
+  --note-hover: #1d5fa0;
+}
+
+.success {
+  --note-border: #a3c293;
+  --note-bg: #fcfff5;
+  --note-text: #2c662d;
+  --note-hover: #3b883c;
+}
+
+.warning {
+  --note-border: #c9ba9b;
+  --note-bg: #fffbeb;
+  --note-text: #947600;
+  --note-hover: #ccb045;
+}
+
+.danger {
+  --note-border: #f4b3c1;
+  --note-bg: #fff2f5;
+  --note-text: #cc0f35;
+  --note-hover: #f14668;
+}
+
+[data-theme="dark"] {
+  &:root {
+    --grey-0: #222;
+    --grey-1: #21252b;
+    --grey-2: #363636;
+    --grey-3: #444;
+    --grey-4: #666;
+    --grey-5: #aaa;
+    --grey-6: #ccc;
+    --grey-7: #ddd;
+    --grey-8: #eee;
+    --grey-9: #f7f7f7;
+
+    --grey-1-a7: alpha(#222, .7);
+    --grey-1-a5: alpha(#222, .5);
+    --grey-1-a3: alpha(#222, .3);
+    --grey-1-a0: alpha(#222, 0);
+    --grey-9-a1: alpha(#333, .1);
+    --grey-2-a0: alpha(#363636, 0);
+
+    --color-pink-light: shade(#ffe6fa, 80%);
+    --color-cyan-light: shade(#e3fdf5, 80%);
+
+    --color-red: alpha(lighten(#e9546b, 20%), .9);
+    --color-pink: alpha(lighten(#ed6ea0, 20%), .8);
+    --color-orange: alpha(lighten(#ec8c69, 20%), .8);
+    --color-yellow: lighten(#eab700, 50%);
+    --color-green: lighten(#316745, 50%);
+    --color-aqua: lighten(#3e999f, 50%);
+    --color-blue: lighten(#38a1db, 50%);
+    --color-purple: lighten(#9d5b8b, 50%);
+    --color-grey: lighten(#869194, 50%);
+
+    --body-bg-shadow: #000;
+    --box-bg-shadow: #000;
+    --text-color: var(--grey-5);
+    --header-text-color: var(--grey-9);
+  }
+
+  .primary {
+    --note-border: alpha(shade(#cda0c7, 40%), .8);
+    --note-bg: alpha(shade(#fdf8ff, 80%), .8);
+    --note-text: alpha(lighten(#8a51c0, 20%), .8);
+    --note-hover: alpha(shade(#935aca, 20%), .8);
+  }
+
+  .info {
+    --note-border: alpha(shade(#8fa4dc, 40%), .8);
+    --note-bg: alpha(shade(#f1f9ff, 80%), .8);
+    --note-text: alpha(lighten(#1d4974, 50%), .8);
+    --note-hover: alpha(lighten(#1d5fa0, 20%), .8);
+  }
+
+  .success {
+    --note-border: alpha(shade(#a3c293, 40%), .8);
+    --note-bg: alpha(shade(#fcfff5, 80%), .8);
+    --note-text: alpha(lighten(#2c662d, 50%), .8);
+    --note-hover: alpha(shade(#3b883c, 30%), .8);
+  }
+
+  .warning {
+    --note-border: alpha(shade(#c9ba9b, 40%), .8);
+    --note-bg: alpha(shade(#fffbeb, 80%), .8);
+    --note-text: alpha(lighten(#947600, 20%), .8);
+    --note-hover: alpha(shade(#ccb045, 20%), .8);
+  }
+
+  .danger {
+    --note-border: alpha(shade(#f4b3c1, 40%), .8);
+    --note-bg: alpha(shade(#fff2f5, 80%), .8);
+    --note-text: alpha(lighten(#cc0f35, 20%), .8);
+    --note-hover: alpha(shade(#f14668, 30%), .8);
+  }
+
+  .sidebar .tab li,
+  .overview .menu .item,
+  .index.wrap .card .message .btn,
+  img, [data-background-image] {
+    the-transition();
+    opacity: .75;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  #imgs::before {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.red {
+  color: var(--color-red);
+}
+.pink {
+  color: var(--color-pink);
+}
+.orange {
+  color: var(--color-orange);
+}
+.yellow {
+  color: var(--color-yellow);
+}
+.green {
+  color: var(--color-green);
+}
+.aqua {
+  color: var(--color-aqua);
+}
+.blue {
+  color: var(--color-blue);
+}
+.purple {
+  color: var(--color-purple);
+}
+.grey {
+  color: var(--color-grey);
+}
+

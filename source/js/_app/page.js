@@ -99,6 +99,7 @@ const postFancybox = function(p) {
           }
         }
         if(info = element.attr('title')) {
+          $imageWrapLink.attr('data-caption', info);
           var para = document.createElement('span');
           var txt = document.createTextNode(info);
           para.appendChild(txt);

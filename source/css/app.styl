@@ -1,8 +1,16 @@
-@import "_variables.styl";
+@import "_variables";
 
-@import "_mixins.styl";
+@import "_mixins";
 
-@import "_colors.styl";
+if $colors = hexo-config('style.colors')
+  @import $colors;
+else
+  @import "_colors";
+
+if $_iconfont = hexo-config('style.iconfont')
+  @import $_iconfont;
+else
+  @import "_iconfont";
 
 // Scaffolding
 @import "_common/scaffolding";
@@ -12,3 +20,6 @@
 
 // Components
 @import "_common/components";
+
+if $custom = hexo-config('style.custom')
+  @import $custom;

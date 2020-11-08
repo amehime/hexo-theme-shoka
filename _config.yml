@@ -1,9 +1,14 @@
 # Alternate site name
 alternate: Yume Shoka
 
+open_graph:
+  #twitter_id:
+  #google_plus:
+  #fb_admins:
+  #fb_app_id:
+
 # Assets
 statics: / #//cdn.jsdelivr.net/gh/username/RepositoryName@latest/
-assets: assets
 css: css
 js: js
 images: images
@@ -15,11 +20,28 @@ favicon:
   #android_manifest: /manifest.json
   #ms_browserconfig: /browserconfig.xml
 
-open_graph:
-  #twitter_id:
-  #google_plus:
-  #fb_admins:
-  #fb_app_id:
+# Dark Mode
+# By default, the page judges whether to turn on the dark mode according to the device settings or user selection
+# if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
+darkmode: false
+
+# By default the page will automatically scroll to the last viewed position
+# if `false`, automatic positioning will be turned off
+auto_scroll: true
+
+# Whether to show the loading cat
+loader:
+  start: true # When entering the page
+  switch: true # When switching to another page
+
+# click with Firework
+fireworks:
+  enable: true
+  color:
+    # - "rgba(255,182,185,.9)"
+    # - "rgba(250,227,217,.9)"
+    # - "rgba(187,222,214,.9)"
+    # - "rgba(138,198,209,.9)"
 
 font:
   enable: true
@@ -62,26 +84,9 @@ font:
     external: true
     family: Inconsolata
 
-# Dark Mode
-# By default, the page judges whether to turn on the dark mode according to the device settings or user selection
-# if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
-darkmode: false
-
-# By default the page will automatically scroll to the last viewed position
-# if `false`, automatic positioning will be turned off
-auto_scroll: true
-
-# Whether to show the loading cat
-loader:
-  start: true # When entering the page
-  switch: true # When switching to another page
-
-sidebar:
-  # Sidebar Position.
-  position: left
-  # position: right
-  # Replace the default avatar image and set the url here.
-  avatar: avatar.jpg
+# project of https://www.iconfont.cn/
+# //at.alicdn.com/t/font_1832207_c8i9n1ulxlt.css => 1832207_c8i9n1ulxlt
+iconfont: "1832207_c8i9n1ulxlt"
 
 menu:
   home: / || home
@@ -115,18 +120,18 @@ social:
   #skype: skype:yourname?call|chat || skype
   #douban: https://www.douban.com/people/yourname/ || douban
 
-post:
-  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: false
+sidebar:
+  # Sidebar Position.
+  position: left
+  # position: right
+  # Replace the default avatar image and set the url here.
+  avatar: avatar.jpg
 
-# TagCloud settings for tags page.
-tagcloud:
-  # All values below are same as default, change them by yourself.
-  min: 16 # Minimun font size in px
-  max: 22 # Maxium font size in px
-  start: "#72cecf" # Start color (hex, rgba, hsla or color keywords)
-  end: "#ffbac3" # End color (hex, rgba, hsla or color keywords)
-  amount: 200 # Amount of tags, change it if you have more than 200 tags
+widgets:
+  # if true, will show random posts
+  random_posts: true
+  # if true, will show recent comments
+  recent_comments: true
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
@@ -139,20 +144,9 @@ footer:
   count: false
   powered: true
 
-widgets:
-  # if true, will show random posts
-  random_posts: true
-  # if true, will show recent comments
-  recent_comments: true
-
-# Creative Commons 4.0 International License.
-# See: https://creativecommons.org/share-your-work/licensing-types-examples
-# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
-# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
-creative_commons:
-  license: by-nc-sa
-  language: deed.zh
+post:
+  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+  count: false
 
 # Reward (Donate)
 reward:
@@ -163,32 +157,28 @@ reward:
     alipay: /alipay.png
     paypal: /paypal.png
 
+# TagCloud settings for tags page.
+tagcloud:
+  # All values below are same as default, change them by yourself.
+  min: 16 # Minimun font size in px
+  max: 22 # Maxium font size in px
+  start: "#72cecf" # Start color (hex, rgba, hsla or color keywords)
+  end: "#ffbac3" # End color (hex, rgba, hsla or color keywords)
+  amount: 200 # Amount of tags, change it if you have more than 200 tags
+
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
 # ---------------------------------------------------------------
 
-# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
-pangu: false
-
-# bgm
-audio:
-  # - title: 列表1
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2943811283
-  #    - https://music.163.com/#/playlist?id=2297706586
-  # - title: 列表2
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2031842656
-
-# random image api
-image_server: # "https://acg.xydwz.cn/api/api.php"
-
-# Algolia Search
-# For more information: https://www.algolia.com
-search:
-  hits:
-    per_page: 10
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/share-your-work/licensing-types-examples
+# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
+creative_commons:
+  license: by-nc-sa
+  language: deed.zh
 
 # Comments
 # Valine
@@ -223,14 +213,27 @@ valine:
     investor:
       # - hash of investor1@email.com
 
-# click with Firework
-fireworks:
-  enable: true
-  color:
-    # - "rgba(255,182,185,.9)"
-    # - "rgba(250,227,217,.9)"
-    # - "rgba(187,222,214,.9)"
-    # - "rgba(138,198,209,.9)"
+# bgm
+audio:
+  # - title: 列表1
+  #   list:
+  #    - https://music.163.com/#/playlist?id=2943811283
+  #    - https://music.163.com/#/playlist?id=2297706586
+  # - title: 列表2
+  #   list:
+  #    - https://music.163.com/#/playlist?id=2031842656
+
+# random image api
+image_server: # "https://acg.xydwz.cn/api/api.php"
+
+# Algolia Search
+# For more information: https://www.algolia.com
+search:
+  hits:
+    per_page: 10
+
+# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
+pangu: false
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
