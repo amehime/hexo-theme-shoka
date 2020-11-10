@@ -141,6 +141,7 @@ const mediaPlayer = function(t, config) {
                     that.group = false
                     source = [raw]
                   } else {
+                    that.group = true
                     source = raw.list
                   }
                   utils.fetch(source).then(function(list) {
@@ -234,6 +235,8 @@ const mediaPlayer = function(t, config) {
 
       source.attr('src', item.url);
       source.attr('title', item.name + ' - ' + item.artist);
+      this.volume(store.get('_PlayerVolume') || '0.7')
+      this.muted(store.get('_PlayerMuted'))
 
       progress.create()
 
@@ -270,6 +273,24 @@ const mediaPlayer = function(t, config) {
       time = Math.min(time, source.duration)
       source.currentTime = time;
       progress.update(time / source.duration)
+    },
+    muted: function(status) {
+      if(status == 'muted') {
+        source.muted = status
+        store.set('_PlayerMuted', status)
+        controller.update(0)
+      } else {
+        store.del('_PlayerMuted')
+        source.muted = false
+        controller.update(source.volume)
+      }
+    },
+    volume: function(percentage) {
+      if (!isNaN(percentage)) {
+        controller.update(percentage)
+        store.set('_PlayerVolume', percentage)
+        source.volume = percentage
+      }
     },
     mini: function() {
       info.hide()
@@ -320,6 +341,11 @@ const mediaPlayer = function(t, config) {
     clear: function() {
       this.data = []
       this.el.innerHTML = ""
+
+      if(this.index !== -1) {
+        this.index = -1
+        t.player.fetch()
+      }
     },
     create: function() {
       var el = this.el
@@ -555,16 +581,20 @@ const mediaPlayer = function(t, config) {
       percentage = Math.max(percentage, 0);
       return Math.min(percentage, 1)
     },
-    drag: function() {
+    drag: function(e) {
+      e.preventDefault()
+
       var current = playlist.current().el
 
       var thumbMove = function(e) {
+        e.preventDefault()
         var percentage = progress.percent(e, current)
         progress.update(percentage)
         lyrics.update(percentage * source.duration);
       };
 
       var thumbUp = function(e) {
+        e.preventDefault()
         current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
         current.removeEventListener(utils.nameMap.dragMove, thumbMove)
         var percentage = progress.percent(e, current)
@@ -594,50 +624,101 @@ const mediaPlayer = function(t, config) {
         if(that.btns[item])
           return;
 
-        var style = ''
+        var opt = {
+          onclick: function(event){
+            that.events[item] ? that.events[item](event) : t.player.options.events[item](event)
+          }
+        }
+
         switch(item) {
-          case 'mode':
-            style = ' ' + t.player.options.mode
-            break;
           case 'volume':
-            style = ' ' + (source.muted ? 'off' : 'on')
+            opt.className = ' ' + (source.muted ? 'off' : 'on')
+            opt.innerHTML = '<div class="bar"></div>'
+            opt['on'+utils.nameMap.dragStart] = that.events['volume']
+            opt.onclick = null
+            break;
+          case 'mode':
+            opt.className = ' ' + t.player.options.mode
+            break;
+          default:
+            opt.className = ''
             break;
         }
 
-        that.btns[item] = that.el.createChild('div', {
-            className: item + style + ' btn',
-            onclick: function(event){
-              that[item] ? that[item](event) : t.player.options.events[item](event)
-            }
-          });
-      })
-    },
-    mode: function(event) {
-      switch(t.player.options.mode) {
-        case 'loop':
-          t.player.options.mode = 'random'
-          break;
-        case 'random':
-          t.player.options.mode = 'order'
-          break;
-        default:
-          t.player.options.mode = 'loop'
-      }
+        opt.className = item + opt.className + ' btn'
 
-      this.btns['mode'].className = 'mode ' + t.player.options.mode + ' btn'
-      store.set('_PlayerMode', t.player.options.mode)
+        that.btns[item] = that.el.createChild('div', opt)
+      })
+
+      that.btns['volume'].bar = that.btns['volume'].child('.bar')
     },
-    volume: function(event) {
-      source.muted = !source.muted
-      this.btns['volume'].className = 'volume ' + (source.muted ? 'off' : 'on') + ' btn'
+    events: {
+      mode: function(e) {
+        switch(t.player.options.mode) {
+          case 'loop':
+            t.player.options.mode = 'random'
+            break;
+          case 'random':
+            t.player.options.mode = 'order'
+            break;
+          default:
+            t.player.options.mode = 'loop'
+        }
+
+        controller.btns['mode'].className = 'mode ' + t.player.options.mode + ' btn'
+        store.set('_PlayerMode', t.player.options.mode)
+      },
+      volume: function(e) {
+        e.preventDefault()
+
+        var current = e.currentTarget
+
+        var drag = false
+
+        var thumbMove = function(e) {
+          e.preventDefault()
+          t.player.volume(controller.percent(e, current))
+          drag = true
+        };
+
+        var thumbUp = function(e) {
+          e.preventDefault()
+          current.removeEventListener(utils.nameMap.dragEnd, thumbUp)
+          current.removeEventListener(utils.nameMap.dragMove, thumbMove)
+          if(drag) {
+            t.player.muted()
+            t.player.volume(controller.percent(e, current))
+          } else {
+            if (source.muted) {
+              t.player.muted()
+              t.player.volume(source.volume)
+            } else {
+              t.player.muted('muted')
+              controller.update(0)
+            }
+          }
+        };
+
+        current.addEventListener(utils.nameMap.dragMove, thumbMove)
+        current.addEventListener(utils.nameMap.dragEnd, thumbUp)
+      },
+      backward: function(e) {
+        controller.step = 'prev'
+        t.player.mode()
+      },
+      forward: function(e) {
+        controller.step = 'next'
+        t.player.mode()
+      },
     },
-    backward: function(event) {
-      controller.step = 'prev'
-      t.player.mode()
+    update: function(percent) {
+      controller.btns['volume'].className = 'volume '+ (!source.muted && percent > 0? 'on' :'off') +' btn'
+      controller.btns['volume'].bar.width(Math.floor(percent * 100) + '%')
     },
-    forward: function(event) {
-      controller.step = 'next'
-      t.player.mode()
+    percent: function(e, el) {
+      var percentage = ((e.clientX || e.changedTouches[0].clientX) - el.left()) / el.width();
+      percentage = Math.max(percentage, 0);
+      return Math.min(percentage, 1);
     }
   }
 

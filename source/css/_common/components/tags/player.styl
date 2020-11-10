@@ -31,9 +31,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
 
     .btn {
       color: var(--grey-6);
+      width: 18%;
 
       &:hover {
         color: var(--color-pink);
@@ -61,11 +63,26 @@
   }
 
   .volume {
+    position: relative;
+
     &.off::before {
       @extend .i-volume-off:before;
     }
     &.on::before {
       @extend .i-volume-on:before;
+    }
+
+    .bar {
+      position: absolute;
+      height: .25rem;
+      background: var(--color-pink-a3);
+      bottom: 0;
+      left: 0;
+      the-transition(.2s, ease-out);
+    }
+
+    &.off .bar {
+      height: 0;
     }
   }
 

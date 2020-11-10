@@ -10,11 +10,12 @@ const cardActive = function() {
     })
   } else {
     var io = new IntersectionObserver(function(entries) {
+
         entries.forEach(function(article) {
           if (article.target.hasClass("show")) {
             io.unobserve(article.target)
           } else {
-            if (article.isIntersecting) {
+            if (article.isIntersecting || article.intersectionRatio > 0) {
               article.target.addClass("show");
               io.unobserve(article.target);
             }
@@ -406,7 +407,7 @@ const loadComments = function () {
     var io = new IntersectionObserver(function(entries, observer) {
       var entry = entries[0];
       vendorCss('valine');
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting || entry.intersectionRatio > 0) {
         transition($('#comments'), 'bounceUpIn');
         observer.disconnect();
       }
