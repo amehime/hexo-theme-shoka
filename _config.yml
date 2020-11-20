@@ -252,6 +252,10 @@ quicklink:
 # ---------------------------------------------------------------
 baidu_analytics: # <app_id>
 
+# Google Analytics
+# See: https://analytics.google.com/analytics
+google_analytics: # <app_id>
+
 # Disable Baidu transformation on mobile devices.
 disable_baidu_transformation: true
 

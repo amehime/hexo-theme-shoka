@@ -7,6 +7,7 @@
 <head>
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
+  {{ partial('_partials/third-party/google-analytics.njk', {}, {cache: true}) }}
   <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
