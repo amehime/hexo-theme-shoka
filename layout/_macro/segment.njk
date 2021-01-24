@@ -3,10 +3,12 @@
   {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
 {%- endif %}
 {%- set postText = item.title or item.link or __('post.untitled') %}
-<article class="item">
-  <div class="cover">
-    {{ _url(item.link or item.path, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
-  </div>
+<article class="item {% if item.cover %}withcover{% endif %}">
+  {% if item.cover %}
+    <div class="cover">
+      {{ _url(item.link or item.path, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
+    </div>
+  {% endif %}
   <div class="info">
     {{postmeta.render(item)}}
     <h3>{{ _url(item.link or item.path, postText + (postTitleIcon or ''), {itemprop: 'url', title: postText}) }}</h3>

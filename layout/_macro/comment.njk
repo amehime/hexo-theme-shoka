@@ -1,5 +1,9 @@
 {% macro render() %}
 {%- if page.comment !== false %}
-  <div class="wrap" id="comments"></div>
+    <div class="wrap" id="comments">
+      {%- if theme.gitalk.clientID and theme.gitalk.clientSecret and theme.gitalk.repo and theme.gitalk.owner %}
+        <div id="gitalk-container"></div>
+      {% endif %}
+    </div>
 {%- endif %}
 {% endmacro %}

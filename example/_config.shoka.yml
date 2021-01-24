@@ -67,6 +67,18 @@ valine:
     friend:
       - deea5a8d259d17182a53be1772e4c182
 
+# Gitalk
+# For more information: https://github.com/gitalk/gitalk
+gitalk:
+  clientID: # GitHub Application Client ID.
+  clientSecret: # GitHub Application Client Secret.
+  repo: # GitHub repository.
+  owner: # GitHub repository owner. Can be personal user or organization.
+  admin: 
+    # GitHub repository owner and collaborators. (Users who having write access to this repository)
+    # - Username
+  createIssueManually: false # By default, Gitalk will create a corresponding github issue for your every single page automatically when the logined user is belong to the admin users. You can create it manually by setting this option to true.
+
 # bgm
 audio:
    - title: 列表1

@@ -55,21 +55,43 @@ const siteRefresh = function (reload) {
   vendorJs('copy_tex');
   vendorCss('mermaid');
   vendorJs('chart');
-  vendorJs('valine', function() {
-    var options = Object.assign({}, CONFIG.valine);
-    options = Object.assign(options, LOCAL.valine||{});
-    options.el = '#comments';
-    options.pathname = LOCAL.path;
-    options.pjax = pjax;
-    options.lazyload = lazyload;
 
-    new MiniValine(options);
+  if(CONFIG.valine.appId && CONFIG.valine.appKey) {
+    vendorJs('valine', function() {
+      var options = Object.assign({}, CONFIG.valine);
+      options = Object.assign(options, LOCAL.valine||{});
+      options.el = '#comments';
+      options.pathname = LOCAL.path;
+      options.pjax = pjax;
+      options.lazyload = lazyload;
 
-    setTimeout(function(){
-      positionInit(1);
-      postFancybox('.v');
-    }, 1000);
-  }, window.MiniValine);
+      new MiniValine(options);
+
+      setTimeout(function(){
+        positionInit(1);
+        postFancybox('.v');
+      }, 1000);
+    }, window.MiniValine);
+  }
+
+  if(CONFIG.gitalk.clientID && CONFIG.gitalk.clientSecret && CONFIG.gitalk.repo && CONFIG.gitalk.owner && CONFIG.gitalk.admin) {
+    vendorJs('gitalk', function() {
+      var options = Object.assign({}, CONFIG.gitalk);
+      options = Object.assign(options, LOCAL.gitalk||{});
+      options.pjax = pjax;
+      options.id = "/" + LOCAL.path;
+
+      const observer = lozad('#gitalk-container', {
+        load: function(el) {
+          var gitalk = new Gitalk(options);
+          gitalk.render('gitalk-container');
+        }
+      })
+      observer.observe();
+
+    }, window.Gitalk);
+    vendorCss('gitalk');
+  }
 
   if(!reload) {
     $.each('script[data-pjax]', pjaxScript);

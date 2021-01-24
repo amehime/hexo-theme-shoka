@@ -26,7 +26,9 @@ hexo.extend.filter.register('template_locals', locals => {
   locals.title = pangu.spacing(__('title') !== 'title' ? __('title') : config.title);
   locals.subtitle = pangu.spacing(__('subtitle') !== 'subtitle' ? __('subtitle') : config.subtitle);
   locals.author = __('author') !== 'author' ? __('author') : config.author;
-  locals.description = pangu.spacing(__('description') !== 'description' ? __('description') : config.description);
+  if(locals.description) {
+    locals.description = pangu.spacing(__('description') !== 'description' ? __('description') : config.description);
+  }
   locals.languages = [...i18n.languages];
   locals.languages.splice(locals.languages.indexOf('default'), 1);
   locals.page.lang = locals.page.lang || locals.page.language;
