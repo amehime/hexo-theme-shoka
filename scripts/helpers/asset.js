@@ -20,7 +20,7 @@ hexo.extend.helper.register('_vendor_font', () => {
   const fontDisplay = '&display=swap';
   const fontSubset = '&subset=latin,latin-ext';
   const fontStyles = ':300,300italic,400,400italic,700,700italic';
-  const fontHost = '//fonts.loli.net/css?family=Open+Sans';
+  const fontHost = '//fonts.dogedoge.com';
 
   //Get a font list from config
   let fontFamilies = ['global', 'logo', 'title', 'headings', 'posts', 'codes'].map(item => {
