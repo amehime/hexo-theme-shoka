@@ -1,5 +1,5 @@
 # Alternate site name
-alternate: xyzlab
+alternate: Yume Shoka
 
 open_graph:
   #twitter_id:
@@ -23,7 +23,7 @@ favicon:
 # Dark Mode
 # By default, the page judges whether to turn on the dark mode according to the device settings or user selection
 # if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
-darkmode: true
+darkmode: false
 
 # By default the page will automatically scroll to the last viewed position
 # if `false`, automatic positioning will be turned off
@@ -32,16 +32,16 @@ auto_scroll: true
 # Whether to show the loading cat
 loader:
   start: true # When entering the page
-  switch: false # When switching to another page
+  switch: true # When switching to another page
 
 # click with Firework
 fireworks:
   enable: true
   color:
-    - "rgba(255,182,185,.9)"
-    - "rgba(250,227,217,.9)"
-    - "rgba(187,222,214,.9)"
-    - "rgba(138,198,209,.9)"
+    # - "rgba(255,182,185,.9)"
+    # - "rgba(250,227,217,.9)"
+    # - "rgba(187,222,214,.9)"
+    # - "rgba(138,198,209,.9)"
 
 font:
   enable: true
@@ -90,16 +90,13 @@ iconfont: "1832207_c8i9n1ulxlt"
 
 menu:
   home: / || home
-  about: /about/ || user
-  posts:
-    default: / || feather
-    archives: /archives/ || list-alt
-    categories: /categories/ || th
-    tags: /tags/ || tags
-  webstack:
-    default: / || magic
-    friends: /friends/ || heart
-    web: /links/ || star
+  # about: /about/ || user
+  # posts:
+  #   default: / || feather
+  #   archives: /archives/ || list-alt
+  #   categories: /categories/ || th
+  #   tags: /tags/ || tags
+  # friends: /friends/ || heart
   # links: /links/ || magic
 
 # Social Links
@@ -108,27 +105,27 @@ menu:
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-  github: https://github.com/vxenomac || github || "#191717"
-  # google: https://plus.google.com/yourname || google
-  # twitter: https://twitter.com/yourname || twitter || "#00aff0"
-  zhihu: https://www.zhihu.com/people/vxenomac || zhihu || "#1e88e5"
-  music: https://music.163.com/#/user/home?id=441177793 || cloud-music || "#e60026"
-  weibo: https://weibo.com/666legend || weibo || "#ea716e"
-  # about: https://about.me/yourname || address-card || "#3b5998"
-  email: mailto:vxenomac@xyzlab.ai || envelope || "#55acd5"
+  github: https://github.com/yourname || github || "#191717"
+  #google: https://plus.google.com/yourname || google
+  twitter: https://twitter.com/yourname || twitter || "#00aff0"
+  zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
+  music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
+  weibo: https://weibo.com/yourname || weibo || "#ea716e"
+  about: https://about.me/yourname || address-card || "#3b5998"
+  #email: mailto:yourname@mail.com || envelope || "#55acd5"
   #facebook: https://www.facebook.com/yourname || facebook
   #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
   #youtube: https://youtube.com/yourname || youtube
-  instagram: https://www.instagram.com/vxen0mac/ || instagram
+  #instagram: https://instagram.com/yourname || instagram
   #skype: skype:yourname?call|chat || skype
   #douban: https://www.douban.com/people/yourname/ || douban
 
 sidebar:
   # Sidebar Position.
-  position: right
+  position: left
   # position: right
   # Replace the default avatar image and set the url here.
-  avatar: avatar.PNG
+  avatar: avatar.jpg
 
 widgets:
   # if true, will show random posts
@@ -138,26 +135,27 @@ widgets:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  since: 2016
+  since: 2010
   icon:
     name: sakura rotate
     # Change the color of icon, using Hex Code.
     color: "#ffc0cb"
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: true
-  powered: false
+  count: false
+  powered: true
 
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: true
+  count: false
 
 # Reward (Donate)
 reward:
   # If true, reward will be displayed in every article by default.
   enable: true
   account:
-    wechatpay: /wechatpay.JPG
-    alipay: /alipay.JPG
+    wechatpay: /wechatpay.png
+    alipay: /alipay.png
+    paypal: /paypal.png
 
 # TagCloud settings for tags page.
 tagcloud:
@@ -186,12 +184,12 @@ creative_commons:
 # Valine
 # For more information: https://github.com/amehime/MiniValine
 valine:
-  appId: IV2NThuqluB0OGqYmCTP6And-gzGzoHsz
-  appKey: nciBJGYIeGr5HcwFIHVLlO4e
+  appId: #Your_appId
+  appKey: #Your_appkey
   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
   avatar: mp # Gravatar style : mp, identicon, monsterid, wavatar, robohash, retro
   pageSize: 10 # Pagination size
-  lang: zh-CN
+  lang: en
   visitor: true # Article reading statistic
   NoRecordIP: false # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
@@ -200,7 +198,7 @@ valine:
     visitor: 新朋友
     master: 主人
     friend: 小伙伴
-    investor: 金主
+    investor: 金主粑粑
   tagColor:
     master: "var(--color-orange)"
     friend: "var(--color-aqua)"
@@ -217,16 +215,16 @@ valine:
 
 # bgm
 audio:
-  - title: 列表1
-    list:
-      - https://music.163.com/#/playlist?id=2338950813
+  # - title: 列表1
+  #   list:
+  #    - https://music.163.com/#/playlist?id=2943811283
   #    - https://music.163.com/#/playlist?id=2297706586
   # - title: 列表2
   #   list:
   #    - https://music.163.com/#/playlist?id=2031842656
 
 # random image api
-image_server: "https://api.yimian.xyz/img?type=wallpaper"
+image_server: # "https://acg.xydwz.cn/api/api.php"
 
 # Algolia Search
 # For more information: https://www.algolia.com
@@ -235,7 +233,7 @@ search:
     per_page: 10
 
 # Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
-pangu: true
+pangu: false
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
@@ -252,9 +250,7 @@ quicklink:
 # ---------------------------------------------------------------
 # analytics & SEO Settings
 # ---------------------------------------------------------------
-baidu_analytics: a1116bf7e3c28367dbbda7d3b51602cc
-
-google_analytics: G-NXC4CNHQFX
+baidu_analytics: # <app_id>
 
 # Disable Baidu transformation on mobile devices.
 disable_baidu_transformation: true
