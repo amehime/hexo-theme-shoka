@@ -15,13 +15,13 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
     if(count && count > 1) {
       var arr = new Array(count);
       for(var i=0; i < arr.length; i++){
-        arr[i] = image_server + '?' + Math.floor(Math.random() * 999999)
+        arr[i] = image_server + '&id=' + Math.floor(Math.random() * 999999)
       }
 
       return arr;
     }
 
-    return image_server + '?' + Math.floor(Math.random() * 999999)
+    return image_server + '&id=' + Math.floor(Math.random() * 999999)
   }
 
   var parseImage = function(img, size) {
