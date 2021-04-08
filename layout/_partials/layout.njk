@@ -7,6 +7,9 @@
 <head>
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
+  {{ partial('_partials/third-party/google-analytics.njk', {}, {cache: true}) }}
+  <script src="https://cdn.jsdelivr.net/gh/PFiS1737/live2d-widget@latest/autoload.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
   <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
