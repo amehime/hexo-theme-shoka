@@ -4,7 +4,7 @@
   <p>{{ __('reward.text') }}</p>
   <div id="qr">
     {%- for name, image in theme.reward.account %}
-      {%- set builtin = ['wechatpay', 'alipay', 'paypal', 'bitcoin'] %}
+      {%- set builtin = ['wechatpay', 'alipay', 'bitcoin'] %}
       {%- if builtin.includes(name) %}
         {%- set translation = __('reward.' + name) %}
       {% else %}
