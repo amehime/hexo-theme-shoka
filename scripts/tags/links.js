@@ -40,7 +40,7 @@ function linkGrid(args, content) {
 
   const siteHost = url.parse(hexo.config.url).hostname || hexo.config.url;
 
-  const list = yaml.safeLoad(content);
+  const list = yaml.load(content);
 
   var result = ''
 
