@@ -115,8 +115,23 @@ sticky: true
 ```
 ![这里是alt](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "这里是title")
 
+2. 设置图片的大小
+   
+```raw
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定宽度和高度"){height="100px" width="400px"}
 
-2. 除了在Front Matter里配置`photos`可以显示相册图案列表外，还可以这样写
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定宽度"){width="400px"}
+
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定高度"){height="100px"}
+```
+
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定宽度和高度"){height="100px" width="400px"}
+
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定宽度"){width="400px"}
+
+![](https://tva3.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg "定义图片大小-固定高度"){height="100px"}
+
+3. 除了在Front Matter里配置`photos`可以显示相册图案列表外，还可以这样写
 ```raw
 ## 图案列表No.1
 ![](https://tva3.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg "这里是title")
@@ -130,10 +145,10 @@ sticky: true
 ![](https://tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg)
 ![](https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg)
 ![](https://tva3.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg)
-{.gallery data-height="220"}
+{.gallery data-height="120"}
 ```
 
-`data-height`用来设置每行的高度，默认为`120`
+`data-height`用来设置每行的高度，默认为`220`
 
 ## 图案列表No.1
 ![](https://tva3.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg "这里是title")
@@ -147,7 +162,7 @@ sticky: true
 ![](https://tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg)
 ![](https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg)
 ![](https://tva3.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg)
-{.gallery data-height="220"}
+{.gallery data-height="120"}
 
 
 # 自定义页面配色

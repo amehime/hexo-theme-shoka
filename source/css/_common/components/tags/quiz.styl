@@ -39,10 +39,6 @@ $times {
     font-size: $font-size-base;
   }
 
-  &.ruby::before {
-    top: .5rem;
-  }
-
   >p {
     margin: 0;
     cursor: pointer;
@@ -55,6 +51,11 @@ $times {
     }
   }
 
+  &.mistake >p {
+    &:first-child::before {
+      color: var(--primary-color);
+    }
+  }
   .gap {
     display: inline-block;
     min-width: 2.5rem;

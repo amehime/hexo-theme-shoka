@@ -221,11 +221,16 @@ const goToCommentHandle = function () {
 const menuActive = function () {
   $.each('.menu .item:not(.title)', function (element) {
     var target = element.child('a[href]');
+    var parentItem = element.parentNode.parentNode;
     if (!target) return;
     var isSamePath = target.pathname === location.pathname || target.pathname === location.pathname.replace('index.html', '');
     var isSubPath = !CONFIG.root.startsWith(target.pathname) && location.pathname.startsWith(target.pathname);
     var active = target.hostname === location.hostname && (isSamePath || isSubPath)
     element.toggleClass('active', active);
-    element.parentNode.parentNode.toggleClass('expand', element.parentNode.hasClass('submenu') && element.parentNode.child('.active'));
+    if(element.parentNode.child('.active') && parentItem.hasClass('dropdown')) {
+      parentItem.removeClass('active').addClass('expand');
+    } else {
+      parentItem.removeClass('expand');
+    }
   });
 }

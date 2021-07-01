@@ -38,9 +38,14 @@
 
     &.active {
       @extend $color-btn;
+
       &:hover {
         box-shadow: 0 0 .75rem var(--color-pink);
         color: var(--grey-0);
+      }
+
+      .item {
+        color: currentColor;
       }
     }
 

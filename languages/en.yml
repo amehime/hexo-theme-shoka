@@ -54,6 +54,7 @@ post:
     link: Post link
     license_title: Copyright Notice
     license_content: "All articles in this blog are licensed under %s unless stating additionally."
+    nocopy: "<span class=\"red\">This page is prohibited reprint.</span>"
 
 footer:
   powered: "Powered by %s"
@@ -131,6 +132,7 @@ symbols_count_time:
 
 tips:
   copyright: "Copied to clipboard successfully! <br> All articles in this blog are licensed under %s."
+  nocopy: "Copied to clipboard failed! This page is prohibited reprint."
 
 quiz:
   choice: Multiple Choice

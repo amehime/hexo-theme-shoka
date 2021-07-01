@@ -54,6 +54,7 @@ post:
     link: 記事へのリンク
     license_title: 著作権表示
     license_content: "このブログ内のすべての記事は、特別な記載がない限り %s の下のライセンスで保護されています。"
+    nocopy: "<span class=\"red\">再印刷は禁止されています。</span>"
 
 footer:
   powered: "Powered by %s"
@@ -131,6 +132,7 @@ symbols_count_time:
 
 tips:
   copyright: "コピーは成功しました。 <br> 再印刷については、 ％s 契約に従ってください。"
+  nocopy: "コピーに失敗しました。 <br> 再印刷は禁止されています。"
 
 quiz:
   choice: 選択

@@ -14,7 +14,7 @@
   </li>
   <li class="license">
     <strong>{{ __('post.copyright.license_title') + __('symbol.colon') }} </strong>
-    {{- __('post.copyright.license_content', _url(ccURL, ccIcon + ccText)) }}
+    {{- __('post.copyright.license_content', _url(ccURL, ccIcon + ccText)) if page.copyright !== true else __("post.copyright.nocopy")}}
   </li>
 </ul>
 </div>

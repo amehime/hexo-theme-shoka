@@ -7,7 +7,7 @@ function postMedia(args, content) {
   if(!args[0] || !content) {
     return
   }
-  const list = yaml.safeLoad(content);
+  const list = yaml.load(content);
   switch(args[0]) {
     case 'video':
     case 'audio':

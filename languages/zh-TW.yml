@@ -54,6 +54,7 @@ post:
     link: 文章連結
     license_title: 版權聲明
     license_content: "本網誌所有文章除特別聲明外，均採用 %s 許可協議。轉載請註明出處！"
+    nocopy: "<span class=\"red\">本頁內容禁止轉載！</span>"
 
 footer:
   powered: "基於 %s"
@@ -131,6 +132,7 @@ symbols_count_time:
 
 tips:
   copyright: "複製成功，轉載請遵守 %s 協議。"
+  nocopy: "複製失敗，本頁內容禁止轉載！"
 
 quiz:
   choice: 單選題

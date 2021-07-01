@@ -97,7 +97,7 @@
 {%- set ccText = theme.creative_commons.license | upper %}
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '{{ page.path | replace('index.html', '') }}',
+    path: '{{ _permapath(page.path) }}',
     favicon: {
       show: "{{ __('favicon.show') }}",
       hide: "{{ __('favicon.hide') }}"
@@ -116,7 +116,11 @@
     {%- if page.audio %}audio: {{ page.audio|safedump }},{%- endif %}
     {%- if page.audio === false %}audio: {},{%- endif %}
     {%- if page.fancybox !== false %}fancybox: true,{%- endif %}
-    {%- if page.copyright !== false %}copyright: '{{ _p("tips.copyright", ccIcon + ccText) }}',{%- endif %}
+    {%- if page.copyright !== false %}
+    {%- if page.copyright === true %}nocopy: true,
+    copyright: '{{ __("tips.nocopy")}}',{%- else %}
+    copyright: '{{ __("tips.copyright", ccIcon + ccText) }}',
+    {%- endif %}{%- endif %}
     {%- if page.quiz %}quiz: {
       choice: "{{ __('quiz.choice') }}",
       multiple: "{{ __('quiz.multiple') }}",
@@ -133,7 +137,7 @@
         return new RegExp(LOCAL.path+"$").test(uri);
       }{%- if theme.quicklink.ignores %},
       {{ theme.quicklink.ignores|safedump }}
-      {% endif %}
+      {%- endif %}
     ]
   };
 </script>
