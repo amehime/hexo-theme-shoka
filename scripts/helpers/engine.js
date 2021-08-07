@@ -118,12 +118,36 @@ hexo.extend.helper.register('_image_url', function(img, path = '') {
 hexo.extend.helper.register('_cover', function(item, num) {
   const { statics, js, image_server, image_list } = hexo.theme.config;
 
+  let image_list_filter = function (image_list) {
+    let image_list_by_day = [];
+    let day = new Date().getDate();
+
+    let get_image_day = function (image) {
+      let https_index = image.search(/https/)
+      let image_day = parseInt(image.substring(0, https_index), 10)
+      return image_day
+    }
+
+    let get_image_cluster_num = function (image_list) {
+      let last_image = image_list[image_list.length - 1]
+      return get_image_day(last_image)
+    }
+
+    let filter_day = (day % get_image_cluster_num(image_list)) + 1
+    for (let image of image_list) {
+      // image eg: "5https://gitee.com/co-neco/pic_bed/raw/master/cg%20(1149).jpg"
+      if (get_image_day(image) == filter_day)
+        image_list_by_day.push(image.substring(image.search(/https/)))
+    }
+    return image_list_by_day
+  }
+
   if(item.cover) {
     return this._image_url(item.cover, item.path)
   } else if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0], item.path)
   } else {
-    return randomBG(num || 1, image_server, image_list);
+    return randomBG(num || 1, image_server, image_list_filter(image_list));
   }
 
 })
