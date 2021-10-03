@@ -24,9 +24,6 @@ $item {
     position: absolute;
     bottom: 0;
     right: 0;
-    transform-style: preserve-3d;
-    transform: translateZ(2rem);
-    backface-visibility: hidden;
     padding: .3rem 1rem;
     border-radius: 1rem 0;
     color: var(--grey-0);
@@ -36,9 +33,6 @@ $item {
       position: absolute;
       display: block;
       content: '';
-      transform-style: preserve-3d;
-      transform: translateZ(-2rem);
-      backface-visibility: hidden;
       height: calc(100% - 1rem);
       width: calc(100% - 1rem);
       border-radius: 5rem;
@@ -54,6 +48,18 @@ $item {
 
     &:hover::before {
       transform: translateZ(-2.5rem);
+    }
+  }
+
+  .active .btn {  
+    transform-style: preserve-3d;
+    transform: translateZ(2rem);
+    backface-visibility: hidden;
+
+    &::before {
+      transform-style: preserve-3d;
+      transform: translateZ(-2rem);
+      backface-visibility: hidden;
     }
   }
 

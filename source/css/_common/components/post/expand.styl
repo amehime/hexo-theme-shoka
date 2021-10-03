@@ -7,8 +7,6 @@
 
 .md {
   p,
-  ul,
-  ol,
   table,
   pre,
   blockquote,
@@ -18,6 +16,12 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  ul, dd, ol {
+    ul, ol {
+      margin-top: 0;
     }
   }
 
@@ -101,14 +105,16 @@
       margin: .625rem 0 !important;
     }
 
-    ul li::before {
+    ul > li::before {
       width: .375rem !important;
       height: .375rem !important;
       top: .6875rem !important;
     }
 
-    p {
-      margin: 0 !important;
+    p, ol, ul {
+      &:last-child {
+        margin-bottom: 0!important;
+      }
     }
   }
 

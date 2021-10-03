@@ -8,12 +8,12 @@
     }
 
     p {
-      margin: 0 0 .5em;
+      margin: 0;
     }
   }
 
   ul, ol, dl {
-    margin: 0 0 .8em;
+    margin: .5em 0 .5em;
     padding: .1em .2em .1em 1.4em;
   }
 
@@ -28,10 +28,6 @@
       border-radius: 50%;
       top: .85em;
       left: -1em;
-    }
-
-    &.ruby::before {
-      top: 1.25em;
     }
 
     &:hover::before {
@@ -61,10 +57,6 @@
         background: var(--primary-color);
         color: var(--grey-1);
         cursor: pointer;
-      }
-
-      &.ruby::before {
-        top: .3em;
       }
 
       &:hover::before {
@@ -121,13 +113,14 @@
     }
   }
 
-  li ol > li {
+  li ol > li, dd ol > li{
     &::before {
       content: counter(counter) ".";
       background: none;
       color: var(--primary-color);
       font-size: 1em;
       line-height: 1;
+      width: auto;
     }
 
     &:hover::before {

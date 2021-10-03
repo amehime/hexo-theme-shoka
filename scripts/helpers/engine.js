@@ -50,6 +50,9 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
 }
 
 hexo.extend.helper.register('_url', function(path, text, options = {}) {
+  if(!path)
+    return
+
   const { config } = this;
   const data = url.parse(path);
   const siteHost = url.parse(config.url).hostname || config.url;
@@ -134,15 +137,18 @@ hexo.extend.helper.register('_md5', function(path) {
   return crypto.createHash('md5').update(str).digest('hex');
 });
 
-
-hexo.extend.helper.register('canonical', function() {
+hexo.extend.helper.register('_permapath', function(str) {
   // https://support.google.com/webmasters/answer/139066
   const { permalink } = hexo.config;
-  let url = this.url.replace(/index\.html$/, '');
+  let url = str.replace(/index\.html$/, '');
   if (!permalink.endsWith('.html')) {
     url = url.replace(/\.html$/, '');
   }
-  return `<link rel="canonical" href="${url}">`;
+  return url;
+});
+
+hexo.extend.helper.register('canonical', function() {
+  return `<link rel="canonical" href="${this._permapath(this.url)}">`;
 });
 
 /**

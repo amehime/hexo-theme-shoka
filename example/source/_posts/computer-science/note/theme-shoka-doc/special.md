@@ -297,7 +297,7 @@ quiz: true
 [红色]{.red}
 [粉色]{.pink}
 [橙色]{.orange}
-[红色]{.yellow}
+[黄色]{.yellow}
 [绿色]{.green}
 [靛青]{.aqua}
 [蓝色]{.blue}
