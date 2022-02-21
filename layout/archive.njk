@@ -25,9 +25,9 @@
   <div class="collapse wrap">
     <h2 class="item header">
         {%- if is_month() %}
-          <a href="{{ url_for(config.archive_dir) }}">{{ __('title.all') }}</a> <small>/</small> <a href="{{ url_for(config.archive_dir + '/' + page.year )}}">{{page.year}} {{__('symbol.year')}}</a> <small>/</small> {{page.month}} {{__('symbol.month')}}<small>{{ __('title.archive') }}</small>
+          <a href="{{ url_for(config.archive_dir + '/') }}">{{ __('title.all') }}</a> <small>/</small> <a href="{{ url_for(config.archive_dir + '/' + page.year + '/')}}">{{page.year}} {{__('symbol.year')}}</a> <small>/</small> {{page.month}} {{__('symbol.month')}}<small>{{ __('title.archive') }}</small>
         {% elif is_year() %}
-          <a href="{{ url_for(config.archive_dir) }}">{{ __('title.all') }}</a> <small>/</small> {{page.year}} {{__('symbol.year')}} <small>{{ __('title.archive') }}</small>
+          <a href="{{ url_for(config.archive_dir + '/') }}">{{ __('title.all') }}</a> <small>/</small> {{page.year}} {{__('symbol.year')}} <small>{{ __('title.archive') }}</small>
         {% else %}
           <a href="{{ url_for(site.path) }}">{{ __('menu.home') }}</a> <small>/</small>
           {%- set posts_length = site.posts.length %}
@@ -67,7 +67,7 @@
           {%- endif %}
 
           <h3 class="item section">
-            <a href="{{ url_for(config.archive_dir + '/' + year )}}">{{ year }} {{__('symbol.year')}}</a><small>/</small><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month)}}">{{ month }} {{__('symbol.month')}}</a>
+            <a href="{{ url_for(config.archive_dir + '/' + year + '/')}}">{{ year }} {{__('symbol.year')}}</a><small>/</small><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month + '/')}}">{{ month }} {{__('symbol.month')}}</a>
           {%- set current_year = year %}
           {%- set current_month = month %}
           {%- set count_post = 1 %}
@@ -79,12 +79,12 @@
 
         {%- if year !== current_year and not is_year()%}
           {%- set current_year = year %}
-          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year )}}">{{ year }} {{__('symbol.year')}}</a></h3>
+          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year + '/')}}">{{ year }} {{__('symbol.year')}}</a></h3>
         {%- endif %}
 
         {%- if month !== current_month and is_year() and not is_month()%}
           {%- set current_month = month %}
-          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month)}}">{{ month }} {{__('symbol.month')}}</a></h3>
+          <h3 class="item section"><a href="{{ url_for(config.archive_dir + '/' + year  + '/' + month + '/')}}">{{ month }} {{__('symbol.month')}}</a></h3>
         {%- endif %}
 
         <article class="item normal" itemscope itemtype="http://schema.org/Article">

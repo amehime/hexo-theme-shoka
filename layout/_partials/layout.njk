@@ -7,7 +7,7 @@
 <head>
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
-  <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
+  <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = " + subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div id="loading">
@@ -108,7 +108,8 @@
       stats: "{{ __('search.stats') }}"
     },
     {%- if theme.widgets.recent_comments or page.comment !== false  %}
-    valine: {{ page.valine|safedump if page.valine else "true"  }},{%- endif %}
+    valine: {{ page.valine|safedump if page.valine else "true"  }},
+    gitalk: {{ page.gitalk|safedump if page.gitalk else "true"  }},{%- endif %}
     {%- if page.chart %}chart: true,{%- endif %}
     {%- if page.math %}copy_tex: true,
     katex: true,{%- endif %}
