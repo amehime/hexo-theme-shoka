@@ -1,6 +1,6 @@
 title: Images
 date: 2013-12-26 22:46:49
-cover: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+cover: https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
 ---
 
 This is a image test post.

@@ -56,7 +56,7 @@ valine:
   owner: 霜月琉璃
   url: https://shoka.lostyu.me
   desc: 琉璃的医学 & 编程笔记
-  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  image: https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 
 - site: 優萌初華
@@ -76,7 +76,7 @@ valine:
   owner: 霜月琉璃
   url: https://shoka.lostyu.me
   desc: 琉璃的医学 & 编程笔记
-  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  image: https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 
 - site: 優萌初華
@@ -456,7 +456,7 @@ H~2~0
   owner: 霜月琉璃
   url: https://shoka.lostyu.me
   desc: 琉璃的医学 & 编程笔记
-  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  image: https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 &#123;% endlinks %&#125;
 ;;;
@@ -488,7 +488,7 @@ H~2~0
   owner: 霜月琉璃
   url: https://shoka.lostyu.me
   desc: 琉璃的医学 & 编程笔记
-  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  image: https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 {% endlinks %}
 ;;;

@@ -9,7 +9,7 @@ copyright: false
 - 站名： 優萌初華
 - 站长： 霜月琉璃
 - 地址： https://shoka.lostyu.me
-- 标志： ![霜月琉璃](https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg){height="100" width="100"}
+- 标志： ![霜月琉璃](https://fastly.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg){height="100" width="100"}
 - 简介： 琉璃的医学 & 编程笔记
 
 # 申请方法

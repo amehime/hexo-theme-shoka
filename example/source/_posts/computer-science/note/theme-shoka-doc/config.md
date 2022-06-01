@@ -25,10 +25,10 @@ alternate: Yume Shoka
 
 # 静态文件目录
 ```yml
-statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
+statics: / #//fastly.jsdelivr.net/gh/amehime/shoka@latest/
 ```
 默认值是`/`，指使用本地静态文件
-可以修改成`//cdn.jsdelivr.net/gh/您的github用户名/您的项目名@latest/`这种形式，以使用jsDelivr进行加速。
+可以修改成`//fastly.jsdelivr.net/gh/您的github用户名/您的项目名@latest/`这种形式，以使用jsDelivr进行加速。
 PS：jsDelivr并不是实时更新，重新生成文件后需要耐心等待
 
 ```yml
