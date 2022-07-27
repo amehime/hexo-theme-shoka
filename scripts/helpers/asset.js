@@ -73,3 +73,9 @@ hexo.extend.helper.register('_js', function(...urls) {
 
   return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}?v=${theme_env['version']}`) }, '')).join('');
 });
+
+hexo.extend.helper.register('_js_nov', function (...urls) {
+  const { statics, js } = hexo.theme.config;
+
+  return urls.map(url => htmlTag('script', { src: url_for.call(this, `${statics}${js}/${url}`) }, '')).join('');
+});
