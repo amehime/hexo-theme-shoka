@@ -5,11 +5,14 @@
 <!DOCTYPE html>
 <html lang="{{ page.language if page.language else config.language }}">
 <head>
+  {{ partial('_partials/third-party/google-analytics.njk', {}, {cache: true}) }}
+  {{ partial('_partials/third-party/google-tag-head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head.njk', {}, {cache: true}) }}
   {{ partial('_partials/head/head_unique.njk') }}
   <title>{% block title %}{% endblock %}{{ alternate + " = " if alternate }}{{ title }}{{ " = "+subtitle if subtitle }}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
+  {{ partial('_partials/third-party/google-tag-body.njk', {}, {cache: true}) }}
   <div id="loading">
     <div class="cat">
       <div class="body"></div>
