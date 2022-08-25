@@ -277,6 +277,14 @@ baidu_site_verification:
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
 baidu_push: false
 
+# Google Analytics 4
+# See: https://analytics.google.com/analytics/web/
+google_analytics:
+
+# Google Tags
+# See: https://tagmanager.google.com/
+google_tag:
+
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
