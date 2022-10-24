@@ -31,5 +31,14 @@
     <span>{{ symbolsTime(item, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
   </span>
   {%- endif %}
+  {%- if not is_index and theme.busuanzi_count.enable and theme.busuanzi_count.post_views %}
+    <span class="post-meta-item" title="{{ __('post.views') }}" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="{{ theme.busuanzi_count.post_views_icon }}"></i>
+      </span>
+      <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  {%- endif %}
 </div>
 {% endmacro %}
