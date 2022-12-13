@@ -8,7 +8,7 @@ open_graph:
   #fb_app_id:
 
 # Assets
-statics: / #//cdn.jsdelivr.net/gh/username/RepositoryName@latest/
+statics: / #//fastly.jsdelivr.net/gh/username/RepositoryName@latest/
 css: css
 js: js
 images: images
@@ -281,7 +281,7 @@ baidu_push: false
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
-#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
+#! Script dependencies will be combined with jsDelivr (fastly.jsdelivr.net)
 #! ---------------------------------------------------------------
 vendors:
   css:

@@ -1,7 +1,7 @@
 alternate: Yume Shoka
 
 # Assets
-statics: / #//cdn.jsdelivr.net/gh/amehime/shoka@latest/
+statics: / #//fastly.jsdelivr.net/gh/amehime/shoka@latest/
 
 open_graph:
   #twitter_id:
