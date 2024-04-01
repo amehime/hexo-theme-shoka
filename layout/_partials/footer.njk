@@ -24,6 +24,20 @@
   </div>
   {%- endif %}
 
+  {%- if theme.footer.beian.enable %}
+    <div class="beian">
+      <a href="https://beian.miit.gov.cn" target="_blank">{{theme.footer.beian.icp}}</a>
+      {%- if theme.footer.beian.gongan_icon_url %}
+        <img src="{{ url_for(theme.footer.beian.gongan_icon_url) }}" alt="">
+      {%- endif %}
+      {%- if theme.footer.beian.gongan_id %}
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=00000000000000" target="_blank" rel="noopener">
+          {{theme.footer.beian.gongan_id}}
+        </a>
+      {%- endif %}
+    </div>
+  {%- endif %}
+
   {%- if theme.footer.powered %}
   <div class="powered-by">
     {{ __('footer.powered', _url('https://hexo.io', 'Hexo') + ' & Theme.' + _url('https://github.com/amehime/hexo-theme-shoka', 'Shoka')) }}

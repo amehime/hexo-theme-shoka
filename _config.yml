@@ -143,6 +143,16 @@ footer:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
   powered: true
+  
+  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn
+  beian:
+    enable: false
+    # The id of ICP beian.  e.g. 京ICP备1919081145号-1
+    icp: 京ICP备1919081145号-1
+    # The id of gongan beian.  e.g. 京公安网备11451401919810号
+    gongan_id:
+    # The icon for gongan beian. Login and See: https://beian.mps.gov.cn/web/business/businessHome/website
+    gongan_icon_url:
 
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
