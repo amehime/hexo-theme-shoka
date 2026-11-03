@@ -118,7 +118,10 @@ minify:
   js:
     enable: true
     mangle:
-      toplevel: true
+      # 请勿开启 toplevel：压缩器会把 app.js 顶层变量改写成短变量名（如 t），
+      # 与 vendor 合并包在全局作用域声明的同名变量冲突，
+      # 浏览器报 "Uncaught SyntaxError: Identifier 't' has already been declared"，页面一直卡在 loading
+      toplevel: false
     output:
     compress:
     exclude:
